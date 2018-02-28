@@ -7,10 +7,7 @@ import edu.berkeley.kaiju.config.Config;
 import edu.berkeley.kaiju.data.DataItem;
 import edu.berkeley.kaiju.data.ItemVersion;
 import edu.berkeley.kaiju.exception.AbortedException;
-import edu.berkeley.kaiju.frontend.request.ClientGetAllRequest;
-import edu.berkeley.kaiju.frontend.request.ClientPutAllRequest;
-import edu.berkeley.kaiju.frontend.request.ClientRequest;
-import edu.berkeley.kaiju.frontend.request.ClientSetIsolationRequest;
+import edu.berkeley.kaiju.frontend.request.*;
 import edu.berkeley.kaiju.frontend.response.*;
 import edu.berkeley.kaiju.service.LockManager.LockDuration;
 import edu.berkeley.kaiju.service.request.message.KaijuMessage;
@@ -34,6 +31,10 @@ public class KryoSerializer {
 
     public KryoSerializer() {
         kryo = new Kryo();
+
+        kryo.register(ClientPutAllRequestNew.class);
+        kryo.register(String.class);
+
         kryo.register(CommitPutAllRequest.class);
         kryo.register(GetAllByTimestampListRequest.class);
         kryo.register(GetAllByTimestampRequest.class);

@@ -6,6 +6,7 @@ import edu.berkeley.kaiju.exception.ClientException;
 import edu.berkeley.kaiju.exception.KaijuException;
 import edu.berkeley.kaiju.frontend.request.ClientGetAllRequest;
 import edu.berkeley.kaiju.frontend.request.ClientPutAllRequest;
+import edu.berkeley.kaiju.frontend.request.ClientPutAllRequestNew;
 import edu.berkeley.kaiju.frontend.request.ClientSetIsolationRequest;
 import edu.berkeley.kaiju.frontend.response.ClientError;
 import edu.berkeley.kaiju.frontend.response.ClientGetAllResponse;
@@ -60,11 +61,27 @@ public class KaijuClient {
 
     public void put_all(Map<String, byte[]> keyValuePairs) throws IOException, KaijuException {
         try {
-            serializer.serialize(new ClientPutAllRequest(keyValuePairs));
-            Object ret = serializer.getObject();
-            if (ret instanceof ClientError) {
-                throw new ClientException(((ClientError) ret).error);
+            StringBuilder stringToSend = new StringBuilder();
+            System.out.println("Building new string now");
+            for (String keyString :
+                    keyValuePairs.keySet()) {
+                byte[] valueInPair = keyValuePairs.get(keyString);
+                String valueString = new String(valueInPair, "UTF8");
+                stringToSend.append(keyString + "[eok]" +
+                    valueString + "[eov][sep]");
             }
+
+            System.out.println(stringToSend.toString());
+            String stringBuilderConvert = stringToSend.toString().replace("\"", "$");
+            System.out.println(stringBuilderConvert);
+            serializer.serialize(stringBuilderConvert);
+
+//            serializer.serialize(new ClientPutAllRequest(keyValuePairs));
+//            serializer.serialize(new ClientPutAllRequestNew(keyValuePairs));
+//            Object ret = serializer.getObject();
+//            if (ret instanceof ClientError) {
+//                throw new ClientException(((ClientError) ret).error);
+//            }
         } catch (KryoException e) {
             if(!hasClosed) {
                 throw e;
@@ -73,11 +90,11 @@ public class KaijuClient {
     }
 
     public void setIsolation(Config.IsolationLevel level, Config.ReadAtomicAlgorithm algorithm) throws IOException, KaijuException {
-        serializer.serialize(new ClientSetIsolationRequest(level, algorithm));
-        Object ret = serializer.getObject();
-        if (ret instanceof ClientError) {
-            throw new ClientException(((ClientError) ret).error);
-        }
+//        serializer.serialize(new ClientSetIsolationRequest(level, algorithm));
+//        Object ret = serializer.getObject();
+//        if (ret instanceof ClientError) {
+//            throw new ClientException(((ClientError) ret).error);
+//        }
     }
 
     public void setIsolation(Config.IsolationLevel level) throws IOException, KaijuException {

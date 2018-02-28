@@ -215,6 +215,7 @@ class ClientThread extends Thread {
 
         try {
             if (_dotransactions) {
+                System.out.println("DAMN something is wrong, why transactions");
                 long st = System.currentTimeMillis();
 
                 while (((_opcount == 0) || (_opsdone < _opcount)) && !_workload.isStopRequested()) {
@@ -244,10 +245,10 @@ class ClientThread extends Thread {
             } else {
                 long st = System.currentTimeMillis();
 
-                int numInserts;
-
+//                int numInserts;
+                int numInserts = 0;
                 while (((_opcount == 0) || (_opsdone < _opcount)) && !_workload.isStopRequested()) {
-
+                    System.out.println(numInserts + " " + _opsdone + " " + _opcount);
                     if ((numInserts = _workload.doInsert(_db, _workloadstate)) == -1) {
                         break;
                     }
