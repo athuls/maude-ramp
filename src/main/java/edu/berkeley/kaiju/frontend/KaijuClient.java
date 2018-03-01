@@ -29,6 +29,7 @@ public class KaijuClient {
 
     public KaijuClient(String host, int port) throws IOException {
         Config.clientSideInitialize();
+        System.out.println("Created one socket " + host + " " + port);
         clientSocket = new Socket(host, port);
         serializer.setInputStream(clientSocket.getInputStream());
         serializer.setOutputStream(clientSocket.getOutputStream());
@@ -36,12 +37,13 @@ public class KaijuClient {
 
     public void close() throws IOException {
         hasClosed = true;
-        serializer.serialize("EXIT");
+//        serializer.serialize("EXIT");
         clientSocket.close();
     }
 
     public Map<String, byte[]> get_all(List<String> keys) throws IOException, KaijuException {
         try {
+            System.out.println("Should not have happened");
             serializer.serialize(new ClientGetAllRequest(keys));
             Object ret = serializer.getObject();
             if (ret instanceof ClientError) {
@@ -61,8 +63,8 @@ public class KaijuClient {
 
     public void put_all(Map<String, byte[]> keyValuePairs) throws IOException, KaijuException {
         try {
-            StringBuilder stringToSend = new StringBuilder();
-            System.out.println("Building new string now");
+            StringBuilder stringToSend = new StringBuilder("[beg]");
+            System.out.println("Building new string now1");
             for (String keyString :
                     keyValuePairs.keySet()) {
                 byte[] valueInPair = keyValuePairs.get(keyString);

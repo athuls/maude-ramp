@@ -119,9 +119,10 @@ public class KaijuClient extends DB
 
         public void run() {
             try {
-                edu.berkeley.kaiju.frontend.KaijuClient client = new edu.berkeley.kaiju.frontend.KaijuClient(host, port);
-                client.setIsolation(isolationLevel, readAtomicAlgorithm);
-                client.close();
+//                edu.berkeley.kaiju.frontend.KaijuClient client = new edu.berkeley.kaiju.frontend.KaijuClient(host, port);
+//                client.setIsolation(isolationLevel, readAtomicAlgorithm);
+//                client.close();
+                System.out.println("Nothing to do with isolation level and read atomic algorithm");
             } catch (Exception e) {
                 error = e;
             }
