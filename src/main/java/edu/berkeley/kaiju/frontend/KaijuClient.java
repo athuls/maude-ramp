@@ -15,6 +15,7 @@ import edu.berkeley.kaiju.util.KryoSerializer;
 import java.io.IOException;
 import java.net.Socket;
 import java.nio.ByteBuffer;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,13 +45,27 @@ public class KaijuClient {
     public Map<String, byte[]> get_all(List<String> keys) throws IOException, KaijuException {
         try {
             System.out.println("Should not have happened");
-            serializer.serialize(new ClientGetAllRequest(keys));
-            Object ret = serializer.getObject();
-            if (ret instanceof ClientError) {
-                throw new ClientException(((ClientError) ret).error);
+            StringBuilder stringToSend = new StringBuilder("[beg]");
+            System.out.println("Building new string now12");
+            for (String keyString :
+                    keys) {
+                stringToSend.append("[eor]");
             }
 
-            return ((ClientGetAllResponse) ret).keyValuePairs;
+            System.out.println(stringToSend.toString());
+            String stringBuilderConvert = stringToSend.toString().replace("\"", "$");
+            System.out.println(stringBuilderConvert);
+            serializer.serialize(stringBuilderConvert);
+//            serializer.serialize(new ClientGetAllRequest(keys));
+//            Object ret = serializer.getObject();
+//            if (ret instanceof ClientError) {
+//                throw new ClientException(((ClientError) ret).error);
+//            }
+
+//            return ((ClientGetAllResponse) ret).keyValuePairs;
+            java.util.Map<String, byte[]> temp = new HashMap<String, byte[]>();
+            temp.put("dummy", null);
+            return temp;
         } catch (KryoException e) {
             if(!hasClosed) {
                 throw e;
