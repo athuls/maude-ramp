@@ -64,7 +64,7 @@ public class KaijuClient {
     public void put_all(Map<String, byte[]> keyValuePairs) throws IOException, KaijuException {
         try {
             StringBuilder stringToSend = new StringBuilder("[beg]");
-            System.out.println("Building new string now1");
+            System.out.println("Building new string now12");
             for (String keyString :
                     keyValuePairs.keySet()) {
                 byte[] valueInPair = keyValuePairs.get(keyString);
