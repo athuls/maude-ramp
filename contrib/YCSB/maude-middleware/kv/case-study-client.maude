@@ -1,0 +1,38 @@
+load shim-dynamic-new
+
+mod CLIENT is
+  pr SHIM-DYNAMIC .
+
+  sort Client .  *** Shim has as ID l(IP,0), e.g., l("localhost",0)
+  subsort Client < Cid .
+  op Client : -> Client .
+
+  op value :_ : Nat -> Attribute [ctor gather(&)] .
+  op des :_ : Oid -> Attribute [ctor gather(&)] .
+  op flag :_ : Bool -> Attribute [ctor gather(&)] .
+  op str :_ : String -> Attribute [ctor gather(&)] .
+
+  vars O O' : Oid .
+  vars N N' : Nat .
+  var AS : AttributeSet .
+  var STR : String .
+  
+  ---
+  rl < O : Client | value : N, des : O', flag : false, str : STR, AS >
+   => 
+     < O : Client | value : N, des : O', flag : true, str : "", AS >
+     msg STR from O to O' . 
+  
+
+  op init : -> Configuration .
+  eq init = <>
+            < l("localhost",0) : ClientShim | sockets : none, contacts : empty >
+            ---< l("localhost",2) : Client | value : 0, des : l("localhost",1), flag : false > 
+            < l("localhost",3) : Client | value : 0, des : l("localhost",4), flag : false, str : "k0[eok]v0[eov][sep]k1[eok]v1[eov][sep]k2[eok]v2[eov][sep]" > 
+            ---createClientTcpSocket(socketManager,l("localhost",2),"localhost",8710) 
+            createClientTcpSocket(socketManager,l("localhost",3),"localhost",8810) .
+            
+endm
+
+erew init .
+

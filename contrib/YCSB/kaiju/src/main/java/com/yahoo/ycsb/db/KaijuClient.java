@@ -62,12 +62,13 @@ public class KaijuClient extends DB
             String[] hostsarr = hosts.split(",");
             Config.IsolationLevel isolationLevel = Config.IsolationLevel.valueOf(getProperties().getProperty("isolation_level"));
             Config.ReadAtomicAlgorithm readAtomicAlgorithm = Config.ReadAtomicAlgorithm.valueOf(getProperties().getProperty("read_atomic_algorithm"))   ;
+            boolean postLoad = Boolean.parseBoolean(getProperties().getProperty("postLoad"));
 
             for(String serverStr : hostsarr) {
                 String serverHost = serverStr.split(":")[0];
                 int serverPort = Integer.parseInt(serverStr.split(":")[1]);
 
-                ChangeIsolationRequest request = new ChangeIsolationRequest(isolationLevel, readAtomicAlgorithm, serverHost, serverPort);
+                ChangeIsolationRequest request = new ChangeIsolationRequest(isolationLevel, readAtomicAlgorithm, serverHost, serverPort, postLoad);
                 Thread changeIsolationThread = new Thread(request);
 
                 isolationRequests.add(request);
@@ -104,25 +105,30 @@ public class KaijuClient extends DB
         Config.ReadAtomicAlgorithm readAtomicAlgorithm;
         String host;
         int port;
+        boolean postLoad;
 
         Exception error;
 
         private ChangeIsolationRequest(Config.IsolationLevel isolationLevel,
                                        Config.ReadAtomicAlgorithm readAtomicAlgorithm,
                                        String host,
-                                       int port) {
+                                       int port,
+                                       boolean postLoad) {
             this.isolationLevel = isolationLevel;
             this.readAtomicAlgorithm = readAtomicAlgorithm;
             this.host = host;
             this.port = port;
+            this.postLoad = postLoad;
         }
 
         public void run() {
             try {
-//                edu.berkeley.kaiju.frontend.KaijuClient client = new edu.berkeley.kaiju.frontend.KaijuClient(host, port);
-//                client.setIsolation(isolationLevel, readAtomicAlgorithm);
-//                client.close();
-                System.out.println("Nothing to do with isolation level and read atomic algorithm");
+                if(this.postLoad) {
+                    edu.berkeley.kaiju.frontend.KaijuClient client = new edu.berkeley.kaiju.frontend.KaijuClient(host, port);
+                    client.setIsolation(isolationLevel, readAtomicAlgorithm, postLoad);
+                    client.close();
+//                    System.out.println("Nothing to do with isolation level and read atomic algorithm");
+                }
             } catch (Exception e) {
                 error = e;
             }
@@ -184,6 +190,7 @@ public class KaijuClient extends DB
     {
         try {
             terminated = true;
+            System.out.println("Cleanup for kaiju called");
             client.close();
         } catch (Exception e) {
             throw new DBException(e);
@@ -308,6 +315,9 @@ public class KaijuClient extends DB
     }
 
     public int commit() {
+
+        System.out.println("Operation count is " +
+                getProperties().getProperty("operationcount"));
 
         if(terminated)
             return Error;

@@ -215,7 +215,7 @@ class ClientThread extends Thread {
 
         try {
             if (_dotransactions) {
-                System.out.println("DAMN something is wrong, why transactions");
+                System.out.println("Doing transactions");
                 long st = System.currentTimeMillis();
 
                 while (((_opcount == 0) || (_opsdone < _opcount)) && !_workload.isStopRequested()) {
@@ -401,11 +401,12 @@ public class Client {
         Properties props = new Properties();
         Properties fileprops = new Properties();
         boolean dotransactions = true;
+        boolean postLoad = false;
         int threadcount = 1;
         int target = 0;
         boolean status = false;
         String label = "";
-
+        System.out.println("Starting point for ycsb client");
         //parse arguments
         int argindex = 0;
 
@@ -499,6 +500,14 @@ public class Client {
                 props.put(name, value);
                 //System.out.println("["+name+"]=["+value+"]");
                 argindex++;
+            } else if (args[argindex].compareTo("-postload") == 0) {
+                argindex++;
+                if (argindex >= args.length) {
+                    usageMessage();
+                    System.exit(0);
+                }
+                props.put("postLoad", "true");
+                postLoad = true;
             } else {
                 System.out.println("Unknown option " + args[argindex]);
                 usageMessage();
@@ -617,6 +626,17 @@ public class Client {
         if(!dotransactions) {
             try {
                 DBFactory.newDB(dbname, props).preLoadBootstrap();
+                if(postLoad) {
+                    try {
+                        workload.cleanup();
+                    } catch (WorkloadException e) {
+                        e.printStackTrace();
+                        e.printStackTrace(System.out);
+                        System.exit(0);
+                    }
+
+                    System.exit(0);
+                }
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -685,11 +705,11 @@ public class Client {
                 }
             }
 
-            try {
-                ((ClientThread) t).cleanup();
-            } catch (DBException e) {
-                System.err.println(e);
-            }
+//            try {
+//                ((ClientThread) t).cleanup();
+//            } catch (DBException e) {
+//                System.err.println(e);
+//            }
 
 
             opsDone += ((ClientThread) t).getOpsDone();

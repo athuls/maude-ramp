@@ -1,0 +1,142 @@
+mod LOC is
+  pr CONFIGURATION .
+  pr STRING .
+
+  op l : String Nat -> Oid .  *** l(IP,local object ID)
+                              *** l(IP,0) is always the shim's ID 
+
+  var S : String .
+  var N : Nat .
+  op ip : Oid -> String .
+  eq ip(l(S,N)) = S .
+endm
+view Oid from TRIV to LOC is sort Elt to Oid . endv
+
+mod SHIM is
+  pr MAP{Oid,Oid} .  *** socket(n) is of sort Oid, the same as b(socket(n))
+  pr SET{Oid} .
+
+  sort Shim .  *** Shim has as ID l(IP,0), e.g., l("localhost",0)
+  subsort Shim < Cid .
+  op Shim : -> Shim .
+
+  --- We probably do not need Mode for Shim... !!!
+  sort Mode .
+  ops idle waiting-connection active : -> Mode [ctor] .
+
+  *** stores all generated sockets
+  *** server-side: one additional buffer for listening for clients;
+  ***              other buffers corresponds to clients
+  op sockets :_ : Configuration -> Attribute [ctor gather(&)] .   
+
+  *** IP |-> b(socket(Nat))
+  op contacts :_ : Map{Oid, Oid} -> Attribute [ctor gather(&)] .  
+
+  op residents :_ : Set{Oid} -> Attribute [ctor gather(&)] .  
+
+  op mode :_ : Mode -> Attribute [ctor gather(&)] . 
+
+  op bufferedMsgs :_ : Configuration -> Attribute [ctor gather(&)] . 
+
+  ---??? some attr for fileManager stuff
+  --- op bufferedWrites :_ : storing Maude terms, which 
+  --- would be tranlated into strings when flushed
+  --- e.g., written values can be stored in "bufferedWrites",
+  --- and then be flushed into disk when some requirements meeted
+
+  ---??? we also need to deal with "read a file"
+  --- upon receiving a read request, a server will read a file by 
+  --- "getLine" or "getChars"
+  --- an attr needed here??? k |-> line, so we can jump into that 
+  --- line to read or write k
+
+
+  sorts ClientShim ServerShim .  
+  subsorts ClientShim ServerShim < Shim .
+  op ClientShim : -> ClientShim [ctor] .
+  op ServerShim : -> ServerShim [ctor] .
+
+  --- op client-analysis-state :_ : ... -> Attribute [ctor gather(&)] . 
+  --- e.g., counting the number of committed/aborted txns
+  --- further propositions will be defined over those numbers
+  --- or log the returned values for consistency check
+  --- op server-analysis-state :_ : ... -> Attribute [ctor gather(&)] . 
+endm
+
+mod MESSAGE is
+  pr CONFIGURATION .
+  pr NAT .
+  pr STRING .
+  pr LOC .
+
+  sort MsgCont .
+
+  op error : String -> Msg [ctor msg] .
+
+  op test : Nat -> MsgCont .
+
+  op start_ : Oid -> Msg [ctor] .
+
+  op msgg : -> Msg .
+  op msg_from_ : MsgCont Oid -> Msg [ctor] .
+  op msg_from_to_ : MsgCont Oid Oid -> Msg [ctor] .
+  op msg_from_to_ : String Oid Oid -> Msg [ctor] .
+
+  op new-socket : Oid -> Msg [ctor] .
+
+  op o1 : -> Oid .
+  op o2 : -> Oid .
+
+  vars O O' : Oid .
+  var MSG : MsgCont .
+  var STR : String .
+
+  op source : Msg -> Oid .
+  op target : Msg -> Oid .
+  eq source(msg MSG from O to O') = O .
+  eq target(msg MSG from O to O') = O' .
+  eq source(msg STR from O to O') = O .
+  eq target(msg STR from O to O') = O' .
+endm
+
+mod MSG-STRING-CONVERSION is
+  pr MESSAGE .
+  pr STRING .
+  pr META-LEVEL .
+  pr CONFIGURATION .
+
+  vars S S' S'' : String .
+  var  MSG : Msg .
+  var N : Nat .
+  var  Q : Qid .
+  vars QIL QIL' : QidList .
+
+
+  op qidListString : QidList -> String .
+  op qidListString : QidList String -> String .
+  op stringQidList : String -> QidList .
+  op stringQidList : String QidList -> QidList .
+
+  eq qidListString(QIL) = qidListString(QIL, "") .
+  eq qidListString(nil, S) = S .
+  eq qidListString(Q QIL, S) = qidListString(QIL, S + string(Q) + " ") .
+
+  eq stringQidList(S) = stringQidList(S, nil) .
+  eq stringQidList("", QIL) = QIL .
+  eq stringQidList(S, QIL) = QIL qid(S) [owise] . ***if S =/= "" /\ find(S, " ", 0) = notFound .
+  ceq stringQidList(S, QIL)
+    = stringQidList(S'', QIL qid(S') )
+    if N := find(S, " ", 0)
+       /\ S' := substr(S, 0, N)
+       /\ S'' := substr(S, N + 1, length(S)) .
+
+  op msg2string : Msg -> String .
+  eq msg2string(MSG) = qidListString(metaPrettyPrint(upModule('MESSAGE, false), upTerm(MSG), none)) .
+
+  op string2msg : String -> Msg .
+  eq string2msg(S)
+    = downTerm(getTerm(metaParse(upModule('MESSAGE, false), stringQidList(S), 'Msg)), error(S)) .
+
+endm
+
+
