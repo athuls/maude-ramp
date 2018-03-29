@@ -99,8 +99,10 @@ public class KaijuClient {
             System.out.println("READ operation");
             for (String keyString :
                     keys) {
-                stringToSend.append(keyString + "[eor][sep]");
+                stringToSend.append(keyString + "[eor]");
             }
+
+            stringToSend.append("[sep]");
 
 //            System.out.println(stringToSend.toString());
             String stringBuilderConvertTemp = stringToSend.toString().replace("\"", "$");
@@ -140,10 +142,11 @@ public class KaijuClient {
                 byte[] valueInPair = keyValuePairs.get(keyString);
                 String valueString = new String(valueInPair, "UTF8");
                 stringToSend.append(keyString + "[eok]" +
-                    valueString + "[eov][sep]");
+                    valueString + "[eov]");
                 System.out.println("Key is " + keyString);
             }
 
+            stringToSend.append("[sep]");
 //            System.out.println(stringToSend.toString());
             String stringBuilderConvertTemp = stringToSend.toString().replace("\"", "$");
             String stringBuilderConvertTempTrimmed = stringBuilderConvertTemp.trim();
