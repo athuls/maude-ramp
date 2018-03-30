@@ -107,12 +107,12 @@ mod CLIENT is
 
   op init : -> Configuration .
   eq init = <>
-            < l("192.17.151.161",0) : ClientShim | sockets : none, contacts : empty >
-            < l("192.17.151.161",2) : Client | sent : 0, rcved : 0 > 
-            createClientTcpSocket(socketManager,l("192.17.151.161",2),"128.174.244.87",9810)
+            < l("10.193.213.161",0) : ClientShim | sockets : none, contacts : empty >
+            < l("10.193.213.161",2) : Client | sent : 0, rcved : 0 > 
+            createClientTcpSocket(socketManager,l("10.193.213.161",2),"128.174.244.87",9810)
                   
-            < l("192.17.151.161",1) : ServerShim | sockets : none, contacts : empty >
-            createServerTcpSocket(socketManager, l("192.17.151.161",2), 9910, 5)
+            < l("10.193.213.161",1) : ServerShim | sockets : none, contacts : empty >
+            createServerTcpSocket(socketManager, l("10.193.213.161",2), 9910, 5)
 
             < tb : Table | table : empty > .
             
