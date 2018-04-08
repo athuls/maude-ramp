@@ -1,4 +1,4 @@
-load shim-dynamic
+load shim-dynamic-new
 
 mod SERVER is
   pr SHIM-DYNAMIC .
@@ -37,14 +37,14 @@ mod SERVER is
         STR := substr(KV, N + 5, length(KV)) /\
         N' := find(STR, "[eov]", 0) .
 
-
+---(
   *** post load
  crl < O : Table | table : KVS >
     [KR]
   => 
     < O : Table | table : addKeyReplica(KR,KVS) >
     if N := find(KR,"[eoa]",0) .
-
+)
 
   op addKeyReplica : String Map{String,String} -> Map{String,String} .
  ceq addKeyReplica(KR,KVS) = addKeyReplica(substr(STR,N' + 5,length(STR)),insert(substr(KR,0,N),substr(STR,0,N'),KVS))
@@ -122,10 +122,10 @@ mod SERVER is
   eq client-addr = l(addr,2) .
 
   op addr : -> String .
-  eq addr = "" .
+  eq addr = "192.168.1.3" .
 
   op self : -> String .
-  eq self = "" .
+  eq self = "192.168.1.3" .
 
   op init : -> Configuration .
   eq init = <>

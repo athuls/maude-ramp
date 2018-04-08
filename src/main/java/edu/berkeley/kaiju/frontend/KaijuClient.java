@@ -89,7 +89,14 @@ public class KaijuClient {
 //
 //        System.out.println(out.toString());
 //        reader.close();
-        clientSocket.close();
+        try {
+            while (true) {
+                Thread.sleep(30000);
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Interrupted waiting before closing socket");
+        }
+        // clientSocket.close();
     }
 
     public Map<String, byte[]> get_all(List<String> keys) throws IOException, KaijuException {
@@ -153,6 +160,7 @@ public class KaijuClient {
             String stringBuilderConvert = stringBuilderConvertTempTrimmed.replaceAll("\\s+", "\\$");
             System.out.println(stringBuilderConvert);
             serializer.serialize(stringBuilderConvert);
+            Thread.sleep(3000);
 //            Object ret = serializer.getObject();
 //            serializer.serialize(new ClientPutAllRequest(keyValuePairs));
 //            serializer.serialize(new ClientPutAllRequestNew(keyValuePairs));
@@ -163,8 +171,10 @@ public class KaijuClient {
         } catch (KryoException e) {
             System.out.println("[EXCEPTION] Something went wrong with write transaction");
             if(!hasClosed) {
-                throw e;
+//                throw e;
             }
+        } catch (Exception e) {
+            System.out.println("[EXCEPTIOn] Issue when waiting");
         }
     }
 
