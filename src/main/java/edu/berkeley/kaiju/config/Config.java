@@ -115,18 +115,21 @@ public class Config {
      GC timeout for obsolete versions (Section 4.3)
      */
     @Parameter(names = { "-overwrite_gc_ms" })
-    public Integer overwrite_gc_ms = 4000;
+//    public Integer overwrite_gc_ms = 4000;
+    public Integer overwrite_gc_ms = 10000;
 
     @Parameter(names = "-bootstrap_time",
                description = "Time to wait between starting to listen for new connections and making outgoing connections (ms)")
-    public Integer bootstrap_time = 5000;
+//    public Integer bootstrap_time = 5000;
+    public Integer bootstrap_time = 10000;
 
     /*
      Hint for RPC layer to allocate buffers safely.
      */
     @Parameter(names = "-max_object_size",
                description = "Maximum size of object")
-    public Integer max_object_size = 8192;
+//    public Integer max_object_size = 8192;
+    public Integer max_object_size = 32768;
 
     /*
      Only relevant for RAMP-Hybrid.
