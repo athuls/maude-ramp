@@ -46,14 +46,12 @@ mod SERVER is
       < O : Server | store : addKeyValue(KV,STORE) >
       if N := find(KV,"[eov]",0) .
 
----(
   *** post load
  crl < O : Table | table : KVS >
     [KR]
   => 
     < O : Table | table : addKeyReplica(KR,KVS) >
     if N := find(KR,"[eoa]",0) .
-)
 
  op addKeyValue : String Map{String,String} -> Map{String,String} .
   ceq addKeyValue(KV,STORE) = addKeyValue(substr(STR,N' + 
