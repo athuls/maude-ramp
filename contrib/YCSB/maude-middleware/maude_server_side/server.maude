@@ -139,10 +139,10 @@ mod SERVER is
   eq client-addr = l(addr,2) .
 
   op addr : -> String .
-  eq addr = "192.168.1.3" .
+  eq addr = "155.98.38.70" .
 
   op self : -> String .
-  eq self = "192.168.1.3" .
+  eq self = "155.98.38.49" .
 
   op init : -> Configuration .
   eq init = <>
