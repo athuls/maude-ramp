@@ -198,13 +198,16 @@ public class KaijuClient {
 
                 System.out.println("setIsolation: " + keyMappingString);
                 serializer.serialize(keyMappingString.toString());
+                Thread.sleep(3000);
 //                Object ret = serializer.getObject();
             }
         } catch (KryoException e) {
             System.out.println("[EXCEPTION] Something went wrong with sending key-host mapping");
             if(!hasClosed) {
-                throw e;
+//                throw e;
             }
+        } catch (Exception e) {
+            System.out.println("[EXCEPTIOn] Issue when waiting");
         }
     }
 
