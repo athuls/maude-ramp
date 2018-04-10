@@ -193,9 +193,10 @@ public class KaijuClient {
                 while ((line = bufferedReader.readLine()) != null) {
                     String[] keyAndHost = line.split(",");
                     keyMappingString.append(keyAndHost[0] + "[eok]" +
-                            keyAndHost[1] + "[eoa][sep]");
+                            keyAndHost[1] + "[eoa]");
                 }
 
+                keyMappingString.append("[sep]");
                 System.out.println("setIsolation: " + keyMappingString);
                 serializer.serialize(keyMappingString.toString());
                 Thread.sleep(3000);
