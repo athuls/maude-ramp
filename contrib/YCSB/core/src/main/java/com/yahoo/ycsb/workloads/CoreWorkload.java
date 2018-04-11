@@ -19,6 +19,7 @@ package com.yahoo.ycsb.workloads;
 
 import java.lang.Integer;
 import java.lang.System;
+import java.lang.System;
 import java.util.Properties;
 import com.yahoo.ycsb.*;
 import com.yahoo.ycsb.generator.CounterGenerator;

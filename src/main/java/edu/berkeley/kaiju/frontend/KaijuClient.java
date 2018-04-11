@@ -117,6 +117,7 @@ public class KaijuClient {
             String stringBuilderConvert = stringBuilderConvertTempTrimmed.replaceAll("\\s+", "\\$");
             System.out.println(stringBuilderConvert);
             serializer.serialize(stringBuilderConvert);
+            Thread.sleep(3000);
 //            Object ret = serializer.getObject();
 //            serializer.serialize(new ClientGetAllRequest(keys));
 //            Object ret = serializer.getObject();
@@ -131,11 +132,13 @@ public class KaijuClient {
         } catch (KryoException e) {
             System.out.println("[EXCEPTION] Something went wrong with read transaction");
             if(!hasClosed) {
-                throw e;
+//                throw e;
             }
-
-            return null;
+        } catch (Exception e) {
+            System.out.println("[EXCEPTIOn] Issue when waiting");
         }
+
+        return null;
     }
 
 
