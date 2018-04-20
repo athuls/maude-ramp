@@ -1,10 +1,12 @@
 load buffer-test
 load shim-obj
 
+---(
 set trace on .
 set trace mb off .
 set trace eq off .
 set trace condition off .
+)
 
 mod SHIM-DYNAMIC is
   pr SHIM .
