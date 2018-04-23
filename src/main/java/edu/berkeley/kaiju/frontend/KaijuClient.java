@@ -117,7 +117,7 @@ public class KaijuClient {
             String stringBuilderConvert = stringBuilderConvertTempTrimmed.replaceAll("\\s+", "\\$");
             System.out.println(stringBuilderConvert);
             serializer.serialize(stringBuilderConvert);
-            Thread.sleep(3000);
+//            Thread.sleep(3000);
 //            Object ret = serializer.getObject();
 //            serializer.serialize(new ClientGetAllRequest(keys));
 //            Object ret = serializer.getObject();
@@ -163,7 +163,7 @@ public class KaijuClient {
             String stringBuilderConvert = stringBuilderConvertTempTrimmed.replaceAll("\\s+", "\\$");
             System.out.println(stringBuilderConvert);
             serializer.serialize(stringBuilderConvert);
-            Thread.sleep(3000);
+//            Thread.sleep(3000);
 //            Object ret = serializer.getObject();
 //            serializer.serialize(new ClientPutAllRequest(keyValuePairs));
 //            serializer.serialize(new ClientPutAllRequestNew(keyValuePairs));
