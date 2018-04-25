@@ -36,7 +36,7 @@ mod CLIENT is
   eq addr = "155.98.38.115" .
 
   op self : -> String .
-  eq self = "155.98.38.116" .
+  eq self = "155.98.38.106" .
   ***eq self = "192.17.150.124" .
 
 
