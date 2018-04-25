@@ -1,4 +1,4 @@
-load shim-dynamic-new
+load shim-dynamic
 
 mod SERVER is
   pr SHIM-DYNAMIC .
@@ -13,6 +13,7 @@ mod SERVER is
 
   op table :_ : Map{String,String} -> Attribute [ctor gather(&)] . 
 
+  op msg_from_to_and_ : String Oid Oid Oid -> Msg [ctor] .
 
   sort Server .  *** Shim has as ID l(IP,0), e.g., l("localhost",0)
   subsort Server < Cid .
@@ -22,7 +23,7 @@ mod SERVER is
 
 
   vars AS AS' : AttributeSet .
-  vars O O' TB : Oid .
+  vars O O' O'' TB : Oid .
   vars N' N : Nat .
   vars STR KV READ KR VALUE : String .
   vars STORE KVS : Map{String,String} .
@@ -76,15 +77,15 @@ mod SERVER is
    => 
      < O : Server | AS >
      < TB : Table | table : KVS, AS' >
-     genReads(READ,KVS,O)
+     genReads(READ,KVS,O,O')
      if N := find(READ,"[eor]",0) .
 
-  op genReads : String Map{String,String} Oid -> Configuration .
- ceq genReads(READ,KVS,O) = genReads(STR,KVS,O)
-     (msg substr(READ,0,N + 5) from O to l(KVS[substr(READ,0,N)]))
+  op genReads : String Map{String,String} Oid Oid -> Configuration .
+ ceq genReads(READ,KVS,O,O') = genReads(STR,KVS,O,O')
+     (msg substr(READ,0,N + 5) from O to l(KVS[substr(READ,0,N)]) and O')
      if N := find(READ, "[eor]", 0) /\
         STR := substr(READ,N + 5,length(READ)) .
-  eq genReads("",KVS,O) = none .
+  eq genReads("",KVS,O,O') = none .
 
 
 
@@ -95,42 +96,45 @@ mod SERVER is
    => 
      < O : Server | AS >
      < TB : Table | table : KVS, AS' >
-     genWrites(KV,KVS,O)
+     genWrites(KV,KVS,O,O')
      if N := find(KV,"[eov]",0) .
 
-  op genWrites : String Map{String,String} Oid -> Configuration .
-  eq genWrites("",KVS,O) = none .
- ceq genWrites(KV,KVS,O) = genWrites(substr(KV,N' + 5,length(KV)),KVS,O)
-     (msg substr(KV,0,N' + 5) from O to l(KVS[substr(KV,0,N)]))   
+  op genWrites : String Map{String,String} Oid Oid -> Configuration .
+  eq genWrites("",KVS,O,O') = none .
+ ceq genWrites(KV,KVS,O,O') = genWrites(substr(KV,N' + 5,length(KV)),KVS,O,O')
+     (msg substr(KV,0,N' + 5) from O to l(KVS[substr(KV,0,N)]) and O')   
      if N := find(KV, "[eok]", 0) /\
         N' := find(KV, "[eov]", 0) .
 
 
 
   crl < O : Server | store : STORE >
-      (msg READ from O' to O)
+      (msg READ from O' to O and O'')
     =>
       < O : Server | store : STORE >
-      (msg STORE[substr(READ,0,N)] from O to O')
+      (msg STORE[substr(READ,0,N)] from O to O' and O'')
       if N := find(READ, "[eor]", 0) . 
 
 
 
  crl < O : Server | store : STORE >
-     (msg KV from O' to O)
+     (msg KV from O' to O and O'')
    => 
      < O : Server | store : insert(substr(KV,0,N),substr(STR,0,N'),STORE) > 
-     (msg "done" from O to O') 
+     (msg "done" from O to O' and O'') 
      if N := find(KV, "[eok]", 0) /\ 
         STR := substr(KV, N + 5, length(KV)) /\
         N' := find(STR, "[eov]", 0) .
 
 
-   rl < O : Server | AS >
-      (msg VALUE from O' to O)
+  crl < O : Server | AS >
+      (msg VALUE from O' to O and O'')
     =>
       < O : Server | AS >
-      (msg VALUE from O to client-addr) .
+      (msg VALUE from O to O'') 
+      if find(VALUE,"[eok]",0) == notFound /\
+         find(VALUE,"[eor]",0) == notFound .
+
 
   *** maude client ip
   op client-addr : -> Oid .
