@@ -290,11 +290,11 @@ crl [send-msg-1-str] :
   *** This works in the scenario that a client tries to reach a server
   *** client can be either a real client, or a server that tries to reach another server
  crl [send-msg-2] :
-     < O : SHIM | contacts : LS, 
+     < O : CLIENTSHIM | contacts : LS, 
                   bufferedMsgs : MSGS, AS >
      (msg MSG from O' to O'') 
    =>
-     < O : SHIM | contacts : LS,
+     < O : CLIENTSHIM | contacts : LS,
                   bufferedMsgs : MSGS (msg MSG from O' to O''), AS >
      createClientTcpSocket(socketManager,O',ip(O''),port) 
      if LS[O''] == undefined /\
@@ -305,11 +305,11 @@ crl [send-msg-1-str] :
 
 
  crl [send-msg-2-str] :
-     < O : SHIM | contacts : LS, 
+     < O : CLIENTSHIM | contacts : LS, 
                   bufferedMsgs : MSGS, AS >
      (msg STR from O' to O'') 
    =>
-     < O : SHIM | contacts : LS,
+     < O : CLIENTSHIM | contacts : LS,
                   bufferedMsgs : MSGS (msg STR from O' to O''), AS >
      createClientTcpSocket(socketManager,O',ip(O''),port) 
      if LS[O''] == undefined /\
@@ -317,19 +317,19 @@ crl [send-msg-1-str] :
 
 
  crl [send-msg-3] :
-     < O : SHIM | contacts : LS,
+     < O : CLIENTSHIM | contacts : LS,
                   bufferedMsgs : MSGS (msg MSG from O' to O''), AS >
    =>
-     < O : SHIM | contacts : LS,
+     < O : CLIENTSHIM | contacts : LS,
                   bufferedMsgs : MSGS, AS >
      send(LS[O''],O',msg2string(msg MSG from O' to O'') + "[msep]") 
      if LS[O''] =/= undefined .  
 
  crl [send-msg-3-str] :
-      < O : SHIM | contacts : LS,
+      < O : CLIENTSHIM | contacts : LS,
                    bufferedMsgs : MSGS (msg STR from O' to O''), AS >
     =>
-      < O : SHIM | contacts : LS,
+      < O : CLIENTSHIM | contacts : LS,
                    bufferedMsgs : MSGS, AS >
       send(LS[O''],O',msg2string(msg STR from O' to O'') + "[msep]")
       if LS[O''] =/= undefined .
