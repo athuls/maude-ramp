@@ -1,10 +1,12 @@
 load buffer-test
 load shim-obj
 
+---(
 set trace on .
 set trace mb off .
 set trace eq off .
 set trace condition off .
+)
 
 mod SHIM-DYNAMIC is
   pr SHIM .
@@ -18,7 +20,7 @@ mod SHIM-DYNAMIC is
   vars PORT BACKLOG : Nat .
   vars AS AS' : AttributeSet .
   vars IP S DATA : String .
-  vars SKTS MSGS : Configuration .
+  vars SKTS MSGS CONFIG : Configuration .
   var N : Nat .
   var MSG : MsgCont .
   var LS : Map{Oid,Oid} .
@@ -32,13 +34,18 @@ mod SHIM-DYNAMIC is
   *******************
   *** Server Shim ***
 
-  rl [created-server-socket] :
-     < O : SERVERSHIM | sockets : SKTS, AS >
+ crl [created-server-socket] :
+     < O : SERVERSHIM | sockets : SKTS, AS > CONFIG
      createdSocket(SERVER, socketManager, LISTENER)
    => 
      < O : SERVERSHIM | sockets : SKTS < LISTENER : BufferedSocket | read : "" >, AS > 
-     acceptClient(LISTENER, SERVER) .
+     acceptClient(LISTENER, SERVER) CONFIG
+   if not acExist(CONFIG) .
    *** It could also result in a socketError(SERVER, socketManager, REASON) message
+
+  op acExist : Configuration -> Bool .
+  eq acExist(acceptClient(LISTENER,SERVER) CONFIG) = true .
+  eq acExist(CONFIG) = false [owise] .
 
 
  crl [accepted-client] :
