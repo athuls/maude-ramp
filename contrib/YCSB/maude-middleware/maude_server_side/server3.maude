@@ -146,7 +146,7 @@ mod SERVER is
 )
 
   op self : -> String .
-  eq self = "155.98.38.115" .
+  eq self = "155.98.38.106" .
 
   op init : -> Configuration .
   eq init = <>

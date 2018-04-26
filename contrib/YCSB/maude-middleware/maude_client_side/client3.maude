@@ -55,7 +55,7 @@ mod CLIENT is
   eq init = <>
             < l(self,0) : ClientShim | sockets : none, contacts : empty >
             < l(self,2) : Client | sent : 0, rcved : 0 > 
-            createClientTcpSocket(socketManager,l(self,2),addr,9810)
+            createClientTcpSocket(socketManager,l(self,2),addr,9610)
                   
             < l(self,1) : ServerShim | sockets : none, contacts : empty >
             createServerTcpSocket(socketManager, l(self,2), 9910, 5) .
