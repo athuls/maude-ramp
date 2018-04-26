@@ -77,10 +77,10 @@ mod SHIM-DYNAMIC is
   *** Client Shim ***
 
   rl [created-client-socket] :
-     < O : CLIENTSHIM | sockets : SKTS, AS >
+     < O : CLIENTSHIM | sockets : SKTS, flag : true, AS >
      createdSocket(O', socketManager, SOCKET)  --- O' is the ID of the client who creatClientTcpSocket
    => 
-     < O : CLIENTSHIM | sockets : SKTS < SOCKET : BufferedSocket | read : "" >, AS > 
+     < O : CLIENTSHIM | sockets : SKTS < SOCKET : BufferedSocket | read : "" >, flag : true, AS > 
      receive(SOCKET,O') 
      send(SOCKET,O',msg2string(new-socket(O')) + "[msep]") .
 
