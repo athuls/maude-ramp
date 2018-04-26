@@ -22,13 +22,13 @@ mod SERVER is
 
   op init : -> Configuration .
   eq init = <>
-            < l(self,0) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none >
+            < l(self,0) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, flag : false >
             < l(self) : Server | none >
             createServerTcpSocket(socketManager, l(self), 9810, 5) 
 
 ---            (msg "test1" from l(self) to target-addr) 
 
-            < l(self,1) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none > .
+            < l(self,1) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none, flag : true > .
             
 endm
 

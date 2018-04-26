@@ -3,43 +3,16 @@
 		     /||||||||||||||||||\
 	   Maude 2.7.1 built: Jun 27 2016 16:35:16
 	    Copyright 1997-2016 SRI International
-		   Thu Apr 26 12:54:04 2018
+		   Thu Apr 26 15:25:21 2018
 ==========================================
 erewrite in SERVER : init .
-*********** trial #1
-crl CONFIG:Configuration < O:Oid : SERVERSHIM:ServerShim | AS:AttributeSet,
-    sockets : SKTS:Configuration > createdSocket(SERVER:Oid, socketManager,
-    LISTENER:Oid) => (CONFIG:Configuration acceptClient(LISTENER:Oid,
-    SERVER:Oid)) < O:Oid : SERVERSHIM:ServerShim | AS:AttributeSet,sockets : (
-    SKTS:Configuration < LISTENER:Oid : BufferedSocket | read : "" >) > if not
-    acExist(CONFIG:Configuration) = true [label created-server-socket] .
-CONFIG:Configuration --> (none).Configuration
-O:Oid --> l("155.98.38.122", 0)
-SERVERSHIM:ServerShim --> ServerShim
-AS:AttributeSet --> contacts : empty,bufferedMsgs : none
-SKTS:Configuration --> (none).Configuration
-SERVER:Oid --> l("155.98.38.122")
-LISTENER:Oid --> socket(4)
-*********** solving condition fragment
-not acExist(CONFIG:Configuration) = true
-*********** success for condition fragment
-not acExist(CONFIG:Configuration) = true
-CONFIG:Configuration --> (none).Configuration
-O:Oid --> l("155.98.38.122", 0)
-SERVERSHIM:ServerShim --> ServerShim
-AS:AttributeSet --> contacts : empty,bufferedMsgs : none
-SKTS:Configuration --> (none).Configuration
-SERVER:Oid --> l("155.98.38.122")
-LISTENER:Oid --> socket(4)
-*********** success #1
 *********** rule
-crl CONFIG:Configuration < O:Oid : SERVERSHIM:ServerShim | AS:AttributeSet,
-    sockets : SKTS:Configuration > createdSocket(SERVER:Oid, socketManager,
-    LISTENER:Oid) => (CONFIG:Configuration acceptClient(LISTENER:Oid,
-    SERVER:Oid)) < O:Oid : SERVERSHIM:ServerShim | AS:AttributeSet,sockets : (
-    SKTS:Configuration < LISTENER:Oid : BufferedSocket | read : "" >) > if not
-    acExist(CONFIG:Configuration) = true [label created-server-socket] .
-CONFIG:Configuration --> (none).Configuration
+rl < O:Oid : SERVERSHIM:ServerShim | AS:AttributeSet,sockets :
+    SKTS:Configuration,flag : false > createdSocket(SERVER:Oid, socketManager,
+    LISTENER:Oid) => acceptClient(LISTENER:Oid, SERVER:Oid) < O:Oid :
+    SERVERSHIM:ServerShim | sockets : (SKTS:Configuration < LISTENER:Oid :
+    BufferedSocket | read : "" >),AS:AttributeSet,flag : true > [label
+    created-server-socket] .
 O:Oid --> l("155.98.38.122", 0)
 SERVERSHIM:ServerShim --> ServerShim
 AS:AttributeSet --> contacts : empty,bufferedMsgs : none
@@ -47,17 +20,17 @@ SKTS:Configuration --> (none).Configuration
 SERVER:Oid --> l("155.98.38.122")
 LISTENER:Oid --> socket(4)
 <> < l("155.98.38.122") : Server | none > < l("155.98.38.122", 0) : ServerShim
-    | sockets : none,contacts : empty,bufferedMsgs : none > < l(
+    | sockets : none,contacts : empty,bufferedMsgs : none,flag : false > < l(
     "155.98.38.122", 1) : ClientShim | sockets : none,contacts : empty,
-    bufferedMsgs : none > createdSocket(l("155.98.38.122"), socketManager,
-    socket(4))
+    bufferedMsgs : none,flag : true > createdSocket(l("155.98.38.122"),
+    socketManager, socket(4))
 --->
 (<> < l("155.98.38.122") : Server | none > < l("155.98.38.122", 1) : ClientShim
-    | sockets : none,contacts : empty,bufferedMsgs : none >) ((
-    none).Configuration acceptClient(socket(4), l("155.98.38.122"))) < l(
-    "155.98.38.122", 0) : ServerShim | (contacts : empty,bufferedMsgs : none),
-    sockets : (none < socket(4) : BufferedSocket | read : "" >) >
-*********** trial #2
+    | sockets : none,contacts : empty,bufferedMsgs : none,flag : true >)
+    acceptClient(socket(4), l("155.98.38.122")) < l("155.98.38.122", 0) :
+    ServerShim | sockets : (none < socket(4) : BufferedSocket | read : "" >),(
+    contacts : empty,bufferedMsgs : none),flag : true >
+*********** trial #1
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
     > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
@@ -72,7 +45,7 @@ crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     flush-msg-beg-0] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
+AS:AttributeSet --> bufferedMsgs : none,flag : true
 SKTS:Configuration --> (none).Configuration
 SOCKET:Oid --> socket(4)
 S:String --> ""
@@ -83,8 +56,8 @@ find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
 *********** failure for condition fragment
 find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
     true
-*********** failure #2
-*********** trial #3
+*********** failure #1
+*********** trial #2
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
     > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
@@ -98,7 +71,7 @@ crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     S:String, 0, find(S:String, "beg]", 0))) = true [label flush-msg-beg] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
+AS:AttributeSet --> bufferedMsgs : none,flag : true
 SKTS:Configuration --> (none).Configuration
 SOCKET:Oid --> socket(4)
 S:String --> ""
@@ -109,8 +82,8 @@ find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
 *********** failure for condition fragment
 find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
     true
-*********** failure #3
-*********** trial #4
+*********** failure #2
+*********** trial #3
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
     > => [substr(S:String, 0, find(S:String, "[sep]", 0))] < O:Oid : SHIM:Shim
@@ -126,7 +99,7 @@ crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
+AS:AttributeSet --> bufferedMsgs : none,flag : true
 SKTS:Configuration --> (none).Configuration
 SOCKET:Oid --> socket(4)
 S:String --> ""
@@ -137,8 +110,8 @@ find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
 *********** failure for condition fragment
 find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
     notFound = true
-*********** failure #4
-*********** trial #5
+*********** failure #3
+*********** trial #4
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
     > => [substr(S:String, 0, find(S:String, "[sep\335", 0))] < O:Oid :
@@ -153,7 +126,7 @@ crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     S:String, 0, find(S:String, "[sep\335", 0))) = true [label flush-msg-2] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
+AS:AttributeSet --> bufferedMsgs : none,flag : true
 SKTS:Configuration --> (none).Configuration
 SOCKET:Oid --> socket(4)
 S:String --> ""
@@ -164,8 +137,8 @@ find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
 *********** failure for condition fragment
 find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
     notFound = true
-*********** failure #5
-*********** trial #6
+*********** failure #4
+*********** trial #5
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
     > => string2msg(substr(S:String, 0, find(S:String, "[msep]", 0))) < O:Oid :
@@ -179,7 +152,7 @@ crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     "[msep]", 0))) = true [label flush-msg-maude] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
+AS:AttributeSet --> bufferedMsgs : none,flag : true
 SKTS:Configuration --> (none).Configuration
 SOCKET:Oid --> socket(4)
 S:String --> ""
@@ -190,8 +163,8 @@ find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
 *********** failure for condition fragment
 find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
     = true
-*********** failure #6
-*********** trial #7
+*********** failure #5
+*********** trial #6
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
     > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
@@ -206,7 +179,7 @@ crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     find(S:String, "[msep]", 0))) [label dft-socket] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
+AS:AttributeSet --> bufferedMsgs : none,flag : true
 SKTS:Configuration --> (none).Configuration
 SOCKET:Oid --> socket(4)
 S:String --> ""
@@ -218,20 +191,20 @@ find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep]", 0) == notFound
 *********** failure for condition fragment
 find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep]", 0) == notFound
     = true
-*********** failure #7
+*********** failure #6
 *********** rule
 (built-in rule for symbol __)
 <> acceptClient(socket(4), l("155.98.38.122")) < l("155.98.38.122") : Server |
     none > < l("155.98.38.122", 0) : ServerShim | sockets : < socket(4) :
-    BufferedSocket | read : "" >,contacts : empty,bufferedMsgs : none > < l(
-    "155.98.38.122", 1) : ClientShim | sockets : none,contacts : empty,
-    bufferedMsgs : none >
+    BufferedSocket | read : "" >,contacts : empty,bufferedMsgs : none,flag :
+    true > < l("155.98.38.122", 1) : ClientShim | sockets : none,contacts :
+    empty,bufferedMsgs : none,flag : true >
 --->
 <> < l("155.98.38.122") : Server | none > < l("155.98.38.122", 0) : ServerShim
     | sockets : < socket(4) : BufferedSocket | read : "" >,contacts : empty,
-    bufferedMsgs : none > < l("155.98.38.122", 1) : ClientShim | sockets :
-    none,contacts : empty,bufferedMsgs : none >
-*********** trial #8
+    bufferedMsgs : none,flag : true > < l("155.98.38.122", 1) : ClientShim |
+    sockets : none,contacts : empty,bufferedMsgs : none,flag : true >
+*********** trial #7
 crl < O:Oid : SERVERSHIM:ServerShim | AS:AttributeSet,sockets :
     SKTS:Configuration,contacts : LS:Map{Oid,Oid} > acceptedClient(SERVER:Oid,
     LISTENER:Oid, IP:String, CLIENT:Oid) => ((acceptClient(LISTENER:Oid,
@@ -243,7 +216,7 @@ crl < O:Oid : SERVERSHIM:ServerShim | AS:AttributeSet,sockets :
     SKTS:Configuration = true [label accepted-client] .
 O:Oid --> l("155.98.38.122", 0)
 SERVERSHIM:ServerShim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
+AS:AttributeSet --> bufferedMsgs : none,flag : true
 SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
 LS:Map{Oid,Oid} --> (empty).Map{Oid,Oid}
 SERVER:Oid --> l("155.98.38.122")
@@ -256,14 +229,14 @@ not CLIENT:Oid in SKTS:Configuration = true
 not CLIENT:Oid in SKTS:Configuration = true
 O:Oid --> l("155.98.38.122", 0)
 SERVERSHIM:ServerShim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
+AS:AttributeSet --> bufferedMsgs : none,flag : true
 SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
 LS:Map{Oid,Oid} --> (empty).Map{Oid,Oid}
 SERVER:Oid --> l("155.98.38.122")
 LISTENER:Oid --> socket(4)
 IP:String --> "155.98.38.141"
 CLIENT:Oid --> socket(5)
-*********** success #8
+*********** success #7
 *********** rule
 crl < O:Oid : SERVERSHIM:ServerShim | AS:AttributeSet,sockets :
     SKTS:Configuration,contacts : LS:Map{Oid,Oid} > acceptedClient(SERVER:Oid,
@@ -276,7 +249,7 @@ crl < O:Oid : SERVERSHIM:ServerShim | AS:AttributeSet,sockets :
     SKTS:Configuration = true [label accepted-client] .
 O:Oid --> l("155.98.38.122", 0)
 SERVERSHIM:ServerShim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
+AS:AttributeSet --> bufferedMsgs : none,flag : true
 SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
 LS:Map{Oid,Oid} --> (empty).Map{Oid,Oid}
 SERVER:Oid --> l("155.98.38.122")
@@ -285,18 +258,45 @@ IP:String --> "155.98.38.141"
 CLIENT:Oid --> socket(5)
 <> < l("155.98.38.122") : Server | none > < l("155.98.38.122", 0) : ServerShim
     | sockets : < socket(4) : BufferedSocket | read : "" >,contacts : empty,
-    bufferedMsgs : none > < l("155.98.38.122", 1) : ClientShim | sockets :
-    none,contacts : empty,bufferedMsgs : none > acceptedClient(l(
-    "155.98.38.122"), socket(4), "155.98.38.141", socket(5))
+    bufferedMsgs : none,flag : true > < l("155.98.38.122", 1) : ClientShim |
+    sockets : none,contacts : empty,bufferedMsgs : none,flag : true >
+    acceptedClient(l("155.98.38.122"), socket(4), "155.98.38.141", socket(5))
 --->
 (<> < l("155.98.38.122") : Server | none > < l("155.98.38.122", 1) : ClientShim
-    | sockets : none,contacts : empty,bufferedMsgs : none >) ((acceptClient(
-    socket(4), l("155.98.38.122")) send(socket(5), l("155.98.38.122"),
-    msg2string(new-socket(l("155.98.38.122"))) + "[msep]")) receive(socket(5),
-    l("155.98.38.122"))) < l("155.98.38.122", 0) : ServerShim | sockets : (<
-    socket(4) : BufferedSocket | read : "" > < socket(5) : BufferedSocket |
-    read : "" >),bufferedMsgs : none,contacts : insert(l("155.98.38.141"),
-    socket(5), empty) >
+    | sockets : none,contacts : empty,bufferedMsgs : none,flag : true >) ((
+    acceptClient(socket(4), l("155.98.38.122")) send(socket(5), l(
+    "155.98.38.122"), msg2string(new-socket(l("155.98.38.122"))) + "[msep]"))
+    receive(socket(5), l("155.98.38.122"))) < l("155.98.38.122", 0) :
+    ServerShim | sockets : (< socket(4) : BufferedSocket | read : "" > <
+    socket(5) : BufferedSocket | read : "" >),(bufferedMsgs : none,flag :
+    true),contacts : insert(l("155.98.38.141"), socket(5), empty) >
+*********** trial #8
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : substr(S:String, 5 + find(S:String, "[beg]", 0),
+    length(S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(
+    substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep\335",
+    0) == notFound = true /\ find(substr(S:String, 0, find(S:String, "[beg]",
+    0)), "beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(
+    S:String, "[beg]", 0)), "[msep]", 0) == notFound = true /\ not new-socket(
+    substr(S:String, 0, find(S:String, "[beg]", 0))) = true [label
+    flush-msg-beg-0] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(4)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure #8
 *********** trial #9
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
@@ -312,9 +312,9 @@ crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     flush-msg-beg-0] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
-SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
-SOCKET:Oid --> socket(4)
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
 S:String --> ""
 LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
 *********** solving condition fragment
@@ -328,27 +328,26 @@ find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
     > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
-    BufferedSocket | read : substr(S:String, 5 + find(S:String, "[beg]", 0),
+    BufferedSocket | read : substr(S:String, 4 + find(S:String, "beg]", 0),
     length(S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(
-    substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
-    true /\ find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep\335",
-    0) == notFound = true /\ find(substr(S:String, 0, find(S:String, "[beg]",
-    0)), "beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(
-    S:String, "[beg]", 0)), "[msep]", 0) == notFound = true /\ not new-socket(
-    substr(S:String, 0, find(S:String, "[beg]", 0))) = true [label
-    flush-msg-beg-0] .
+    substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep\335", 0)
+    == notFound = true /\ find(substr(S:String, 0, find(S:String, "beg]", 0)),
+    "[beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(S:String,
+    "beg]", 0)), "[msep]", 0) == notFound = true /\ not new-socket(substr(
+    S:String, 0, find(S:String, "beg]", 0))) = true [label flush-msg-beg] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
-SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
-SOCKET:Oid --> socket(5)
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(4)
 S:String --> ""
 LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
 *********** solving condition fragment
-find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
     true
 *********** failure for condition fragment
-find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
     true
 *********** failure #10
 *********** trial #11
@@ -365,9 +364,9 @@ crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     S:String, 0, find(S:String, "beg]", 0))) = true [label flush-msg-beg] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
-SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
-SOCKET:Oid --> socket(4)
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
 S:String --> ""
 LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
 *********** solving condition fragment
@@ -380,28 +379,30 @@ find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
 *********** trial #12
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
-    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
-    BufferedSocket | read : substr(S:String, 4 + find(S:String, "beg]", 0),
-    length(S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(
-    substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
-    true /\ find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep\335", 0)
-    == notFound = true /\ find(substr(S:String, 0, find(S:String, "beg]", 0)),
-    "[beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(S:String,
-    "beg]", 0)), "[msep]", 0) == notFound = true /\ not new-socket(substr(
-    S:String, 0, find(S:String, "beg]", 0))) = true [label flush-msg-beg] .
+    > => [substr(S:String, 0, find(S:String, "[sep]", 0))] < O:Oid : SHIM:Shim
+    | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket | read :
+    substr(S:String, 5 + find(S:String, "[sep]", 0), length(S:String)) >),
+    AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(S:String, 0,
+    find(S:String, "[sep]", 0)), "[sep\335", 0) == notFound = true /\ find(
+    substr(S:String, 0, find(S:String, "[sep]", 0)), "[beg]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[sep]", 0)), "beg]", 0) ==
+    notFound = true /\ find(substr(S:String, 5 + find(S:String, "[sep]", 0),
+    length(S:String)), "[msep]", 0) == notFound = true /\ not new-socket(
+    substr(S:String, 0, find(S:String, "[sep]", 0))) = true [label flush-msg-1]
+    .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
-SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
-SOCKET:Oid --> socket(5)
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(4)
 S:String --> ""
 LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
 *********** solving condition fragment
-find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
-    true
+find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
+    notFound = true
 *********** failure for condition fragment
-find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
-    true
+find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
+    notFound = true
 *********** failure #12
 *********** trial #13
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
@@ -419,9 +420,9 @@ crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
-SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
-SOCKET:Oid --> socket(4)
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
 S:String --> ""
 LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
 *********** solving condition fragment
@@ -434,29 +435,28 @@ find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
 *********** trial #14
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
-    > => [substr(S:String, 0, find(S:String, "[sep]", 0))] < O:Oid : SHIM:Shim
-    | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket | read :
-    substr(S:String, 5 + find(S:String, "[sep]", 0), length(S:String)) >),
-    AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(S:String, 0,
-    find(S:String, "[sep]", 0)), "[sep\335", 0) == notFound = true /\ find(
-    substr(S:String, 0, find(S:String, "[sep]", 0)), "[beg]", 0) == notFound =
-    true /\ find(substr(S:String, 0, find(S:String, "[sep]", 0)), "beg]", 0) ==
-    notFound = true /\ find(substr(S:String, 5 + find(S:String, "[sep]", 0),
-    length(S:String)), "[msep]", 0) == notFound = true /\ not new-socket(
-    substr(S:String, 0, find(S:String, "[sep]", 0))) = true [label flush-msg-1]
-    .
+    > => [substr(S:String, 0, find(S:String, "[sep\335", 0))] < O:Oid :
+    SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket |
+    read : substr(S:String, 8 + find(S:String, "[sep\335", 0), length(
+    S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(
+    S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) == notFound = true
+    /\ find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[beg]", 0) ==
+    notFound = true /\ find(substr(S:String, 0, find(S:String, "[sep\335", 0)),
+    "beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(S:String,
+    "[sep\335", 0)), "[msep]", 0) == notFound = true /\ not new-socket(substr(
+    S:String, 0, find(S:String, "[sep\335", 0))) = true [label flush-msg-2] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
-SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
-SOCKET:Oid --> socket(5)
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(4)
 S:String --> ""
 LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
 *********** solving condition fragment
-find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
+find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
     notFound = true
 *********** failure for condition fragment
-find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
+find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
     notFound = true
 *********** failure #14
 *********** trial #15
@@ -474,9 +474,9 @@ crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     S:String, 0, find(S:String, "[sep\335", 0))) = true [label flush-msg-2] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
-SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
-SOCKET:Oid --> socket(4)
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
 S:String --> ""
 LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
 *********** solving condition fragment
@@ -489,29 +489,28 @@ find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
 *********** trial #16
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
-    > => [substr(S:String, 0, find(S:String, "[sep\335", 0))] < O:Oid :
+    > => string2msg(substr(S:String, 0, find(S:String, "[msep]", 0))) < O:Oid :
     SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket |
-    read : substr(S:String, 8 + find(S:String, "[sep\335", 0), length(
-    S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(
-    S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) == notFound = true
-    /\ find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[beg]", 0) ==
-    notFound = true /\ find(substr(S:String, 0, find(S:String, "[sep\335", 0)),
-    "beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(S:String,
-    "[sep\335", 0)), "[msep]", 0) == notFound = true /\ not new-socket(substr(
-    S:String, 0, find(S:String, "[sep\335", 0))) = true [label flush-msg-2] .
+    read : substr(S:String, 6 + find(S:String, "[msep]", 0), length(S:String))
+    >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(S:String, 0,
+    find(S:String, "[msep]", 0)), "[beg]", 0) == notFound = true /\ find(
+    substr(S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335",
+    0) == notFound = true /\ not new-socket(substr(S:String, 0, find(S:String,
+    "[msep]", 0))) = true [label flush-msg-maude] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
-SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
-SOCKET:Oid --> socket(5)
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(4)
 S:String --> ""
 LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
 *********** solving condition fragment
-find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
-    notFound = true
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+    = true
 *********** failure for condition fragment
-find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
-    notFound = true
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+    = true
 *********** failure #16
 *********** trial #17
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
@@ -527,9 +526,9 @@ crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     "[msep]", 0))) = true [label flush-msg-maude] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
-SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
-SOCKET:Oid --> socket(4)
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
 S:String --> ""
 LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
 *********** solving condition fragment
@@ -542,27 +541,29 @@ find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
 *********** trial #18
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
-    > => string2msg(substr(S:String, 0, find(S:String, "[msep]", 0))) < O:Oid :
-    SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket |
-    read : substr(S:String, 6 + find(S:String, "[msep]", 0), length(S:String))
-    >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(S:String, 0,
-    find(S:String, "[msep]", 0)), "[beg]", 0) == notFound = true /\ find(
-    substr(S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound =
-    true /\ find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335",
-    0) == notFound = true /\ not new-socket(substr(S:String, 0, find(S:String,
-    "[msep]", 0))) = true [label flush-msg-maude] .
+    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : substr(S:String, 6 + find(S:String, "[msep]", 0),
+    length(S:String)) >),AS:AttributeSet,contacts : insert(O':Oid, SOCKET:Oid,
+    LS:Map{Oid,Oid}) > if find(substr(S:String, 0, find(S:String, "[msep]",
+    0)), "[sep]", 0) == notFound = true /\ find(substr(S:String, 0, find(
+    S:String, "[msep]", 0)), "[beg]", 0) == notFound = true /\ find(substr(
+    S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound = true /\
+    find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335", 0) ==
+    notFound = true /\ new-socket(O':Oid) := string2msg(substr(S:String, 0,
+    find(S:String, "[msep]", 0))) [label dft-socket] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
-SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
-SOCKET:Oid --> socket(5)
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(4)
 S:String --> ""
 LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+O':Oid --> (unbound)
 *********** solving condition fragment
-find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep]", 0) == notFound
     = true
 *********** failure for condition fragment
-find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep]", 0) == notFound
     = true
 *********** failure #18
 *********** trial #19
@@ -580,9 +581,9 @@ crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     find(S:String, "[msep]", 0))) [label dft-socket] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
-SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
-SOCKET:Oid --> socket(4)
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
 S:String --> ""
 LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
 O':Oid --> (unbound)
@@ -593,7 +594,382 @@ find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep]", 0) == notFound
 find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep]", 0) == notFound
     = true
 *********** failure #19
+*********** rule
+(built-in rule for symbol __)
+<> acceptClient(socket(4), l("155.98.38.122")) receive(socket(5), l(
+    "155.98.38.122")) < l("155.98.38.122") : Server | none > < l(
+    "155.98.38.122", 0) : ServerShim | sockets : (< socket(4) : BufferedSocket
+    | read : "" > < socket(5) : BufferedSocket | read : "" >),contacts : l(
+    "155.98.38.141") |-> socket(5),bufferedMsgs : none,flag : true > < l(
+    "155.98.38.122", 1) : ClientShim | sockets : none,contacts : empty,
+    bufferedMsgs : none,flag : true > send(socket(5), l("155.98.38.122"),
+    "new-socket `( l `( \"155.98.38.122\" `) `) [msep]")
+--->
+<> < l("155.98.38.122") : Server | none > < l("155.98.38.122", 0) : ServerShim
+    | sockets : (< socket(4) : BufferedSocket | read : "" > < socket(5) :
+    BufferedSocket | read : "" >),contacts : l("155.98.38.141") |-> socket(5),
+    bufferedMsgs : none,flag : true > < l("155.98.38.122", 1) : ClientShim |
+    sockets : none,contacts : empty,bufferedMsgs : none,flag : true >
+*********** rule
+rl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >) > received(SERVER:Oid,
+    SOCKET:Oid, DATA:String) => receive(SOCKET:Oid, SERVER:Oid) < O:Oid :
+    SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : (S:String + DATA:String) >) > [label
+    received-from-client] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> contacts : l("155.98.38.141") |-> socket(5),bufferedMsgs :
+    none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> ""
+SERVER:Oid --> l("155.98.38.122")
+DATA:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+<> < l("155.98.38.122") : Server | none > < l("155.98.38.122", 0) : ServerShim
+    | sockets : (< socket(4) : BufferedSocket | read : "" > < socket(5) :
+    BufferedSocket | read : "" >),contacts : l("155.98.38.141") |-> socket(5),
+    bufferedMsgs : none,flag : true > < l("155.98.38.122", 1) : ClientShim |
+    sockets : none,contacts : empty,bufferedMsgs : none,flag : true > received(
+    l("155.98.38.122"), socket(5),
+    "new-socket `( l `( \"155.98.38.141\" `) `) [msep]")
+--->
+(<> < l("155.98.38.122") : Server | none > < l("155.98.38.122", 1) : ClientShim
+    | sockets : none,contacts : empty,bufferedMsgs : none,flag : true >)
+    receive(socket(5), l("155.98.38.122")) < l("155.98.38.122", 0) : ServerShim
+    | (contacts : l("155.98.38.141") |-> socket(5),bufferedMsgs : none,flag :
+    true),sockets : (< socket(4) : BufferedSocket | read : "" > < socket(5) :
+    BufferedSocket | read : ("" +
+    "new-socket `( l `( \"155.98.38.141\" `) `) [msep]") >) >
 *********** trial #20
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : substr(S:String, 5 + find(S:String, "[beg]", 0),
+    length(S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(
+    substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep\335",
+    0) == notFound = true /\ find(substr(S:String, 0, find(S:String, "[beg]",
+    0)), "beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(
+    S:String, "[beg]", 0)), "[msep]", 0) == notFound = true /\ not new-socket(
+    substr(S:String, 0, find(S:String, "[beg]", 0))) = true [label
+    flush-msg-beg-0] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read :
+    "new-socket `( l `( \"155.98.38.141\" `) `) [msep]" >
+SOCKET:Oid --> socket(4)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure #20
+*********** trial #21
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : substr(S:String, 5 + find(S:String, "[beg]", 0),
+    length(S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(
+    substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep\335",
+    0) == notFound = true /\ find(substr(S:String, 0, find(S:String, "[beg]",
+    0)), "beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(
+    S:String, "[beg]", 0)), "[msep]", 0) == notFound = true /\ not new-socket(
+    substr(S:String, 0, find(S:String, "[beg]", 0))) = true [label
+    flush-msg-beg-0] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure #21
+*********** trial #22
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : substr(S:String, 4 + find(S:String, "beg]", 0),
+    length(S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(
+    substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep\335", 0)
+    == notFound = true /\ find(substr(S:String, 0, find(S:String, "beg]", 0)),
+    "[beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(S:String,
+    "beg]", 0)), "[msep]", 0) == notFound = true /\ not new-socket(substr(
+    S:String, 0, find(S:String, "beg]", 0))) = true [label flush-msg-beg] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read :
+    "new-socket `( l `( \"155.98.38.141\" `) `) [msep]" >
+SOCKET:Oid --> socket(4)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure #22
+*********** trial #23
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : substr(S:String, 4 + find(S:String, "beg]", 0),
+    length(S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(
+    substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep\335", 0)
+    == notFound = true /\ find(substr(S:String, 0, find(S:String, "beg]", 0)),
+    "[beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(S:String,
+    "beg]", 0)), "[msep]", 0) == notFound = true /\ not new-socket(substr(
+    S:String, 0, find(S:String, "beg]", 0))) = true [label flush-msg-beg] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure #23
+*********** trial #24
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => [substr(S:String, 0, find(S:String, "[sep]", 0))] < O:Oid : SHIM:Shim
+    | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket | read :
+    substr(S:String, 5 + find(S:String, "[sep]", 0), length(S:String)) >),
+    AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(S:String, 0,
+    find(S:String, "[sep]", 0)), "[sep\335", 0) == notFound = true /\ find(
+    substr(S:String, 0, find(S:String, "[sep]", 0)), "[beg]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[sep]", 0)), "beg]", 0) ==
+    notFound = true /\ find(substr(S:String, 5 + find(S:String, "[sep]", 0),
+    length(S:String)), "[msep]", 0) == notFound = true /\ not new-socket(
+    substr(S:String, 0, find(S:String, "[sep]", 0))) = true [label flush-msg-1]
+    .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read :
+    "new-socket `( l `( \"155.98.38.141\" `) `) [msep]" >
+SOCKET:Oid --> socket(4)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
+    notFound = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
+    notFound = true
+*********** failure #24
+*********** trial #25
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => [substr(S:String, 0, find(S:String, "[sep]", 0))] < O:Oid : SHIM:Shim
+    | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket | read :
+    substr(S:String, 5 + find(S:String, "[sep]", 0), length(S:String)) >),
+    AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(S:String, 0,
+    find(S:String, "[sep]", 0)), "[sep\335", 0) == notFound = true /\ find(
+    substr(S:String, 0, find(S:String, "[sep]", 0)), "[beg]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[sep]", 0)), "beg]", 0) ==
+    notFound = true /\ find(substr(S:String, 5 + find(S:String, "[sep]", 0),
+    length(S:String)), "[msep]", 0) == notFound = true /\ not new-socket(
+    substr(S:String, 0, find(S:String, "[sep]", 0))) = true [label flush-msg-1]
+    .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
+    notFound = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
+    notFound = true
+*********** failure #25
+*********** trial #26
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => [substr(S:String, 0, find(S:String, "[sep\335", 0))] < O:Oid :
+    SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket |
+    read : substr(S:String, 8 + find(S:String, "[sep\335", 0), length(
+    S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(
+    S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) == notFound = true
+    /\ find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[beg]", 0) ==
+    notFound = true /\ find(substr(S:String, 0, find(S:String, "[sep\335", 0)),
+    "beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(S:String,
+    "[sep\335", 0)), "[msep]", 0) == notFound = true /\ not new-socket(substr(
+    S:String, 0, find(S:String, "[sep\335", 0))) = true [label flush-msg-2] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read :
+    "new-socket `( l `( \"155.98.38.141\" `) `) [msep]" >
+SOCKET:Oid --> socket(4)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
+    notFound = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
+    notFound = true
+*********** failure #26
+*********** trial #27
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => [substr(S:String, 0, find(S:String, "[sep\335", 0))] < O:Oid :
+    SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket |
+    read : substr(S:String, 8 + find(S:String, "[sep\335", 0), length(
+    S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(
+    S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) == notFound = true
+    /\ find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[beg]", 0) ==
+    notFound = true /\ find(substr(S:String, 0, find(S:String, "[sep\335", 0)),
+    "beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(S:String,
+    "[sep\335", 0)), "[msep]", 0) == notFound = true /\ not new-socket(substr(
+    S:String, 0, find(S:String, "[sep\335", 0))) = true [label flush-msg-2] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
+    notFound = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
+    notFound = true
+*********** failure #27
+*********** trial #28
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => string2msg(substr(S:String, 0, find(S:String, "[msep]", 0))) < O:Oid :
+    SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket |
+    read : substr(S:String, 6 + find(S:String, "[msep]", 0), length(S:String))
+    >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(S:String, 0,
+    find(S:String, "[msep]", 0)), "[beg]", 0) == notFound = true /\ find(
+    substr(S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335",
+    0) == notFound = true /\ not new-socket(substr(S:String, 0, find(S:String,
+    "[msep]", 0))) = true [label flush-msg-maude] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read :
+    "new-socket `( l `( \"155.98.38.141\" `) `) [msep]" >
+SOCKET:Oid --> socket(4)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+    = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+    = true
+*********** failure #28
+*********** trial #29
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => string2msg(substr(S:String, 0, find(S:String, "[msep]", 0))) < O:Oid :
+    SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket |
+    read : substr(S:String, 6 + find(S:String, "[msep]", 0), length(S:String))
+    >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(S:String, 0,
+    find(S:String, "[msep]", 0)), "[beg]", 0) == notFound = true /\ find(
+    substr(S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335",
+    0) == notFound = true /\ not new-socket(substr(S:String, 0, find(S:String,
+    "[msep]", 0))) = true [label flush-msg-maude] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+    = true
+*********** success for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+    = true
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound =
+    true
+*********** success for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound =
+    true
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335", 0) ==
+    notFound = true
+*********** success for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335", 0) ==
+    notFound = true
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+not new-socket(substr(S:String, 0, find(S:String, "[msep]", 0))) = true
+*********** failure for condition fragment
+not new-socket(substr(S:String, 0, find(S:String, "[msep]", 0))) = true
+*********** re-solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335", 0) ==
+    notFound = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335", 0) ==
+    notFound = true
+*********** re-solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound =
+    true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound =
+    true
+*********** re-solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+    = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+    = true
+*********** failure #29
+*********** trial #30
 crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
     > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
@@ -608,7 +984,470 @@ crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
     find(S:String, "[msep]", 0))) [label dft-socket] .
 O:Oid --> l("155.98.38.122", 0)
 SHIM:Shim --> ServerShim
-AS:AttributeSet --> bufferedMsgs : none
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read :
+    "new-socket `( l `( \"155.98.38.141\" `) `) [msep]" >
+SOCKET:Oid --> socket(4)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+O':Oid --> (unbound)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep]", 0) == notFound
+    = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep]", 0) == notFound
+    = true
+*********** failure #30
+*********** trial #31
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : substr(S:String, 6 + find(S:String, "[msep]", 0),
+    length(S:String)) >),AS:AttributeSet,contacts : insert(O':Oid, SOCKET:Oid,
+    LS:Map{Oid,Oid}) > if find(substr(S:String, 0, find(S:String, "[msep]",
+    0)), "[sep]", 0) == notFound = true /\ find(substr(S:String, 0, find(
+    S:String, "[msep]", 0)), "[beg]", 0) == notFound = true /\ find(substr(
+    S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound = true /\
+    find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335", 0) ==
+    notFound = true /\ new-socket(O':Oid) := string2msg(substr(S:String, 0,
+    find(S:String, "[msep]", 0))) [label dft-socket] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+O':Oid --> (unbound)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep]", 0) == notFound
+    = true
+*********** success for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep]", 0) == notFound
+    = true
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+O':Oid --> (unbound)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+    = true
+*********** success for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+    = true
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+O':Oid --> (unbound)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound =
+    true
+*********** success for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound =
+    true
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+O':Oid --> (unbound)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335", 0) ==
+    notFound = true
+*********** success for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335", 0) ==
+    notFound = true
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+O':Oid --> (unbound)
+*********** solving condition fragment
+new-socket(O':Oid) := string2msg(substr(S:String, 0, find(S:String, "[msep]",
+    0)))
+*********** success for condition fragment
+new-socket(O':Oid) := string2msg(substr(S:String, 0, find(S:String, "[msep]",
+    0)))
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+O':Oid --> l("155.98.38.141")
+*********** success #31
+*********** rule
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : substr(S:String, 6 + find(S:String, "[msep]", 0),
+    length(S:String)) >),AS:AttributeSet,contacts : insert(O':Oid, SOCKET:Oid,
+    LS:Map{Oid,Oid}) > if find(substr(S:String, 0, find(S:String, "[msep]",
+    0)), "[sep]", 0) == notFound = true /\ find(substr(S:String, 0, find(
+    S:String, "[msep]", 0)), "[beg]", 0) == notFound = true /\ find(substr(
+    S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound = true /\
+    find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335", 0) ==
+    notFound = true /\ new-socket(O':Oid) := string2msg(substr(S:String, 0,
+    find(S:String, "[msep]", 0))) [label dft-socket] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> "new-socket `( l `( \"155.98.38.141\" `) `) [msep]"
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+O':Oid --> l("155.98.38.141")
+< l("155.98.38.122", 0) : ServerShim | sockets : (< socket(4) : BufferedSocket
+    | read : "" > < socket(5) : BufferedSocket | read :
+    "new-socket `( l `( \"155.98.38.141\" `) `) [msep]" >),contacts : l(
+    "155.98.38.141") |-> socket(5),bufferedMsgs : none,flag : true >
+--->
+< l("155.98.38.122", 0) : ServerShim | sockets : (< socket(4) : BufferedSocket
+    | read : "" > < socket(5) : BufferedSocket | read : substr(
+    "new-socket `( l `( \"155.98.38.141\" `) `) [msep]", 6 + 41, length(
+    "new-socket `( l `( \"155.98.38.141\" `) `) [msep]")) >),(bufferedMsgs :
+    none,flag : true),contacts : insert(l("155.98.38.141"), socket(5), l(
+    "155.98.38.141") |-> socket(5)) >
+*********** rule
+(built-in rule for symbol __)
+<> receive(socket(5), l("155.98.38.122")) < l("155.98.38.122") : Server | none
+    > < l("155.98.38.122", 0) : ServerShim | sockets : (< socket(4) :
+    BufferedSocket | read : "" > < socket(5) : BufferedSocket | read : "" >),
+    contacts : l("155.98.38.141") |-> socket(5),bufferedMsgs : none,flag : true
+    > < l("155.98.38.122", 1) : ClientShim | sockets : none,contacts : empty,
+    bufferedMsgs : none,flag : true >
+--->
+<> < l("155.98.38.122") : Server | none > < l("155.98.38.122", 0) : ServerShim
+    | sockets : (< socket(4) : BufferedSocket | read : "" > < socket(5) :
+    BufferedSocket | read : "" >),contacts : l("155.98.38.141") |-> socket(5),
+    bufferedMsgs : none,flag : true > < l("155.98.38.122", 1) : ClientShim |
+    sockets : none,contacts : empty,bufferedMsgs : none,flag : true >
+*********** trial #32
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : substr(S:String, 5 + find(S:String, "[beg]", 0),
+    length(S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(
+    substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep\335",
+    0) == notFound = true /\ find(substr(S:String, 0, find(S:String, "[beg]",
+    0)), "beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(
+    S:String, "[beg]", 0)), "[msep]", 0) == notFound = true /\ not new-socket(
+    substr(S:String, 0, find(S:String, "[beg]", 0))) = true [label
+    flush-msg-beg-0] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(4)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure #32
+*********** trial #33
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : substr(S:String, 5 + find(S:String, "[beg]", 0),
+    length(S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(
+    substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep\335",
+    0) == notFound = true /\ find(substr(S:String, 0, find(S:String, "[beg]",
+    0)), "beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(
+    S:String, "[beg]", 0)), "[msep]", 0) == notFound = true /\ not new-socket(
+    substr(S:String, 0, find(S:String, "[beg]", 0))) = true [label
+    flush-msg-beg-0] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure #33
+*********** trial #34
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : substr(S:String, 4 + find(S:String, "beg]", 0),
+    length(S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(
+    substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep\335", 0)
+    == notFound = true /\ find(substr(S:String, 0, find(S:String, "beg]", 0)),
+    "[beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(S:String,
+    "beg]", 0)), "[msep]", 0) == notFound = true /\ not new-socket(substr(
+    S:String, 0, find(S:String, "beg]", 0))) = true [label flush-msg-beg] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(4)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure #34
+*********** trial #35
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : substr(S:String, 4 + find(S:String, "beg]", 0),
+    length(S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(
+    substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep\335", 0)
+    == notFound = true /\ find(substr(S:String, 0, find(S:String, "beg]", 0)),
+    "[beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(S:String,
+    "beg]", 0)), "[msep]", 0) == notFound = true /\ not new-socket(substr(
+    S:String, 0, find(S:String, "beg]", 0))) = true [label flush-msg-beg] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "beg]", 0)), "[sep]", 0) == notFound =
+    true
+*********** failure #35
+*********** trial #36
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => [substr(S:String, 0, find(S:String, "[sep]", 0))] < O:Oid : SHIM:Shim
+    | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket | read :
+    substr(S:String, 5 + find(S:String, "[sep]", 0), length(S:String)) >),
+    AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(S:String, 0,
+    find(S:String, "[sep]", 0)), "[sep\335", 0) == notFound = true /\ find(
+    substr(S:String, 0, find(S:String, "[sep]", 0)), "[beg]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[sep]", 0)), "beg]", 0) ==
+    notFound = true /\ find(substr(S:String, 5 + find(S:String, "[sep]", 0),
+    length(S:String)), "[msep]", 0) == notFound = true /\ not new-socket(
+    substr(S:String, 0, find(S:String, "[sep]", 0))) = true [label flush-msg-1]
+    .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(4)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
+    notFound = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
+    notFound = true
+*********** failure #36
+*********** trial #37
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => [substr(S:String, 0, find(S:String, "[sep]", 0))] < O:Oid : SHIM:Shim
+    | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket | read :
+    substr(S:String, 5 + find(S:String, "[sep]", 0), length(S:String)) >),
+    AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(S:String, 0,
+    find(S:String, "[sep]", 0)), "[sep\335", 0) == notFound = true /\ find(
+    substr(S:String, 0, find(S:String, "[sep]", 0)), "[beg]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[sep]", 0)), "beg]", 0) ==
+    notFound = true /\ find(substr(S:String, 5 + find(S:String, "[sep]", 0),
+    length(S:String)), "[msep]", 0) == notFound = true /\ not new-socket(
+    substr(S:String, 0, find(S:String, "[sep]", 0))) = true [label flush-msg-1]
+    .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
+    notFound = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[sep]", 0)), "[sep\335", 0) ==
+    notFound = true
+*********** failure #37
+*********** trial #38
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => [substr(S:String, 0, find(S:String, "[sep\335", 0))] < O:Oid :
+    SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket |
+    read : substr(S:String, 8 + find(S:String, "[sep\335", 0), length(
+    S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(
+    S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) == notFound = true
+    /\ find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[beg]", 0) ==
+    notFound = true /\ find(substr(S:String, 0, find(S:String, "[sep\335", 0)),
+    "beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(S:String,
+    "[sep\335", 0)), "[msep]", 0) == notFound = true /\ not new-socket(substr(
+    S:String, 0, find(S:String, "[sep\335", 0))) = true [label flush-msg-2] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(4)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
+    notFound = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
+    notFound = true
+*********** failure #38
+*********** trial #39
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => [substr(S:String, 0, find(S:String, "[sep\335", 0))] < O:Oid :
+    SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket |
+    read : substr(S:String, 8 + find(S:String, "[sep\335", 0), length(
+    S:String)) >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(
+    S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) == notFound = true
+    /\ find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[beg]", 0) ==
+    notFound = true /\ find(substr(S:String, 0, find(S:String, "[sep\335", 0)),
+    "beg]", 0) == notFound = true /\ find(substr(S:String, 0, find(S:String,
+    "[sep\335", 0)), "[msep]", 0) == notFound = true /\ not new-socket(substr(
+    S:String, 0, find(S:String, "[sep\335", 0))) = true [label flush-msg-2] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
+    notFound = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[sep\335", 0)), "[sep]", 0) ==
+    notFound = true
+*********** failure #39
+*********** trial #40
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => string2msg(substr(S:String, 0, find(S:String, "[msep]", 0))) < O:Oid :
+    SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket |
+    read : substr(S:String, 6 + find(S:String, "[msep]", 0), length(S:String))
+    >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(S:String, 0,
+    find(S:String, "[msep]", 0)), "[beg]", 0) == notFound = true /\ find(
+    substr(S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335",
+    0) == notFound = true /\ not new-socket(substr(S:String, 0, find(S:String,
+    "[msep]", 0))) = true [label flush-msg-maude] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(4)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+    = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+    = true
+*********** failure #40
+*********** trial #41
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => string2msg(substr(S:String, 0, find(S:String, "[msep]", 0))) < O:Oid :
+    SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid : BufferedSocket |
+    read : substr(S:String, 6 + find(S:String, "[msep]", 0), length(S:String))
+    >),AS:AttributeSet,contacts : LS:Map{Oid,Oid} > if find(substr(S:String, 0,
+    find(S:String, "[msep]", 0)), "[beg]", 0) == notFound = true /\ find(
+    substr(S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound =
+    true /\ find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335",
+    0) == notFound = true /\ not new-socket(substr(S:String, 0, find(S:String,
+    "[msep]", 0))) = true [label flush-msg-maude] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(5)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+    = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[beg]", 0) == notFound
+    = true
+*********** failure #41
+*********** trial #42
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : substr(S:String, 6 + find(S:String, "[msep]", 0),
+    length(S:String)) >),AS:AttributeSet,contacts : insert(O':Oid, SOCKET:Oid,
+    LS:Map{Oid,Oid}) > if find(substr(S:String, 0, find(S:String, "[msep]",
+    0)), "[sep]", 0) == notFound = true /\ find(substr(S:String, 0, find(
+    S:String, "[msep]", 0)), "[beg]", 0) == notFound = true /\ find(substr(
+    S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound = true /\
+    find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335", 0) ==
+    notFound = true /\ new-socket(O':Oid) := string2msg(substr(S:String, 0,
+    find(S:String, "[msep]", 0))) [label dft-socket] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
+SKTS:Configuration --> < socket(5) : BufferedSocket | read : "" >
+SOCKET:Oid --> socket(4)
+S:String --> ""
+LS:Map{Oid,Oid} --> l("155.98.38.141") |-> socket(5)
+O':Oid --> (unbound)
+*********** solving condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep]", 0) == notFound
+    = true
+*********** failure for condition fragment
+find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep]", 0) == notFound
+    = true
+*********** failure #42
+*********** trial #43
+crl < O:Oid : SHIM:Shim | AS:AttributeSet,sockets : (SKTS:Configuration <
+    SOCKET:Oid : BufferedSocket | read : S:String >),contacts : LS:Map{Oid,Oid}
+    > => < O:Oid : SHIM:Shim | sockets : (SKTS:Configuration < SOCKET:Oid :
+    BufferedSocket | read : substr(S:String, 6 + find(S:String, "[msep]", 0),
+    length(S:String)) >),AS:AttributeSet,contacts : insert(O':Oid, SOCKET:Oid,
+    LS:Map{Oid,Oid}) > if find(substr(S:String, 0, find(S:String, "[msep]",
+    0)), "[sep]", 0) == notFound = true /\ find(substr(S:String, 0, find(
+    S:String, "[msep]", 0)), "[beg]", 0) == notFound = true /\ find(substr(
+    S:String, 0, find(S:String, "[msep]", 0)), "beg]", 0) == notFound = true /\
+    find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep\335", 0) ==
+    notFound = true /\ new-socket(O':Oid) := string2msg(substr(S:String, 0,
+    find(S:String, "[msep]", 0))) [label dft-socket] .
+O:Oid --> l("155.98.38.122", 0)
+SHIM:Shim --> ServerShim
+AS:AttributeSet --> bufferedMsgs : none,flag : true
 SKTS:Configuration --> < socket(4) : BufferedSocket | read : "" >
 SOCKET:Oid --> socket(5)
 S:String --> ""
@@ -620,55 +1459,27 @@ find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep]", 0) == notFound
 *********** failure for condition fragment
 find(substr(S:String, 0, find(S:String, "[msep]", 0)), "[sep]", 0) == notFound
     = true
-*********** failure #20
-*********** rule
-(built-in rule for symbol __)
-<> acceptClient(socket(4), l("155.98.38.122")) receive(socket(5), l(
-    "155.98.38.122")) < l("155.98.38.122") : Server | none > < l(
-    "155.98.38.122", 0) : ServerShim | sockets : (< socket(4) : BufferedSocket
-    | read : "" > < socket(5) : BufferedSocket | read : "" >),contacts : l(
-    "155.98.38.141") |-> socket(5),bufferedMsgs : none > < l("155.98.38.122",
-    1) : ClientShim | sockets : none,contacts : empty,bufferedMsgs : none >
-    send(socket(5), l("155.98.38.122"),
-    "new-socket `( l `( \"155.98.38.122\" `) `) [msep]")
---->
-<> < l("155.98.38.122") : Server | none > < l("155.98.38.122", 0) : ServerShim
-    | sockets : (< socket(4) : BufferedSocket | read : "" > < socket(5) :
-    BufferedSocket | read : "" >),contacts : l("155.98.38.141") |-> socket(5),
-    bufferedMsgs : none > < l("155.98.38.122", 1) : ClientShim | sockets :
-    none,contacts : empty,bufferedMsgs : none >
+*********** failure #43
 *********** rule
 (built-in rule for symbol __)
 <> < l("155.98.38.122") : Server | none > < l("155.98.38.122", 0) : ServerShim
     | sockets : (< socket(4) : BufferedSocket | read : "" > < socket(5) :
     BufferedSocket | read : "" >),contacts : l("155.98.38.141") |-> socket(5),
-    bufferedMsgs : none > < l("155.98.38.122", 1) : ClientShim | sockets :
-    none,contacts : empty,bufferedMsgs : none >
+    bufferedMsgs : none,flag : true > < l("155.98.38.122", 1) : ClientShim |
+    sockets : none,contacts : empty,bufferedMsgs : none,flag : true >
 --->
 <> < l("155.98.38.122") : Server | none > < l("155.98.38.122", 0) : ServerShim
     | sockets : (< socket(4) : BufferedSocket | read : "" > < socket(5) :
     BufferedSocket | read : "" >),contacts : l("155.98.38.141") |-> socket(5),
-    bufferedMsgs : none > < l("155.98.38.122", 1) : ClientShim | sockets :
-    none,contacts : empty,bufferedMsgs : none >
-*********** rule
-(built-in rule for symbol __)
-<> < l("155.98.38.122") : Server | none > < l("155.98.38.122", 0) : ServerShim
-    | sockets : (< socket(4) : BufferedSocket | read : "" > < socket(5) :
-    BufferedSocket | read : "" >),contacts : l("155.98.38.141") |-> socket(5),
-    bufferedMsgs : none > < l("155.98.38.122", 1) : ClientShim | sockets :
-    none,contacts : empty,bufferedMsgs : none >
---->
-<> < l("155.98.38.122") : Server | none > < l("155.98.38.122", 0) : ServerShim
-    | sockets : (< socket(4) : BufferedSocket | read : "" > < socket(5) :
-    BufferedSocket | read : "" >),contacts : l("155.98.38.141") |-> socket(5),
-    bufferedMsgs : none > < l("155.98.38.122", 1) : ClientShim | sockets :
-    none,contacts : empty,bufferedMsgs : none > closedSocket(l(
-    "155.98.38.122"), socket(5), "Connection reset by peer")
-rewrites: 83 in 4ms cpu (10010ms real) (20750 rewrites/second)
+    bufferedMsgs : none,flag : true > < l("155.98.38.122", 1) : ClientShim |
+    sockets : none,contacts : empty,bufferedMsgs : none,flag : true >
+    closedSocket(l("155.98.38.122"), socket(5), "")
+rewrites: 266 in 8ms cpu (12606ms real) (33250 rewrites/second)
 result Configuration: <> < l("155.98.38.122") : Server | none > < l(
     "155.98.38.122", 0) : ServerShim | sockets : (< socket(4) : BufferedSocket
     | read : "" > < socket(5) : BufferedSocket | read : "" >),contacts : l(
-    "155.98.38.141") |-> socket(5),bufferedMsgs : none > < l("155.98.38.122",
-    1) : ClientShim | sockets : none,contacts : empty,bufferedMsgs : none >
-    closedSocket(l("155.98.38.122"), socket(5), "Connection reset by peer")
+    "155.98.38.141") |-> socket(5),bufferedMsgs : none,flag : true > < l(
+    "155.98.38.122", 1) : ClientShim | sockets : none,contacts : empty,
+    bufferedMsgs : none,flag : true > closedSocket(l("155.98.38.122"), socket(
+    5), "")
 Bye.
