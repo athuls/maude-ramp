@@ -148,17 +148,15 @@ mod SERVER is
   op self : -> String .
   eq self = "155.98.38.115" .
 
+  eq port = 9810 .
   op init : -> Configuration .
   eq init = <>
-            < l(self,0) : ServerShim | sockets : none, contacts : empty >
+            < l(self,0) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, flag : false >
             < l(self) : Server | store : empty >
             createServerTcpSocket(socketManager, l(self), 9810, 5) 
             createServerTcpSocket(socketManager, l(self), 9710, 5) 
 
-            createServerTcpSocket(socketManager, l(self), 9410, 5) 
-            createServerTcpSocket(socketManager, l(self), 9510, 5) 
-            createServerTcpSocket(socketManager, l(self), 9610, 5) 
-
+            < l(self,1) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none, flag : true >
             < tb : Table | table : empty > .
             
 endm

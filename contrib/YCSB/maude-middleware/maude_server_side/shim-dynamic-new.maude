@@ -1,12 +1,12 @@
 load buffer-test
 load shim-obj
 
----(
+---
 set trace on .
 set trace mb off .
 set trace eq off .
 set trace condition off .
-)
+
 
 mod SHIM-DYNAMIC is
   pr SHIM .
@@ -34,11 +34,14 @@ mod SHIM-DYNAMIC is
   *******************
   *** Server Shim ***
 
+  op flag :_ : Bool -> Attribute [ctor gather(&)] . 
+
   rl [created-server-socket] :
-     < O : SERVERSHIM | sockets : SKTS, AS >
+     < O : SERVERSHIM | sockets : SKTS, flag : false, AS >
      createdSocket(SERVER, socketManager, LISTENER)
    => 
-     < O : SERVERSHIM | sockets : SKTS < LISTENER : BufferedSocket | read : "" >, AS > 
+     < O : SERVERSHIM | sockets : SKTS < LISTENER : BufferedSocket | read : "" >,
+                        flag : true, AS > 
      acceptClient(LISTENER, SERVER) .
    *** It could also result in a socketError(SERVER, socketManager, REASON) message
 
@@ -74,10 +77,10 @@ mod SHIM-DYNAMIC is
   *** Client Shim ***
 
   rl [created-client-socket] :
-     < O : CLIENTSHIM | sockets : SKTS, AS >
+     < O : CLIENTSHIM | sockets : SKTS, flag : true, AS >
      createdSocket(O', socketManager, SOCKET)  --- O' is the ID of the client who creatClientTcpSocket
    => 
-     < O : CLIENTSHIM | sockets : SKTS < SOCKET : BufferedSocket | read : "" >, AS > 
+     < O : CLIENTSHIM | sockets : SKTS < SOCKET : BufferedSocket | read : "" >, flag : true, AS > 
      receive(SOCKET,O') 
      send(SOCKET,O',msg2string(new-socket(O')) + "[msep]") .
 
@@ -287,11 +290,11 @@ crl [send-msg-1-str] :
   *** This works in the scenario that a client tries to reach a server
   *** client can be either a real client, or a server that tries to reach another server
  crl [send-msg-2] :
-     < O : SHIM | contacts : LS, 
+     < O : CLIENTSHIM | contacts : LS, 
                   bufferedMsgs : MSGS, AS >
      (msg MSG from O' to O'') 
    =>
-     < O : SHIM | contacts : LS,
+     < O : CLIENTSHIM | contacts : LS,
                   bufferedMsgs : MSGS (msg MSG from O' to O''), AS >
      createClientTcpSocket(socketManager,O',ip(O''),port) 
      if LS[O''] == undefined /\
@@ -302,11 +305,11 @@ crl [send-msg-1-str] :
 
 
  crl [send-msg-2-str] :
-     < O : SHIM | contacts : LS, 
+     < O : CLIENTSHIM | contacts : LS, 
                   bufferedMsgs : MSGS, AS >
      (msg STR from O' to O'') 
    =>
-     < O : SHIM | contacts : LS,
+     < O : CLIENTSHIM | contacts : LS,
                   bufferedMsgs : MSGS (msg STR from O' to O''), AS >
      createClientTcpSocket(socketManager,O',ip(O''),port) 
      if LS[O''] == undefined /\
@@ -314,19 +317,19 @@ crl [send-msg-1-str] :
 
 
  crl [send-msg-3] :
-     < O : SHIM | contacts : LS,
+     < O : CLIENTSHIM | contacts : LS,
                   bufferedMsgs : MSGS (msg MSG from O' to O''), AS >
    =>
-     < O : SHIM | contacts : LS,
+     < O : CLIENTSHIM | contacts : LS,
                   bufferedMsgs : MSGS, AS >
      send(LS[O''],O',msg2string(msg MSG from O' to O'') + "[msep]") 
      if LS[O''] =/= undefined .  
 
  crl [send-msg-3-str] :
-      < O : SHIM | contacts : LS,
+      < O : CLIENTSHIM | contacts : LS,
                    bufferedMsgs : MSGS (msg STR from O' to O''), AS >
     =>
-      < O : SHIM | contacts : LS,
+      < O : CLIENTSHIM | contacts : LS,
                    bufferedMsgs : MSGS, AS >
       send(LS[O''],O',msg2string(msg STR from O' to O'') + "[msep]")
       if LS[O''] =/= undefined .
