@@ -33,10 +33,10 @@ mod CLIENT is
   eq server-addr = l(addr) .
 
   op addr : -> String .
-  eq addr = "155.98.38.115" .
+  eq addr = "155.98.38.116" .
 
   op self : -> String .
-  eq self = "155.98.38.116" .
+  eq self = "155.98.38.94" .
   ***eq self = "192.17.150.124" .
 
 
@@ -55,7 +55,7 @@ mod CLIENT is
   eq init = <>
             < l(self,0) : ClientShim | sockets : none, contacts : empty >
             < l(self,2) : Client | sent : 0, rcved : 0 > 
-            createClientTcpSocket(socketManager,l(self,2),addr,9410)
+            createClientTcpSocket(socketManager,l(self,2),addr,9810)
                   
             < l(self,1) : ServerShim | sockets : none, contacts : empty >
             createServerTcpSocket(socketManager, l(self,2), 9910, 5) .
