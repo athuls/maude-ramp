@@ -35,14 +35,16 @@ mod SHIM-DYNAMIC is
   *** Server Shim ***
 
   op flag :_ : Bool -> Attribute [ctor gather(&)] . 
+  op created :_ : Nat -> Attribute [ctor gather(&)] .   
 
-  rl [created-server-socket] :
-     < O : SERVERSHIM | sockets : SKTS, flag : false, AS >
+ crl [created-server-socket] :
+     < O : SERVERSHIM | sockets : SKTS, created : N, AS >
      createdSocket(SERVER, socketManager, LISTENER)
    => 
      < O : SERVERSHIM | sockets : SKTS < LISTENER : BufferedSocket | read : "" >,
-                        flag : true, AS > 
-     acceptClient(LISTENER, SERVER) .
+                        created : N + 1, AS > 
+     acceptClient(LISTENER, SERVER) 
+   if N < 2 .
    *** It could also result in a socketError(SERVER, socketManager, REASON) message
 
 
@@ -77,10 +79,12 @@ mod SHIM-DYNAMIC is
   *** Client Shim ***
 
   rl [created-client-socket] :
-     < O : CLIENTSHIM | sockets : SKTS, flag : true, AS >
+     < O : CLIENTSHIM | sockets : SKTS, AS >
+     < O'' : SERVERSHIM | created : 2, AS' >
      createdSocket(O', socketManager, SOCKET)  --- O' is the ID of the client who creatClientTcpSocket
    => 
-     < O : CLIENTSHIM | sockets : SKTS < SOCKET : BufferedSocket | read : "" >, flag : true, AS > 
+     < O : CLIENTSHIM | sockets : SKTS < SOCKET : BufferedSocket | read : "" >, AS > 
+     < O'' : SERVERSHIM | created : 2, AS' >
      receive(SOCKET,O') 
      send(SOCKET,O',msg2string(new-socket(O')) + "[msep]") .
 

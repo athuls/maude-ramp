@@ -150,12 +150,12 @@ mod SERVER is
   eq port = 9810 .
   op init : -> Configuration .
   eq init = <>
-            < l(self,0) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, flag : false >
+            < l(self,0) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
             < l(self) : Server | store : empty >
             createServerTcpSocket(socketManager, l(self), 9810, 5) 
             createServerTcpSocket(socketManager, l(self), 9710, 5) 
 
-            < l(self,1) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none, flag : true >
+            < l(self,1) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < tb : Table | table : empty > .
             
 endm
