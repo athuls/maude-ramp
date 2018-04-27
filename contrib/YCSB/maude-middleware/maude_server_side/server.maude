@@ -13,7 +13,6 @@ mod SERVER is
 
   op table :_ : Map{String,String} -> Attribute [ctor gather(&)] . 
 
-  op msg_from_to_and_ : String Oid Oid Oid -> Msg [ctor] .
 
   sort Server .  *** Shim has as ID l(IP,0), e.g., l("localhost",0)
   subsort Server < Cid .
