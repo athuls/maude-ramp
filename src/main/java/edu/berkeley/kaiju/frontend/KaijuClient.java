@@ -211,7 +211,7 @@ public class KaijuClient {
 //                throw e;
             }
         } catch (Exception e) {
-            System.out.println("[EXCEPTIOn] Issue when waiting");
+            System.out.println("[EXCEPTIOn] Issue when waiting " + e.toString());
         }
     }
 

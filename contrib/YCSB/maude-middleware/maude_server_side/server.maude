@@ -132,7 +132,8 @@ mod SERVER is
       < O : Server | AS >
       (msg VALUE from O to O'') 
       if find(VALUE,"[eok]",0) == notFound /\
-         find(VALUE,"[eor]",0) == notFound .
+         find(VALUE,"[eor]",0) == notFound /\
+         ip(O) == "" .
 
 
 ---(
