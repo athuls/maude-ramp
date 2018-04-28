@@ -146,7 +146,7 @@ mod SERVER is
 )
 
   op self : -> String .
-  eq self = "155.98.38.116" .
+  eq self = "155.98.38.114" .
 
   eq port = 9810 .
   op init : -> Configuration .
