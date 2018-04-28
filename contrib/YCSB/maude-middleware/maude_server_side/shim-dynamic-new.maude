@@ -318,7 +318,7 @@ crl [send-msg-1-str-temp] :
                              *** target is not resident, i.e., 
                              *** msg targeting local resident will stay in the soup
 )
-
+---(
   *** This works in the scenario that a client tries to reach a server
   *** client can be either a real client, or a server that tries to reach another server
  crl [send-msg-2] :
@@ -332,7 +332,30 @@ crl [send-msg-1-str-temp] :
      if LS[O''] == undefined /\
         ip(O) =/= ip(O'') .  
 ***??? this one needed
+)
 
+  *** This works in the scenario that a client tries to reach a server
+  *** client can be either a real client, or a server that tries to reach another server
+ crl [send-msg-2] :
+     < O : CLIENTSHIM | contacts : LS, 
+                  bufferedMsgs : MSGS, AS >
+     (msg MSG from O' to O'') 
+   =>
+     < O : CLIENTSHIM | contacts : LS,
+                  bufferedMsgs : MSGS (msg MSG from O' to O''), AS >
+     if exist(O'',MSGS)
+       then none
+       else createClientTcpSocket(socketManager,O',ip(O''),port) 
+     fi     
+     if LS[O''] == undefined /\
+        ip(O) =/= ip(O'') .  
+***??? this one needed
+
+  op exist : Oid Configuration -> Bool . 
+  eq exist(O,MSGS (msg MSG from O' to O)) = true .
+  eq exist(O,MSGS) = false [owise] .
+
+---(
  crl [send-msg-2-temp] :
      < O : CLIENTSHIM | contacts : LS, 
                   bufferedMsgs : MSGS, AS >
@@ -343,11 +366,25 @@ crl [send-msg-1-str-temp] :
      createClientTcpSocket(socketManager,O',ip(O''),port) 
      if LS[O''] == undefined /\
         ip(O) =/= ip(O'') . 
+)
 
+ crl [send-msg-2-temp] :
+     < O : CLIENTSHIM | contacts : LS, 
+                  bufferedMsgs : MSGS, AS >
+     (msg MSG from O' to O'' and O''') 
+   =>
+     < O : CLIENTSHIM | contacts : LS,
+                  bufferedMsgs : MSGS (msg MSG from O' to O'' and O'''), AS >
+     if exist(O'',MSGS)
+       then none
+       else createClientTcpSocket(socketManager,O',ip(O''),port)
+     fi  
+     if LS[O''] == undefined /\
+        ip(O) =/= ip(O'') . 
 
   op port : -> Nat .  *** need to know in advance
 
-
+---(
  crl [send-msg-2-str] :
      < O : CLIENTSHIM | contacts : LS, 
                   bufferedMsgs : MSGS, AS >
@@ -358,8 +395,24 @@ crl [send-msg-1-str-temp] :
      createClientTcpSocket(socketManager,O',ip(O''),port) 
      if LS[O''] == undefined /\
         ip(O) =/= ip(O'') .  
+)
+
+ crl [send-msg-2-str] :
+     < O : CLIENTSHIM | contacts : LS, 
+                  bufferedMsgs : MSGS, AS >
+     (msg STR from O' to O'') 
+   =>
+     < O : CLIENTSHIM | contacts : LS,
+                  bufferedMsgs : MSGS (msg STR from O' to O''), AS >
+     if exist(O'',MSGS)
+       then none
+       else createClientTcpSocket(socketManager,O',ip(O''),port) 
+     fi   
+     if LS[O''] == undefined /\
+        ip(O) =/= ip(O'') . 
 
 
+---(
  crl [send-msg-2-str-temp] :
      < O : CLIENTSHIM | contacts : LS, 
                   bufferedMsgs : MSGS, AS >
@@ -370,6 +423,22 @@ crl [send-msg-1-str-temp] :
      createClientTcpSocket(socketManager,O',ip(O''),port) 
      if LS[O''] == undefined /\
         ip(O) =/= ip(O'') .  
+)
+
+ crl [send-msg-2-str-temp] :
+     < O : CLIENTSHIM | contacts : LS, 
+                  bufferedMsgs : MSGS, AS >
+     (msg STR from O' to O'' and O''') 
+   =>
+     < O : CLIENTSHIM | contacts : LS,
+                  bufferedMsgs : MSGS (msg STR from O' to O'' and O'''), AS >
+     if exist(O'',MSGS)
+       then none
+       else createClientTcpSocket(socketManager,O',ip(O''),port)
+     fi
+     if LS[O''] == undefined /\
+        ip(O) =/= ip(O'') .
+
 
  crl [send-msg-3] :
      < O : CLIENTSHIM | contacts : LS,
