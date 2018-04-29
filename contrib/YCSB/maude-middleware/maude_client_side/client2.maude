@@ -54,12 +54,15 @@ mod CLIENT is
   op init : -> Configuration .
   eq init = <>
             < l(self,0) : ClientShim | sockets : none, contacts : empty >
+            < l(self,1) : ServerShim | sockets : none, contacts : empty >
+
             < l(self,2) : Client | sent : 0, rcved : 0 > 
             createClientTcpSocket(socketManager,l(self,2),addr1,9810)
----            createClientTcpSocket(socketManager,l(self,2),addr2,9810)
-                  
-            < l(self,1) : ServerShim | sockets : none, contacts : empty >
-            createServerTcpSocket(socketManager, l(self,2), 9910, 5) .
+            createServerTcpSocket(socketManager, l(self,2), 9910, 5) 
+
+            < l(self,3) : Client | sent : 0, rcved : 0 > 
+            createClientTcpSocket(socketManager,l(self,3),addr1,9810)
+            createServerTcpSocket(socketManager, l(self,3), 9920, 5) .
             
 endm
 
