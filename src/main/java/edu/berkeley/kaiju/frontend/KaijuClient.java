@@ -64,8 +64,10 @@ public class KaijuClient {
         hasClosed = true;
         System.out.println("Writing key mappings to file");
         try {
+	    long threadId = Thread.currentThread().getId();
+	    String fileName = "keyMappings" + threadId + ".txt";
             BufferedWriter writer = new BufferedWriter(
-                    new FileWriter("keyMappings.txt", true));
+                    new FileWriter(fileName, true));
 
             for (String keyString :
                     keyMappings.keySet()) {
@@ -195,6 +197,10 @@ public class KaijuClient {
                 BufferedReader bufferedReader = new BufferedReader(key_mappings_file);
                 while ((line = bufferedReader.readLine()) != null) {
                     String[] keyAndHost = line.split(",");
+	            if(keyAndHost.length != 2) {
+			System.out.println("Array length is wrong " + line);
+		    }
+
                     keyMappingString.append(keyAndHost[0] + "[eok]" +
                             keyAndHost[1] + "[eoa]");
                 }

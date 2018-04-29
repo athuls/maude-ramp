@@ -139,7 +139,8 @@ mod SERVER is
       (msg VALUE from O to O'') 
       if find(VALUE,"[eok]",0) == notFound /\
          find(VALUE,"[eor]",0) == notFound /\
-         ip(O) == "155.98.38.116" .
+         ip(O) == "155.98.38.114" .
+	 --- Above IP is that of server 0, one that client contacts
 
 
 ---(
