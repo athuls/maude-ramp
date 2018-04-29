@@ -40,6 +40,8 @@ mod SHIM is
 
   op bufferedMsgs :_ : Configuration -> Attribute [ctor gather(&)] . 
 
+
+
   ---??? some attr for fileManager stuff
   --- op bufferedWrites :_ : storing Maude terms, which 
   --- would be tranlated into strings when flushed
@@ -83,6 +85,9 @@ mod MESSAGE is
   op msg_from_ : MsgCont Oid -> Msg [ctor] .
   op msg_from_to_ : MsgCont Oid Oid -> Msg [ctor] .
   op msg_from_to_ : String Oid Oid -> Msg [ctor] .
+
+  op msg_from_to_and_ : String Oid Oid Oid -> Msg [ctor] .
+  op msg_from_to_and_ : MsgCont Oid Oid Oid -> Msg [ctor] .
 
   op new-socket : Oid -> Msg [ctor] .
 
