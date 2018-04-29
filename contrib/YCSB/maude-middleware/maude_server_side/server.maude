@@ -81,7 +81,10 @@ mod SERVER is
 
   op genReads : String Map{String,String} Oid Oid -> Configuration .
  ceq genReads(READ,KVS,O,O') = genReads(STR,KVS,O,O')
-     (msg substr(READ,0,N + 5) from O to l(KVS[substr(READ,0,N)]) and O')
+       if KVS[substr(READ,0,N)] == undefined
+         then none
+         else (msg substr(READ,0,N + 5) from O to l(KVS[substr(READ,0,N)]) and O')
+       fi
      if N := find(READ, "[eor]", 0) /\
         STR := substr(READ,N + 5,length(READ)) .
   eq genReads("",KVS,O,O') = none .
@@ -101,7 +104,10 @@ mod SERVER is
   op genWrites : String Map{String,String} Oid Oid -> Configuration .
   eq genWrites("",KVS,O,O') = none .
  ceq genWrites(KV,KVS,O,O') = genWrites(substr(KV,N' + 5,length(KV)),KVS,O,O')
-     (msg substr(KV,0,N' + 5) from O to l(KVS[substr(KV,0,N)]) and O')   
+       if l(KVS[substr(KV,0,N)]) == undefined
+         then none
+         else (msg substr(KV,0,N' + 5) from O to l(KVS[substr(KV,0,N)]) and O')  
+       fi 
      if N := find(KV, "[eok]", 0) /\
         N' := find(KV, "[eov]", 0) .
 
@@ -133,7 +139,8 @@ mod SERVER is
       (msg VALUE from O to O'') 
       if find(VALUE,"[eok]",0) == notFound /\
          find(VALUE,"[eor]",0) == notFound /\
-         ip(O) == "" .
+         ip(O) == "155.98.38.114" .
+	 --- Above IP is that of server 0, one that client contacts
 
 
 ---(
@@ -146,7 +153,7 @@ mod SERVER is
 )
 
   op self : -> String .
-  eq self = "155.98.38.115" .
+  eq self = "155.98.38.114" .
 
   eq port = 9810 .
   op init : -> Configuration .
@@ -158,9 +165,8 @@ mod SERVER is
 
             < l(self,1) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < tb : Table | table : empty > .
-            
+           
 endm
 
 erew init .
-
 

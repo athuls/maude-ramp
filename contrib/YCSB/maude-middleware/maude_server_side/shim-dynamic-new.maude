@@ -353,9 +353,11 @@ crl [send-msg-1-str-temp] :
 
   op exist : Oid Configuration -> Bool . 
   eq exist(O,MSGS (msg MSG from O' to O)) = true .
+---(
   eq exist(O,MSGS (msg STR from O' to O)) = true .
   eq exist(O,MSGS (msg MSG from O' to O and O'')) = true .
   eq exist(O,MSGS (msg STR from O' to O and O'')) = true .
+)
   eq exist(O,MSGS) = false [owise] .
 
 
