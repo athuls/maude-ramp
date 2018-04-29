@@ -1,0 +1,184 @@
+Starting point for ycsb client
+YCSB Client 0.1
+Command line: -db com.yahoo.ycsb.db.KaijuClient -p hosts=155.98.38.62:9910 -p port=9910 -P workloads/workloada -p operationcount=25 -p maxexecutiontime=30000 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -p threadcount=1 -p time=10000 -p valuesize=1 -t
+Created one socket 155.98.38.62 9910
+Doing transactions
+Operation count is 25
+Write operation
+Key is user1541281
+Key is user1567260
+Key is user1604613
+Key is user1539231
+[beg]user1541281[eok]$9[eov]user1567260[eok]/=[eov]user1604613[eok]9)[eov]user1539231[eok]34[eov][sep]
+Operation count is 25
+Write operation
+Key is user1695
+Key is user1661187
+Key is user1663235
+Key is user1669
+[beg]user1695[eok]9#[eov]user1661187[eok]<$[eov]user1663235[eok]60[eov]user1669[eok](![eov][sep]
+Operation count is 25
+Write operation
+Key is user1692
+Key is user1596927
+Key is user1724643
+Key is user43281414
+[beg]user1692[eok]$$[eov]user1596927[eok]00[eov]user1724643[eok]6<[eov]user43281414[eok]##[eov][sep]
+Operation count is 25
+Write operation
+Key is user1717080
+Key is user1514337
+Key is user1664069
+Key is user1669
+[beg]user1717080[eok]<0[eov]user1514337[eok]48[eov]user1664069[eok]7([eov]user1669[eok];8[eov][sep]
+Operation count is 25
+Write operation
+Key is user43065967
+Key is user1574016
+Key is user1571137
+Key is user43313067
+[beg]user43065967[eok]'<[eov]user1574016[eok]$>[eov]user1571137[eok]8=[eov]user43313067[eok]9%[eov][sep]
+Operation count is 25
+Write operation
+Key is user1512423
+Key is user53655
+Key is user1514220
+Key is user43276547
+[beg]user1512423[eok]%/[eov]user53655[eok]6/[eov]user1514220[eok]43[eov]user43276547[eok]54[eov][sep]
+Operation count is 25
+Write operation
+Key is user1694979
+Key is user1537494
+Key is user1721795
+Key is user1668
+[beg]user1694979[eok]$5[eov]user1537494[eok]22[eov]user1721795[eok]7-[eov]user1668[eok]%$[eov][sep]
+Operation count is 25
+Write operation
+Key is user43186062
+Key is user1692217
+Key is user1661341
+Key is user1687225
+[beg]user43186062[eok]00[eov]user1692217[eok]*3[eov]user1661341[eok]8%[eov]user1687225[eok]-2[eov][sep]
+Operation count is 25
+Write operation
+Key is user1693
+Key is user1513377
+Key is user43067985
+Key is user52507
+[beg]user1693[eok]6![eov]user1513377[eok]$5[eov]user43067985[eok]3<[eov]user52507[eok](1[eov][sep]
+Operation count is 25
+Write operation
+Key is user1573985
+Key is user1626689
+Key is user1721820
+Key is user1748634
+[beg]user1573985[eok]31[eov]user1626689[eok]03[eov]user1721820[eok]?;[eov]user1748634[eok]$0[eov][sep]
+Operation count is 25
+Write operation
+Key is user1633601
+Key is user1720054
+Key is user1515150
+Key is user1668
+[beg]user1633601[eok]>?[eov]user1720054[eok]5-[eov]user1515150[eok].([eov]user1668[eok],&[eov][sep]
+Operation count is 25
+Write operation
+Key is user1512445
+Key is user43282193
+Key is user1628670
+Key is user1717020
+[beg]user1512445[eok]>%[eov]user43282193[eok]$7[eov]user1628670[eok]-.[eov]user1717020[eok]89[eov][sep]
+Operation count is 25
+Write operation
+Key is user1664259
+Key is user1723897
+Key is user43215041
+Key is user1669
+[beg]user1664259[eok]6=[eov]user1723897[eok]3>[eov]user43215041[eok]&$[eov]user1669[eok]*7[eov][sep]
+Operation count is 25
+Write operation
+Key is user1601825
+Key is user1545900
+Key is user54584
+Key is user1569985
+[beg]user1601825[eok].%[eov]user1545900[eok]87[eov]user54584[eok]+&[eov]user1569985[eok]->[eov][sep]
+Operation count is 25
+Write operation
+Key is user1512422
+Key is user1629571
+Key is user1516204
+Key is user1571848
+[beg]user1512422[eok]8.[eov]user1629571[eok]73[eov]user1516204[eok]$)[eov]user1571848[eok]98[eov][sep]
+Operation count is 25
+Write operation
+Key is user1698
+Key is user1697
+Key is user1692
+Key is user1543950
+[beg]user1698[eok]).[eov]user1697[eok],2[eov]user1692[eok]%4[eov]user1543950[eok]!4[eov][sep]
+Operation count is 25
+Write operation
+Key is user1750596
+Key is user1691
+Key is user1689182
+Key is user43312915
+[beg]user1750596[eok]3=[eov]user1691[eok]&3[eov]user1689182[eok]$<[eov]user43312915[eok]$*[eov][sep]
+Operation count is 25
+Write operation
+Key is user1657437
+Key is user1394275
+Key is user1512421
+Key is user1511431
+[beg]user1657437[eok]<9[eov]user1394275[eok]+-[eov]user1512421[eok]5![eov]user1511431[eok]$/[eov][sep]
+Operation count is 25
+Write operation
+Key is user1632388
+Key is user1508578
+Key is user1669
+Key is user1722850
+[beg]user1632388[eok]$#[eov]user1508578[eok];8[eov]user1669[eok]8'[eov]user1722850[eok]$$[eov][sep]
+Operation count is 25
+Write operation
+Key is user1513190
+Key is user43305438
+Key is user1660442
+Key is user43069721
+[beg]user1513190[eok]1/[eov]user43305438[eok]$0[eov]user1660442[eok]:%[eov]user43069721[eok]5$[eov][sep]
+Operation count is 25
+Write operation
+Key is user43131345
+Key is user1598910
+Key is user1664258
+Key is user43098697
+[beg]user43131345[eok](<[eov]user1598910[eok])9[eov]user1664258[eok]5?[eov]user43098697[eok]$6[eov][sep]
+Operation count is 25
+Write operation
+Key is user1656533
+Key is user1691
+Key is user49679
+Key is user1512516
+[beg]user1656533[eok]+#[eov]user1691[eok]::[eov]user49679[eok]$$[eov]user1512516[eok])5[eov][sep]
+Operation count is 25
+Write operation
+Key is user1599903
+Key is user1513375
+Key is user1716062
+Key is user43159148
+[beg]user1599903[eok]*>[eov]user1513375[eok]/=[eov]user1716062[eok]1;[eov]user43159148[eok])/[eov][sep]
+Operation count is 25
+Write operation
+Key is user1751674
+Key is user1746749
+Key is user43132464
+Key is user1746929
+[beg]user1751674[eok]1&[eov]user1746749[eok]$-[eov]user43132464[eok]+*[eov]user1746929[eok]$,[eov][sep]
+Operation count is 25
+Write operation
+Key is user1660501
+Key is user1514433
+Key is user1662369
+Key is user1723775
+[beg]user1660501[eok]&;[eov]user1514433[eok](8[eov]user1662369[eok]+*[eov]user1723775[eok]>1[eov][sep]
+Cleanup for kaiju called
+Writing key mappings to file
+Closing kaiju socket
+java -cp /users/nobi/ramp/maude-ramp/contrib/YCSB/core/target/core-0.1.4.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/kaiju/target/kaiju-binding-0.1.4.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/kaiju/target/archive-tmp/kaiju-binding-0.1.4.jar com.yahoo.ycsb.Client -db com.yahoo.ycsb.db.KaijuClient -p hosts=155.98.38.62:9910 -p port=9910 -P workloads/workloada -p operationcount=25 -p maxexecutiontime=30000 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -p threadcount=1 -p time=10000 -p valuesize=1 -t

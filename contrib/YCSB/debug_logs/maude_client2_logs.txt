@@ -1,0 +1,17 @@
+		     \||||||||||||||||||/
+		   --- Welcome to Maude ---
+		     /||||||||||||||||||\
+	   Maude 2.7.1 built: Jun 27 2016 16:35:16
+	    Copyright 1997-2016 SRI International
+		   Sun Apr 29 12:53:46 2018
+==========================================
+erewrite in CLIENT : init .
+rewrites: 44250 in 92ms cpu (1586078ms real) (480978 rewrites/second)
+result Configuration: <> < l("155.98.38.101", 0) : ClientShim | sockets : <
+    socket(4) : BufferedSocket | read : "" >,contacts : l("155.98.38.54") |->
+    socket(4) > < l("155.98.38.101", 1) : ServerShim | sockets : (< socket(5) :
+    BufferedSocket | read : "" > < socket(6) : BufferedSocket | read : "" >),
+    contacts : l("155.98.38.101") |-> socket(6) > < l("155.98.38.101", 2) :
+    Client | sent : 25,rcved : 83 > closedSocket(l("155.98.38.101", 2), socket(
+    6), "")
+Bye.
