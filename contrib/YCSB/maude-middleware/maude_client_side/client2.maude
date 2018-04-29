@@ -40,6 +40,10 @@ mod CLIENT is
   ***eq self = "192.17.150.124" .
 
 
+  eq numberOfServerSockets = 2 .
+  eq port = 9810 .  *** current version can only work with the same fixed port for multiple Maude clients
+
+
   rl < O : Client | sent : N, AS >
      [STR]
    => 
@@ -53,15 +57,15 @@ mod CLIENT is
 
   op init : -> Configuration .
   eq init = <>
-            < l(self,0) : ClientShim | sockets : none, contacts : empty >
-            < l(self,1) : ServerShim | sockets : none, contacts : empty >
+            < l(self,0) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
+            < l(self,1) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 
             < l(self,2) : Client | sent : 0, rcved : 0 > 
-            createClientTcpSocket(socketManager,l(self,2),addr1,9810)
+            ---createClientTcpSocket(socketManager,l(self,2),addr1,9810)
             createServerTcpSocket(socketManager, l(self,2), 9910, 5) 
 
             < l(self,3) : Client | sent : 0, rcved : 0 > 
-            createClientTcpSocket(socketManager,l(self,3),addr1,9810)
+            ---createClientTcpSocket(socketManager,l(self,3),addr1,9810)
             createServerTcpSocket(socketManager, l(self,3), 9920, 5) .
             
 endm
