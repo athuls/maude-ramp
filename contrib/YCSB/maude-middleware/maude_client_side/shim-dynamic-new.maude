@@ -80,15 +80,16 @@ mod SHIM-DYNAMIC is
   *******************
   *** Client Shim ***
 
-  rl [created-client-socket] :
+ crl [created-client-socket] :
      < O : CLIENTSHIM | sockets : SKTS, AS >
-     < O'' : SERVERSHIM | created : 2, AS' >
+     < O'' : SERVERSHIM | created : N, AS' >
      createdSocket(O', socketManager, SOCKET)  --- O' is the ID of the client who creatClientTcpSocket
    => 
      < O : CLIENTSHIM | sockets : SKTS < SOCKET : BufferedSocket | read : "" >, AS > 
-     < O'' : SERVERSHIM | created : 2, AS' >
+     < O'' : SERVERSHIM | created : N, AS' >
      receive(SOCKET,O') 
-     send(SOCKET,O',msg2string(new-socket(O')) + "[msep]") .
+     send(SOCKET,O',msg2string(new-socket(O')) + "[msep]") 
+   if N == numberOfServerSockets .
 
 
 
