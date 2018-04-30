@@ -3,11 +3,11 @@
 		     /||||||||||||||||||\
 	   Maude 2.7.1 built: Jun 27 2016 16:35:16
 	    Copyright 1997-2016 SRI International
-		   Sun Apr 29 12:50:58 2018
+		   Sun Apr 29 19:09:49 2018
 ==========================================
 erewrite in SERVER : init .
-rewrites: 349631 in 6744ms cpu (1786115ms real) (51843 rewrites/second)
-result [Configuration]: <> < tb : Table | table : ("user1507423" |->
+rewrites: 246590 in 6356ms cpu (361210ms real) (38796 rewrites/second)
+result Configuration: <> < tb : Table | table : ("user1507423" |->
     "155.98.38.83", "user1507424" |-> "155.98.38.83", "user1507425" |->
     "155.98.38.83", "user1507426" |-> "155.98.38.83", "user1507427" |->
     "155.98.38.83", "user1507428" |-> "155.98.38.83", "user1507429" |->
@@ -10011,36 +10011,10 @@ result [Configuration]: <> < tb : Table | table : ("user1507423" |->
     | store : empty > < l("155.98.38.54", 0) : ServerShim | sockets : (<
     socket(4) : BufferedSocket | read : "" > < socket(5) : BufferedSocket |
     read : "" > < socket(6) : BufferedSocket | read : "" > < socket(7) :
-    BufferedSocket | read : "" >),contacts : (l("155.98.38.101") |-> socket(7),
-    l("155.98.38.83") |-> socket(7), l("155.98.38.101", 2) |-> socket(6)),
+    BufferedSocket | read : "" >),contacts : l("155.98.38.101") |-> socket(7),
     bufferedMsgs : none,created : 2 > < l("155.98.38.54", 1) : ClientShim |
-    sockets : (< socket(7) : BufferedSocket | read : "" > < socket(8) :
-    BufferedSocket | read : "" > < socket(9) : BufferedSocket | read : "" > <
-    socket(10) : BufferedSocket | read : "" > < socket(11) : BufferedSocket |
-    read : "" >),contacts : l("155.98.38.83") |-> socket(11),bufferedMsgs :
-    none > closedSocket(l("155.98.38.54"), socket(6), "") closedSocket(l(
-    "155.98.38.54"), socket(7), "Connection reset by peer") (msg
-    "user1396230[eok]6?[eov]" from l("155.98.38.54") to l(undefined) and l(
-    "155.98.38.101", 2)) (msg "user43074677[eok]/2[eov]" from l("155.98.38.54")
-    to l(undefined) and l("155.98.38.101", 2)) (msg "user43134107[eok]*2[eov]"
-    from l("155.98.38.54") to l(undefined) and l("155.98.38.101", 2)) (msg
-    "user43134201[eok]$5[eov]" from l("155.98.38.54") to l(undefined) and l(
-    "155.98.38.101", 2)) (msg "user43157420[eok].=[eov]" from l("155.98.38.54")
-    to l(undefined) and l("155.98.38.101", 2)) (msg "user43159370[eok].<[eov]"
-    from l("155.98.38.54") to l(undefined) and l("155.98.38.101", 2)) (msg
-    "user43160326[eok]:8[eov]" from l("155.98.38.54") to l(undefined) and l(
-    "155.98.38.101", 2)) (msg "user43186123[eok]10[eov]" from l("155.98.38.54")
-    to l(undefined) and l("155.98.38.101", 2)) (msg "user43191855[eok]<-[eov]"
-    from l("155.98.38.54") to l(undefined) and l("155.98.38.101", 2)) (msg
-    "user43192784[eok].4[eov]" from l("155.98.38.54") to l(undefined) and l(
-    "155.98.38.101", 2)) (msg "user43217836[eok]!![eov]" from l("155.98.38.54")
-    to l(undefined) and l("155.98.38.101", 2)) (msg "user43219849[eok];-[eov]"
-    from l("155.98.38.54") to l(undefined) and l("155.98.38.101", 2)) (msg
-    "user43246539[eok]7.[eov]" from l("155.98.38.54") to l(undefined) and l(
-    "155.98.38.101", 2)) (msg "user43246727[eok];1[eov]" from l("155.98.38.54")
-    to l(undefined) and l("155.98.38.101", 2)) (msg "user43247590[eok]%7[eov]"
-    from l("155.98.38.54") to l(undefined) and l("155.98.38.101", 2)) (msg
-    "user43252426[eok].#[eov]" from l("155.98.38.54") to l(undefined) and l(
-    "155.98.38.101", 2)) msg "user43311980[eok]&9[eov]" from l("155.98.38.54")
-    to l(undefined) and l("155.98.38.101", 2)
+    sockets : none,contacts : empty,bufferedMsgs : none > closedSocket(l(
+    "155.98.38.54"), socket(6), "Connection reset by peer") closedSocket(l(
+    "155.98.38.54"), socket(6), "Connection reset by peer") closedSocket(l(
+    "155.98.38.54"), socket(7), "Connection reset by peer")
 Bye.
