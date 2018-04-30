@@ -149,7 +149,7 @@ mod SERVER is
   eq client-addr = l(addr,2) .
 
   op addr : -> String .
-  eq addr = "155.98.38.116" .
+  eq addr = "155.98.38.152" .
 )
 
   op self : -> String .
