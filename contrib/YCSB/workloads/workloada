@@ -36,4 +36,4 @@ insertproportion=0
 requestdistribution=zipfian
 fieldcount=1
 fieldlength=2
-txnlen=1
+txnlen=2
