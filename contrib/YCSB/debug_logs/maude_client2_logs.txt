@@ -3,17 +3,18 @@
 		     /||||||||||||||||||\
 	   Maude 2.7.1 built: Jun 27 2016 16:35:16
 	    Copyright 1997-2016 SRI International
-		   Mon Apr 30 12:18:08 2018
+		   Mon Apr 30 15:23:13 2018
 ==========================================
 erewrite in CLIENT : init .
-rewrites: 104851 in 256ms cpu (256265ms real) (409574 rewrites/second)
+rewrites: 203608 in 468ms cpu (159407ms real) (435059 rewrites/second)
 result Configuration: <> < l("155.98.38.146", 0) : ClientShim | sockets : <
     socket(7) : BufferedSocket | read : "" >,contacts : l("155.98.38.152") |->
     socket(7),bufferedMsgs : none > < l("155.98.38.146", 1) : ServerShim |
     sockets : (< socket(4) : BufferedSocket | read : "" > < socket(5) :
-    BufferedSocket | read : "" > < socket(6) : BufferedSocket | read : "" >),
-    contacts : l("155.98.38.146") |-> socket(6),bufferedMsgs : none,created : 2
-    > < l("155.98.38.146", 2) : Client | sent : 100,rcved : 154 > < l(
-    "155.98.38.146", 3) : Client | sent : 0,rcved : 0 > closedSocket(l(
-    "155.98.38.146", 2), socket(6), "")
+    BufferedSocket | read : "" > < socket(6) : BufferedSocket | read : "" > <
+    socket(8) : BufferedSocket | read : "" >),contacts : l("155.98.38.146") |->
+    socket(8),bufferedMsgs : none,created : 2 > < l("155.98.38.146", 2) :
+    Client | sent : 200,rcved : 318 > < l("155.98.38.146", 3) : Client | sent :
+    0,rcved : 0 > closedSocket(l("155.98.38.146", 2), socket(8), "")
+    closedSocket(l("155.98.38.146", 3), socket(6), "")
 Bye.
