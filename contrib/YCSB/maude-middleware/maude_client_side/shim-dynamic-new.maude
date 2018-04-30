@@ -49,6 +49,7 @@ mod SHIM-DYNAMIC is
 
   op numberOfServerSockets : -> Nat .
 
+
  crl [accepted-client] :
      < O : SERVERSHIM | sockets : SKTS, contacts : LS, AS >
      acceptedClient(SERVER, LISTENER, IP, CLIENT)
@@ -81,11 +82,11 @@ mod SHIM-DYNAMIC is
 
   rl [created-client-socket] :
      < O : CLIENTSHIM | sockets : SKTS, AS >
-     < O'' : SERVERSHIM | created : numberOfServerSockets, AS' >
+     < O'' : SERVERSHIM | created : 2, AS' >
      createdSocket(O', socketManager, SOCKET)  --- O' is the ID of the client who creatClientTcpSocket
    => 
      < O : CLIENTSHIM | sockets : SKTS < SOCKET : BufferedSocket | read : "" >, AS > 
-     < O'' : SERVERSHIM | created : numberOfServerSockets, AS' >
+     < O'' : SERVERSHIM | created : 2, AS' >
      receive(SOCKET,O') 
      send(SOCKET,O',msg2string(new-socket(O')) + "[msep]") .
 
@@ -499,6 +500,8 @@ crl [send-msg-1-str-temp] :
   eq sent(O,O') = none .
 
 endm
+
+
 
 ---red substr("msg test(1) from o1 to o2 # msg", 0, find("msg test(1) from o1 to o2 # msg", "#", 0)) .
 ---red substr("msg test(1) from o1 to o2 # msg", find("msg test(1) from o1 to o2 # msg", "#", 0) + 1, length("msg test(1) from o1 to o2 # msg")) .
