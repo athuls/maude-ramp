@@ -3,20 +3,78 @@
 		     /||||||||||||||||||\
 	   Maude 2.7.1 built: Jun 27 2016 16:35:16
 	    Copyright 1997-2016 SRI International
-		   Sun Apr 29 19:10:07 2018
+		   Sun Apr 29 19:51:33 2018
 ==========================================
 erewrite in CLIENT : init .
-rewrites: 339 in 4ms cpu (266465ms real) (84750 rewrites/second)
-result Configuration: <> < l("155.98.38.101", 0) : ClientShim | sockets : none,
-    contacts : empty,bufferedMsgs : ((msg "user1630493[eok]!$[eov]" from l(
-    "155.98.38.101", 2) to l("155.98.38.54")) msg "user1749721[eok]66[eov]"
-    from l("155.98.38.101", 2) to l("155.98.38.54")) > < l("155.98.38.101", 1)
-    : ServerShim | sockets : (< socket(4) : BufferedSocket | read : "" > <
-    socket(5) : BufferedSocket | read : "" > < socket(6) : BufferedSocket |
-    read : "" >),contacts : l("155.98.38.101") |-> socket(6),bufferedMsgs :
-    none,created : 2 > < l("155.98.38.101", 2) : Client | sent : 2,rcved : 0 >
-    < l("155.98.38.101", 3) : Client | sent : 0,rcved : 0 > createdSocket(l(
-    "155.98.38.101", 2), socketManager, socket(7)) createdSocket(l(
-    "155.98.38.101", 2), socketManager, socket(8)) closedSocket(l(
-    "155.98.38.101", 2), socket(6), "")
+rewrites: 606217 in 1020ms cpu (263479ms real) (594330 rewrites/second)
+result Configuration: <> < l("155.98.38.101", 0) : ClientShim | sockets : (<
+    socket(7) : BufferedSocket | read : "" > < socket(8) : BufferedSocket |
+    read : "" > < socket(9) : BufferedSocket | read : "" > < socket(10) :
+    BufferedSocket | read : "" > < socket(11) : BufferedSocket | read : "" > <
+    socket(12) : BufferedSocket | read : "" > < socket(13) : BufferedSocket |
+    read : "" > < socket(14) : BufferedSocket | read : "" > < socket(15) :
+    BufferedSocket | read : "" > < socket(16) : BufferedSocket | read : "" > <
+    socket(17) : BufferedSocket | read : "" > < socket(18) : BufferedSocket |
+    read : "" > < socket(19) : BufferedSocket | read : "" > < socket(20) :
+    BufferedSocket | read : "" > < socket(21) : BufferedSocket | read : "" > <
+    socket(22) : BufferedSocket | read : "" > < socket(23) : BufferedSocket |
+    read : "" > < socket(24) : BufferedSocket | read : "" > < socket(25) :
+    BufferedSocket | read : "" > < socket(26) : BufferedSocket | read : "" > <
+    socket(27) : BufferedSocket | read : "" > < socket(28) : BufferedSocket |
+    read : "" > < socket(29) : BufferedSocket | read : "" > < socket(30) :
+    BufferedSocket | read : "" > < socket(31) : BufferedSocket | read : "" > <
+    socket(32) : BufferedSocket | read : "" > < socket(33) : BufferedSocket |
+    read : "" > < socket(34) : BufferedSocket | read : "" > < socket(35) :
+    BufferedSocket | read : "" > < socket(36) : BufferedSocket | read : "" > <
+    socket(37) : BufferedSocket | read : "" > < socket(38) : BufferedSocket |
+    read : "" > < socket(39) : BufferedSocket | read : "" > < socket(40) :
+    BufferedSocket | read : "" > < socket(41) : BufferedSocket | read : "" > <
+    socket(42) : BufferedSocket | read : "" > < socket(43) : BufferedSocket |
+    read : "" > < socket(44) : BufferedSocket | read : "" > < socket(45) :
+    BufferedSocket | read : "" > < socket(46) : BufferedSocket | read : "" > <
+    socket(47) : BufferedSocket | read : "" > < socket(48) : BufferedSocket |
+    read : "" > < socket(49) : BufferedSocket | read : "" > < socket(50) :
+    BufferedSocket | read : "" > < socket(51) : BufferedSocket | read : "" > <
+    socket(52) : BufferedSocket | read : "" > < socket(53) : BufferedSocket |
+    read : "" > < socket(54) : BufferedSocket | read : "" > < socket(55) :
+    BufferedSocket | read : "" > < socket(56) : BufferedSocket | read : "" > <
+    socket(57) : BufferedSocket | read : "" > < socket(58) : BufferedSocket |
+    read : "" > < socket(59) : BufferedSocket | read : "" > < socket(60) :
+    BufferedSocket | read : "" > < socket(61) : BufferedSocket | read : "" > <
+    socket(62) : BufferedSocket | read : "" > < socket(63) : BufferedSocket |
+    read : "" > < socket(64) : BufferedSocket | read : "" > < socket(65) :
+    BufferedSocket | read : "" > < socket(66) : BufferedSocket | read : "" > <
+    socket(67) : BufferedSocket | read : "" > < socket(68) : BufferedSocket |
+    read : "" > < socket(69) : BufferedSocket | read : "" > < socket(70) :
+    BufferedSocket | read : "" > < socket(71) : BufferedSocket | read : "" > <
+    socket(72) : BufferedSocket | read : "" > < socket(73) : BufferedSocket |
+    read : "" > < socket(74) : BufferedSocket | read : "" > < socket(75) :
+    BufferedSocket | read : "" > < socket(76) : BufferedSocket | read : "" > <
+    socket(77) : BufferedSocket | read : "" > < socket(78) : BufferedSocket |
+    read : "" > < socket(79) : BufferedSocket | read : "" > < socket(80) :
+    BufferedSocket | read : "" > < socket(81) : BufferedSocket | read : "" > <
+    socket(82) : BufferedSocket | read : "" > < socket(83) : BufferedSocket |
+    read : "" > < socket(84) : BufferedSocket | read : "" > < socket(85) :
+    BufferedSocket | read : "" > < socket(86) : BufferedSocket | read : "" > <
+    socket(87) : BufferedSocket | read : "" > < socket(88) : BufferedSocket |
+    read : "" > < socket(89) : BufferedSocket | read : "" > < socket(90) :
+    BufferedSocket | read : "" > < socket(91) : BufferedSocket | read : "" > <
+    socket(92) : BufferedSocket | read : "" > < socket(93) : BufferedSocket |
+    read : "" > < socket(94) : BufferedSocket | read : "" > < socket(95) :
+    BufferedSocket | read : "" > < socket(96) : BufferedSocket | read : "" > <
+    socket(97) : BufferedSocket | read : "" > < socket(98) : BufferedSocket |
+    read : "" > < socket(99) : BufferedSocket | read : "" > < socket(100) :
+    BufferedSocket | read : "" > < socket(101) : BufferedSocket | read : "" > <
+    socket(102) : BufferedSocket | read : "" > < socket(103) : BufferedSocket |
+    read : "" > < socket(104) : BufferedSocket | read : "" > < socket(105) :
+    BufferedSocket | read : "" > < socket(106) : BufferedSocket | read : "" >),
+    contacts : l("155.98.38.54") |-> socket(87),bufferedMsgs : none > < l(
+    "155.98.38.101", 1) : ServerShim | sockets : (< socket(4) : BufferedSocket
+    | read : "" > < socket(5) : BufferedSocket | read : "" > < socket(6) :
+    BufferedSocket | read : "" > < socket(107) : BufferedSocket | read : "" >),
+    contacts : l("155.98.38.101") |-> socket(107),bufferedMsgs : none,created :
+    2 > < l("155.98.38.101", 2) : Client | sent : 200,rcved : 173 > < l(
+    "155.98.38.101", 3) : Client | sent : 0,rcved : 0 > closedSocket(l(
+    "155.98.38.101", 2), socket(107), "") closedSocket(l("155.98.38.101", 3),
+    socket(6), "")
 Bye.
