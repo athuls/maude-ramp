@@ -18,12 +18,21 @@ done
 
 port=`expr $3 + $2 - 1`
 iter=1
+temp_iter=0
 final_iter=`expr $iter + $2`
 while [ "$final_iter" -gt "$iter" ]
 do
-	gawk -i inplace '/createClientTcpSocket/{print;print "\t    createServerTcpSocket(socketManager, l(self,'$final_iter'), '$port', 5)";next}1' client$1.maude
+	if [ $temp_iter -eq 0 ] 
+	then
+		gawk -i inplace '/createClientTcpSocket/{print;print "\t    createServerTcpSocket(socketManager, l(self,'$final_iter'), '$port', 5).";next}1' client$1.maude		
+	else
+		gawk -i inplace '/createClientTcpSocket/{print;print "\t    createServerTcpSocket(socketManager, l(self,'$final_iter'), '$port', 5)";next}1' client$1.maude
+	fi
+
 	port=`expr $port - 1`
 	final_iter=`expr $final_iter - 1`
+	temp_iter=`expr $temp_iter + 1`
 done
+
 #sed -i -- 's/addr1 = "155.98.38.[0-9]*/addr1 = "155.98.38.'$2'/g' client$1.maude
 #../maude-binaries/maude.linux64 client2.maude > /run/shm/maude_client2_logs.txt

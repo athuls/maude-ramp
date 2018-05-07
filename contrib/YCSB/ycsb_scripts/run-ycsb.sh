@@ -5,7 +5,7 @@ cp keyMappings.txt keyMappings_bak.bak
 if [ $# != 4 ]
 then
 	echo "Arguments needed: IP address, initial port, number of clients, operation count"
-	exit 0
+	exit 1
 fi
 
 ip=$1
