@@ -41,14 +41,14 @@ mod SERVER is
 
  *** load
   crl < O : Server | store : STORE >
-      [KV]
+      [KV,O]
     =>
       < O : Server | store : addKeyValue(KV,STORE) >
       if N := find(KV,"[eov]",0) .
 
   *** post load
  crl < O : Table | table : KVS >
-    [KR]
+    [KR,O]
   => 
     < O : Table | table : addKeyReplica(KR,KVS) >
     if N := find(KR,"[eoa]",0) .
@@ -142,6 +142,8 @@ mod SERVER is
          ip(O) == "155.98.38.154" .
 	 --- Above IP is that of server 0, one that client contacts
 
+
+  eq numberOfServerSockets = 2 .
 
 ---(
   *** maude client ip
