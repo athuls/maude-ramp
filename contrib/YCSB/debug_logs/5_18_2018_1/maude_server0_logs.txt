@@ -1,0 +1,24 @@
+		     \||||||||||||||||||/
+		   --- Welcome to Maude ---
+		     /||||||||||||||||||\
+	   Maude 2.7.1 built: Jun 27 2016 16:35:16
+	    Copyright 1997-2016 SRI International
+		   Fri May 18 16:13:22 2018
+==========================================
+erewrite in SERVER : init .
+rewrites: 750 in 12ms cpu (528224ms real) (62500 rewrites/second)
+result Configuration: <> < tb : Table | table : ("user48" |-> "155.98.38.76",
+    "user49" |-> "155.98.38.76", "user50" |-> "155.98.38.76") > < l(
+    "155.98.38.76") : Server | store : ("user48" |-> "&=", "user49" |-> "$$",
+    "user50" |-> "##") > < l("155.98.38.76", 0) : ServerShim | sockets : (<
+    socket(4) : BufferedSocket | read : "" > < socket(5) : BufferedSocket |
+    read : "" > < socket(6) : BufferedSocket | read : "" > < socket(7) :
+    BufferedSocket | read : "" >),bufferedMsgs : none,contacts : (< l(
+    "155.98.38.76"),socket(6),l("155.98.38.80") > ; < l("155.98.38.76"),socket(
+    6),l("155.98.38.80") > ; < l("155.98.38.76"),socket(7),l("155.98.38.80", 4)
+    >),created : 2 > < l("155.98.38.76", 1) : ClientShim | sockets : none,
+    bufferedMsgs : none,contacts : empty > closedSocket(l("155.98.38.76"),
+    socket(6), "Connection reset by peer") closedSocket(l("155.98.38.76"),
+    socket(6), "Connection reset by peer") closedSocket(l("155.98.38.76"),
+    socket(7), "")
+Bye.

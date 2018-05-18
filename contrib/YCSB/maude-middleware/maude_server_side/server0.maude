@@ -139,7 +139,7 @@ mod SERVER is
       (msg VALUE from O to O'') 
       if find(VALUE,"[eok]",0) == notFound /\
          find(VALUE,"[eor]",0) == notFound /\
-         ip(O) == "155.98.38.154" .
+         ip(O) == "155.98.38.76" .
 	 --- Above IP is that of server 0, one that client contacts
 
 
@@ -151,11 +151,11 @@ mod SERVER is
   eq client-addr = l(addr,2) .
 
   op addr : -> String .
-  eq addr = "155.98.38.154" .
+  eq addr = "155.98.38.76" .
 )
 
   op self : -> String .
-  eq self = "155.98.38.154" .
+  eq self = "155.98.38.76" .
 
   eq port = 9810 .
   op init : -> Configuration .

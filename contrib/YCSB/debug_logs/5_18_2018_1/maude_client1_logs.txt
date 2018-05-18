@@ -1,0 +1,73 @@
+		     \||||||||||||||||||/
+		   --- Welcome to Maude ---
+		     /||||||||||||||||||\
+	   Maude 2.7.1 built: Jun 27 2016 16:35:16
+	    Copyright 1997-2016 SRI International
+		   Fri May 18 16:19:44 2018
+==========================================
+erewrite in CLIENT : init .
+rewrites: 6658 in 20ms cpu (124886ms real) (332900 rewrites/second)
+result Configuration: <> < l("155.98.38.80", 0) : ClientShim | sockets : <
+    socket(8) : BufferedSocket | read :
+    "new-socket `( l `( \"155.98.38.76\" `) `) [msep]" >,bufferedMsgs : ((msg
+    "user1512515[eok]8/[eov]user1512449[eok]:4[eov]" from l("155.98.38.80", 4)
+    to l("155.98.38.76")) (msg "user1513288[eok]$&[eov]user1542152[eok]6>[eov]"
+    from l("155.98.38.80", 2) to l("155.98.38.76")) (msg
+    "user1513377[eok]'+[eov]user43283335[eok]/8[eov]" from l("155.98.38.80", 4)
+    to l("155.98.38.76")) (msg "user1513379[eok]+-[eov]user1752700[eok].$[eov]"
+    from l("155.98.38.80", 3) to l("155.98.38.76")) (msg
+    "user1513382[eok]1%[eov]user1753563[eok]59[eov]" from l("155.98.38.80", 3)
+    to l("155.98.38.76")) (msg "user1514314[eok]?5[eov]user1668[eok].4[eov]"
+    from l("155.98.38.80", 3) to l("155.98.38.76")) (msg
+    "user1514404[eok]9#[eov]user1571136[eok]7=[eov]" from l("155.98.38.80", 2)
+    to l("155.98.38.76")) (msg "user1537218[eok]'9[eov]user52538[eok]?$[eov]"
+    from l("155.98.38.80", 4) to l("155.98.38.76")) (msg
+    "user1541278[eok]#?[eov]user1514221[eok]/1[eov]" from l("155.98.38.80", 2)
+    to l("155.98.38.76")) (msg "user1542026[eok]>$[eov]user1512515[eok](-[eov]"
+    from l("155.98.38.80", 4) to l("155.98.38.76")) (msg
+    "user1572064[eok])([eov]user1669[eok]1>[eov]" from l("155.98.38.80", 4) to
+    l("155.98.38.76")) (msg "user1601818[eok]?%[eov]user43311116[eok]4%[eov]"
+    from l("155.98.38.80", 2) to l("155.98.38.76")) (msg
+    "user1601854[eok],$[eov]user1668[eok].?[eov]" from l("155.98.38.80", 3) to
+    l("155.98.38.76")) (msg "user1626593[eok]5)[eov]user1748887[eok]4&[eov]"
+    from l("155.98.38.80", 3) to l("155.98.38.76")) (msg
+    "user1633477[eok]++[eov]user1512386[eok]!7[eov]" from l("155.98.38.80", 3)
+    to l("155.98.38.76")) (msg "user1687410[eok]?$[eov]user1668[eok]-.[eov]"
+    from l("155.98.38.80", 3) to l("155.98.38.76")) (msg
+    "user1690014[eok]'=[eov]user1753445[eok]*0[eov]" from l("155.98.38.80", 4)
+    to l("155.98.38.76")) (msg "user1692[eok]/%[eov]user43128368[eok]:4[eov]"
+    from l("155.98.38.80", 2) to l("155.98.38.76")) (msg
+    "user1693[eok]<)[eov]user1746778[eok]'/[eov]" from l("155.98.38.80", 2) to
+    l("155.98.38.76")) (msg "user1719061[eok]8$[eov]user43221588[eok].-[eov]"
+    from l("155.98.38.80", 2) to l("155.98.38.76")) (msg
+    "user1721915[eok]/&[eov]user43186027[eok]'0[eov]" from l("155.98.38.80", 3)
+    to l("155.98.38.76")) (msg "user1746805[eok]74[eov]user1690113[eok]$:[eov]"
+    from l("155.98.38.80", 3) to l("155.98.38.76")) (msg
+    "user1749596[eok]-)[eov]user43220597[eok]9![eov]" from l("155.98.38.80", 4)
+    to l("155.98.38.76")) (msg "user1753448[eok]>%[eov]user1722847[eok]>![eov]"
+    from l("155.98.38.80", 2) to l("155.98.38.76")) (msg
+    "user43066993[eok]84[eov]user1626713[eok]>([eov]" from l("155.98.38.80", 2)
+    to l("155.98.38.76")) (msg
+    "user43156425[eok]?*[eov]user1634375[eok]'%[eov]" from l("155.98.38.80", 4)
+    to l("155.98.38.76")) (msg
+    "user43215979[eok]8$[eov]user1633349[eok]1/[eov]" from l("155.98.38.80", 3)
+    to l("155.98.38.76")) (msg
+    "user43247785[eok],-[eov]user43250665[eok]#![eov]" from l("155.98.38.80",
+    4) to l("155.98.38.76")) (msg
+    "user43281172[eok]>$[eov]user43312911[eok].![eov]" from l("155.98.38.80",
+    2) to l("155.98.38.76")) msg
+    "user43305442[eok]60[eov]user1716146[eok]$1[eov]" from l("155.98.38.80", 4)
+    to l("155.98.38.76")),contacts : empty > < l("155.98.38.80", 1) :
+    ServerShim | sockets : (< socket(4) : BufferedSocket | read : "" > <
+    socket(5) : BufferedSocket | read : "" > < socket(6) : BufferedSocket |
+    read : "" > < socket(7) : BufferedSocket | read : "" > < socket(9) :
+    BufferedSocket | read : "" > < socket(10) : BufferedSocket | read : "" >),
+    bufferedMsgs : none,contacts : (< l("155.98.38.80", 2),socket(9),l(
+    "155.98.38.80") > ; < l("155.98.38.80", 3),socket(10),l("155.98.38.80") > ;
+    < l("155.98.38.80", 4),socket(7),l("155.98.38.80") >),created : 3 > < l(
+    "155.98.38.80", 2) : Client | sent : 10,rcved : 0 > < l("155.98.38.80", 3)
+    : Client | sent : 10,rcved : 0 > < l("155.98.38.80", 4) : Client | sent :
+    10,rcved : 0 > closedSocket(l("155.98.38.80", 2), socket(9), "")
+    closedSocket(l("155.98.38.80", 3), socket(10), "") closedSocket(l(
+    "155.98.38.80", 4), socket(7), "")
+Bye.
