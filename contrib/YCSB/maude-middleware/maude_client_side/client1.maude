@@ -45,7 +45,7 @@ mod CLIENT is
 
 
   rl < O : Client | sent : N, AS >
-     [STR]
+     [STR,O]
    => 
      < O : Client | sent : N + 1, AS >
      (msg STR from O to server-addr) .

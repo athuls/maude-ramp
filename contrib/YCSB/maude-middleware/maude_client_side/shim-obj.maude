@@ -32,7 +32,7 @@ mod SHIM is
   op sockets :_ : Configuration -> Attribute [ctor gather(&)] .   
 
   *** IP |-> b(socket(Nat))
-  op contacts :_ : Map{Oid, Oid} -> Attribute [ctor gather(&)] .  
+---  op contacts :_ : Map{Oid, Oid} -> Attribute [ctor gather(&)] .  
 
   op residents :_ : Set{Oid} -> Attribute [ctor gather(&)] .  
 
@@ -40,6 +40,15 @@ mod SHIM is
 
   op bufferedMsgs :_ : Configuration -> Attribute [ctor gather(&)] . 
 
+  sort Skts . 
+  op empty : -> Skts .
+  *** self, socket, target
+  op <_,_,_> : Oid Oid Oid -> Skts [ctor] .
+  op _;_ : Skts Skts -> Skts [ctor assoc comm id: empty] .
+ 
+  op contacts :_ : Skts -> Attribute [ctor gather(&)] .
+  op null : -> Oid .
+ 
 
 
   ---??? some attr for fileManager stuff
