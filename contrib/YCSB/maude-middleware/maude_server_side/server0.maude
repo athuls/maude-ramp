@@ -53,7 +53,7 @@ mod SERVER is
     < O : Table | table : addKeyReplica(KR,KVS) >
     if N := find(KR,"[eoa]",0) .
 
- op addKeyValue: String Map{String,String} -> Map{String,String} .
+ op addKeyValue : String Map{String,String} -> Map{String,String} .
   ceq addKeyValue(KV,STORE) = addKeyValue(substr(STR,N' + 
 5,length(STR)),insert(substr(KV,0,N),substr(STR,0,N'),STORE))
         if N := find(KV, "[eok]", 0) /\
