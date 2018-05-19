@@ -33,15 +33,19 @@ mod CLIENT is
   eq server-addr = l(addr1) .
 
   op addr1 : -> String .
-  eq addr1 = "155.98.38.83" .
+  eq addr1 = "155.98.38.58" .
 
   op self : -> String .
-  eq self = "155.98.38.62" .
+  eq self = "155.98.38.69" .
   ***eq self = "192.17.150.124" .
 
 
+  eq numberOfServerSockets = 3 .
+  eq port = 9810 .  *** current version can only work with the same fixed port for multiple Maude clients
+
+
   rl < O : Client | sent : N, AS >
-     [STR]
+     [STR,O]
    => 
      < O : Client | sent : N + 1, AS >
      (msg STR from O to server-addr) .
@@ -53,17 +57,17 @@ mod CLIENT is
 
   op init : -> Configuration .
   eq init = <>
-            < l(self,0) : ClientShim | sockets : none, contacts : empty >
-            < l(self,1) : ServerShim | sockets : none, contacts : empty >
+            < l(self,0) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
+            < l(self,1) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 	    < l(self,2) : Client | sent : 0, rcved : 0 >
 	    < l(self,3) : Client | sent : 0, rcved : 0 >
 	    < l(self,4) : Client | sent : 0, rcved : 0 >
-            createClientTcpSocket(socketManager,l(self,2),addr1,9810)
+
+
+            ---createClientTcpSocket(socketManager,l(self,3),addr1,9810)
 	    createServerTcpSocket(socketManager, l(self,2), 9910, 5)
 	    createServerTcpSocket(socketManager, l(self,3), 9911, 5)
 	    createServerTcpSocket(socketManager, l(self,4), 9912, 5).
----            createClientTcpSocket(socketManager,l(self,2),addr2,9810)
-                  
             
 endm
 
@@ -71,6 +75,3 @@ erew init .
 ---rew addKeyReplica("k[eok]a[eoa]k1[eok]a1[eoa]",empty) .
 ---rew genReads("k[eor]k1[eor]",("k" |-> "a", "k1" |-> "a1"),l("localhost",2)) .
 ---rew genWrites("k[eok]v[eov]k1[eok]v1[eov]",("k" |-> "a", "k1" |-> "a1"),l("localhost",2)) .
-
-
-
