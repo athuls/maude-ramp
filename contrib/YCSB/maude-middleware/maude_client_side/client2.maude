@@ -33,14 +33,14 @@ mod CLIENT is
   eq server-addr = l(addr1) .
 
   op addr1 : -> String .
-  eq addr1 = "155.98.38.152" .
+  eq addr1 = "155.98.38.42" .
 
   op self : -> String .
-  eq self = "155.98.38.146" .
+  eq self = "155.98.38.147" .
   ***eq self = "192.17.150.124" .
 
 
-  eq numberOfServerSockets = 2 .
+  eq numberOfServerSockets = 3 .
   eq port = 9810 .  *** current version can only work with the same fixed port for multiple Maude clients
 
 
@@ -59,15 +59,15 @@ mod CLIENT is
   eq init = <>
             < l(self,0) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,1) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
+	    < l(self,2) : Client | sent : 0, rcved : 0 >
+	    < l(self,3) : Client | sent : 0, rcved : 0 >
+	    < l(self,4) : Client | sent : 0, rcved : 0 >
 
-            < l(self,2) : Client | sent : 0, rcved : 0 > 
             ---createClientTcpSocket(socketManager,l(self,2),addr1,9810)
-            createServerTcpSocket(socketManager, l(self,2), 9910, 5) 
+	    createServerTcpSocket(socketManager, l(self,2), 9910, 5)
+	    createServerTcpSocket(socketManager, l(self,3), 9911, 5)
+	    createServerTcpSocket(socketManager, l(self,4), 9912, 5).
 
-            < l(self,3) : Client | sent : 0, rcved : 0 > 
-            ---createClientTcpSocket(socketManager,l(self,3),addr1,9810)
-            createServerTcpSocket(socketManager, l(self,3), 9920, 5) .
-            
 endm
 
 erew init .
