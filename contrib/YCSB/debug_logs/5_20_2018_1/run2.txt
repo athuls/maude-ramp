@@ -1,0 +1,1527 @@
+9910
+9911
+9912
+Starting point for ycsb client
+Starting point for ycsb client
+YCSB Client 0.1
+Command line: -db com.yahoo.ycsb.db.KaijuClientYCSB Client 0.1 -p
+ hosts=155.98.38.134:9912 -pCommand line: port=9912 -P workloads/workloada -p operationcount=100 -p maxexecutiontime=30000 -db -p isolation_level=READ_ATOMIC com.yahoo.ycsb.db.KaijuClient -p -p read_atomic_algorithm=KEY_LIST -p hosts=155.98.38.134:9911 threadcount=1 -p -p time=10000 port=9911 -p -P valuesize=1 -t workloads/workloada
+ -p operationcount=100 -p maxexecutiontime=30000 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -p threadcount=1 -p time=10000 -p valuesize=1 -t
+Starting point for ycsb client
+YCSB Client 0.1
+Command line: -db com.yahoo.ycsb.db.KaijuClient -p hosts=155.98.38.134:9910 -p port=9910 -P workloads/workloada -p operationcount=100 -p maxexecutiontime=30000 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -p threadcount=1 -p time=10000 -p valuesize=1 -t
+Created one socket 155.98.38.134 9911
+Doing transactions
+Operation count is 100
+Write operation
+Key is user1634408
+Key is user1669
+[beg]user1634408[eok]>>[eov]user1669[eok]$,[eov][sep]
+Operation count is 100
+Write operation
+Key is user1690236
+Key is user1540160
+[beg]user1690236[eok]=;[eov]user1540160[eok]0?[eov][sep]
+Operation count is 100
+Write operation
+Key is user1658334
+Key is user1628517
+[beg]user1658334[eok]7%[eov]user1628517[eok]!2[eov][sep]
+Operation count is 100
+Write operation
+Key is user1720086
+Key is user1627615
+[beg]user1720086[eok]$+[eov]user1627615[eok]$/[eov][sep]
+Operation count is 100
+Write operation
+Key is user1515178
+Key is user1668
+[beg]user1515178[eok]9'[eov]user1668[eok]-9[eov][sep]
+Operation count is 100
+Write operation
+Key is user1573763
+Key is user1542022
+[beg]user1573763[eok]-5[eov]user1542022[eok]>7[eov][sep]
+Operation count is 100
+Write operation
+Key is user1602726
+Key is user1661216
+[beg]user1602726[eok](6[eov]user1661216[eok]!$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1632572
+Key is user1513438
+[beg]user1632572[eok]3$[eov]user1513438[eok]*1[eov][sep]
+Operation count is 100
+Write operation
+Key is user53430
+Key is user43131471
+[beg]user53430[eok]27[eov]user43131471[eok]&0[eov][sep]
+Operation count is 100
+Write operation
+Key is user1630466
+Key is user1515266
+[beg]user1630466[eok]4:[eov]user1515266[eok]57[eov][sep]
+Operation count is 100
+Write operation
+Key is user1542209
+Key is user1721887
+[beg]user1542209[eok]8;[eov]user1721887[eok]',[eov][sep]
+Operation count is 100
+Write operation
+Key is user1750747
+Key is user1687324
+[beg]user1750747[eok]='[eov]user1687324[eok];2[eov][sep]
+Operation count is 100
+Write operation
+Key is user43277478
+Key is user1569893
+[beg]user43277478[eok]'2[eov]user1569893[eok]<([eov][sep]
+Operation count is 100
+Write operation
+Key is user43252497
+Key is user1571814
+[beg]user43252497[eok]1;[eov]user1571814[eok]<9[eov][sep]
+Operation count is 100
+Write operation
+Key is user1694
+Key is user1512421
+[beg]user1694[eok]$,[eov]user1512421[eok]!?[eov][sep]
+Operation count is 100
+Write operation
+Key is user43222637
+Key is user43157257
+[beg]user43222637[eok]&.[eov]user43157257[eok]:9[eov][sep]
+Operation count is 100
+Write operation
+Key is user1573765
+Key is user43307365
+[beg]user1573765[eok]:&[eov]user43307365[eok]8,[eov][sep]
+Operation count is 100
+Write operation
+Key is user1695
+Key is user1512422
+[beg]user1695[eok]-([eov]user1512422[eok]65[eov][sep]
+Operation count is 100
+Write operation
+Key is user1597917
+Key is user1719866
+[beg]user1597917[eok]?:[eov]user1719866[eok]$/[eov][sep]
+Operation count is 100
+Write operation
+Key is user1749721
+Key is user1626747
+[beg]user1749721[eok]>4[eov]user1626747[eok]$<[eov][sep]
+Operation count is 100
+Write operation
+Key is user1751583
+Key is user1626744
+[beg]user1751583[eok]20[eov]user1626744[eok];4[eov][sep]
+Operation count is 100
+Write operation
+Key is user54679
+Key is user1745883
+[beg]user54679[eok]$8[eov]user1745883[eok]47[eov][sep]
+Operation count is 100
+Write operation
+Key is user1545159
+Key is user43156297
+[beg]user1545159[eok]->[eov]user43156297[eok]/([eov][sep]
+Operation count is 100
+Write operation
+Key is user51696
+Key is user1597826
+[beg]user51696[eok].9[eov]user1597826[eok]/-[eov][sep]
+Operation count is 100
+Write operation
+Key is user1516137
+Key is user1512417
+[beg]user1516137[eok].$[eov]user1512417[eok]2$[eov][sep]
+Operation count is 100
+Write operation
+Key is user43218765
+Key is user1668
+[beg]user43218765[eok]04[eov]user1668[eok];4[eov][sep]
+Operation count is 100
+Write operation
+Key is user43274653
+Key is user1513471
+[beg]user43274653[eok]%&[eov]user1513471[eok]$:[eov][sep]
+Operation count is 100
+Write operation
+Key is user1568183
+Key is user1508449
+[beg]user1568183[eok]!$[eov]user1508449[eok]%7[eov][sep]
+Operation count is 100
+Write operation
+Key is user1751644
+Key is user1572066
+[beg]user1751644[eok]11[eov]user1572066[eok]$![eov][sep]
+Operation count is 100
+Write operation
+Key is user1691
+Key is user1662299
+[beg]user1691[eok]#*[eov]user1662299[eok]-<[eov][sep]
+Operation count is 100
+Write operation
+Key is user1668
+Key is user1723686
+[beg]user1668[eok]#$[eov]user1723686[eok]$,[eov][sep]
+Operation count is 100
+Write operation
+Key is user1395118
+Key is user1689114
+[beg]user1395118[eok]!,[eov]user1689114[eok]#?[eov][sep]
+Operation count is 100
+Write operation
+Key is user54547
+Key is user1596896
+[beg]user54547[eok],*[eov]user1596896[eok]&8[eov][sep]
+Operation count is 100
+Write operation
+Key is user1514434
+Key is user1538238
+[beg]user1514434[eok]6>[eov]user1538238[eok]:?[eov][sep]
+Operation count is 100
+Write operation
+Key is user1688091
+Key is user1508481
+[beg]user1688091[eok]$%[eov]user1508481[eok]!([eov][sep]
+Operation count is 100
+Write operation
+Key is user1544134
+Key is user1600894
+[beg]user1544134[eok]>>[eov]user1600894[eok]$)[eov][sep]
+Operation count is 100
+Write operation
+Key is user43217924
+Key is user1568127
+[beg]user43217924[eok]<#[eov]user1568127[eok](1[eov][sep]
+Operation count is 100
+Write operation
+Key is user43159154
+Key is user53617
+[beg]user43159154[eok]>'[eov]user53617[eok]6<[eov][sep]
+Operation count is 100
+Write operation
+Key is user1512423
+Key is user45006
+[beg]user1512423[eok];3[eov]user45006[eok]45[eov][sep]
+Operation count is 100
+Write operation
+Key is user1691
+Key is user1513378
+[beg]user1691[eok]=9[eov]user1513378[eok]'5[eov][sep]
+Operation count is 100
+Write operation
+Key is user1692962
+Key is user1627830
+[beg]user1692962[eok]9![eov]user1627830[eok]>([eov][sep]
+Operation count is 100
+Write operation
+Key is user1603804
+Key is user1750588
+[beg]user1603804[eok]7)[eov]user1750588[eok]->[eov][sep]
+Operation count is 100
+Write operation
+Key is user43134255
+Key is user1669
+[beg]user43134255[eok]+;[eov]user1669[eok]!8[eov][sep]
+Operation count is 100
+Write operation
+Key is user1514247
+Key is user1543050
+[beg]user1514247[eok],<[eov]user1543050[eok]0![eov][sep]
+Operation count is 100
+Write operation
+Key is user1544909
+Key is user1751709
+[beg]user1544909[eok]')[eov]user1751709[eok]+6[eov][sep]
+Operation count is 100
+Write operation
+Key is user43311049
+Key is user43304382
+[beg]user43311049[eok]&+[eov]user43304382[eok]&)[eov][sep]
+Operation count is 100
+Write operation
+Key is user1390183
+Key is user49619
+[beg]user1390183[eok]-$[eov]user49619[eok];0[eov][sep]
+Operation count is 100
+Write operation
+Key is user1748825
+Key is user1745999
+[beg]user1748825[eok]4$[eov]user1745999[eok]:([eov][sep]
+Operation count is 100
+Write operation
+Key is user1697
+Key is user1598785
+[beg]user1697[eok]$;[eov]user1598785[eok]!1[eov][sep]
+Operation count is 100
+Write operation
+Key is user43252463
+Key is user1601700
+[beg]user43252463[eok]*8[eov]user1601700[eok],8[eov][sep]
+Operation count is 100
+Write operation
+Key is user1718012
+Key is user1747797
+[beg]user1718012[eok]0.[eov]user1747797[eok];&[eov][sep]
+Operation count is 100
+Write operation
+Key is user1513190
+Key is user43247746
+[beg]user1513190[eok]&0[eov]user43247746[eok]$#[eov][sep]
+Operation count is 100
+Write operation
+Key is user1724643
+Key is user43096780
+[beg]user1724643[eok]67[eov]user43096780[eok]5,[eov][sep]
+Operation count is 100
+Write operation
+Key is user1541128
+Key is user1629632
+[beg]user1541128[eok]6%[eov]user1629632[eok]4:[eov][sep]
+Operation count is 100
+Write operation
+Key is user1751582
+Key is user1537309
+[beg]user1751582[eok]0,[eov]user1537309[eok]0)[eov][sep]
+Operation count is 100
+Write operation
+Key is user1545155
+Key is user1722811
+[beg]user1545155[eok]!:[eov]user1722811[eok]3&[eov][sep]
+Operation count is 100
+Write operation
+Key is user1567098
+Key is user49840
+[beg]user1567098[eok]*?[eov]user49840[eok]49[eov][sep]
+Operation count is 100
+Write operation
+Key is user43071919
+Key is user43304451
+[beg]user43071919[eok]+-[eov]user43304451[eok]*5[eov][sep]
+Operation count is 100
+Write operation
+Key is user1629757
+Key is user43306340
+[beg]user1629757[eok])1[eov]user43306340[eok])$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1722904
+Key is user1540380
+[beg]user1722904[eok]:=[eov]user1540380[eok]>$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1658491
+Key is user1545095
+[beg]user1658491[eok]66[eov]user1545095[eok]+?[eov][sep]
+Operation count is 100
+Write operation
+Key is user50583
+Key is user1570948
+[beg]user50583[eok]$5[eov]user1570948[eok]:=[eov][sep]
+Operation count is 100
+Write operation
+Key is user43098547
+Key is user1747744
+[beg]user43098547[eok]>$[eov]user1747744[eok]++[eov][sep]
+Operation count is 100
+Write operation
+Key is user1513378
+Key is user1631492
+[beg]user1513378[eok]'.[eov]user1631492[eok]:4[eov][sep]
+Operation count is 100
+Write operation
+Key is user1688312
+Key is user1722755
+[beg]user1688312[eok]44[eov]user1722755[eok]+/[eov][sep]
+Operation count is 100
+Write operation
+Key is user43158189
+Key is user1516104
+[beg]user43158189[eok]-+[eov]user1516104[eok]%=[eov][sep]
+Operation count is 100
+Write operation
+Key is user1543981
+Key is user1668
+[beg]user1543981[eok]$5[eov]user1668[eok]-![eov][sep]
+Operation count is 100
+Write operation
+Key is user43134256
+Key is user1688223
+[beg]user43134256[eok]+7[eov]user1688223[eok]./[eov][sep]
+Operation count is 100
+Write operation
+Key is user1601856
+Key is user1541062
+[beg]user1601856[eok]!%[eov]user1541062[eok]!$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1751679
+Key is user1693153
+[beg]user1751679[eok]*/[eov]user1693153[eok]/'[eov][sep]
+Operation count is 100
+Write operation
+Key is user1507432
+Key is user1513378
+[beg]user1507432[eok].>[eov]user1513378[eok]#$[eov][sep]
+Operation count is 100
+Write operation
+Key is user43216782
+Key is user1513260
+[beg]user43216782[eok]1?[eov]user1513260[eok]9/[eov][sep]
+Operation count is 100
+Write operation
+Key is user1568220
+Key is user1687285
+[beg]user1568220[eok]=%[eov]user1687285[eok]69[eov][sep]
+Operation count is 100
+Write operation
+Key is user1513190
+Key is user1513194
+[beg]user1513190[eok]+5[eov]user1513194[eok]27[eov][sep]
+Operation count is 100
+Write operation
+Key is user1748730
+Key is user55509
+[beg]user1748730[eok]?=[eov]user55509[eok]8<[eov][sep]
+Operation count is 100
+Write operation
+Key is user1511431
+Key is user1628666
+[beg]user1511431[eok]/?[eov]user1628666[eok]-:[eov][sep]
+Operation count is 100
+Write operation
+Key is user1721914
+Key is user1571971
+[beg]user1721914[eok]0([eov]user1571971[eok]/![eov][sep]
+Operation count is 100
+Write operation
+Key is user1510310
+Key is user43282096
+[beg]user1510310[eok]>+[eov]user43282096[eok]+*[eov][sep]
+Operation count is 100
+Write operation
+Key is user55447
+Key is user56564
+[beg]user55447[eok]19[eov]user56564[eok]85[eov][sep]
+Operation count is 100
+Write operation
+Key is user1748891
+Key is user1722756
+[beg]user1748891[eok](:[eov]user1722756[eok]4%[eov][sep]
+Operation count is 100
+Write operation
+Key is user1715998
+Key is user1543168
+[beg]user1715998[eok])-[eov]user1543168[eok]$1[eov][sep]
+Operation count is 100
+Write operation
+Key is user1696
+Key is user43157319
+[beg]user1696[eok];-[eov]user43157319[eok]+,[eov][sep]
+Operation count is 100
+Write operation
+Key is user52535
+Key is user43283243
+[beg]user52535[eok]7-[eov]user43283243[eok]>6[eov][sep]
+Operation count is 100
+Write operation
+Key is user1514214
+Key is user1572903
+[beg]user1514214[eok]9$[eov]user1572903[eok]81[eov][sep]
+Operation count is 100
+Write operation
+Key is user43307204
+Key is user1752669
+[beg]user43307204[eok]<8[eov]user1752669[eok],8[eov][sep]
+Operation count is 100
+Write operation
+Key is user1656665
+Key is user1540252
+[beg]user1656665[eok]9$[eov]user1540252[eok]&9[eov][sep]
+Operation count is 100
+Write operation
+Key is user1696
+Key is user43220780
+[beg]user1696[eok].=[eov]user43220780[eok]5?[eov][sep]
+Operation count is 100
+Write operation
+Key is user1753634
+Key is user1691106
+[beg]user1753634[eok]%1[eov]user1691106[eok]#>[eov][sep]
+Operation count is 100
+Write operation
+Key is user1514402
+Key is user1717918
+[beg]user1514402[eok]6$[eov]user1717918[eok]#.[eov][sep]
+Operation count is 100
+Write operation
+Key is user43159117
+Key is user1669
+[beg]user43159117[eok]77[eov]user1669[eok]&#[eov][sep]
+Operation count is 100
+Write operation
+Key is user1511361
+Key is user52627
+[beg]user1511361[eok].?[eov]user52627[eok]-7[eov][sep]
+Operation count is 100
+Write operation
+Key is user43096840
+Key is user1669
+[beg]user43096840[eok]$([eov]user1669[eok]$/[eov][sep]
+Operation count is 100
+Write operation
+Key is user1691
+Key is user1747800
+[beg]user1691[eok]2-[eov]user1747800[eok];![eov][sep]
+Operation count is 100
+Write operation
+Key is user1662242
+Key is user50649
+[beg]user1662242[eok]8&[eov]user50649[eok]2+[eov][sep]
+Operation count is 100
+Write operation
+Key is user54398
+Key is user1669
+[beg]user54398[eok]09[eov]user1669[eok];2[eov][sep]
+Operation count is 100
+Write operation
+Key is user1514404
+Key is user43278408
+[beg]user1514404[eok]$-[eov]user43278408[eok];*[eov][sep]
+Operation count is 100
+Write operation
+Key is user1718107
+Key is user1626778
+[beg]user1718107[eok]-4[eov]user1626778[eok]>:[eov][sep]
+Operation count is 100
+Write operation
+Key is user1596833
+Key is user1513287
+[beg]user1596833[eok]<#[eov]user1513287[eok]65[eov][sep]
+Operation count is 100
+Write operation
+Key is user1512451
+Key is user1718938
+[beg]user1512451[eok]9![eov]user1718938[eok]$2[eov][sep]
+Operation count is 100
+Write operation
+Key is user1658427
+Key is user1599680
+[beg]user1658427[eok](.[eov]user1599680[eok]*([eov][sep]
+Cleanup for kaiju called
+Writing key mappings to file
+Closing kaiju socket
+Created one socket 155.98.38.134 9912
+Doing transactions
+Operation count is 100
+Write operation
+Key is user1687259
+Key is user1541253
+[beg]user1687259[eok]=8[eov]user1541253[eok]2![eov][sep]
+Operation count is 100
+Write operation
+Key is user1572058
+Key is user43130511
+[beg]user1572058[eok];2[eov]user43130511[eok]-'[eov][sep]
+Operation count is 100
+Write operation
+Key is user1687413
+Key is user1663260
+[beg]user1687413[eok]',[eov]user1663260[eok]*9[eov][sep]
+Operation count is 100
+Write operation
+Key is user1691
+Key is user1693
+[beg]user1691[eok]/9[eov]user1693[eok]!$[eov][sep]
+Operation count is 100
+Write operation
+Key is user55481
+Key is user1690084
+[beg]user55481[eok]<0[eov]user1690084[eok]=?[eov][sep]
+Operation count is 100
+Write operation
+Key is user43127563
+Key is user43276395
+[beg]user43127563[eok]%-[eov]user43276395[eok]02[eov][sep]
+Operation count is 100
+Write operation
+Key is user1574755
+Key is user53654
+[beg]user1574755[eok]!+[eov]user53654[eok]*![eov][sep]
+Operation count is 100
+Write operation
+Key is user1694
+Key is user1668
+[beg]user1694[eok]0&[eov]user1668[eok]60[eov][sep]
+Operation count is 100
+Write operation
+Key is user43125576
+Key is user43278406
+[beg]user43125576[eok]##[eov]user43278406[eok]>#[eov][sep]
+Operation count is 100
+Write operation
+Key is user1512421
+Key is user1602689
+[beg]user1512421[eok]80[eov]user1602689[eok]3,[eov][sep]
+Operation count is 100
+Write operation
+Key is user1541277
+Key is user1542240
+[beg]user1541277[eok];/[eov]user1542240[eok]7&[eov][sep]
+Operation count is 100
+Write operation
+Key is user1394063
+Key is user54391
+[beg]user1394063[eok]:%[eov]user54391[eok]-0[eov][sep]
+Operation count is 100
+Write operation
+Key is user43187017
+Key is user1603686
+[beg]user43187017[eok]7([eov]user1603686[eok]26[eov][sep]
+Operation count is 100
+Write operation
+Key is user1695
+Key is user1545190
+[beg]user1695[eok]*.[eov]user1545190[eok]$*[eov][sep]
+Operation count is 100
+Write operation
+Key is user1692064
+Key is user1748888
+[beg]user1692064[eok]/![eov]user1748888[eok];:[eov][sep]
+Operation count is 100
+Write operation
+Key is user1514404
+Key is user53530
+[beg]user1514404[eok];([eov]user53530[eok]9,[eov][sep]
+Operation count is 100
+Write operation
+Key is user1696
+Key is user1668
+[beg]user1696[eok]-0[eov]user1668[eok]%7[eov][sep]
+Operation count is 100
+Write operation
+Key is user43074643
+Key is user1511365
+[beg]user43074643[eok](2[eov]user1511365[eok]7/[eov][sep]
+Operation count is 100
+Write operation
+Key is user1693
+Key is user43099540
+[beg]user1693[eok](/[eov]user43099540[eok]-2[eov][sep]
+Operation count is 100
+Write operation
+Key is user1754652
+Key is user43246633
+[beg]user1754652[eok]$+[eov]user43246633[eok]-1[eov][sep]
+Operation count is 100
+Write operation
+Key is user1661283
+Key is user1691
+[beg]user1661283[eok]6([eov]user1691[eok])1[eov][sep]
+Operation count is 100
+Write operation
+Key is user50741
+Key is user1543166
+[beg]user50741[eok]!$[eov]user1543166[eok]?4[eov][sep]
+Operation count is 100
+Write operation
+Key is user1659549
+Key is user50678
+[beg]user1659549[eok]32[eov]user50678[eok]!$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1660442
+Key is user1569922
+[beg]user1660442[eok]#2[eov]user1569922[eok]<+[eov][sep]
+Operation count is 100
+Write operation
+Key is user43159369
+Key is user1542089
+[beg]user43159369[eok]$#[eov]user1542089[eok]29[eov][sep]
+Operation count is 100
+Write operation
+Key is user43131410
+Key is user1721820
+[beg]user43131410[eok]0+[eov]user1721820[eok]#5[eov][sep]
+Operation count is 100
+Write operation
+Key is user1753538
+Key is user43217929
+[beg]user1753538[eok]&:[eov]user43217929[eok]%=[eov][sep]
+Operation count is 100
+Write operation
+Key is user48818
+Key is user1512262
+[beg]user48818[eok]:+[eov]user1512262[eok]&-[eov][sep]
+Operation count is 100
+Write operation
+Key is user1659270
+Key is user1718007
+[beg]user1659270[eok]$?[eov]user1718007[eok])$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1687168
+Key is user1751557
+[beg]user1687168[eok]4$[eov]user1751557[eok]'3[eov][sep]
+Operation count is 100
+Write operation
+Key is user43251375
+Key is user1574819
+[beg]user43251375[eok]4<[eov]user1574819[eok]%/[eov][sep]
+Operation count is 100
+Write operation
+Key is user1722939
+Key is user1538270
+[beg]user1722939[eok]>5[eov]user1538270[eok]8$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1747711
+Key is user1747803
+[beg]user1747711[eok]%/[eov]user1747803[eok]*7[eov][sep]
+Operation count is 100
+Write operation
+Key is user1694
+Key is user52624
+[beg]user1694[eok]=1[eov]user52624[eok];?[eov][sep]
+Operation count is 100
+Write operation
+Key is user1660346
+Key is user1658336
+[beg]user1660346[eok],$[eov]user1658336[eok]6'[eov][sep]
+Operation count is 100
+Write operation
+Key is user43307267
+Key is user1668
+[beg]user43307267[eok]8/[eov]user1668[eok]+$[eov][sep]
+Operation count is 100
+Write operation
+Key is user43251440
+Key is user1668
+[beg]user43251440[eok].$[eov]user1668[eok]13[eov][sep]
+Operation count is 100
+Write operation
+Key is user1693
+Key is user1598880
+[beg]user1693[eok]51[eov]user1598880[eok]95[eov][sep]
+Operation count is 100
+Write operation
+Key is user43274684
+Key is user1691
+[beg]user43274684[eok]<'[eov]user1691[eok],$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1689243
+Key is user1513377
+[beg]user1689243[eok]%([eov]user1513377[eok]%&[eov][sep]
+Operation count is 100
+Write operation
+Key is user1748794
+Key is user1514432
+[beg]user1748794[eok]/$[eov]user1514432[eok],#[eov][sep]
+Operation count is 100
+Write operation
+Key is user1668
+Key is user1690084
+[beg]user1668[eok]0([eov]user1690084[eok].%[eov][sep]
+Operation count is 100
+Write operation
+Key is user1718906
+Key is user1516232
+[beg]user1718906[eok]31[eov]user1516232[eok]92[eov][sep]
+Operation count is 100
+Write operation
+Key is user1393312
+Key is user1538362
+[beg]user1393312[eok]26[eov]user1538362[eok]9?[eov][sep]
+Operation count is 100
+Write operation
+Key is user1722819
+Key is user1693958
+[beg]user1722819[eok]7<[eov]user1693958[eok]1;[eov][sep]
+Operation count is 100
+Write operation
+Key is user43163213
+Key is user43223565
+[beg]user43163213[eok];$[eov]user43223565[eok].)[eov][sep]
+Operation count is 100
+Write operation
+Key is user1691
+Key is user1513194
+[beg]user1691[eok]!;[eov]user1513194[eok]0-[eov][sep]
+Operation count is 100
+Write operation
+Key is user1510531
+Key is user1396912
+[beg]user1510531[eok]:*[eov]user1396912[eok]/<[eov][sep]
+Operation count is 100
+Write operation
+Key is user43190031
+Key is user43220875
+[beg]user43190031[eok]/'[eov]user43220875[eok]73[eov][sep]
+Operation count is 100
+Write operation
+Key is user43223604
+Key is user1575902
+[beg]user43223604[eok]&![eov]user1575902[eok]-,[eov][sep]
+Operation count is 100
+Write operation
+Key is user50674
+Key is user1513475
+[beg]user50674[eok]%?[eov]user1513475[eok]3=[eov][sep]
+Operation count is 100
+Write operation
+Key is user43248618
+Key is user1512449
+[beg]user43248618[eok];$[eov]user1512449[eok],%[eov][sep]
+Operation count is 100
+Write operation
+Key is user1664286
+Key is user1513471
+[beg]user1664286[eok]45[eov]user1513471[eok]#3[eov][sep]
+Operation count is 100
+Write operation
+Key is user43129482
+Key is user56600
+[beg]user43129482[eok]=:[eov]user56600[eok]?9[eov][sep]
+Operation count is 100
+Write operation
+Key is user1665310
+Key is user1568
+[beg]user1665310[eok];0[eov]user1568[eok]*$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1692
+Key is user43133392
+[beg]user1692[eok]6&[eov]user43133392[eok]/%[eov][sep]
+Operation count is 100
+Write operation
+Key is user43187951
+Key is user1754652
+[beg]user43187951[eok]%#[eov]user1754652[eok]:#[eov][sep]
+Operation count is 100
+Write operation
+Key is user43126512
+Key is user1572809
+[beg]user43126512[eok]2#[eov]user1572809[eok]6%[eov][sep]
+Operation count is 100
+Write operation
+Key is user1750813
+Key is user1689306
+[beg]user1750813[eok]$4[eov]user1689306[eok]3-[eov][sep]
+Operation count is 100
+Write operation
+Key is user1575753
+Key is user1668
+[beg]user1575753[eok]=?[eov]user1668[eok]*2[eov][sep]
+Operation count is 100
+Write operation
+Key is user1751583
+Key is user51515
+[beg]user1751583[eok]>1[eov]user51515[eok]$6[eov][sep]
+Operation count is 100
+Write operation
+Key is user1513474
+Key is user43248460
+[beg]user1513474[eok]:([eov]user43248460[eok]?6[eov][sep]
+Operation count is 100
+Write operation
+Key is user1514218
+Key is user1514407
+[beg]user1514218[eok]3$[eov]user1514407[eok]!4[eov][sep]
+Operation count is 100
+Write operation
+Key is user1601638
+Key is user43161226
+[beg]user1601638[eok]0:[eov]user43161226[eok]>*[eov][sep]
+Operation count is 100
+Write operation
+Key is user43214947
+Key is user1668
+[beg]user43214947[eok]1+[eov]user1668[eok]%>[eov][sep]
+Operation count is 100
+Write operation
+Key is user1513376
+Key is user1661342
+[beg]user1513376[eok]81[eov]user1661342[eok]6'[eov][sep]
+Operation count is 100
+Write operation
+Key is user1722011
+Key is user1668
+[beg]user1722011[eok];>[eov]user1668[eok]>$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1690081
+Key is user1716155
+[beg]user1690081[eok]=2[eov]user1716155[eok]>)[eov][sep]
+Operation count is 100
+Write operation
+Key is user1513469
+Key is user1511298
+[beg]user1513469[eok]7$[eov]user1511298[eok]25[eov][sep]
+Operation count is 100
+Write operation
+Key is user1657497
+Key is user43246787
+[beg]user1657497[eok]+*[eov]user43246787[eok]$9[eov][sep]
+Operation count is 100
+Write operation
+Key is user1751773
+Key is user43158342
+[beg]user1751773[eok]<5[eov]user43158342[eok]03[eov][sep]
+Operation count is 100
+Write operation
+Key is user1544902
+Key is user1668
+[beg]user1544902[eok]</[eov]user1668[eok]6+[eov][sep]
+Operation count is 100
+Write operation
+Key is user1576
+Key is user1539167
+[beg]user1576[eok]($[eov]user1539167[eok]4#[eov][sep]
+Operation count is 100
+Write operation
+Key is user52600
+Key is user43074801
+[beg]user52600[eok]$![eov]user43074801[eok]15[eov][sep]
+Operation count is 100
+Write operation
+Key is user1635239
+Key is user1508387
+[beg]user1635239[eok]9?[eov]user1508387[eok]43[eov][sep]
+Operation count is 100
+Write operation
+Key is user1697
+Key is user1687355
+[beg]user1697[eok]''[eov]user1687355[eok]-)[eov][sep]
+Operation count is 100
+Write operation
+Key is user1511427
+Key is user1668
+[beg]user1511427[eok]$,[eov]user1668[eok])([eov][sep]
+Operation count is 100
+Write operation
+Key is user43276544
+Key is user1513289
+[beg]user43276544[eok]:![eov]user1513289[eok]/6[eov][sep]
+Operation count is 100
+Write operation
+Key is user1692
+Key is user1567229
+[beg]user1692[eok]4%[eov]user1567229[eok]+4[eov][sep]
+Operation count is 100
+Write operation
+Key is user1663330
+Key is user43282131
+[beg]user1663330[eok]$)[eov]user43282131[eok]$.[eov][sep]
+Operation count is 100
+Write operation
+Key is user1629661
+Key is user43097798
+[beg]user1629661[eok]&1[eov]user43097798[eok]:$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1542307
+Key is user1510342
+[beg]user1542307[eok]2/[eov]user1510342[eok]:)[eov][sep]
+Operation count is 100
+Write operation
+Key is user43191828
+Key is user1514219
+[beg]user43191828[eok]7,[eov]user1514219[eok],4[eov][sep]
+Operation count is 100
+Write operation
+Key is user1512451
+Key is user1691
+[beg]user1512451[eok]0;[eov]user1691[eok]2:[eov][sep]
+Operation count is 100
+Write operation
+Key is user1661249
+Key is user43248744
+[beg]user1661249[eok]*1[eov]user43248744[eok],1[eov][sep]
+Operation count is 100
+Write operation
+Key is user1746930
+Key is user56474
+[beg]user1746930[eok]$*[eov]user56474[eok];,[eov][sep]
+Operation count is 100
+Write operation
+Key is user1752762
+Key is user1749848
+[beg]user1752762[eok]<5[eov]user1749848[eok]$#[eov][sep]
+Operation count is 100
+Write operation
+Key is user1392136
+Key is user1513191
+[beg]user1392136[eok]&5[eov]user1513191[eok],+[eov][sep]
+Operation count is 100
+Write operation
+Key is user43103480
+Key is user43274569
+[beg]user43103480[eok]68[eov]user43274569[eok];'[eov][sep]
+Operation count is 100
+Write operation
+Key is user43244769
+Key is user1515399
+[beg]user43244769[eok]98[eov]user1515399[eok]*![eov][sep]
+Operation count is 100
+Write operation
+Key is user1628797
+Key is user1752515
+[beg]user1628797[eok]02[eov]user1752515[eok];*[eov][sep]
+Operation count is 100
+Write operation
+Key is user43129297
+Key is user1723872
+[beg]user43129297[eok]#+[eov]user1723872[eok]1*[eov][sep]
+Operation count is 100
+Write operation
+Key is user1695
+Key is user1539141
+[beg]user1695[eok]#=[eov]user1539141[eok]2$[eov][sep]
+Operation count is 100
+Write operation
+Key is user43275405
+Key is user1694142
+[beg]user43275405[eok]$0[eov]user1694142[eok]<'[eov][sep]
+Operation count is 100
+Write operation
+Key is user1718976
+Key is user1691
+[beg]user1718976[eok]:-[eov]user1691[eok]:([eov][sep]
+Operation count is 100
+Write operation
+Key is user1663136
+Key is user1722007
+[beg]user1663136[eok],+[eov]user1722007[eok]$5[eov][sep]
+Operation count is 100
+Write operation
+Key is user1694950
+Key is user43190894
+[beg]user1694950[eok]2>[eov]user43190894[eok]1%[eov][sep]
+Operation count is 100
+Write operation
+Key is user1597788
+Key is user1668
+[beg]user1597788[eok]88[eov]user1668[eok]38[eov][sep]
+Operation count is 100
+Write operation
+Key is user1514152
+Key is user43311207
+[beg]user1514152[eok]=)[eov]user43311207[eok]9.[eov][sep]
+Operation count is 100
+Write operation
+Key is user1541337
+Key is user1574724
+[beg]user1541337[eok]!8[eov]user1574724[eok]9?[eov][sep]
+Cleanup for kaiju called
+Writing key mappings to file
+Closing kaiju socket
+Created one socket 155.98.38.134 9910
+Doing transactions
+Operation count is 100
+Write operation
+Key is user43282102
+Key is user1572809
+[beg]user43282102[eok]*-[eov]user1572809[eok]+<[eov][sep]
+Operation count is 100
+Write operation
+Key is user1630562
+Key is user1697
+[beg]user1630562[eok]'.[eov]user1697[eok]77[eov][sep]
+Operation count is 100
+Write operation
+Key is user1513477
+Key is user43066120
+[beg]user1513477[eok]9)[eov]user43066120[eok]'$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1721823
+Key is user1572089
+[beg]user1721823[eok];0[eov]user1572089[eok]':[eov][sep]
+Operation count is 100
+Write operation
+Key is user1511429
+Key is user1669
+[beg]user1511429[eok]1*[eov]user1669[eok]/$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1633596
+Key is user1513285
+[beg]user1633596[eok]?0[eov]user1513285[eok]2'[eov][sep]
+Operation count is 100
+Write operation
+Key is user1628762
+Key is user56344
+[beg]user1628762[eok]30[eov]user56344[eok]$+[eov][sep]
+Operation count is 100
+Write operation
+Key is user1748674
+Key is user1516260
+[beg]user1748674[eok]./[eov]user1516260[eok]*>[eov][sep]
+Operation count is 100
+Write operation
+Key is user1691
+Key is user43100651
+[beg]user1691[eok],,[eov]user43100651[eok].1[eov][sep]
+Operation count is 100
+Write operation
+Key is user1512446
+Key is user1717108
+[beg]user1512446[eok]47[eov]user1717108[eok]&)[eov][sep]
+Operation count is 100
+Write operation
+Key is user1573796
+Key is user1693021
+[beg]user1573796[eok]5$[eov]user1693021[eok]'+[eov][sep]
+Operation count is 100
+Write operation
+Key is user1512268
+Key is user1603748
+[beg]user1512268[eok],0[eov]user1603748[eok]'6[eov][sep]
+Operation count is 100
+Write operation
+Key is user43073843
+Key is user1512450
+[beg]user43073843[eok]5>[eov]user1512450[eok]1,[eov][sep]
+Operation count is 100
+Write operation
+Key is user1509632
+Key is user1603589
+[beg]user1509632[eok]%.[eov]user1603589[eok]4,[eov][sep]
+Operation count is 100
+Write operation
+Key is user43069902
+Key is user1692153
+[beg]user43069902[eok]:9[eov]user1692153[eok]<%[eov][sep]
+Operation count is 100
+Write operation
+Key is user52695
+Key is user1693117
+[beg]user52695[eok]!=[eov]user1693117[eok]5*[eov][sep]
+Operation count is 100
+Write operation
+Key is user43130286
+Key is user43157261
+[beg]user43130286[eok](0[eov]user43157261[eok]>7[eov][sep]
+Operation count is 100
+Write operation
+Key is user1721890
+Key is user1692
+[beg]user1721890[eok]23[eov]user1692[eok]>:[eov][sep]
+Operation count is 100
+Write operation
+Key is user43130442
+Key is user43310149
+[beg]user43130442[eok]73[eov]user43310149[eok].([eov][sep]
+Operation count is 100
+Write operation
+Key is user1717979
+Key is user1668
+[beg]user1717979[eok];*[eov]user1668[eok]($[eov][sep]
+Operation count is 100
+Write operation
+Key is user1722843
+Key is user1668
+[beg]user1722843[eok]$;[eov]user1668[eok]::[eov][sep]
+Operation count is 100
+Write operation
+Key is user1543051
+Key is user1668
+[beg]user1543051[eok]18[eov]user1668[eok]17[eov][sep]
+Operation count is 100
+Write operation
+Key is user43192973
+Key is user1668
+[beg]user43192973[eok]6*[eov]user1668[eok]5/[eov][sep]
+Operation count is 100
+Write operation
+Key is user43158285
+Key is user1690108
+[beg]user43158285[eok]$0[eov]user1690108[eok];6[eov][sep]
+Operation count is 100
+Write operation
+Key is user1753448
+Key is user1513469
+[beg]user1753448[eok];+[eov]user1513469[eok]/5[eov][sep]
+Operation count is 100
+Write operation
+Key is user1628795
+Key is user43216970
+[beg]user1628795[eok]-![eov]user43216970[eok]$>[eov][sep]
+Operation count is 100
+Write operation
+Key is user1539206
+Key is user54492
+[beg]user1539206[eok]%6[eov]user54492[eok]%'[eov][sep]
+Operation count is 100
+Write operation
+Key is user1690296
+Key is user50831
+[beg]user1690296[eok]'4[eov]user50831[eok]:0[eov][sep]
+Operation count is 100
+Write operation
+Key is user43193813
+Key is user1545989
+[beg]user43193813[eok]51[eov]user1545989[eok]>1[eov][sep]
+Operation count is 100
+Write operation
+Key is user1513189
+Key is user55419
+[beg]user1513189[eok]/'[eov]user55419[eok]0![eov][sep]
+Operation count is 100
+Write operation
+Key is user43253268
+Key is user1513285
+[beg]user43253268[eok]/$[eov]user1513285[eok]61[eov][sep]
+Operation count is 100
+Write operation
+Key is user43096875
+Key is user1721795
+[beg]user43096875[eok]9<[eov]user1721795[eok]=.[eov][sep]
+Operation count is 100
+Write operation
+Key is user1598780
+Key is user1567258
+[beg]user1598780[eok];4[eov]user1567258[eok]=,[eov][sep]
+Operation count is 100
+Write operation
+Key is user1601636
+Key is user1512421
+[beg]user1601636[eok]9*[eov]user1512421[eok]49[eov][sep]
+Operation count is 100
+Write operation
+Key is user1509473
+Key is user43097768
+[beg]user1509473[eok]&)[eov]user43097768[eok]70[eov][sep]
+Operation count is 100
+Write operation
+Key is user1543234
+Key is user1669
+[beg]user1543234[eok]=$[eov]user1669[eok]$([eov][sep]
+Operation count is 100
+Write operation
+Key is user1568186
+Key is user1508636
+[beg]user1568186[eok];,[eov]user1508636[eok]??[eov][sep]
+Operation count is 100
+Write operation
+Key is user1719873
+Key is user1690083
+[beg]user1719873[eok]':[eov]user1690083[eok]6;[eov][sep]
+Operation count is 100
+Write operation
+Key is user43065999
+Key is user43219667
+[beg]user43065999[eok]<%[eov]user43219667[eok]7/[eov][sep]
+Operation count is 100
+Write operation
+Key is user1598788
+Key is user1514219
+[beg]user1598788[eok]11[eov]user1514219[eok]'%[eov][sep]
+Operation count is 100
+Write operation
+Key is user1512451
+Key is user50677
+[beg]user1512451[eok]5?[eov]user50677[eok]($[eov][sep]
+Operation count is 100
+Write operation
+Key is user1628544
+Key is user1694
+[beg]user1628544[eok]96[eov]user1694[eok]96[eov][sep]
+Operation count is 100
+Write operation
+Key is user43098821
+Key is user1753445
+[beg]user43098821[eok]$$[eov]user1753445[eok]&6[eov][sep]
+Operation count is 100
+Write operation
+Key is user43096781
+Key is user1669
+[beg]user43096781[eok]-'[eov]user1669[eok];3[eov][sep]
+Operation count is 100
+Write operation
+Key is user1575723
+Key is user1691
+[beg]user1575723[eok]3'[eov]user1691[eok]0$[eov][sep]
+Operation count is 100
+Write operation
+Key is user50677
+Key is user1751557
+[beg]user50677[eok]/1[eov]user1751557[eok]$6[eov][sep]
+Operation count is 100
+Write operation
+Key is user1512515
+Key is user1669
+[beg]user1512515[eok]69[eov]user1669[eok]/-[eov][sep]
+Operation count is 100
+Write operation
+Key is user43217738
+Key is user1512448
+[beg]user43217738[eok]<8[eov]user1512448[eok]4/[eov][sep]
+Operation count is 100
+Write operation
+Key is user54430
+Key is user1691194
+[beg]user54430[eok]$9[eov]user1691194[eok])![eov][sep]
+Operation count is 100
+Write operation
+Key is user43277419
+Key is user1723874
+[beg]user43277419[eok],&[eov]user1723874[eok]&%[eov][sep]
+Operation count is 100
+Write operation
+Key is user1719091
+Key is user43163956
+[beg]user1719091[eok]&5[eov]user43163956[eok]?1[eov][sep]
+Operation count is 100
+Write operation
+Key is user1691
+Key is user1513284
+[beg]user1691[eok]$:[eov]user1513284[eok]-$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1393133
+Key is user1631518
+[beg]user1393133[eok]<=[eov]user1631518[eok]?5[eov][sep]
+Operation count is 100
+Write operation
+Key is user1544004
+Key is user52628
+[beg]user1544004[eok]?6[eov]user52628[eok]$7[eov][sep]
+Operation count is 100
+Write operation
+Key is user1695
+Key is user1750840
+[beg]user1695[eok]5$[eov]user1750840[eok]7.[eov][sep]
+Operation count is 100
+Write operation
+Key is user1538275
+Key is user1668
+[beg]user1538275[eok]=$[eov]user1668[eok]1$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1718069
+Key is user1668
+[beg]user1718069[eok]9-[eov]user1668[eok]85[eov][sep]
+Operation count is 100
+Write operation
+Key is user1510344
+Key is user1753472
+[beg]user1510344[eok]85[eov]user1753472[eok]%9[eov][sep]
+Operation count is 100
+Write operation
+Key is user43098794
+Key is user1750810
+[beg]user43098794[eok]37[eov]user1750810[eok])1[eov][sep]
+Operation count is 100
+Write operation
+Key is user1693
+Key is user1688188
+[beg]user1693[eok]+%[eov]user1688188[eok]>'[eov][sep]
+Operation count is 100
+Write operation
+Key is user1690106
+Key is user1605539
+[beg]user1690106[eok]/+[eov]user1605539[eok]%7[eov][sep]
+Operation count is 100
+Write operation
+Key is user1539201
+Key is user1604741
+[beg]user1539201[eok]6?[eov]user1604741[eok]1:[eov][sep]
+Operation count is 100
+Write operation
+Key is user1513196
+Key is user1602841
+[beg]user1513196[eok]'7[eov]user1602841[eok]0%[eov][sep]
+Operation count is 100
+Write operation
+Key is user1753563
+Key is user43074582
+[beg]user1753563[eok]&=[eov]user43074582[eok]=$[eov][sep]
+Operation count is 100
+Write operation
+Key is user43193901
+Key is user1751579
+[beg]user43193901[eok]-+[eov]user1751579[eok]3*[eov][sep]
+Operation count is 100
+Write operation
+Key is user1751523
+Key is user1545097
+[beg]user1751523[eok]:?[eov]user1545097[eok]'([eov][sep]
+Operation count is 100
+Write operation
+Key is user1544039
+Key is user1721979
+[beg]user1544039[eok]$?[eov]user1721979[eok]<([eov][sep]
+Operation count is 100
+Write operation
+Key is user1507644
+Key is user43072629
+[beg]user1507644[eok]38[eov]user43072629[eok],5[eov][sep]
+Operation count is 100
+Write operation
+Key is user48664
+Key is user1693023
+[beg]user48664[eok]#,[eov]user1693023[eok]9$[eov][sep]
+Operation count is 100
+Write operation
+Key is user1570110
+Key is user1600892
+[beg]user1570110[eok];+[eov]user1600892[eok]40[eov][sep]
+Operation count is 100
+Write operation
+Key is user1514215
+Key is user54675
+[beg]user1514215[eok]?&[eov]user54675[eok]7*[eov][sep]
+Operation count is 100
+Write operation
+Key is user1397066
+Key is user1597793
+[beg]user1397066[eok]9.[eov]user1597793[eok]%<[eov][sep]
+Operation count is 100
+Write operation
+Key is user43305190
+Key is user1630622
+[beg]user43305190[eok]$.[eov]user1630622[eok](<[eov][sep]
+Operation count is 100
+Write operation
+Key is user56319
+Key is user1669
+[beg]user56319[eok]&+[eov]user1669[eok]+<[eov][sep]
+Operation count is 100
+Write operation
+Key is user1542059
+Key is user1567166
+[beg]user1542059[eok]1?[eov]user1567166[eok]/-[eov][sep]
+Operation count is 100
+Write operation
+Key is user1691
+Key is user1544006
+[beg]user1691[eok];3[eov]user1544006[eok])+[eov][sep]
+Operation count is 100
+Write operation
+Key is user1540168
+Key is user1746003
+[beg]user1540168[eok]2;[eov]user1746003[eok]45[eov][sep]
+Operation count is 100
+Write operation
+Key is user1664168
+Key is user1669
+[beg]user1664168[eok]6:[eov]user1669[eok]3*[eov][sep]
+Operation count is 100
+Write operation
+Key is user1721796
+Key is user1746868
+[beg]user1721796[eok]<+[eov]user1746868[eok]?,[eov][sep]
+Operation count is 100
+Write operation
+Key is user1512451
+Key is user1747924
+[beg]user1512451[eok]35[eov]user1747924[eok]=&[eov][sep]
+Operation count is 100
+Write operation
+Key is user43130475
+Key is user50766
+[beg]user43130475[eok]//[eov]user50766[eok]()[eov][sep]
+Operation count is 100
+Write operation
+Key is user1630563
+Key is user52717
+[beg]user1630563[eok]<1[eov]user52717[eok]?+[eov][sep]
+Operation count is 100
+Write operation
+Key is user43099509
+Key is user54492
+[beg]user43099509[eok]:3[eov]user54492[eok]1,[eov][sep]
+Operation count is 100
+Write operation
+Key is user1513189
+Key is user43218671
+[beg]user1513189[eok]9?[eov]user43218671[eok]-![eov][sep]
+Operation count is 100
+Write operation
+Key is user1543979
+Key is user1627804
+[beg]user1543979[eok]25[eov]user1627804[eok]-,[eov][sep]
+Operation count is 100
+Write operation
+Key is user1691
+Key is user49866
+[beg]user1691[eok]:6[eov]user49866[eok],.[eov][sep]
+Operation count is 100
+Write operation
+Key is user1513195
+Key is user1512450
+[beg]user1513195[eok]6![eov]user1512450[eok]<8[eov][sep]
+Operation count is 100
+Write operation
+Key is user43282131
+Key is user43187982
+[beg]user43282131[eok](![eov]user43187982[eok]$6[eov][sep]
+Operation count is 100
+Write operation
+Key is user1719125
+Key is user1668
+[beg]user1719125[eok]!1[eov]user1668[eok]>([eov][sep]
+Operation count is 100
+Write operation
+Key is user1575902
+Key is user1749818
+[beg]user1575902[eok]1([eov]user1749818[eok]>2[eov][sep]
+Operation count is 100
+Write operation
+Key is user1514402
+Key is user1572065
+[beg]user1514402[eok]>9[eov]user1572065[eok]60[eov][sep]
+Operation count is 100
+Write operation
+Key is user1572774
+Key is user1691
+[beg]user1572774[eok]#)[eov]user1691[eok]5+[eov][sep]
+Operation count is 100
+Write operation
+Key is user43073712
+Key is user1724742
+[beg]user43073712[eok]<5[eov]user1724742[eok]=#[eov][sep]
+Operation count is 100
+Write operation
+Key is user1597913
+Key is user1747677
+[beg]user1597913[eok]7<[eov]user1747677[eok]?/[eov][sep]
+Operation count is 100
+Write operation
+Key is user43070798
+Key is user43279250
+[beg]user43070798[eok]:2[eov]user43279250[eok]6,[eov][sep]
+Operation count is 100
+Write operation
+Key is user49591
+Key is user1575694
+[beg]user49591[eok]<6[eov]user1575694[eok]:$[eov][sep]
+Operation count is 100
+Write operation
+Key is user53656
+Key is user1540347
+[beg]user53656[eok]:8[eov]user1540347[eok]5-[eov][sep]
+Operation count is 100
+Write operation
+Key is user1635299
+Key is user51608
+[beg]user1635299[eok]#$[eov]user51608[eok]:0[eov][sep]
+Operation count is 100
+Write operation
+Key is user43310924
+Key is user1542054
+[beg]user43310924[eok];8[eov]user1542054[eok].;[eov][sep]
+Operation count is 100
+Write operation
+Key is user43129544
+Key is user1632483
+[beg]user43129544[eok]4'[eov]user1632483[eok]32[eov][sep]
+Cleanup for kaiju called
+Writing key mappings to file
+Closing kaiju socket
