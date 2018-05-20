@@ -1,0 +1,28 @@
+		     \||||||||||||||||||/
+		   --- Welcome to Maude ---
+		     /||||||||||||||||||\
+	   Maude 2.7.1 built: Jun 27 2016 16:35:16
+	    Copyright 1997-2016 SRI International
+		   Sun May 20 13:47:21 2018
+==========================================
+erewrite in CLIENT : init .
+rewrites: 126320 in 368ms cpu (277373ms real) (343260 rewrites/second)
+result Configuration: <> < l("155.98.38.134", 0) : ClientShim | sockets : (<
+    socket(8) : BufferedSocket | read : "" > < socket(10) : BufferedSocket |
+    read : "" > < socket(12) : BufferedSocket | read : "" >),bufferedMsgs :
+    none,contacts : (< l("155.98.38.134", 2),socket(12),l("155.98.38.136") > ;
+    < l("155.98.38.134", 3),socket(8),l("155.98.38.136") > ; < l(
+    "155.98.38.134", 4),socket(10),l("155.98.38.136") >) > < l("155.98.38.134",
+    1) : ServerShim | sockets : (< socket(4) : BufferedSocket | read : "" > <
+    socket(5) : BufferedSocket | read : "" > < socket(6) : BufferedSocket |
+    read : "" > < socket(7) : BufferedSocket | read : "" > < socket(9) :
+    BufferedSocket | read : "" > < socket(11) : BufferedSocket | read : "" >),
+    bufferedMsgs : none,contacts : (< l("155.98.38.134", 2),socket(11),l(
+    "155.98.38.134") > ; < l("155.98.38.134", 3),socket(7),l("155.98.38.134") >
+    ; < l("155.98.38.134", 4),socket(9),l("155.98.38.134") >),created : 3 > <
+    l("155.98.38.134", 2) : Client | sent : 100,rcved : 31 > < l(
+    "155.98.38.134", 3) : Client | sent : 100,rcved : 25 > < l("155.98.38.134",
+    4) : Client | sent : 100,rcved : 44 > closedSocket(l("155.98.38.134", 2),
+    socket(11), "") closedSocket(l("155.98.38.134", 3), socket(7), "")
+    closedSocket(l("155.98.38.134", 4), socket(9), "")
+Bye.
