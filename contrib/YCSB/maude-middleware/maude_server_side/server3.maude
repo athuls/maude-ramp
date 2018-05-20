@@ -41,14 +41,14 @@ mod SERVER is
 
  *** load
   crl < O : Server | store : STORE >
-      [KV]
+      [KV,O']
     =>
       < O : Server | store : addKeyValue(KV,STORE) >
       if N := find(KV,"[eov]",0) .
 
   *** post load
  crl < O : Table | table : KVS >
-    [KR]
+    [KR,O']
   => 
     < O : Table | table : addKeyReplica(KR,KVS) >
     if N := find(KR,"[eoa]",0) .
@@ -81,7 +81,10 @@ mod SERVER is
 
   op genReads : String Map{String,String} Oid Oid -> Configuration .
  ceq genReads(READ,KVS,O,O') = genReads(STR,KVS,O,O')
-     (msg substr(READ,0,N + 5) from O to l(KVS[substr(READ,0,N)]) and O')
+       if KVS[substr(READ,0,N)] == undefined
+         then none
+         else (msg substr(READ,0,N + 5) from O to l(KVS[substr(READ,0,N)]) and O')
+       fi
      if N := find(READ, "[eor]", 0) /\
         STR := substr(READ,N + 5,length(READ)) .
   eq genReads("",KVS,O,O') = none .
@@ -101,7 +104,10 @@ mod SERVER is
   op genWrites : String Map{String,String} Oid Oid -> Configuration .
   eq genWrites("",KVS,O,O') = none .
  ceq genWrites(KV,KVS,O,O') = genWrites(substr(KV,N' + 5,length(KV)),KVS,O,O')
-     (msg substr(KV,0,N' + 5) from O to l(KVS[substr(KV,0,N)]) and O')   
+       if l(KVS[substr(KV,0,N)]) == undefined
+         then none
+         else (msg substr(KV,0,N' + 5) from O to l(KVS[substr(KV,0,N)]) and O')  
+       fi 
      if N := find(KV, "[eok]", 0) /\
         N' := find(KV, "[eov]", 0) .
 
@@ -132,8 +138,12 @@ mod SERVER is
       < O : Server | AS >
       (msg VALUE from O to O'') 
       if find(VALUE,"[eok]",0) == notFound /\
-         find(VALUE,"[eor]",0) == notFound .
+         find(VALUE,"[eor]",0) == notFound /\
+         ip(O) == "155.98.38.159" .
+	 --- Above IP is that of server 0, one that client contacts
 
+
+  eq numberOfServerSockets = 2 .
 
 ---(
   *** maude client ip
@@ -141,25 +151,31 @@ mod SERVER is
   eq client-addr = l(addr,2) .
 
   op addr : -> String .
-  eq addr = "155.98.38.116" .
+  eq addr = "155.98.38.159" .
 )
 
   op self : -> String .
-  eq self = "155.98.38.115" .
+  eq self = "155.98.38.159" .
 
   eq port = 9810 .
   op init : -> Configuration .
   eq init = <>
             < l(self,0) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
             < l(self) : Server | store : empty >
-            createServerTcpSocket(socketManager, l(self), 9810, 5) 
-            createServerTcpSocket(socketManager, l(self), 9710, 5) 
+            createServerTcpSocket(socketManager, l(self), 9810, 10) 
+            createServerTcpSocket(socketManager, l(self), 9710, 10) 
+---(
+            createServerTcpSocket(socketManager, l(self), 9611, 5) 
+            createServerTcpSocket(socketManager, l(self), 9612, 5) 
+            createServerTcpSocket(socketManager, l(self), 9613, 5) 
+            createServerTcpSocket(socketManager, l(self), 9614, 5) 
+            createServerTcpSocket(socketManager, l(self), 9615, 5) 
+)
 
             < l(self,1) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < tb : Table | table : empty > .
-            
+           
 endm
 
 erew init .
-
 
