@@ -41,7 +41,7 @@ mod CLIENT is
 
 
   eq numberOfServerSockets = 3 .
-  eq port = 9000 .  *** the base port
+  eq port = 9000 .  *** the base port for client talking to server
   eq backLog = 5 .  *** the BACKLOG parameter on the server side
 
 
