@@ -323,7 +323,7 @@ crl [send-msg-1-str-temp] :
                   bufferedMsgs : MSGS (msg MSG from O' to O''), AS >
      if exist(O'',MSGS)
        then none
-       else createClientTcpSocket(socketManager,O',ip(O''),port) 
+       else createClientTcpSocket(socketManager,O',ip(O''),port + id(O') quo backLog) 
      fi     
      if CONTACTS[O',O''] == null /\
         ip(O) =/= ip(O'') .  
@@ -362,12 +362,13 @@ crl [send-msg-1-str-temp] :
                   bufferedMsgs : MSGS (msg MSG from O' to O'' and O'''), AS >
      if exist(O'',MSGS)
        then none
-       else createClientTcpSocket(socketManager,O',ip(O''),port)
+       else createClientTcpSocket(socketManager,O',ip(O''),port + id(O') quo backLog)
      fi  
      if CONTACTS[O',O''] == null /\
         ip(O) =/= ip(O'') . 
 
   op port : -> Nat .  *** need to know in advance
+  op backLog : -> Nat .
 
 ---(
  crl [send-msg-2-str] :
@@ -391,7 +392,7 @@ crl [send-msg-1-str-temp] :
                   bufferedMsgs : MSGS (msg STR from O' to O''), AS >
      if exist(O'',MSGS)
        then none
-       else createClientTcpSocket(socketManager,O',ip(O''),port) 
+       else createClientTcpSocket(socketManager,O',ip(O''),port + id(O') quo backLog) 
      fi   
      if CONTACTS[O',O''] == null /\
         ip(O) =/= ip(O'') . 
@@ -418,7 +419,7 @@ crl [send-msg-1-str-temp] :
                   bufferedMsgs : MSGS (msg STR from O' to O'' and O'''), AS >
      if exist(O'',MSGS)
        then none
-       else createClientTcpSocket(socketManager,O',ip(O''),port)
+       else createClientTcpSocket(socketManager,O',ip(O''),port + id(O') quo backLog)
      fi
      if CONTACTS[O',O''] == null /\
         ip(O) =/= ip(O'') .

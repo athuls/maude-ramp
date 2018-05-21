@@ -144,6 +144,8 @@ mod SERVER is
 
 
   eq numberOfServerSockets = 2 .
+  eq port = 9910 .  *** the base port
+  eq backLog = 5 .  *** the BACKLOG parameter on the server side
 
 ---(
   *** maude client ip
@@ -157,7 +159,7 @@ mod SERVER is
   op self : -> String .
   eq self = "155.98.38.136" .
 
-  eq port = 9810 .
+
   op init : -> Configuration .
   eq init = <>
             < l(self,0) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
