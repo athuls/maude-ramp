@@ -144,7 +144,7 @@ mod SERVER is
 
 
   eq numberOfServerSockets = 2 .
-  eq port = 9910 .  *** the base port
+  eq port = 9910 .  *** the base port for server talking to server
   eq backLog = 5 .  *** the BACKLOG parameter on the server side
 
 ---(
