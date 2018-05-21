@@ -29,10 +29,6 @@ mod SHIM-DYNAMIC is
   var CONTACTS : Skts .
 
 
-  *** I assume in the initial state each server/client
-  *** will be associated with its own "createClient/ServerTcpSocket"
-
-
   *******************
   *** Server Shim ***
 
@@ -300,9 +296,7 @@ crl [send-msg-1-str-temp] :
         ip(O) =/= ip(O'') .  
 ***??? this one needed
 )
-
-
-
+---(
   *** This works in the scenario that a client tries to reach a server
   *** client can be either a real client, or a server that tries to reach another server
  crl [send-msg-2] :
@@ -315,6 +309,24 @@ crl [send-msg-1-str-temp] :
      if exist(O'',MSGS)
        then none
        else createClientTcpSocket(socketManager,O',ip(O''),port) 
+     fi     
+     if CONTACTS[O',O''] == null /\
+        ip(O) =/= ip(O'') .  
+***??? this one needed
+)
+
+  *** This works in the scenario that a client tries to reach a server
+  *** client can be either a real client, or a server that tries to reach another server
+ crl [send-msg-2] :
+     < O : CLIENTSHIM | contacts : CONTACTS, 
+                  bufferedMsgs : MSGS, AS >
+     (msg MSG from O' to O'') 
+   =>
+     < O : CLIENTSHIM | contacts : CONTACTS,
+                  bufferedMsgs : MSGS (msg MSG from O' to O''), AS >
+     if exist(O'',MSGS)
+       then none
+       else createClientTcpSocket(socketManager,O',ip(O''),port + id(O') quo backLog)
      fi     
      if CONTACTS[O',O''] == null /\
         ip(O) =/= ip(O'') .  
@@ -353,12 +365,13 @@ crl [send-msg-1-str-temp] :
                   bufferedMsgs : MSGS (msg MSG from O' to O'' and O'''), AS >
      if exist(O'',MSGS)
        then none
-       else createClientTcpSocket(socketManager,O',ip(O''),port)
+       else createClientTcpSocket(socketManager,O',ip(O''),port + id(O') quo backLog)
      fi  
      if CONTACTS[O',O''] == null /\
         ip(O) =/= ip(O'') . 
 
   op port : -> Nat .  *** need to know in advance
+  op backLog : -> Nat .
 
 
 ---(
@@ -383,7 +396,7 @@ crl [send-msg-1-str-temp] :
                   bufferedMsgs : MSGS (msg STR from O' to O''), AS >
      if exist(O'',MSGS)
        then none
-       else createClientTcpSocket(socketManager,O',ip(O''),port) 
+       else createClientTcpSocket(socketManager,O',ip(O''),port + id(O') quo backLog) 
      fi   
      if CONTACTS[O',O''] == null /\
         ip(O) =/= ip(O'') . 
@@ -411,7 +424,7 @@ crl [send-msg-1-str-temp] :
                   bufferedMsgs : MSGS (msg STR from O' to O'' and O'''), AS >
      if exist(O'',MSGS)
        then none
-       else createClientTcpSocket(socketManager,O',ip(O''),port)
+       else createClientTcpSocket(socketManager,O',ip(O''),port + id(O') quo backLog)
      fi
      if CONTACTS[O',O''] == null /\
         ip(O) =/= ip(O'') .

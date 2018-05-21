@@ -41,7 +41,8 @@ mod CLIENT is
 
 
   eq numberOfServerSockets = 3 .
-  eq port = 9810 .  *** current version can only work with the same fixed port for multiple Maude clients
+  eq port = 9000 .  *** the base port
+  eq backLog = 5 .  *** the BACKLOG parameter on the server side
 
 
   rl < O : Client | sent : N, AS >
