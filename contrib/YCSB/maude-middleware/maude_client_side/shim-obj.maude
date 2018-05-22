@@ -11,6 +11,10 @@ mod LOC is
   op ip : Oid -> String .
   eq ip(l(S,N)) = S .
   eq ip(l(S)) = S .
+
+  op id : Oid -> Nat .
+  eq id(l(S,N)) = N .
+  eq id(l(S)) = 0 .  --- Assume there is no l(S,0) for client/server obj
 endm
 view Oid from TRIV to LOC is sort Elt to Oid . endv
 
@@ -40,6 +44,7 @@ mod SHIM is
 
   op bufferedMsgs :_ : Configuration -> Attribute [ctor gather(&)] . 
 
+
   sort Skts . 
   op empty : -> Skts .
   *** self, socket, target
@@ -48,7 +53,6 @@ mod SHIM is
  
   op contacts :_ : Skts -> Attribute [ctor gather(&)] .
   op null : -> Oid .
- 
 
 
   ---??? some attr for fileManager stuff
