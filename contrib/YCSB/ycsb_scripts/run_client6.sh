@@ -1,7 +1,7 @@
 # To run: bash run_client1.sh 44 154 17:52:50.12345
 #!/bin/bash
 cd /users/nobi/ramp/maude-ramp/contrib/YCSB/maude-middleware/maude_client_side
-rm /run/shm/*
+#rm /run/shm/*
 sed -i -- 's/self = "155.98.38.[0-9]*/self = "155.98.38.'$1'/g' client6.maude
 sed -i -- 's/addr1 = "155.98.38.[0-9]*/addr1 = "155.98.38.'$2'/g' client6.maude
 ../maude-binaries/maude.linux64 client6.maude > /run/shm/maude_client6_logs.txt
