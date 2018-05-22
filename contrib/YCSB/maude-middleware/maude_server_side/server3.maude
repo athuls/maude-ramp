@@ -139,11 +139,13 @@ mod SERVER is
       (msg VALUE from O to O'') 
       if find(VALUE,"[eok]",0) == notFound /\
          find(VALUE,"[eor]",0) == notFound /\
-         ip(O) == "155.98.38.156" .
+         ip(O) == "155.98.38.146" .
 	 --- Above IP is that of server 0, one that client contacts
 
 
-  eq numberOfServerSockets = 2 .
+  eq numberOfServerSockets = 4 . ***Should add the count for sockets for server-maude client communication
+  eq port = 9910 .  *** the base port for server talking to server
+  eq backLog = 5 .  *** the BACKLOG parameter on the server side
 
 ---(
   *** maude client ip
@@ -151,19 +153,22 @@ mod SERVER is
   eq client-addr = l(addr,2) .
 
   op addr : -> String .
-  eq addr = "155.98.38.156" .
+  eq addr = "155.98.38.146" .
 )
 
   op self : -> String .
-  eq self = "155.98.38.156" .
+  eq self = "155.98.38.146" .
 
-  eq port = 9810 .
+
   op init : -> Configuration .
   eq init = <>
             < l(self,0) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
             < l(self) : Server | store : empty >
-            createServerTcpSocket(socketManager, l(self), 9810, 10) 
-            createServerTcpSocket(socketManager, l(self), 9710, 10) 
+            createServerTcpSocket(socketManager, l(self), 9910, 10)  *** opened for server-server
+            createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
+            createServerTcpSocket(socketManager, l(self), 9710, 10)  *** opened for post-load
+	    *** Following are ports for server - maude client communication
+            createServerTcpSocket(socketManager, l(self), 9000, 5) 
 ---(
             createServerTcpSocket(socketManager, l(self), 9611, 5) 
             createServerTcpSocket(socketManager, l(self), 9612, 5) 

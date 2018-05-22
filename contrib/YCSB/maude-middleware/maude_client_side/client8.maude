@@ -33,15 +33,16 @@ mod CLIENT is
   eq server-addr = l(addr1) .
 
   op addr1 : -> String .
-  eq addr1 = "155.98.38.156" .
+  eq addr1 = "155.98.38.136" .
 
   op self : -> String .
-  eq self = "155.98.38.130" .
+  eq self = "155.98.38.96" .
   ***eq self = "192.17.150.124" .
 
 
   eq numberOfServerSockets = 5 .
-  eq port = 9810 .  *** current version can only work with the same fixed port for multiple Maude clients
+  eq port = 9000 .  *** the base port for client talking to server
+  eq backLog = 5 .  *** the BACKLOG parameter on the server side
 
 
   rl < O : Client | sent : N, AS >
