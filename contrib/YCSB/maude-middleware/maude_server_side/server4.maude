@@ -139,7 +139,7 @@ mod SERVER is
       (msg VALUE from O to O'') 
       if find(VALUE,"[eok]",0) == notFound /\
          find(VALUE,"[eor]",0) == notFound /\
-         ip(O) == "155.98.38.146" .
+         ip(O) == "155.98.38.139" .
 	 --- Above IP is that of server 0, one that client contacts
 
 
@@ -153,31 +153,26 @@ mod SERVER is
   eq client-addr = l(addr,2) .
 
   op addr : -> String .
-  eq addr = "155.98.38.146" .
+  eq addr = "155.98.38.139" .
 )
 
   op self : -> String .
-  eq self = "155.98.38.146" .
+  eq self = "155.98.38.139" .
 
 
   op init : -> Configuration .
   eq init = <>
-            < l(self,0) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
+            < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
             < l(self) : Server | store : empty >
             createServerTcpSocket(socketManager, l(self), 9910, 10)  *** opened for server-server
             createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
             createServerTcpSocket(socketManager, l(self), 9710, 10)  *** opened for post-load
 	    *** Following are ports for server - maude client communication
-            createServerTcpSocket(socketManager, l(self), 9000, 5) 
----(
-            createServerTcpSocket(socketManager, l(self), 9611, 5) 
-            createServerTcpSocket(socketManager, l(self), 9612, 5) 
-            createServerTcpSocket(socketManager, l(self), 9613, 5) 
-            createServerTcpSocket(socketManager, l(self), 9614, 5) 
-            createServerTcpSocket(socketManager, l(self), 9615, 5) 
-)
+	    ***START AUTOMATICALLY GENERATED CODE***
+	    createServerTcpSocket(socketManager, l(self), 9000, 5)
+	    ***END AUTOMATICALLY GENERATED CODE***
 
-            < l(self,1) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
+            < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < tb : Table | table : empty > .
            
 endm
