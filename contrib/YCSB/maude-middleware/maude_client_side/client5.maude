@@ -58,25 +58,25 @@ mod CLIENT is
 
   op init : -> Configuration .
   eq init = <>
-            < l(self,0) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
-            < l(self,1) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
+            < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
+            < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
+	    < l(self,0) : Client | sent : 0, rcved : 0 >
+	    < l(self,1) : Client | sent : 0, rcved : 0 >
 	    < l(self,2) : Client | sent : 0, rcved : 0 >
 	    < l(self,3) : Client | sent : 0, rcved : 0 >
 	    < l(self,4) : Client | sent : 0, rcved : 0 >
-	    < l(self,5) : Client | sent : 0, rcved : 0 >
-	    < l(self,6) : Client | sent : 0, rcved : 0 >
 
 
             ---createClientTcpSocket(socketManager,l(self,3),addr1,9810)
-	    createServerTcpSocket(socketManager, l(self,2), 9910, 5)
-	    createServerTcpSocket(socketManager, l(self,3), 9911, 5)
-	    createServerTcpSocket(socketManager, l(self,4), 9912, 5)
-	    createServerTcpSocket(socketManager, l(self,5), 9913, 5)
-	    createServerTcpSocket(socketManager, l(self,6), 9914, 5).
+	    createServerTcpSocket(socketManager, l(self,0), 9910, 5)
+	    createServerTcpSocket(socketManager, l(self,1), 9911, 5)
+	    createServerTcpSocket(socketManager, l(self,2), 9912, 5)
+	    createServerTcpSocket(socketManager, l(self,3), 9913, 5)
+	    createServerTcpSocket(socketManager, l(self,4), 9914, 5).
             
 endm
 
-erew init .
+---erew init .
 ---rew addKeyReplica("k[eok]a[eoa]k1[eok]a1[eoa]",empty) .
 ---rew genReads("k[eor]k1[eor]",("k" |-> "a", "k1" |-> "a1"),l("localhost",2)) .
 ---rew genWrites("k[eok]v[eov]k1[eok]v1[eov]",("k" |-> "a", "k1" |-> "a1"),l("localhost",2)) .
