@@ -162,7 +162,7 @@ mod SERVER is
 
   op init : -> Configuration .
   eq init = <>
-            < l(self,0) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
+            < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
             < l(self) : Server | store : empty >
             createServerTcpSocket(socketManager, l(self), 9910, 10)  *** opened for server-server
             createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
@@ -177,7 +177,7 @@ mod SERVER is
             createServerTcpSocket(socketManager, l(self), 9615, 5) 
 )
 
-            < l(self,1) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
+            < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < tb : Table | table : empty > .
            
 endm
