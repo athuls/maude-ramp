@@ -1,0 +1,38 @@
+		     \||||||||||||||||||/
+		   --- Welcome to Maude ---
+		     /||||||||||||||||||\
+	   Maude 2.7.1 built: Jun 27 2016 16:35:16
+	    Copyright 1997-2016 SRI International
+		   Wed May 23 00:42:57 2018
+==========================================
+erewrite in CLIENT : init .
+rewrites: 229370 in 528ms cpu (281461ms real) (434412 rewrites/second)
+result Configuration: <> < l("155.98.38.139", 0) : Client | sent : 100,rcved :
+    33 > < l("155.98.38.139", 1) : Client | sent : 100,rcved : 21 > < l(
+    "155.98.38.139", 2) : Client | sent : 100,rcved : 27 > < l("155.98.38.139",
+    3) : Client | sent : 100,rcved : 41 > < l("155.98.38.139", 4) : Client |
+    sent : 100,rcved : 42 > < l("155.98.38.139", 10000) : ClientShim | sockets
+    : (< socket(10) : BufferedSocket | read : "" > < socket(12) :
+    BufferedSocket | read : "" > < socket(14) : BufferedSocket | read : "" > <
+    socket(16) : BufferedSocket | read : "" > < socket(18) : BufferedSocket |
+    read : "" >),bufferedMsgs : none,contacts : (< l("155.98.38.139", 0),
+    socket(10),l("155.98.38.146") > ; < l("155.98.38.139", 1),socket(18),l(
+    "155.98.38.146") > ; < l("155.98.38.139", 2),socket(14),l("155.98.38.146")
+    > ; < l("155.98.38.139", 3),socket(12),l("155.98.38.146") > ; < l(
+    "155.98.38.139", 4),socket(16),l("155.98.38.146") >) > < l("155.98.38.139",
+    10001) : ServerShim | sockets : (< socket(4) : BufferedSocket | read : "" >
+    < socket(5) : BufferedSocket | read : "" > < socket(6) : BufferedSocket |
+    read : "" > < socket(7) : BufferedSocket | read : "" > < socket(8) :
+    BufferedSocket | read : "" > < socket(9) : BufferedSocket | read : "" > <
+    socket(11) : BufferedSocket | read : "" > < socket(13) : BufferedSocket |
+    read : "" > < socket(15) : BufferedSocket | read : "" > < socket(17) :
+    BufferedSocket | read : "" >),bufferedMsgs : none,contacts : (< l(
+    "155.98.38.139", 0),socket(9),l("155.98.38.139") > ; < l("155.98.38.139",
+    1),socket(17),l("155.98.38.139") > ; < l("155.98.38.139", 2),socket(13),l(
+    "155.98.38.139") > ; < l("155.98.38.139", 3),socket(11),l("155.98.38.139")
+    > ; < l("155.98.38.139", 4),socket(15),l("155.98.38.139") >),created : 5 >
+    closedSocket(l("155.98.38.139", 0), socket(9), "") closedSocket(l(
+    "155.98.38.139", 1), socket(17), "") closedSocket(l("155.98.38.139", 2),
+    socket(13), "") closedSocket(l("155.98.38.139", 3), socket(11), "")
+    closedSocket(l("155.98.38.139", 4), socket(15), "")
+Bye.
