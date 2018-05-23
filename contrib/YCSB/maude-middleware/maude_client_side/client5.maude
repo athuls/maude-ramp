@@ -76,7 +76,7 @@ mod CLIENT is
             
 endm
 
----erew init .
+erew init .
 ---rew addKeyReplica("k[eok]a[eoa]k1[eok]a1[eoa]",empty) .
 ---rew genReads("k[eor]k1[eor]",("k" |-> "a", "k1" |-> "a1"),l("localhost",2)) .
 ---rew genWrites("k[eok]v[eov]k1[eok]v1[eov]",("k" |-> "a", "k1" |-> "a1"),l("localhost",2)) .
