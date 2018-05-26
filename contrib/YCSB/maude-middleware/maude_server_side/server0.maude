@@ -142,6 +142,7 @@ mod SERVER is
          ip(O) == "155.98.38.128" .
 	 --- Above IP is that of server 0, one that client contacts
 
+  eq msg STR from O to l(undefined) and O'' = none . 
 
   eq numberOfServerSockets = 4 . ***Should add the count for sockets for server-maude client communication
   eq port = 9910 .  *** the base port for server talking to server
