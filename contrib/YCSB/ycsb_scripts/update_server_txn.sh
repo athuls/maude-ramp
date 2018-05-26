@@ -18,7 +18,7 @@ final_iter=`expr $portcount - 1`
 echo "$final_iter $iter $port"
 while [ "$final_iter" -gt "$iter" ]
 do
-	gawk -i inplace '/START AUTOMATICALLY/{print;print "\t    createServerTcpSocket(socketManager, l(self), '$port', 5)";next}1' server$1.maude
+	gawk -i inplace '/START AUTOMATICALLY/{print;print "\t    createServerTcpSocket(socketManager, l(self), '$port', 10)";next}1' server$1.maude
 
 	port=`expr $port - 1`
 	final_iter=`expr $final_iter - 1`

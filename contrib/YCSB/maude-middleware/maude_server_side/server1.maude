@@ -139,7 +139,7 @@ mod SERVER is
       (msg VALUE from O to O'') 
       if find(VALUE,"[eok]",0) == notFound /\
          find(VALUE,"[eor]",0) == notFound /\
-         ip(O) == "155.98.38.134" .
+         ip(O) == "155.98.38.24" .
 	 --- Above IP is that of server 0, one that client contacts
 
 
@@ -153,11 +153,11 @@ mod SERVER is
   eq client-addr = l(addr,2) .
 
   op addr : -> String .
-  eq addr = "155.98.38.134" .
+  eq addr = "155.98.38.24" .
 )
 
   op self : -> String .
-  eq self = "155.98.38.134" .
+  eq self = "155.98.38.24" .
 
 
   op init : -> Configuration .
@@ -169,7 +169,7 @@ mod SERVER is
             createServerTcpSocket(socketManager, l(self), 9710, 10)  *** opened for post-load
 	    *** Following are ports for server - maude client communication
 	    ***START AUTOMATICALLY GENERATED CODE***
-	    createServerTcpSocket(socketManager, l(self), 9000, 5)
+	    createServerTcpSocket(socketManager, l(self), 9000, 10)
 	    ***END AUTOMATICALLY GENERATED CODE***
 
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
