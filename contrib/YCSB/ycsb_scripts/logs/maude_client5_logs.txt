@@ -1,0 +1,10 @@
+		     \||||||||||||||||||/
+		   --- Welcome to Maude ---
+		     /||||||||||||||||||\
+	   Maude 2.7.1 built: Jun 27 2016 16:35:16
+	    Copyright 1997-2016 SRI International
+		   Sat May 26 22:42:48 2018
+==========================================
+erewrite in CLIENT : init .
+
+Bye.
