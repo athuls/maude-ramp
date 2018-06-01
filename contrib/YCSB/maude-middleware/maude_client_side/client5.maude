@@ -33,10 +33,10 @@ mod CLIENT is
   eq server-addr = l(addr1) .
 
   op addr1 : -> String .
-  eq addr1 = "155.98.38.19" .
+  eq addr1 = "155.98.38.63" .
 
   op self : -> String .
-  eq self = "155.98.38.146" .
+  eq self = "155.98.38.27" .
   ***eq self = "192.17.150.124" .
 
 

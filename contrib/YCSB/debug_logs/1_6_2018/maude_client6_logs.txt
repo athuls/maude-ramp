@@ -1,0 +1,10 @@
+		     \||||||||||||||||||/
+		   --- Welcome to Maude ---
+		     /||||||||||||||||||\
+	   Maude alpha116 built: Mar 16 2018 17:40:28
+	    Copyright 1997-2017 SRI International
+		   Fri Jun  1 12:53:35 2018
+==========================================
+erewrite in CLIENT : init .
+
+Bye.
