@@ -16,7 +16,7 @@ then
 	echo "$client_id"
 	echo "Killing"
 	kill -9 $(ps aux | grep '[y]csb' | awk '{print $2}') & 
-	kill -9 $(ps aux | grep '[r]un_client'$client_id'.sh' | awk '{print $2}') &
+#	kill -9 $(ps aux | grep '[r]un_client'$client_id'.sh' | awk '{print $2}') &
 	kill -2 $(ps aux | grep '[c]lient'$client_id'\.maude' | awk '{print $2}') &
 	#sleep 2
 else
