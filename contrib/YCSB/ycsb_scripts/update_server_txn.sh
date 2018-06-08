@@ -9,6 +9,7 @@ portcount=`expr $2 / $4`
 echo "$portcount"
 socketcount=`expr $portcount + 3`
 sed -i -- 's/numberOfServerSockets = [0-9]*/numberOfServerSockets = '$socketcount'/g' server$1.maude
+sed -i -- 's/backLog = [0-9]*/backLog = '$4'/g' server$1.maude
 #sed -i '/createServerTcpSocket/d' server$1.maude
 sed -i '/START AUTOMATICALLY/,/END AUTOMATICALLY/{/START AUTOMATICALLY/!{/END AUTOMATICALLY/!d}}' server$1.maude
 
