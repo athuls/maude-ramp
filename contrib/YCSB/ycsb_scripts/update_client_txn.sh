@@ -1,11 +1,12 @@
 cd /users/nobi/ramp/maude-ramp/contrib/YCSB/maude-middleware/maude_client_side
-if [ $# != 3 ]
+if [ $# != 4 ]
 then
-	echo "Arguments needed: ClientID, #clients, initialPort"
+	echo "Arguments needed: ClientID, #clients, initialPort, #backlog"
 	exit 1 
 fi
 
 sed -i -- 's/numberOfServerSockets = [0-9]*/numberOfServerSockets = '$2'/g' client$1.maude
+sed -i -- 's/backLog = [0-9]*/backLog = '$4'/g' client$1.maude
 sed -i '/createServerTcpSocket/d' client$1.maude
 sed -i '/Client | sent : 0, rcved : 0 >/d' client$1.maude
 iter=-1

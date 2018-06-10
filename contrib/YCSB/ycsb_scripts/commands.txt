@@ -4,7 +4,7 @@ sh update_server_txn.sh 0 25 9000 5
 nohup sh run_server0.sh 137 &
 ---
 
-sh update_client_txn.sh 5 5 9910
+sh update_client_txn.sh 5 5 9910 5
 <ClientID, #clients, initialPort>
 
 nohup sh run_client6.sh 135 103 &
