@@ -146,7 +146,7 @@ mod SERVER is
 
   eq numberOfServerSockets = 4 . ***Should add the count for sockets for server-maude client communication
   eq port = 9910 .  *** the base port for server talking to server
-  eq backLog = 5 .  *** the BACKLOG parameter on the server side
+  eq backLog = 10 .  *** the BACKLOG parameter on the server side
 
 ---(
   *** maude client ip
