@@ -229,10 +229,10 @@ crl [flush-msg-maude] :
 
 
  crl [send-msg-1] :
-     < O : SHIM | contacts : CONTACTS, AS >
-     (msg MSG from O' to O'') 
+     < O : SERVERSHIM | contacts : CONTACTS, AS >
+     {msg MSG from O' to O''} 
    =>
-     < O : SHIM | contacts : CONTACTS, AS >
+     < O : SERVERSHIM | contacts : CONTACTS, AS >
      send(CONTACTS[O',O''],O',msg2string(msg MSG from O' to O'') + "[msep]") 
      if CONTACTS[O',O''] =/= null .
         *** /\ ip(O) =/= ip(O'') *** if undefined, then msg will stay in the soup
@@ -242,10 +242,10 @@ crl [flush-msg-maude] :
                              *** msg targeting local resident will stay in the soup
 
  crl [send-msg-1-temp] :
-     < O : SHIM | contacts : CONTACTS, AS >
-     (msg MSG from O' to O'' and O''') 
+     < O : SERVERSHIM | contacts : CONTACTS, AS >
+     {msg MSG from O' to O'' and O'''} 
    =>
-     < O : SHIM | contacts : CONTACTS, AS >
+     < O : SERVERSHIM | contacts : CONTACTS, AS >
      send(CONTACTS[O',O''],O',msg2string(msg MSG from O' to O'' and O''') + "[msep]") 
      if CONTACTS[O',O''] =/= null .
         *** /\ ip(O) =/= ip(O'') *** if undefined, then msg will stay in the soup
@@ -256,10 +256,10 @@ crl [flush-msg-maude] :
 
 
 crl [send-msg-1-str] :
-      < O : SHIM | contacts : CONTACTS, AS >
-      (msg STR from O' to O'')
+      < O : SERVERSHIM | contacts : CONTACTS, AS >
+      {msg STR from O' to O''}
     =>
-      < O : SHIM | contacts : CONTACTS, AS >
+      < O : SERVERSHIM | contacts : CONTACTS, AS >
       send(CONTACTS[O',O''],O',msg2string(msg STR from O' to O'') + "[msep]")
       if CONTACTS[O',O''] =/= null .
          *** /\ ip(O) =/= ip(O'') *** if undefined, then msg will stay in the soup
@@ -269,10 +269,10 @@ crl [send-msg-1-str] :
                               *** msg targeting local resident will stay in the soup
 
 crl [send-msg-1-str-temp] :
-      < O : SHIM | contacts : CONTACTS, AS >
-      (msg STR from O' to O'' and O''')
+      < O : SERVERSHIM | contacts : CONTACTS, AS >
+      {msg STR from O' to O'' and O'''}
     =>
-      < O : SHIM | contacts : CONTACTS, AS >
+      < O : SERVERSHIM | contacts : CONTACTS, AS >
       send(CONTACTS[O',O''],O',msg2string(msg STR from O' to O'' and O''') + "[msep]")
       if CONTACTS[O',O''] =/= null .
          *** /\ ip(O) =/= ip(O'') *** if undefined, then msg will stay in the soup
@@ -281,43 +281,14 @@ crl [send-msg-1-str-temp] :
                               *** target is not resident, i.e.,
                               *** msg targeting local resident will stay in the soup
 
----(
- crl [send-msg-1-str] :
-     < O : SHIM | contacts : LS, AS >
-     (msg STR from O' to O'') 
-   =>
-     < O : SHIM | contacts : LS, AS >
-     send(LS[O''],O',STR + "[msep]") 
-     if LS[O''] =/= undefined .
-        *** /\ ip(O) =/= ip(O'') *** if undefined, then msg will stay in the soup
-***??? could be removed as no self in contacts                    
-                             *** until the socket is built up
-                             *** target is not resident, i.e., 
-                             *** msg targeting local resident will stay in the soup
-)
----(
-  *** This works in the scenario that a client tries to reach a server
-  *** client can be either a real client, or a server that tries to reach another server
- crl [send-msg-2] :
-     < O : CLIENTSHIM | contacts : LS, 
-                  bufferedMsgs : MSGS, AS >
-     (msg MSG from O' to O'') 
-   =>
-     < O : CLIENTSHIM | contacts : LS,
-                  bufferedMsgs : MSGS (msg MSG from O' to O''), AS >
-     createClientTcpSocket(socketManager,O',ip(O''),port) 
-     if LS[O''] == undefined /\
-        ip(O) =/= ip(O'') .  
-***??? this one needed
-)
 
 
   *** This works in the scenario that a client tries to reach a server
-  *** client can be either a real client, or a server that tries to reach another server
+  *** client can be either an actual client, or a server that tries to reach another server
  crl [send-msg-2] :
      < O : CLIENTSHIM | contacts : CONTACTS, 
                   bufferedMsgs : MSGS, AS >
-     (msg MSG from O' to O'') 
+     < msg MSG from O' to O'' > 
    =>
      < O : CLIENTSHIM | contacts : CONTACTS,
                   bufferedMsgs : MSGS (msg MSG from O' to O''), AS >
@@ -339,24 +310,10 @@ crl [send-msg-1-str-temp] :
   eq exist(O,MSGS) = false [owise] .
 
 
-
----(
- crl [send-msg-2-temp] :
-     < O : CLIENTSHIM | contacts : LS, 
-                  bufferedMsgs : MSGS, AS >
-     (msg MSG from O' to O'' and O''') 
-   =>
-     < O : CLIENTSHIM | contacts : LS,
-                  bufferedMsgs : MSGS (msg MSG from O' to O'' and O'''), AS >
-     createClientTcpSocket(socketManager,O',ip(O''),port) 
-     if LS[O''] == undefined /\
-        ip(O) =/= ip(O'') . 
-)
-
  crl [send-msg-2-temp] :
      < O : CLIENTSHIM | contacts : CONTACTS, 
                   bufferedMsgs : MSGS, AS >
-     (msg MSG from O' to O'' and O''') 
+     < msg MSG from O' to O'' and O''' > 
    =>
      < O : CLIENTSHIM | contacts : CONTACTS,
                   bufferedMsgs : MSGS (msg MSG from O' to O'' and O'''), AS >
@@ -370,23 +327,12 @@ crl [send-msg-1-str-temp] :
   op port : -> Nat .  *** need to know in advance
   op backLog : -> Nat .
 
----(
- crl [send-msg-2-str] :
-     < O : CLIENTSHIM | contacts : LS, 
-                  bufferedMsgs : MSGS, AS >
-     (msg STR from O' to O'') 
-   =>
-     < O : CLIENTSHIM | contacts : LS,
-                  bufferedMsgs : MSGS (msg STR from O' to O''), AS >
-     createClientTcpSocket(socketManager,O',ip(O''),port) 
-     if LS[O''] == undefined /\
-        ip(O) =/= ip(O'') .  
-)
+
 
  crl [send-msg-2-str] :
      < O : CLIENTSHIM | contacts : CONTACTS, 
                   bufferedMsgs : MSGS, AS >
-     (msg STR from O' to O'') 
+     < msg STR from O' to O'' >
    =>
      < O : CLIENTSHIM | contacts : CONTACTS,
                   bufferedMsgs : MSGS (msg STR from O' to O''), AS >
@@ -397,23 +343,11 @@ crl [send-msg-1-str-temp] :
      if CONTACTS[O',O''] == null /\
         ip(O) =/= ip(O'') . 
 
----(
- crl [send-msg-2-str-temp] :
-     < O : CLIENTSHIM | contacts : LS, 
-                  bufferedMsgs : MSGS, AS >
-     (msg STR from O' to O'' and O''') 
-   =>
-     < O : CLIENTSHIM | contacts : LS,
-                  bufferedMsgs : MSGS (msg STR from O' to O'' and O'''), AS >
-     createClientTcpSocket(socketManager,O',ip(O''),port) 
-     if LS[O''] == undefined /\
-        ip(O) =/= ip(O'') .  
-)
 
  crl [send-msg-2-str-temp] :
      < O : CLIENTSHIM | contacts : CONTACTS, 
                   bufferedMsgs : MSGS, AS >
-     (msg STR from O' to O'' and O''') 
+     < msg STR from O' to O'' and O''' >
    =>
      < O : CLIENTSHIM | contacts : CONTACTS,
                   bufferedMsgs : MSGS (msg STR from O' to O'' and O'''), AS >
@@ -461,18 +395,12 @@ crl [send-msg-1-str-temp] :
                    bufferedMsgs : MSGS, AS >
       send(CONTACTS[O',O''],O',msg2string(msg STR from O' to O'' and O''') + "[msep]")
       if CONTACTS[O',O''] =/= null .
----(
- crl [send-msg-3-str] :
-     < O : SHIM | contacts : LS,
-                  bufferedMsgs : MSGS (msg STR from O' to O''), AS >
-   =>
-     < O : SHIM | contacts : LS,
-                  bufferedMsgs : MSGS, AS >
-     send(LS[O''],O',STR + "[msep]") 
-     if LS[O''] =/= undefined .
-)
+
 
   eq sent(O,O') = none .
+
+  op {_} : Msg -> Configuration .  *** role: server
+  op <_> : Msg -> Configuration .  *** role: client
 
 endm
 
