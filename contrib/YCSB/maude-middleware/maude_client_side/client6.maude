@@ -33,16 +33,16 @@ mod CLIENT is
   eq server-addr = l(addr1) .
 
   op addr1 : -> String .
-  eq addr1 = "155.98.38.158" .
+  eq addr1 = "155.98.38.155" .
 
   op self : -> String .
-  eq self = "155.98.38.124" .
+  eq self = "155.98.38.153" .
   ***eq self = "192.17.150.124" .
 
 
-  eq numberOfServerSockets = 5 .
+  eq numberOfServerSockets = 1 .
   eq port = 9000 .  *** the base port for client talking to server
-  eq backLog = 5 .  *** the BACKLOG parameter on the server side
+  eq backLog = 1 .  *** the BACKLOG parameter on the server side
 
 
   rl < O : Client | sent : N, AS >
@@ -61,18 +61,10 @@ mod CLIENT is
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 	    < l(self,0) : Client | sent : 0, rcved : 0 >
-	    < l(self,1) : Client | sent : 0, rcved : 0 >
-	    < l(self,2) : Client | sent : 0, rcved : 0 >
-	    < l(self,3) : Client | sent : 0, rcved : 0 >
-	    < l(self,4) : Client | sent : 0, rcved : 0 >
 
 
             ---createClientTcpSocket(socketManager,l(self,3),addr1,9810)
-	    createServerTcpSocket(socketManager, l(self,0), 9910, 5)
-	    createServerTcpSocket(socketManager, l(self,1), 9911, 5)
-	    createServerTcpSocket(socketManager, l(self,2), 9912, 5)
-	    createServerTcpSocket(socketManager, l(self,3), 9913, 5)
-	    createServerTcpSocket(socketManager, l(self,4), 9914, 5).
+	    createServerTcpSocket(socketManager, l(self,0), 9910, 5).
             
 endm
 
