@@ -56,15 +56,26 @@ mod CLIENT is
     =>
       < O : Client | rcved : N + 1, AS > .
 
+  ---NEW
+  op genInit : Nat -> Configuration .
+  op $genInit : Nat Nat -> Configuration .
+  eq genInit(N) = $genInit(N,0) .
+ ceq $genInit(N,N') = ["user001[eok]value[eov]",l(self,0)] $genInit(N,N' + 1) 
+     if N' < N .
+  eq $genInit(N,N') = none [owise] .
+     
+
+
   op init : -> Configuration .
-  eq init = <>
+  eq init = <> genInit(2000)  ---NEW
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 	    < l(self,0) : Client | sent : 0, rcved : 0 >
 
 
             ---createClientTcpSocket(socketManager,l(self,3),addr1,9810)
-	    createServerTcpSocket(socketManager, l(self,0), 9910, 5).
+	    ---NEW createServerTcpSocket(socketManager, l(self,0), 9910, 5) 
+     .
             
 endm
 
