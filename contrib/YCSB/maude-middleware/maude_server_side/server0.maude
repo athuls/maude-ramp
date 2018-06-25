@@ -160,17 +160,18 @@ mod SERVER is
   op init : -> Configuration .
   eq init = <>
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
-            < l(self) : Server | store : empty >
+            < l(self) : Server | store : "user001" |-> "default" >  ---NEW
             createServerTcpSocket(socketManager, l(self), 9910, 10)  *** opened for server-server
-            createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
-            createServerTcpSocket(socketManager, l(self), 9710, 10)  *** opened for post-load
+        ---NEW    createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
+        ---NEW    createServerTcpSocket(socketManager, l(self), 9710, 10)  *** opened for post-load
 	    *** Following are ports for server - maude client communication
 	    ***START AUTOMATICALLY GENERATED CODE***
 	    createServerTcpSocket(socketManager, l(self), 9000, 10)
 	    ***END AUTOMATICALLY GENERATED CODE***
 
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
-            < tb : Table | table : empty > .
+        ---NEW
+            < tb : Table | table : "user001" |-> self > .
            
 endm
 
