@@ -67,7 +67,7 @@ mod CLIENT is
 
 
   op init : -> Configuration .
-  eq init = <> genInit(1)  ---NEW
+  eq init = <> genInit(2000)  ---NEW
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 	    < l(self,0) : Client | sent : 0, rcved : 0 > .
