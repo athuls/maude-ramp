@@ -33,14 +33,14 @@ mod CLIENT is
   eq server-addr = l(addr1) .
 
   op addr1 : -> String .
-  eq addr1 = "155.98.38.22" .
+  eq addr1 = "155.98.38.47" .
 
   op self : -> String .
-  eq self = "155.98.38.150" .
+  eq self = "155.98.38.43" .
   ***eq self = "192.17.150.124" .
 
 
-  eq numberOfServerSockets = 1 .
+  eq numberOfServerSockets = 0 .
   eq port = 9000 .  *** the base port for client talking to server
   eq backLog = 1 .  *** the BACKLOG parameter on the server side
 
@@ -70,12 +70,12 @@ mod CLIENT is
   eq init = <> genInit(2000)  ---NEW
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
-	    < l(self,0) : Client | sent : 0, rcved : 0 >
+	    < l(self,0) : Client | sent : 0, rcved : 0 > .
 
 
             ---createClientTcpSocket(socketManager,l(self,3),addr1,9810)
 	    ---NEW createServerTcpSocket(socketManager, l(self,0), 9910, 5) 
-     .
+     
             
 endm
 
