@@ -1,3 +1,4 @@
+set show advisories off .
 load shim-dynamic-new
 
 mod CLIENT is
@@ -33,10 +34,10 @@ mod CLIENT is
   eq server-addr = l(addr1) .
 
   op addr1 : -> String .
-  eq addr1 = "155.98.38.22" .
+  eq addr1 = "155.98.38.121" .
 
   op self : -> String .
-  eq self = "155.98.38.150" .
+  eq self = "155.98.38.153" .
   ***eq self = "192.17.150.150" .
 
 
