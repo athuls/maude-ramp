@@ -29,16 +29,16 @@ mod SERVER is
 
 
  *** load
-  crl < O : Server | store : STORE >
+  ceq < O : Server | store : STORE >
       [KV,O']
-    =>
+    =
       < O : Server | store : addKeyValue(KV,STORE) >
       if N := find(KV,"[eov]",0) .
 
   *** post load
- crl < O : Table | table : KVS >
+ ceq < O : Table | table : KVS >
     [KR,O']
-  => 
+  = 
     < O : Table | table : addKeyReplica(KR,KVS) >
     if N := find(KR,"[eoa]",0) .
 
@@ -59,10 +59,10 @@ mod SERVER is
 
 
   *** txn
- crl < O : Server | AS >
+ ceq < O : Server | AS >
      < TB : Table | table : KVS, AS' >
      (msg READ from O' to O)
-   => 
+   = 
      < O : Server | AS >
      < TB : Table | table : KVS, AS' >
      genReads(READ,KVS,O,O')
@@ -81,10 +81,10 @@ mod SERVER is
 
 
 
- crl < O : Server | AS >
+ ceq < O : Server | AS >
      < TB : Table | table : KVS, AS' >
      (msg KV from O' to O)
-   => 
+   = 
      < O : Server | AS >
      < TB : Table | table : KVS, AS' >
      genWrites(KV,KVS,O,O')
@@ -102,9 +102,9 @@ mod SERVER is
 
 
 
-  crl < O : Server | store : STORE >
+  ceq < O : Server | store : STORE >
       (msg READ from O' to O and O'')
-    =>
+    =
       < O : Server | store : STORE >
       if O == O'
         then (msg STORE[substr(READ,0,N)] from O to O' and O'')
@@ -114,9 +114,9 @@ mod SERVER is
 
 
 
- crl < O : Server | store : STORE >
+ ceq < O : Server | store : STORE >
      (msg KV from O' to O and O'')
-   => 
+   = 
      < O : Server | store : insert(substr(KV,0,N),substr(STR,0,N'),STORE) > 
      if O == O'
        then (msg "done" from O to O' and O'') 
@@ -127,14 +127,14 @@ mod SERVER is
         N' := find(STR, "[eov]", 0) .
 
 
-  crl < O : Server | AS >
+  ceq < O : Server | AS >
       (msg VALUE from O' to O and O'')
-    =>
+    =
       < O : Server | AS >
       {msg VALUE from O to O''}
       if find(VALUE,"[eok]",0) == notFound /\
          find(VALUE,"[eor]",0) == notFound /\
-         ip(O) == "155.98.38.80" .
+         ip(O) == "155.98.38.47" .
 	 --- Above IP is that of server 0, one that client contacts
 
   eq < msg STR from O to l(undefined) and O'' > 
@@ -150,11 +150,11 @@ mod SERVER is
   eq client-addr = l(addr,2) .
 
   op addr : -> String .
-  eq addr = "155.98.38.80" .
+  eq addr = "155.98.38.47" .
 )
 
   op self : -> String .
-  eq self = "155.98.38.80" .
+  eq self = "155.98.38.47" .
 
 
   op init : -> Configuration .
