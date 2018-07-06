@@ -33,10 +33,10 @@ mod CLIENT is
   eq server-addr = l(addr1) .
 
   op addr1 : -> String .
-  eq addr1 = "155.98.38.94" .
+  eq addr1 = "155.98.38.150" .
 
   op self : -> String .
-  eq self = "155.98.38.34" .
+  eq self = "155.98.38.108" .
   ***eq self = "192.17.150.124" .
 
 
@@ -67,7 +67,7 @@ mod CLIENT is
 
 
   op init : -> Configuration .
-  eq init = <> genInit(2000)  ---NEW
+  eq init = <> genInit(10000)  ---NEW
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 	    < l(self,0) : Client | sent : 0, rcved : 0 > .
