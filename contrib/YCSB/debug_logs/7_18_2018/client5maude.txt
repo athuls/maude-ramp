@@ -1,0 +1,12 @@
+		     \||||||||||||||||||/
+		   --- Welcome to Maude ---
+		     /||||||||||||||||||\
+	   Maude alpha117 built: Jul 10 2018 19:51:52
+	    Copyright 1997-2018 SRI International
+		   Wed Jul 18 01:52:36 2018
+==========================================
+erewrite in CLIENT : init .
+rewrites: 776885 in 1392ms cpu (30370ms real) (558107 rewrites/second)
+result Configuration: 
+
+Bye.

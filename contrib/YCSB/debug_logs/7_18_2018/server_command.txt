@@ -1,0 +1,1 @@
+../alpha117/maude-CVC4.linux64 -interactive server0.maude > ../../debug_logs/7_18_2018/server0logs.txt
