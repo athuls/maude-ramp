@@ -33,10 +33,10 @@ mod CLIENT is
   eq server-addr = l(addr1) .
 
   op addr1 : -> String .
-  eq addr1 = "10.182.191.42" .
+  eq addr1 = "155.98.38.114" .
 
   op self : -> String .
-  eq self = "10.182.191.42" .
+  eq self = "155.98.38.129" .
   ***eq self = "192.17.150.124" .
 
 
@@ -70,10 +70,7 @@ mod CLIENT is
   eq init = <> genInit(2000)  ---NEW
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
-	    < l(self,0) : Client | sent : 0, rcved : 0 > 
-
-       createClientTcpSocket(socketManager,l(self,0),addr1,9000) *** newly added line; comment it out when you finish the local test; don't forget move "." to the end of above line
-       .
+	    < l(self,0) : Client | sent : 0, rcved : 0 > .
 
 
             ---createClientTcpSocket(socketManager,l(self,3),addr1,9810)
