@@ -9,21 +9,31 @@ mod INIT-SERVER is
   vars N' N : Nat .
   vars STR KV : String .
   var STORE : Versions .
+  var LC : KeyTimestamps .
 
  *** load
-  crl < O : Replica | datastore : STORE, AS >
+  crl < O : Replica | datastore : STORE, latestCommit : LC, AS >
       [KV,O']
     =>
-      < O : Replica | datastore : addKeyValue(KV,STORE), AS >
+      < O : Replica | datastore : addKeyValue(KV,STORE),
+                      latestCommit : addKeyTS(KV,LC), AS >
       if N := find(KV,"[eov]",0) .
 
   op addKeyValue : String Versions -> Versions .
  ceq addKeyValue(KV,STORE) = addKeyValue(substr(STR,N' + 5,length(STR)),
-       (version(substr(KV,0,N),substr(STR,0,N'),eptTS,empty),STORE))
+       (version(substr(KV,0,N),substr(STR,0,N'),ts(dftOid,0),empty),STORE))
      if N := find(KV, "[eok]", 0) /\
         STR := substr(KV, N + 5, length(KV)) /\
         N' := find(STR, "[eov]", 0) .
   eq addKeyValue("",STORE) = STORE .
+
+  op addKeyTS : String KeyTimestamps -> KeyTimestamps .
+ ceq addKeyTS(KV,LC) = addKeyTS(substr(STR,N' + 5,length(STR)), 
+       insert(substr(KV,0,N),ts(dftOid,0),LC)) 
+     if N := find(KV, "[eok]", 0) /\
+        STR := substr(KV, N + 5, length(KV)) /\
+        N' := find(STR, "[eov]", 0) .
+  eq addKeyTS("",LC) = LC .
 
 
   eq numberOfServerSockets = 2 . *** one for load, one(s) for client(s)
@@ -51,4 +61,4 @@ mod INIT-SERVER is
 endm
 
 ---rew init .
-erew init .
+---erew init .
