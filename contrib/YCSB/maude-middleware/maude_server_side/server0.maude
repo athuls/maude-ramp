@@ -140,7 +140,7 @@ mod SERVER is
   eq < msg STR from O to l(undefined) and O'' > 
        = {msg STR from O to O''}  . 
 
-  eq numberOfServerSockets = 2 . ***Should add the count for sockets for server-maude client communication
+  eq numberOfServerSockets = 1 . ***Should add the count for sockets for server-maude client communication
   eq port = 9910 .  *** the base port for server talking to server
   eq backLog = 1 .  *** the BACKLOG parameter on the server side
 
@@ -161,7 +161,7 @@ mod SERVER is
   eq init = <>
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
             < l(self) : Server | store : "user001" |-> "default" >  ---NEW
-            createServerTcpSocket(socketManager, l(self), 9910, 10)  *** opened for server-server
+        ***    createServerTcpSocket(socketManager, l(self), 9910, 10)  *** opened for server-server
         ---NEW    createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
         ---NEW    createServerTcpSocket(socketManager, l(self), 9710, 10)  *** opened for post-load
 	    *** Following are ports for server - maude client communication
