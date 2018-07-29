@@ -28,17 +28,6 @@ mod SERVER is
   vars STORE KVS : Map{String,String} .
 
 
----(
-  *** load 
- crl < O : Server | store : STORE >
-     [KV]
-   => 
-     < O : Server | store : insert(substr(KV,0,N),substr(STR,0,N'),STORE) >  
-     if N := find(KV, "[eok]", 0) /\ 
-        STR := substr(KV, N + 5, length(KV)) /\
-        N' := find(STR, "[eov]", 0) .
-)
-
  *** load
   crl < O : Server | store : STORE >
       [KV,O']
@@ -81,9 +70,9 @@ mod SERVER is
 
   op genReads : String Map{String,String} Oid Oid -> Configuration .
  ceq genReads(READ,KVS,O,O') = genReads(STR,KVS,O,O')
-       if KVS[substr(READ,0,N)] == undefined
-         then none
-         else (msg substr(READ,0,N + 5) from O to l(KVS[substr(READ,0,N)]) and O')
+       if l(KVS[substr(READ,0,N)]) == O
+         then (msg substr(READ,0,N + 5) from O to l(KVS[substr(READ,0,N)]) and O')
+         else < msg substr(READ,0,N + 5) from O to l(KVS[substr(READ,0,N)]) and O' >
        fi
      if N := find(READ, "[eor]", 0) /\
         STR := substr(READ,N + 5,length(READ)) .
@@ -104,9 +93,9 @@ mod SERVER is
   op genWrites : String Map{String,String} Oid Oid -> Configuration .
   eq genWrites("",KVS,O,O') = none .
  ceq genWrites(KV,KVS,O,O') = genWrites(substr(KV,N' + 5,length(KV)),KVS,O,O')
-       if l(KVS[substr(KV,0,N)]) == undefined
-         then none
-         else (msg substr(KV,0,N' + 5) from O to l(KVS[substr(KV,0,N)]) and O')  
+       if l(KVS[substr(KV,0,N)]) == O
+         then (msg substr(KV,0,N' + 5) from O to l(KVS[substr(KV,0,N)]) and O')
+         else < msg substr(KV,0,N' + 5) from O to l(KVS[substr(KV,0,N)]) and O' >   
        fi 
      if N := find(KV, "[eok]", 0) /\
         N' := find(KV, "[eov]", 0) .
@@ -117,7 +106,10 @@ mod SERVER is
       (msg READ from O' to O and O'')
     =>
       < O : Server | store : STORE >
-      (msg STORE[substr(READ,0,N)] from O to O' and O'')
+      if O == O'
+        then (msg STORE[substr(READ,0,N)] from O to O' and O'')
+        else {msg STORE[substr(READ,0,N)] from O to O' and O''}
+      fi
       if N := find(READ, "[eor]", 0) . 
 
 
@@ -126,7 +118,10 @@ mod SERVER is
      (msg KV from O' to O and O'')
    => 
      < O : Server | store : insert(substr(KV,0,N),substr(STR,0,N'),STORE) > 
-     (msg "done" from O to O' and O'') 
+     if O == O'
+       then (msg "done" from O to O' and O'') 
+       else {msg "done" from O to O' and O''} 
+     fi
      if N := find(KV, "[eok]", 0) /\ 
         STR := substr(KV, N + 5, length(KV)) /\
         N' := find(STR, "[eov]", 0) .
@@ -136,17 +131,18 @@ mod SERVER is
       (msg VALUE from O' to O and O'')
     =>
       < O : Server | AS >
-      (msg VALUE from O to O'') 
+      {msg VALUE from O to O''}
       if find(VALUE,"[eok]",0) == notFound /\
          find(VALUE,"[eor]",0) == notFound /\
-         ip(O) == "155.98.38.19" .
+         ip(O) == "155.98.38.94" .
 	 --- Above IP is that of server 0, one that client contacts
 
-  eq msg STR from O to l(undefined) and O'' = none . 
+  eq < msg STR from O to l(undefined) and O'' > 
+       = {msg STR from O to O''}  . 
 
-  eq numberOfServerSockets = 4 . ***Should add the count for sockets for server-maude client communication
+  eq numberOfServerSockets = 2 . ***Should add the count for sockets for server-maude client communication
   eq port = 9910 .  *** the base port for server talking to server
-  eq backLog = 10 .  *** the BACKLOG parameter on the server side
+  eq backLog = 1 .  *** the BACKLOG parameter on the server side
 
 ---(
   *** maude client ip
@@ -154,29 +150,30 @@ mod SERVER is
   eq client-addr = l(addr,2) .
 
   op addr : -> String .
-  eq addr = "155.98.38.19" .
+  eq addr = "155.98.38.80" .
 )
 
   op self : -> String .
-  eq self = "155.98.38.19" .
+  eq self = "155.98.38.94" .
 
 
   op init : -> Configuration .
   eq init = <>
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
-            < l(self) : Server | store : empty >
+            < l(self) : Server | store : "user001" |-> "default" >  ---NEW
             createServerTcpSocket(socketManager, l(self), 9910, 10)  *** opened for server-server
-            createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
-            createServerTcpSocket(socketManager, l(self), 9710, 10)  *** opened for post-load
+        ---NEW    createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
+        ---NEW    createServerTcpSocket(socketManager, l(self), 9710, 10)  *** opened for post-load
 	    *** Following are ports for server - maude client communication
 	    ***START AUTOMATICALLY GENERATED CODE***
 	    createServerTcpSocket(socketManager, l(self), 9000, 10)
 	    ***END AUTOMATICALLY GENERATED CODE***
 
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
-            < tb : Table | table : empty > .
+        ---NEW
+            < tb : Table | table : "user001" |-> self > .
            
 endm
 
-erew init .
+---erew init .
 

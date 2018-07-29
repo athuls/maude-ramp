@@ -1,3 +1,10 @@
+Run server: 
+- Login to server node (let's say node0)
+- cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ycsb_scripts
+- Run run_server0.sh script. For other nodes, run the server script with corresponding node ID. 
+  >> nohup sh run_server0.sh &
+
+ 
 Do load to server client only, postload to maude client
 Comment out ---erew init .
 Update IP address like before for server
