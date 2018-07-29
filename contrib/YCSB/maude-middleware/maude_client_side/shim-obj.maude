@@ -14,13 +14,12 @@ mod LOC is
 
   op id : Oid -> Nat .
   eq id(l(S,N)) = N .
-  eq id(l(S)) = 0 .  --- Assume there is no l(S,0) for client/server obj
+  eq id(l(S)) = 0 .  *** Assume there is no l(S,0) for client/server obj
 endm
 view Oid from TRIV to LOC is sort Elt to Oid . endv
 
 mod SHIM is
-  pr MAP{Oid,Oid} .  *** socket(n) is of sort Oid, the same as b(socket(n))
-  pr SET{Oid} .
+  pr CONFIGURATION .
 
   sort Shim .  *** Shim has as ID l(IP,0), e.g., l("localhost",0)
   subsort Shim < Cid .
@@ -34,13 +33,6 @@ mod SHIM is
   *** server-side: one additional buffer for listening for clients;
   ***              other buffers corresponds to clients
   op sockets :_ : Configuration -> Attribute [ctor gather(&)] .   
-
-  *** IP |-> b(socket(Nat))
----  op contacts :_ : Map{Oid, Oid} -> Attribute [ctor gather(&)] .  
-
-  op residents :_ : Set{Oid} -> Attribute [ctor gather(&)] .  
-
-  op mode :_ : Mode -> Attribute [ctor gather(&)] . 
 
   op bufferedMsgs :_ : Configuration -> Attribute [ctor gather(&)] . 
 
@@ -94,7 +86,7 @@ mod MESSAGE is
 
   op start_ : Oid -> Msg [ctor] .
 
-  op msgg : -> Msg .
+
   op msg_from_ : MsgCont Oid -> Msg [ctor] .
   op msg_from_to_ : MsgCont Oid Oid -> Msg [ctor] .
   op msg_from_to_ : String Oid Oid -> Msg [ctor] .
@@ -103,9 +95,6 @@ mod MESSAGE is
   op msg_from_to_and_ : MsgCont Oid Oid Oid -> Msg [ctor] .
 
   op new-socket : Oid -> Msg [ctor] .
-
-  op o1 : -> Oid .
-  op o2 : -> Oid .
 
   vars O O' : Oid .
   var MSG : MsgCont .
