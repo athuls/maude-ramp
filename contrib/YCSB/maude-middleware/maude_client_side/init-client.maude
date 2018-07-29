@@ -29,7 +29,7 @@ mod INIT-CLIENT is
   ops tb m : -> Oid .
 
   op self : -> String .
-  eq self = "10.182.191.42" .
+  eq self = "155.98.38.33" .
   ***eq self = "192.17.150.124" .
 
 
@@ -47,8 +47,8 @@ mod INIT-CLIENT is
   eq $genInit(N,N') = none [owise] .
 
   ops k1-addr k2-addr : -> String .
-  eq k1-addr = "" .
-  eq k2-addr = "" .
+  eq k1-addr = "155.98.38.39" .
+  eq k2-addr = "155.98.38.39" .
 
 
   op init : -> Configuration .
