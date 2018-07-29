@@ -19,8 +19,7 @@ endm
 view Oid from TRIV to LOC is sort Elt to Oid . endv
 
 mod SHIM is
-  pr MAP{Oid,Oid} .  *** socket(n) is of sort Oid, the same as b(socket(n))
-  pr SET{Oid} .
+  pr CONFIGURATION .
 
   sort Shim .  *** Shim has as ID l(IP,0), e.g., l("localhost",0)
   subsort Shim < Cid .
@@ -34,13 +33,6 @@ mod SHIM is
   *** server-side: one additional buffer for listening for clients;
   ***              other buffers corresponds to clients
   op sockets :_ : Configuration -> Attribute [ctor gather(&)] .   
-
-  *** IP |-> b(socket(Nat))
----  op contacts :_ : Map{Oid, Oid} -> Attribute [ctor gather(&)] .  
-
-  op residents :_ : Set{Oid} -> Attribute [ctor gather(&)] .  
-
-  op mode :_ : Mode -> Attribute [ctor gather(&)] . 
 
   op bufferedMsgs :_ : Configuration -> Attribute [ctor gather(&)] . 
 
