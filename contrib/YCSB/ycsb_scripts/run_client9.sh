@@ -1,17 +1,16 @@
-# To run: bash run_client1.sh 44 154 17:52:50.12345
+# To run: bash run_client5.sh 44 154 17:52:50.12345
 #!/bin/bash
 cd /users/nobi/ramp/maude-ramp/contrib/YCSB/maude-middleware/maude_client_side
-#rm /run/shm/*
-sed -i -- 's/self = "155.98.38.[0-9]*/self = "155.98.38.'$1'/g' client9.maude
-sed -i -- 's/addr1 = "155.98.38.[0-9]*/addr1 = "155.98.38.'$2'/g' client9.maude
-../maude-binaries/maude.linux64 -interactive client9.maude > /run/shm/maude_client9_logs.txt
+sed -i -- 's/self = "155.98.38.[0-9]*/self = "155.98.38.'$1'/g' init-client9.maude
+../maude-binaries/alpha117/maude-Yices2.linux64 init-client9.maude > /proj/Confluence/maude/debug_logs/temp/maude_client9_logs.txt
 
 : <<'END'
+#sed -i -- 's/addr1 = "155.98.38.[0-9]*/addr1 = "155.98.38.'$2'/g' client5.maude
 bash ../../ycsb_scripts/sleep_time.sh $3
 retn_val=$?
 if [ "$retn_val" == "0" ]
 then 
-	../maude-binaries/maude.linux64 client3.maude > /run/shm/maude_client3_logs.txt &
+	../maude-binaries/maude.linux64 client5.maude > /run/shm/maude_client5_logs.txt
 	pid[0]=$!
 	sleep 3
 	echo "${pid[0]}"

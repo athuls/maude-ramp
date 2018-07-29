@@ -1,0 +1,64 @@
+Start emulab experiment
+- Use small-lan as your profile
+- Use d710 machines
+
+Run server: 
+- Login to server node (let's say node0)
+- cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ycsb_scripts
+- Run run_server0.sh script. For other nodes, run the server script with corresponding node ID. 
+  >> nohup sh run_server0.sh <IP address info> &
+  The argument <IP address info> is the host part of IP address of server node.  
+  E.g. if IP address is 155.98.38.62, you pass in 62 as argument to script 
+
+Load phase:
+- cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ycsb_scripts
+- THe load config is available at /users/nobi/ramp/maude-ramp/contrib/YCSB/workloads/workloada_load
+  THe records to load are assigned to recordcount parameter. Keep that and txnlen parameters the same. 
+- sh load-ycsb.sh <list of IP address info of all server nodes, delimited by space>
+  E.g. >> sh load-ycsb.sh 62 72 61
+       Here the IP address of server nodes are 155.98.38.62, 155.98.38.72, 155.98.38.61
+- Once the load at terminal shows all the records have been uploaded, you can stop the script using Ctrl+C
+
+Run maude client:
+- Login to client node (let's say node5)
+- cd /users/nobi/ramp/maude-ramp/contrib/YCSB/maude-middleware/maude_client_side
+- >> bash run_client5.sh 63
+- Do not close this terminal and open another terminal for this node (to do post load and transactions phases)
+
+Post load phase:
+- From a terminal for the same machine that is running the client, cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ycsb_scripts
+- >> sh postload-ycsb.sh <list of IP address info of all server nodes, delimited by space> 
+  E.g. >> sh load-ycsb.sh 62 72 61
+  Here the IP address of server nodes are 155.98.38.62, 155.98.38.72, 155.98.38.61
+- Give it a few seconds for post load to complete, then run kill script: 
+  >> sh kill_postload.sh
+
+Run transactions using ycsb:
+- With the new architecture, each ycsb client now connects to one maude client, so the number of clients argument to run-ycsb script is always 1
+- The timestamp argument is such that all ycsb clients (including those running on same node and those running on different nodes) have to start at same time. So put a timestamp that is about 3-4 minutes into the future so you get some time to start the ycsb clients on all the machines before the txn start time begins.
+- >> nohup bash run-ycsb.sh <maude client IP address info> <maude client port number for txns> <#clients> <operation count> <start timestamp> > <log file> &
+  E.g. nohup bash run-ycsb.sh 108 9910 1 1000 19:50:00 > /proj/Confluence/maude/debug_logs/temp/run.txt &  
+  where 108 is the IP host address of the maude client (which would be 155.98.38.108 in this case)
+  9910 is the port number on maude client opened for transactions  
+  1 is the number of clients, this is fixed with our new setup
+  1000 is the number of operations to generate
+  19:50:00 is the time when txns have to start generating  
+
+- Once you have set a time for transactions to start, you need to run another script to stop the transactions at a fixed time in the future (say one minute after the transactions started). Based onn the number of transactions completed in a minute, you can then compute the throughput
+- >> nohup bash kill_ycsb.sh <time to stop txns> <client ID>
+  E.g. nohup bash kill_ycsb.sh 19:51:00 5 &
+  where node5 is the one where corresponding maude client is running and txns are to stop at 19:51:00
+
+
+Kill maude client:
+- Login back to the client node
+- cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ycsb_scripts
+- sh kill_client.sh <node ID of client node>
+  E.g. sh kill_client.sh 5 
+- The logs for intermediate state can be found at /proj/Confluence/maude/debug_logs/temp/maude_client5_logs.txt
+
+Kill maude server: 
+- cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ycsb_scripts
+- sh kill_server.sh <server node ID>
+  If the node you are running on server is node0 then pass 0 as argument 
+- The logs can be found at /proj/Confluence/maude/debug_logs/temp/maude_server0_logs.txt
