@@ -21,9 +21,16 @@ Load phase:
 
 Run maude client:
 - Login to client node (let's say node5)
-- cd /users/nobi/ramp/maude-ramp/contrib/YCSB/maude-middleware/maude_client_side
+- cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ycsb_scripts
 - >> bash run_client5.sh 63
 - Do not close this terminal and open another terminal for this node (to do post load and transactions phases)
+NOTE: If you want to run multiple instances of Maude client on a single client node
+- Create multiple copies of init-client5.maude file. Say init-client5_0.maude, init-client5_1.maude...
+- Now open init-client5_0.maude and set the N value in l(self,N) to 0 in line 46. Note that each will have unique value of N. 
+  So init-client5_0.maude will have l(self,0) in line 46, init-client5_1.maude will have l(self,1) in line 46 and so on. 
+- Now you pass a second argument to run_client5.sh file (in folder /users/nobi/ramp/maude-ramp/contrib/YCSB/ycsb_scripts) which is the client instance ID. So for running file init-client5_0.maude, you say
+  >> bash run_client5.sh 63 0
+- Note that each client instance should have a separate terminal 
 
 Post load phase:
 - From a terminal for the same machine that is running the client, cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ycsb_scripts
