@@ -1,10 +1,8 @@
-load shim-dynamic-new
-load ramp-prelim
+load shim-dynamic
 
 mod RAMP-F is
   inc CLIENT-REPLICA .
-  inc RAMP-MESSAGE .
-  inc VERSION-RAMP .
+  inc MESSAGE .
   inc VALUES-NAT .
   inc SHIM-DYNAMIC .
   pr STRING .
@@ -86,7 +84,7 @@ mod RAMP-F is
 )
 
 
-  op tid : Oid Nat -> Oid .
+---  op tid : Oid Nat -> Oid .
 
   rl [gotTxn] :
      < CLIENT : Client | txns : TXNS, sqn : N, AS >
