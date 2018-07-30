@@ -1,4 +1,23 @@
+mod LOC is
+  pr CONFIGURATION .
+  pr STRING .
 
+  op l : String Nat -> Oid .  *** l(IP,local object ID)
+                              *** l(IP,0) is always the shim's ID 
+  op l : String -> Oid .      *** for YCSB client
+
+  var S : String .
+  var N : Nat .
+  op ip : Oid -> String .
+  eq ip(l(S,N)) = S .
+  eq ip(l(S)) = S .
+
+  op id : Oid -> Nat .
+  eq id(l(S,N)) = N .
+  eq id(l(S)) = 0 .  --- Assume there is no l(S,0) for client/server obj
+
+endm
+view Oid from TRIV to LOC is sort Elt to Oid . endv
 
 fmod SOME-PARAMETERS is
   sort Version .  --- In RAMP version is a 4-tuple (key,value,timestamp,metadata)
@@ -88,15 +107,6 @@ mod TXN-AUX1 is
   eq delete1(A, A ; AS) = AS .
   eq delete1(A, AS) = AS [owise] .
 
----(
-  var K : Key .
-  var V : Value .
-  var WS : WriteSet .
-
-  op keys : WriteSet -> KeySet .
-  eq keys(empty) = empty .
-  eq keys((K |-> V,WS)) = K, keys(WS) .
-)
 endm
 view OidSet from TRIV to TXN-AUX1 is sort Elt to OidSet . endv
 view ValueVersionList from TRIV to TXN-AUX1 is sort Elt to ValueVersionList . endv
@@ -135,12 +145,13 @@ mod VALUES-NAT is --- define the sort Value
   eq evalAux(EXPR1 plus EXPR2, VARS) = evalAux(EXPR1, VARS) + evalAux(EXPR2, VARS) .
 endm
 
+---(
 mod VERSION-RAMP is
   inc SOME-PARAMETERS + TXN-SORTS + TXN-AUX1 .
   op version : String String Timestamp KeySet -> Version .  --- KeySet concerns MD
   op eptVersion : -> Version .
 endm
-
+)
 
 fmod READSET-RAMP is
   --- RAMP's readSet is Versions
@@ -150,9 +161,55 @@ mod DATASTORE-RAMP is
   pr SET{Version} * (sort Set{Version} to Versions) .
 endm
 
-mod RAMP-MESSAGE is
+mod MESSAGE is
   inc TXN-AUX1 .
-  inc MESSAGE .
+
+  pr CONFIGURATION .
+  pr NAT .
+  pr STRING .
+  pr LOC .
+  pr INT .
+
+  sort MsgCont .
+
+  op error : String -> Msg [ctor msg] .
+
+  op test : Nat -> MsgCont .
+
+  op start_ : Oid -> Msg [ctor] .
+
+  op msgg : -> Msg .
+  op msg_from_ : MsgCont Oid -> Msg [ctor] .
+  op msg_from_to_ : MsgCont Oid Oid -> Msg [ctor] .
+  op msg_from_to_ : String Oid Oid -> Msg [ctor] .
+
+  op msg_from_to_and_ : String Oid Oid Oid -> Msg [ctor] .
+  op msg_from_to_and_ : MsgCont Oid Oid Oid -> Msg [ctor] .
+
+  op new-socket : Oid -> Msg [ctor] .
+
+  op o1 : -> Oid .
+  op o2 : -> Oid .
+
+  vars O O' : Oid .
+  var MSG : MsgCont .
+  var STR : String .
+
+  op source : Msg -> Oid .
+  op target : Msg -> Oid .
+  eq source(msg MSG from O to O') = O .
+  eq target(msg MSG from O to O') = O' .
+  eq source(msg STR from O to O') = O .
+  eq target(msg STR from O to O') = O' .
+
+  ---
+  op tid : Oid Nat -> Oid .  --- txn ID
+
+
+  op ts : Oid Int -> Timestamp [ctor] .
+  op version : String String Timestamp KeySet -> Version .  --- KeySet concerns MD
+  op eptVersion : -> Version .
+ 
   
   op prepare-reply : Oid Bool Oid -> MsgCont . --- TID, yes/no, RID
   op get : Oid Key Timestamp Oid -> MsgCont .
@@ -266,3 +323,48 @@ mod CLIENT-REPLICA is
 )
 endm
 
+mod MSG-STRING-CONVERSION is
+  pr MESSAGE .
+  pr STRING .
+  pr META-LEVEL .
+  pr CONFIGURATION .
+
+  vars S S' S'' : String .
+  var  MSG : Msg .
+  var N : Nat .
+  var  Q : Qid .
+  vars QIL QIL' : QidList .
+
+
+  op qidListString : QidList -> String .
+  op qidListString : QidList String -> String .
+  op stringQidList : String -> QidList .
+  op stringQidList : String QidList -> QidList .
+
+  eq qidListString(QIL) = qidListString(QIL, "") .
+  eq qidListString(nil, S) = S .
+  eq qidListString(Q QIL, S) = qidListString(QIL, S + string(Q) + " ") .
+
+  eq stringQidList(S) = stringQidList(S, nil) .
+  eq stringQidList("", QIL) = QIL .
+  eq stringQidList(S, QIL) = QIL qid(S) [owise] . ***if S =/= "" /\ find(S, " ", 0) = notFound .
+  ceq stringQidList(S, QIL)
+    = stringQidList(S'', QIL qid(S') )
+    if N := find(S, " ", 0)
+       /\ S' := substr(S, 0, N)
+       /\ S'' := substr(S, N + 1, length(S)) .
+
+  op msg2string : Msg -> String .
+  eq msg2string(MSG) = qidListString(metaPrettyPrint(upModule('MESSAGE, false), upTerm(MSG), none)) .
+
+  op string2msg : String -> Msg .
+  eq string2msg(S)
+    = downTerm(getTerm(metaParse(upModule('MESSAGE, false), stringQidList(S), 'Msg)), error(S)) .
+
+endm
+
+---(
+rew msg2string(msg prepare(tid(l("123",0),1),version("k1","v1",ts(l("123",0),1),"k2"),l("123",0)) from l("123",0) to l("456",0) ) .
+
+rew string2msg("msg_from_to_ `( prepare `( tid `( l `( \"123\" `, 0 `) `, s_ `( 0 `) `) `, version `( \"k1\" `, \"v1\" `, ts `( l `( \"123\" `, 0 `) `, s_ `( 0 `) `) `, \"k2\" `) `, l `( \"123\" `, 0 `) `) `, l `( \"123\" `, 0 `) `, l `( \"456\" `, 0 `) `) ") .
+)

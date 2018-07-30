@@ -1,22 +1,27 @@
-mod LOC is
-  pr CONFIGURATION .
-  pr STRING .
+load socket
 
-  op l : String Nat -> Oid .  *** l(IP,local object ID)
-                              *** l(IP,0) is always the shim's ID 
-  op l : String -> Oid .      *** for YCSB client
+mod BUFFERED-SOCKET is
+  pr NAT .
+  inc SOCKET .
 
-  var S : String .
-  var N : Nat .
-  op ip : Oid -> String .
-  eq ip(l(S,N)) = S .
-  eq ip(l(S)) = S .
+  sort BufferedSocket .
+  subsort BufferedSocket < Cid .
+  op BufferedSocket : -> BufferedSocket .
 
-  op id : Oid -> Nat .
-  eq id(l(S,N)) = N .
-  eq id(l(S)) = 0 .  *** Assume there is no l(S,0) for client/server obj
+  op read :_ : String -> Attribute [ctor gather(&)] .
+  ---(
+  op bState :_ : BState -> Attribute [ctor gather(&)] .
+  op waiting :_ : Bool -> Attribute [ctor gather(&)] .
+  op complete :_ : FindResult -> Attribute [ctor gather(&)] .
+  )
+
+  op b : Oid -> Oid .   *** buffered sockets ids are marked with a b operator,
+                        *** i.e., the buffers associated to a socket SOCKET
+                        *** have identifier b(SOCKET); note that there is a
+                        *** BufferedSocket on each side of the socket, that is,
+                        *** there are two objects with the same id, but in different
+                        *** configurations.
 endm
-view Oid from TRIV to LOC is sort Elt to Oid . endv
 
 mod SHIM is
   pr CONFIGURATION .
@@ -24,10 +29,6 @@ mod SHIM is
   sort Shim .  *** Shim has as ID l(IP,0), e.g., l("localhost",0)
   subsort Shim < Cid .
   op Shim : -> Shim .
-
-  --- We probably do not need Mode for Shim... !!!
-  sort Mode .
-  ops idle waiting-connection active : -> Mode [ctor] .
 
   *** stores all generated sockets
   *** server-side: one additional buffer for listening for clients;
@@ -71,81 +72,4 @@ mod SHIM is
   --- or log the returned values for consistency check
   --- op server-analysis-state :_ : ... -> Attribute [ctor gather(&)] . 
 endm
-
-mod MESSAGE is
-  pr CONFIGURATION .
-  pr NAT .
-  pr STRING .
-  pr LOC .
-
-  sort MsgCont .
-
-  op error : String -> Msg [ctor msg] .
-
-  op test : Nat -> MsgCont .
-
-  op start_ : Oid -> Msg [ctor] .
-
-
-  op msg_from_ : MsgCont Oid -> Msg [ctor] .
-  op msg_from_to_ : MsgCont Oid Oid -> Msg [ctor] .
-  op msg_from_to_ : String Oid Oid -> Msg [ctor] .
-
-  op msg_from_to_and_ : String Oid Oid Oid -> Msg [ctor] .
-  op msg_from_to_and_ : MsgCont Oid Oid Oid -> Msg [ctor] .
-
-  op new-socket : Oid -> Msg [ctor] .
-
-  vars O O' : Oid .
-  var MSG : MsgCont .
-  var STR : String .
-
-  op source : Msg -> Oid .
-  op target : Msg -> Oid .
-  eq source(msg MSG from O to O') = O .
-  eq target(msg MSG from O to O') = O' .
-  eq source(msg STR from O to O') = O .
-  eq target(msg STR from O to O') = O' .
-endm
-
-mod MSG-STRING-CONVERSION is
-  pr MESSAGE .
-  pr STRING .
-  pr META-LEVEL .
-  pr CONFIGURATION .
-
-  vars S S' S'' : String .
-  var  MSG : Msg .
-  var N : Nat .
-  var  Q : Qid .
-  vars QIL QIL' : QidList .
-
-
-  op qidListString : QidList -> String .
-  op qidListString : QidList String -> String .
-  op stringQidList : String -> QidList .
-  op stringQidList : String QidList -> QidList .
-
-  eq qidListString(QIL) = qidListString(QIL, "") .
-  eq qidListString(nil, S) = S .
-  eq qidListString(Q QIL, S) = qidListString(QIL, S + string(Q) + " ") .
-
-  eq stringQidList(S) = stringQidList(S, nil) .
-  eq stringQidList("", QIL) = QIL .
-  eq stringQidList(S, QIL) = QIL qid(S) [owise] . ***if S =/= "" /\ find(S, " ", 0) = notFound .
-  ceq stringQidList(S, QIL)
-    = stringQidList(S'', QIL qid(S') )
-    if N := find(S, " ", 0)
-       /\ S' := substr(S, 0, N)
-       /\ S'' := substr(S, N + 1, length(S)) .
-
-  op msg2string : Msg -> String .
-  eq msg2string(MSG) = qidListString(metaPrettyPrint(upModule('MESSAGE, false), upTerm(MSG), none)) .
-
-  op string2msg : String -> Msg .
-  eq string2msg(S)
-    = downTerm(getTerm(metaParse(upModule('MESSAGE, false), stringQidList(S), 'Msg)), error(S)) .
-
-endm
-
 

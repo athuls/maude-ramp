@@ -1,10 +1,8 @@
-load shim-dynamic-new
-load ramp-prelim
+load shim-dynamic
 
 mod RAMP-F is
   inc CLIENT-REPLICA .
-  inc RAMP-MESSAGE .
-  inc VERSION-RAMP .
+  inc MESSAGE .
   inc VALUES-NAT .
   inc SHIM-DYNAMIC .
   pr STRING .
@@ -86,7 +84,7 @@ mod RAMP-F is
 )
 
 
-  op tid : Oid Nat -> Oid .
+---  op tid : Oid Nat -> Oid .
 
   rl [gotTxn] :
      < CLIENT : Client | txns : TXNS, sqn : N, AS >
@@ -211,7 +209,7 @@ mod RAMP-F is
      msg prepare(TID,VERSION,CLIENT) from CLIENT to RID
    =>
      < RID : Replica | datastore : (VS,VERSION), AS' >
-     msg prepare-reply(TID,true,RID) from RID to CLIENT .  --- always "true" in RAMP
+     {msg prepare-reply(TID,true,RID) from RID to CLIENT} .  --- always "true" in RAMP
   *********
 
 
@@ -264,7 +262,7 @@ mod RAMP-F is
    =>
      < RID : Replica | datastore : VS,
                        latestCommit : cmt(LC,VS,ts(CLIENT,SQN)), AS' >
-     msg committed(TID,RID) from RID to CLIENT .
+     {msg committed(TID,RID) from RID to CLIENT} .
 
 
   op cmt : KeyTimestamps Versions Timestamp -> KeyTimestamps .
@@ -332,9 +330,9 @@ mod RAMP-F is
    =>
      < RID : Replica | datastore : VS,
                        latestCommit : LC, AS' >
-     msg (if TS == eptTS then response1(TID,vmatch(K,VS,LC),RID) 
+     {msg (if TS == eptTS then response1(TID,vmatch(K,VS,LC),RID) 
          else response2(TID,vmatch(K,VS,TS),RID) fi)
-       from RID to CLIENT .
+       from RID to CLIENT} .
 
   op dftOid : -> Oid .
 
