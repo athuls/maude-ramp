@@ -203,6 +203,8 @@ mod MESSAGE is
   eq target(msg STR from O to O') = O' .
 
   ---
+  op dftOid : -> Oid .
+
   op tid : Oid Nat -> Oid .  --- txn ID
 
 

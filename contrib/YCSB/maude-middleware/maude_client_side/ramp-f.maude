@@ -1,4 +1,6 @@
-load shim-dynamic
+---load shim-dynamic
+load shim-dynamic-test
+
 
 mod RAMP-F is
   inc CLIENT-REPLICA .
@@ -334,7 +336,6 @@ mod RAMP-F is
          else response2(TID,vmatch(K,VS,TS),RID) fi)
        from RID to CLIENT} .
 
-  op dftOid : -> Oid .
 
   op vmatch : String Versions KeyTimestamps -> Version .
   op vmatch : String Versions Timestamp -> Version .
