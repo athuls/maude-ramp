@@ -55,12 +55,12 @@ mod INIT-CLIENT is
 
 
   ops k1-addr k2-addr : -> String .
-  eq k1-addr = "155.98.38.103" .
-  eq k2-addr = "155.98.38.103" .
+  eq k1-addr = "155.98.38.39" .
+  eq k2-addr = "155.98.38.39" .
 
 
   op init : -> Configuration .
-  eq init = <> genInitWrites(1) genInitReads(1) ---NEW
+  eq init = <> genInitWrites(1)  ---NEW
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 

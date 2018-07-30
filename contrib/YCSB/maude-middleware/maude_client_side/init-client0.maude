@@ -29,7 +29,7 @@ mod INIT-CLIENT is
   ops tb m : -> Oid .
 
   op self : -> String .
-  eq self = "155.98.38.86" .
+  eq self = "155.98.38.103" .
   ***eq self = "192.17.150.124" .
 
 
@@ -55,8 +55,8 @@ mod INIT-CLIENT is
 
 
   ops k1-addr k2-addr : -> String .
-  eq k1-addr = "155.98.38.103" .
-  eq k2-addr = "155.98.38.103" .
+  eq k1-addr = "155.98.38.117" .
+  eq k2-addr = "155.98.38.117" .
 
 
   op init : -> Configuration .
