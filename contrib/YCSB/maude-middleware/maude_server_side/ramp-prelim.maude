@@ -203,6 +203,8 @@ mod MESSAGE is
   eq target(msg STR from O to O') = O' .
 
   ---
+  op dftOid : -> Oid .
+
   op tid : Oid Nat -> Oid .  --- txn ID
 
 
@@ -368,3 +370,6 @@ rew msg2string(msg prepare(tid(l("123",0),1),version("k1","v1",ts(l("123",0),1),
 
 rew string2msg("msg_from_to_ `( prepare `( tid `( l `( \"123\" `, 0 `) `, s_ `( 0 `) `) `, version `( \"k1\" `, \"v1\" `, ts `( l `( \"123\" `, 0 `) `, s_ `( 0 `) `) `, \"k2\" `) `, l `( \"123\" `, 0 `) `) `, l `( \"123\" `, 0 `) `, l `( \"456\" `, 0 `) `) ") .
 )
+
+
+
