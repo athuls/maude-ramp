@@ -29,7 +29,7 @@ mod INIT-CLIENT is
   ops tb m : -> Oid .
 
   op self : -> String .
-  eq self = "155.98.38.86" .
+  eq self = "155.98.38.118" .
   ***eq self = "192.17.150.124" .
 
 
@@ -49,18 +49,18 @@ mod INIT-CLIENT is
   op genInitReads : Nat -> Configuration .
   op $genInitReads : Nat Nat -> Configuration .
   eq genInitReads(N) = $genInitReads(N,0) .
- ceq $genInitReads(N,N') = ["k1[eor]",l(self,0)] $genInitReads(N,N' + 1) 
+ ceq $genInitReads(N,N') = ["k1[eor]k2[eor]",l(self,0)] $genInitReads(N,N' + 1) 
      if N' < N .
   eq $genInitReads(N,N') = none [owise] .
 
 
   ops k1-addr k2-addr : -> String .
-  eq k1-addr = "155.98.38.39" .
-  eq k2-addr = "155.98.38.39" .
+  eq k1-addr = "155.98.38.117" .
+  eq k2-addr = "155.98.38.86" .
 
 
   op init : -> Configuration .
-  eq init = <> ---genInitWrites(1)  ---NEW
+  eq init = <> ---genInitWrites(10) genInitReads(10) ---NEW
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 
@@ -73,7 +73,7 @@ mod INIT-CLIENT is
 
             ---< tb : Table | table : "k1" |-> k1-addr, "k2" |-> k2-addr >
 
-            < m : Monitor | count : 0 >
+            < m : Monitor | count : 0 > 
 
             createServerTcpSocket(socketManager, l(self,0), 9810, 10)    *** opened for post-load
             createServerTcpSocket(socketManager, l(self,0), 9910, 10) .  *** opened for txns
