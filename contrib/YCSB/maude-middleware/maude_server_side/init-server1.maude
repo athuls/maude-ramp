@@ -42,13 +42,18 @@ mod INIT-SERVER is
 
 
   op self : -> String .
-  eq self = "155.98.38.47" .
+  eq self = "155.98.38.86" .
 
   op init : -> Configuration .
   eq init = <>
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
             < l(self) : Replica | datastore : empty, latestCommit : empty >
-
+            ---(
+            < l(self) : Replica | datastore : (version("k1","dft",ts(dftOid,0),empty), 
+                                               version("k2","dft",ts(dftOid,0),empty)), 
+                                  latestCommit : ("k1" |-> ts(dftOid,0),
+                                                  "k2" |-> ts(dftOid,0)) > ---NEW
+            )
             createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
 
 	    *** Following are ports for server - maude client communication
@@ -61,4 +66,6 @@ mod INIT-SERVER is
 endm
 
 ---rew init .
----erew init .
+erew init .
+
+
