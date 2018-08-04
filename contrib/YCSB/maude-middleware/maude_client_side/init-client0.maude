@@ -29,7 +29,7 @@ mod INIT-CLIENT is
   ops tb m : -> Oid .
 
   op self : -> String .
-  eq self = "155.98.38.103" .
+  eq self = "155.98.38.26" .
   ***eq self = "192.17.150.124" .
 
 
@@ -55,12 +55,12 @@ mod INIT-CLIENT is
 
 
   ops k1-addr k2-addr : -> String .
-  eq k1-addr = "155.98.38.117" .
-  eq k2-addr = "155.98.38.86" .
+  eq k1-addr = "155.98.38.22" .
+  eq k2-addr = "155.98.38.22" .
 
 
   op init : -> Configuration .
-  eq init = <> genInitWrites(10) genInitReads(10) ---NEW
+  eq init = <> genInitWrites(500) genInitReads(0) ---NEW
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 
