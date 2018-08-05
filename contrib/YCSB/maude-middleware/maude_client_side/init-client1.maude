@@ -29,7 +29,7 @@ mod INIT-CLIENT is
   ops tb m : -> Oid .
 
   op self : -> String .
-  eq self = "155.98.38.118" .
+  eq self = "155.98.38.48" .
   ***eq self = "192.17.150.124" .
 
 
@@ -42,29 +42,29 @@ mod INIT-CLIENT is
   op genInitWrites : Nat -> Configuration .
   op $genInitWrites : Nat Nat -> Configuration .
   eq genInitWrites(N) = $genInitWrites(N,0) .
- ceq $genInitWrites(N,N') = ["k1[eok]v1[eov]k2[eok]v2[eov]",l(self,0)] $genInitWrites(N,N' + 1) 
+ ceq $genInitWrites(N,N') = ["k1[eok]v1[eov]k2[eok]v2[eov]",l(self,1)] $genInitWrites(N,N' + 1) 
      if N' < N .
   eq $genInitWrites(N,N') = none [owise] .
 
   op genInitReads : Nat -> Configuration .
   op $genInitReads : Nat Nat -> Configuration .
   eq genInitReads(N) = $genInitReads(N,0) .
- ceq $genInitReads(N,N') = ["k1[eor]k2[eor]",l(self,0)] $genInitReads(N,N' + 1) 
+ ceq $genInitReads(N,N') = ["k1[eor]k2[eor]",l(self,1)] $genInitReads(N,N' + 1) 
      if N' < N .
   eq $genInitReads(N,N') = none [owise] .
 
 
   ops k1-addr k2-addr : -> String .
-  eq k1-addr = "155.98.38.117" .
-  eq k2-addr = "155.98.38.86" .
+  eq k1-addr = "155.98.38.95" .
+  eq k2-addr = "155.98.38.95" .
 
 
   op init : -> Configuration .
-  eq init = <> genInitWrites(10) genInitReads(10) ---NEW
+  eq init = <> genInitWrites(0) genInitReads(1000) ---NEW
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 
-            < l(self,0) : Client | txns : emptyTxnList, sqn : 0,
+            < l(self,1) : Client | txns : emptyTxnList, sqn : 0,
                                    executing : none, committed : none, 
                                    1stGetSites : no1st, 2ndGetSites : no2nd,
                                    voteSites : noVS, commitSites : noVS > 
