@@ -39,7 +39,7 @@ mod RAMP-F is
 ---  vars T T1 : Float .
   var FLAG : Bool .
 ---  vars RECORD RECORD' : Record .
-  vars N N' N'' : Nat .
+  vars N N' : Nat .
   vars TRANSES TRANSES' : Configuration .
   var FW : FromWhom .
   var TXN : Object .
@@ -96,7 +96,18 @@ mod RAMP-F is
                                                                     latest : empty, txnSqn : N + 1,
                                                                     readSet : empty >, 
                          sqn : N + 1, AS >
-     if N' := find(STR,"[eov]",0) or N'' := find(STR,"[eor]",0) .
+     if N' := find(STR,"[eov]",0) .
+
+
+ crl [gotTxn] :
+     < CLIENT : Client | txns : TXNS, sqn : N, AS >
+     [STR,CLIENT]
+   =>
+     < CLIENT : Client | txns : TXNS ;; < tid(CLIENT,N + 1) : Txn | operations : genOps(STR),
+                                                                    latest : empty, txnSqn : N + 1,
+                                                                    readSet : empty >, 
+                         sqn : N + 1, AS >
+     if N' := find(STR,"[eor]",0) .
 
 
   *** Can NOT handle read-write txns
