@@ -4,10 +4,10 @@ cd /users/nobi/ramp/maude-ramp/contrib/YCSB/maude-middleware/maude_client_side
 if [ $# == 2 ] 
 then
 	sed -i -- 's/self = "155.98.38.[0-9]*/self = "155.98.38.'$1'/g' init-client5_$2.maude
-	../maude-binaries/alpha117/maude-Yices2.linux64 init-client5_$2.maude > /proj/Confluence/maude/debug_logs/temp/maude_client5_logs_$2.txt
+	../../../../../../alpha118/maude init-client5_$2.maude > /proj/Confluence/maude/debug_logs/temp/maude_client5_logs_$2.txt
 else
 	sed -i -- 's/self = "155.98.38.[0-9]*/self = "155.98.38.'$1'/g' init-client5.maude
-	../maude-binaries/alpha117/maude-Yices2.linux64 init-client5.maude > /proj/Confluence/maude/debug_logs/temp/maude_client5_logs.txt
+	../../../../../../alpha118/maude init-client5.maude > /proj/Confluence/maude/debug_logs/temp/maude_client5_logs.txt
 fi
 
 : <<'END'
