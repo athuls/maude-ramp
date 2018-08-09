@@ -1,7 +1,7 @@
 #!/bin/bash
-if [ $# != 2 ]
+if [ $# != 2 -o $# != 3]
 then
-	echo "Arguments needed: time to start, client ID"
+	echo "Arguments needed: time to start, client ID [, optional instance ID of client]"
 	exit 1
 fi
 
@@ -17,7 +17,12 @@ then
 	echo "Killing"
 	kill -9 $(ps aux | grep '[y]csb' | awk '{print $2}') & 
 #	kill -9 $(ps aux | grep '[r]un_client'$client_id'.sh' | awk '{print $2}') &
-	kill -2 $(ps aux | grep '[c]lient'$client_id'\.maude' | awk '{print $2}') &
+	if [ $# == 2 ]
+	then
+		kill -2 $(ps aux | grep '[c]lient'$client_id'\.maude' | awk '{print $2}') &
+	else
+		kill -2 $(ps aux | grep '[c]lient'$client_id'\_'$3'\.maude' | awk '{print $2}') &
+	fi
 	#sleep 2
 else
 	echo "Couldn't kill YCSB client"
