@@ -57,13 +57,15 @@ Run transactions using ycsb:
   where node5 is the one where corresponding maude client is running and txns are to stop at 19:51:00
 - NOTE: If you have multiple maude client instances on the same node, you need to pass a third argument to above script which is the instance ID of the maude client to kill
 
-
+------------------------If you used kill_ycsb.sh already, you shouldn't need to explicitly kill maude client----------------
 Kill maude client:
 - Login back to the client node
 - cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ycsb_scripts
 - sh kill_client.sh <node ID of client node>
   E.g. sh kill_client.sh 5 
 - The logs for intermediate state can be found at /proj/Confluence/maude/debug_logs/temp/maude_client5_logs.txt
+------------------------If you used kill_ycsb.sh already, you shouldn't need to explicitly kill maude client----------------
+
 
 Kill maude server: 
 - cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ycsb_scripts
