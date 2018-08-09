@@ -55,6 +55,7 @@ Run transactions using ycsb:
 - >> nohup bash kill_ycsb.sh <time to stop txns> <client ID>
   E.g. nohup bash kill_ycsb.sh 19:51:00 5 &
   where node5 is the one where corresponding maude client is running and txns are to stop at 19:51:00
+- NOTE: If you have multiple maude client instances on the same node, you need to pass a third argument to above script which is the instance ID of the maude client to kill
 
 
 Kill maude client:
