@@ -19,9 +19,9 @@ then
 #	kill -9 $(ps aux | grep '[r]un_client'$client_id'.sh' | awk '{print $2}') &
 	if [ $# == 2 ]
 	then
-		kill -2 $(ps aux | grep '[c]lient'$client_id'\.maude' | awk '{print $2}') &
+		kill -USR1 $(ps aux | grep '[c]lient'$client_id'\.maude' | awk '{print $2}') &
 	else
-		kill -2 $(ps aux | grep '[c]lient'$client_id'\_'$3'\.maude' | awk '{print $2}') &
+		kill -USR1 $(ps aux | grep '[c]lient'$client_id'\_'$3'\.maude' | awk '{print $2}') &
 	fi
 	#sleep 2
 else
