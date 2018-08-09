@@ -1,7 +1,6 @@
 load shim-dynamic
 ---load shim-dynamic-test
 
-
 mod RAMP-F is
   inc CLIENT-REPLICA .
   inc MESSAGE .
