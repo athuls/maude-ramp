@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ $# != 2 -o $# != 3]
+if [ $# != 2 -o $# != 3 ]
 then
 	echo "Arguments needed: time to start, client ID [, optional instance ID of client]"
 	exit 1
