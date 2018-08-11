@@ -29,7 +29,7 @@ mod INIT-CLIENT is
   ops tb m : -> Oid .
 
   op self : -> String .
-  eq self = "155.98.38.63" .
+  eq self = "155.98.38.47" .
   ***eq self = "192.17.150.124" .
 
 

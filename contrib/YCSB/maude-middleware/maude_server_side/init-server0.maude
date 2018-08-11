@@ -36,13 +36,13 @@ mod INIT-SERVER is
   eq addKeyTS("",LC) = LC .
 
 
-  eq numberOfServerSockets = 2 . *** one for load, one(s) for client(s)
+  eq numberOfServerSockets = 3 . *** one for load, one(s) for client(s)
   *** eq port = 9910 .  *** the base port for server talking to server
   eq backLog = 1 .  *** the BACKLOG parameter on the server side
 
 
   op self : -> String .
-  eq self = "155.98.38.104" .
+  eq self = "155.98.38.44" .
 
   op init : -> Configuration .
   eq init = <>
@@ -59,6 +59,7 @@ mod INIT-SERVER is
 	    *** Following are ports for server - maude client communication
 	    ***START AUTOMATICALLY GENERATED CODE***
 	    createServerTcpSocket(socketManager, l(self), 9000, 10)
+            createServerTcpSocket(socketManager, l(self), 9001, 10)
 	    ***END AUTOMATICALLY GENERATED CODE***
         .
 
