@@ -21,7 +21,7 @@ then
 	do 
 		port=`expr $initial_port + $iter` 
 		echo `expr $port`
-		bin/ycsb run kaiju -p hosts=155.98.38.$ip:$port -p port=$port -P workloads/workloada -p operationcount=$opcount -p maxexecutiontime=30000 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -p threadcount=1 -p time=10000 -p valuesize=1 &
+		bin/ycsb run kaiju -p hosts=155.98.39.$ip:$port -p port=$port -P workloads/workloada -p operationcount=$opcount -p maxexecutiontime=30000 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -p threadcount=1 -p time=10000 -p valuesize=1 &
 		iter=`expr $iter + 1`
 	done
 else

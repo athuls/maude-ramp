@@ -29,7 +29,7 @@ mod INIT-CLIENT is
   ops tb m : -> Oid .
 
   op self : -> String .
-  eq self = "155.98.38.47" .
+  eq self = "155.98.39.113" .
   ***eq self = "192.17.150.124" .
 
 
@@ -52,8 +52,8 @@ mod INIT-CLIENT is
 
             < m : Monitor | count : 0 >
 
-            createServerTcpSocket(socketManager, l(self,1), 9810, 10)    *** opened for post-load
-            createServerTcpSocket(socketManager, l(self,1), 9910, 10) .  *** opened for txns
+            createServerTcpSocket(socketManager, l(self,1), 9811, 10)    *** opened for post-load
+            createServerTcpSocket(socketManager, l(self,1), 9911, 10) .  *** opened for txns
 
 
   --- local test

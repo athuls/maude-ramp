@@ -42,7 +42,7 @@ mod INIT-SERVER is
 
 
   op self : -> String .
-  eq self = "155.98.38.44" .
+  eq self = "155.98.39.98" .
 
   op init : -> Configuration .
   eq init = <>
