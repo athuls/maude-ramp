@@ -1,0 +1,63 @@
+		     \||||||||||||||||||/
+		   --- Welcome to Maude ---
+		     /||||||||||||||||||\
+	   Maude alpha118 built: Aug  5 2018 14:49:48
+	    Copyright 1997-2018 SRI International
+		   Sat Aug 11 14:10:06 2018
+==========================================
+erewrite in INIT-CLIENT : init .
+====> Maude status report on Sat Aug 11 14:15:28 2018
+membership applications: 0
+equational rewrites: 33454
+rule rewrites: 158
+variant narrowing steps: 0
+narrowing steps: 0
+total: 33612
+Waiting for external event.
+Current term is:
+<> < tb : Table | table : ("user1567" |-> "155.98.38.44", "user1568" |->
+    "155.98.38.44", "user1569" |-> "155.98.38.44", "user1570" |->
+    "155.98.38.44", "user1571" |-> "155.98.38.44", "user1572" |->
+    "155.98.38.44", "user1573" |-> "155.98.38.44", "user1574" |->
+    "155.98.38.44", "user1575" |-> "155.98.38.44", "user1576" |->
+    "155.98.38.44", "user48" |-> "155.98.38.44", "user49" |-> "155.98.38.44",
+    "user50" |-> "155.98.38.44", "user51" |-> "155.98.38.44", "user52" |->
+    "155.98.38.44", "user53" |-> "155.98.38.44", "user54" |-> "155.98.38.44",
+    "user55" |-> "155.98.38.44", "user56" |-> "155.98.38.44", "user57" |->
+    "155.98.38.44") > < m : Monitor | count : 7 > < l("155.98.38.48", 0) :
+    Client | txns : emptyTxnList,sqn : 10,executing : none,committed : (< tid(
+    l("155.98.38.48", 0), 1) : Txn | operations : (write("user56", "7-") write(
+    "user50", ".(")),readSet : empty,txnSqn : 1,latest : empty > < tid(l(
+    "155.98.38.48", 0), 2) : Txn | operations : (write("user56", "4)") write(
+    "user51", "0.")),readSet : empty,txnSqn : 2,latest : empty > < tid(l(
+    "155.98.38.48", 0), 3) : Txn | operations : (write("user54", "/>") write(
+    "user57", "7+")),readSet : empty,txnSqn : 3,latest : empty > < tid(l(
+    "155.98.38.48", 0), 7) : Txn | operations : (write("user53", "'$") write(
+    "user49", ");")),readSet : empty,txnSqn : 7,latest : empty > < tid(l(
+    "155.98.38.48", 0), 8) : Txn | operations : (write("user55", "-4") write(
+    "user56", "+!")),readSet : empty,txnSqn : 8,latest : empty > < tid(l(
+    "155.98.38.48", 0), 9) : Txn | operations : (write("user55", ",$") write(
+    "user54", "(!")),readSet : empty,txnSqn : 9,latest : empty > < tid(l(
+    "155.98.38.48", 0), 10) : Txn | operations : (write("user55", "33") write(
+    "user52", "8$")),readSet : empty,txnSqn : 10,latest : empty >),voteSites :
+    (voteSites(tid(l("155.98.38.48", 0), 1), empty) ; voteSites(tid(l(
+    "155.98.38.48", 0), 2), empty) ; voteSites(tid(l("155.98.38.48", 0), 3),
+    empty) ; voteSites(tid(l("155.98.38.48", 0), 7), empty) ; voteSites(tid(l(
+    "155.98.38.48", 0), 8), empty) ; voteSites(tid(l("155.98.38.48", 0), 9),
+    empty) ; voteSites(tid(l("155.98.38.48", 0), 10), empty)),1stGetSites :
+    no1st,2ndGetSites : no2nd,commitSites : (voteSites(tid(l("155.98.38.48",
+    0), 1), empty) ; voteSites(tid(l("155.98.38.48", 0), 2), empty) ;
+    voteSites(tid(l("155.98.38.48", 0), 3), empty) ; voteSites(tid(l(
+    "155.98.38.48", 0), 7), empty) ; voteSites(tid(l("155.98.38.48", 0), 8),
+    empty) ; voteSites(tid(l("155.98.38.48", 0), 9), empty) ; voteSites(tid(l(
+    "155.98.38.48", 0), 10), empty)) > < l("155.98.38.48", 10000) : ClientShim
+    | sockets : < socket(7) : BufferedSocket | read : "" >,bufferedMsgs : none,
+    contacts : < l("155.98.38.48", 0),socket(7),l("155.98.38.44") > > < l(
+    "155.98.38.48", 10001) : ServerShim | sockets : (< socket(4) :
+    BufferedSocket | read : "" > < socket(5) : BufferedSocket | read : "" > <
+    socket(6) : BufferedSocket | read : "" >),bufferedMsgs : none,contacts : (<
+    l("155.98.38.48", 0),socket(6),l("155.98.38.48") > ; < l("155.98.38.48",
+    0),socket(6),l("155.98.38.48") >),created : 2 > closedSocket(l(
+    "155.98.38.48", 0), socket(6), "")
+which arose while executing a top level command.
+

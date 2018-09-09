@@ -1,48 +1,22 @@
-# To run: bash run_client5.sh 44 154 17:52:50.12345
+# To run: bash run_client5.sh 44 9910 3
 #!/bin/bash
 cd /users/nobi/ramp/maude-ramp/contrib/YCSB/maude-middleware/maude_client_side
-if [ $# == 2 ] 
+if [ $# == 3 ] 
 then
-	sed -i -- 's/self = "155.98.38.[0-9]*/self = "155.98.38.'$1'/g' init-client5_$2.maude
-	../../../../../../alpha118/maude init-client5_$2.maude >& /proj/Confluence/maude/debug_logs/temp/maude_client5_logs_$2.txt
+	ip=$1
+	initial_port=$2
+	num_clients=$3
+	iter=0
+	while [ "$iter" -lt "$num_clients" ]
+	do
+		port=`expr $initial_port + $iter`
+		cp init-client5.maude init-client5_$iter.maude
+		sed -i -- 's/self = "155.98.39.[0-9]*/self = "155.98.39.'$ip'/g' init-client5_$iter.maude
+		sed -i -- 's/[0-9]*, 10) .  \*\*\* opened for txns/'$port', 10) .  \*\*\* opened for txns/g' init-client5_$iter.maude
+		../maude-binaries/alpha118/maude init-client5_$iter.maude > /proj/Confluence/maude/debug_logs/temp/maude_client5_logs_$iter.txt 2>&1
+		sleep 1
+		iter=`expr $iter + 1`
+	done
 else
-	sed -i -- 's/self = "155.98.38.[0-9]*/self = "155.98.38.'$1'/g' init-client5.maude
-	../../../../../../alpha118/maude init-client5.maude >& /proj/Confluence/maude/debug_logs/temp/maude_client5_logs.txt
+	echo "Provide 3 arguments: (1) IP address, (2) initial_port, (3) #instances"
 fi
-
-: <<'END'
-#sed -i -- 's/addr1 = "155.98.38.[0-9]*/addr1 = "155.98.38.'$2'/g' client5.maude
-bash ../../ycsb_scripts/sleep_time.sh $3
-retn_val=$?
-if [ "$retn_val" == "0" ]
-then 
-	../maude-binaries/maude.linux64 client5.maude > /run/shm/maude_client5_logs.txt
-	pid[0]=$!
-	sleep 3
-	echo "${pid[0]}"
-	trap "kill -2 ${pid[0]}; exit 1" KILL
-	echo "Waiting"
-	echo "Done waiting"
-else
-	echo "Couldn't run the client"
-fi
-
-current_epoch=$(date +%s.%N)
-#target_epoch=$(date -d "17:50:00.12345" +%s.%N)
-target_epoch=$(date -d "$3" +%s.%N)
-
-sleep_seconds=$(echo "$target_epoch - $current_epoch"|bc)
-echo $sleep_seconds
-
-#if [[ $(echo "$sleep_seconds" | bc) -ne $(echo "0" | bc) ]]
-if [[ $(bc -l <<< "$sleep_seconds" > 0) -eq 0 ]]
-then
-	echo "Sleep is fine"
-	echo $sleep_seconds
-	sleep $sleep_seconds
-	../maude-binaries/maude.linux64 client3.maude > /run/shm/maude_client3_logs.txt
-else
-	echo "Sleep time is negative"
-	exit 1
-fi
-END

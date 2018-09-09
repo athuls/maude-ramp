@@ -29,8 +29,7 @@ mod INIT-CLIENT is
   ops tb m : -> Oid .
 
   op self : -> String .
-  eq self = "155.98.39.95" .
-  ***eq self = "192.17.150.124" .
+  eq self = "155.98.39.143" .
 
 
   eq numberOfServerSockets = 2 . *** one for post-load, one for txns
@@ -43,7 +42,7 @@ mod INIT-CLIENT is
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 
-            < l(self,1) : Client | txns : emptyTxnList, sqn : 0,
+            < l(self,0) : Client | txns : emptyTxnList, sqn : 0,
                                    executing : none, committed : none, 
                                    1stGetSites : no1st, 2ndGetSites : no2nd,
                                    voteSites : noVS, commitSites : noVS > 
@@ -52,8 +51,8 @@ mod INIT-CLIENT is
 
             < m : Monitor | count : 0 >
 
-            createServerTcpSocket(socketManager, l(self,1), 9811, 10)    *** opened for post-load
-            createServerTcpSocket(socketManager, l(self,1), 9911, 10) .  *** opened for txns
+            createServerTcpSocket(socketManager, l(self,0), 9810, 10)    *** opened for post-load
+            createServerTcpSocket(socketManager, l(self,0), 9911, 10) .  *** opened for txns
 
 
   --- local test
