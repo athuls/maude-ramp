@@ -1,3 +1,5 @@
+All changes go into init-server.maude and init-client.maude respectively
+
 Start emulab experiment
 - Use small-lan as your profile
 - Use d710 machines

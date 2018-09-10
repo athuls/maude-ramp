@@ -42,7 +42,7 @@ mod INIT-SERVER is
 
 
   op self : -> String .
-  eq self = "155.98.38.117" .
+  eq self = "155.98.39.145" .
 
   op init : -> Configuration .
   eq init = <>
@@ -54,11 +54,13 @@ mod INIT-SERVER is
                                   latestCommit : ("k1" |-> ts(dftOid,0),
                                                   "k2" |-> ts(dftOid,0)) > ---NEW
             )
+
             createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
 
 	    *** Following are ports for server - maude client communication
 	    ***START AUTOMATICALLY GENERATED CODE***
 	    createServerTcpSocket(socketManager, l(self), 9000, 10)
+            ***createServerTcpSocket(socketManager, l(self), 9001, 10)
 	    ***END AUTOMATICALLY GENERATED CODE***
         .
 

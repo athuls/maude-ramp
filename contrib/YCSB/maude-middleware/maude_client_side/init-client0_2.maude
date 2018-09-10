@@ -29,21 +29,22 @@ mod INIT-CLIENT is
   ops tb m : -> Oid .
 
   op self : -> String .
-  eq self = "155.98.39.113" .
-  ***eq self = "192.17.150.124" .
+  eq self = "155.98.39.143" .
 
 
   eq numberOfServerSockets = 2 . *** one for post-load, one for txns
   eq port = 9000 .  *** the base port for client talking to server
   eq backLog = 1 .  *** the BACKLOG parameter on the server side
 
+  op clientId : -> Nat .
+  eq clientId = 2 .
 
   op init : -> Configuration .
   eq init = <>
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 
-            < l(self,0) : Client | txns : emptyTxnList, sqn : 0,
+            < l(self,clientId) : Client | txns : emptyTxnList, sqn : 0,
                                    executing : none, committed : none, 
                                    1stGetSites : no1st, 2ndGetSites : no2nd,
                                    voteSites : noVS, commitSites : noVS > 
@@ -52,8 +53,8 @@ mod INIT-CLIENT is
 
             < m : Monitor | count : 0 >
 
-            createServerTcpSocket(socketManager, l(self,0), 9810, 10)    *** opened for post-load
-            createServerTcpSocket(socketManager, l(self,0), 9910, 10) .  *** opened for txns
+            createServerTcpSocket(socketManager, l(self,clientId), 9810, 10)    *** opened for post-load
+            createServerTcpSocket(socketManager, l(self,clientId), 9912, 10) .  *** opened for txns
 
 
   --- local test

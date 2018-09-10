@@ -36,13 +36,15 @@ mod INIT-CLIENT is
   eq port = 9000 .  *** the base port for client talking to server
   eq backLog = 1 .  *** the BACKLOG parameter on the server side
 
+  op clientId : -> Nat .
+  eq clientId = 1 .
 
   op init : -> Configuration .
   eq init = <>
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 
-            < l(self,0) : Client | txns : emptyTxnList, sqn : 0,
+            < l(self,clientId) : Client | txns : emptyTxnList, sqn : 0,
                                    executing : none, committed : none, 
                                    1stGetSites : no1st, 2ndGetSites : no2nd,
                                    voteSites : noVS, commitSites : noVS > 
@@ -51,8 +53,8 @@ mod INIT-CLIENT is
 
             < m : Monitor | count : 0 >
 
-            createServerTcpSocket(socketManager, l(self,0), 9810, 10)    *** opened for post-load
-            createServerTcpSocket(socketManager, l(self,0), 9912, 10) .  *** opened for txns
+            createServerTcpSocket(socketManager, l(self,clientId), 9810, 10)    *** opened for post-load
+            createServerTcpSocket(socketManager, l(self,clientId), 9911, 10) .  *** opened for txns
 
 
   --- local test
