@@ -87,6 +87,8 @@ mod RAMP-F is
 
 ---  op tid : Oid Nat -> Oid .
 
+*** This section is handling txns whether keys are present or not in database
+---(
  crl [gotTxn] :
      < CLIENT : Client | txns : TXNS, sqn : N, AS >
      [STR,CLIENT]
@@ -107,6 +109,35 @@ mod RAMP-F is
                                                                     readSet : empty >, 
                          sqn : N + 1, AS >
      if N' := find(STR,"[eor]",0) .
+)
+
+
+ crl [gotTxn] : 
+     < TABLE : Table | table : REPLICA-TABLE >
+     < CLIENT : Client | txns : TXNS, sqn : N, AS >
+     [STR,CLIENT]
+   =>
+     < TABLE : Table | table : REPLICA-TABLE >
+     < CLIENT : Client | txns : TXNS ;; < tid(CLIENT,N + 1) : Txn | operations : genOps(STR),
+                                                                    latest : empty, txnSqn : N + 1,
+                                                                    readSet : empty >, 
+                         sqn : N + 1, AS >
+     if N' := find(STR,"[eov]",0) /\
+        not undfd(genOps(STR),REPLICA-TABLE) .
+
+
+ crl [gotTxn] :
+     < TABLE : Table | table : REPLICA-TABLE >
+     < CLIENT : Client | txns : TXNS, sqn : N, AS >
+     [STR,CLIENT]
+   =>
+     < TABLE : Table | table : REPLICA-TABLE >
+     < CLIENT : Client | txns : TXNS ;; < tid(CLIENT,N + 1) : Txn | operations : genOps(STR),
+                                                                    latest : empty, txnSqn : N + 1,
+                                                                    readSet : empty >, 
+                         sqn : N + 1, AS >
+     if N' := find(STR,"[eor]",0) /\
+        not undfd(genOps(STR),REPLICA-TABLE) .
 
 
   *** Can NOT handle read-write txns
@@ -128,7 +159,7 @@ mod RAMP-F is
      < CLIENT : Client | txns : TXNS ;; TXNS', AS' >
      if undfd(OPS,REPLICA-TABLE) .
 )
-
+---(
  ceq < TABLE : Table | table : REPLICA-TABLE >
      < CLIENT : Client | txns : TXNS ;; < TID : Txn | operations : OPS, AS > ;; TXNS', AS' >
     =
@@ -136,6 +167,7 @@ mod RAMP-F is
      < CLIENT : Client | txns : TXNS ;; TXNS', AS' >
      < TID : Txn | operations : OPS, AS >
      if undfd(OPS,REPLICA-TABLE) .
+)
 
 *** This section is handling txns with no keys present in database
 
