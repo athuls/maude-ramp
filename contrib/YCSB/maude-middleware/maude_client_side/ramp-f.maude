@@ -119,13 +119,25 @@ mod RAMP-F is
  ceq genOps(STR) = read(substr(STR,0,N)) genOps(substr(STR,N + 5,length(STR)))
      if N := find(STR, "[eor]", 0) .
 
-
+*** This section is handling txns with no keys present in database
+---(
  ceq < TABLE : Table | table : REPLICA-TABLE >
      < CLIENT : Client | txns : TXNS ;; < TID : Txn | operations : OPS, AS > ;; TXNS', AS' >
     =
      < TABLE : Table | table : REPLICA-TABLE >
      < CLIENT : Client | txns : TXNS ;; TXNS', AS' >
      if undfd(OPS,REPLICA-TABLE) .
+)
+
+ ceq < TABLE : Table | table : REPLICA-TABLE >
+     < CLIENT : Client | txns : TXNS ;; < TID : Txn | operations : OPS, AS > ;; TXNS', AS' >
+    =
+     < TABLE : Table | table : REPLICA-TABLE > 
+     < CLIENT : Client | txns : TXNS ;; TXNS', AS' >
+     < TID : Txn | operations : OPS, AS >
+     if undfd(OPS,REPLICA-TABLE) .
+
+*** This section is handling txns with no keys present in database
 
   op undfd : OperationList ReplicaTable -> Bool .
  ceq undfd((OPS read(K) OPS'),REPLICA-TABLE) = true

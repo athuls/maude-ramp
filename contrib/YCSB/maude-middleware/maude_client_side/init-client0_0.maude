@@ -29,15 +29,15 @@ mod INIT-CLIENT is
   ops tb m : -> Oid .
 
   op self : -> String .
-  eq self = "155.98.39.143" .
-
-
-  eq numberOfServerSockets = 2 . *** one for post-load, one for txns
   eq port = 9000 .  *** the base port for client talking to server
   eq backLog = 1 .  *** the BACKLOG parameter on the server side
-
   op clientId : -> Nat .
+
+  ***START AUTOMATICALLY GENERATED PARAMETER CODE***
+  eq self = "155.98.39.26" .
+  eq numberOfServerSockets = 2 . *** one for post-load, one for txns
   eq clientId = 0 .
+  ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 
   op init : -> Configuration .
   eq init = <>
@@ -53,8 +53,10 @@ mod INIT-CLIENT is
 
             < m : Monitor | count : 0 >
 
+	    ***START AUTOMATICALLY GENERATED SOCKET CODE***
             createServerTcpSocket(socketManager, l(self,clientId), 9810, 10)    *** opened for post-load
             createServerTcpSocket(socketManager, l(self,clientId), 9910, 10) .  *** opened for txns
+	    ***END AUTOMATICALLY GENERATED SOCKET CODE***
 
 
   --- local test

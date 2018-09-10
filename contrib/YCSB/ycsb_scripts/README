@@ -1,14 +1,30 @@
 All changes go into init-server.maude and init-client.maude respectively
 
+QUICK REFERENCE (SAMPLE COMMANDS SEQUENCE):
+nohup sh run_server.sh 37 0 9000 3 &
+nohup sh run_client.sh 26 9810 9910 0 3 &
+sh postload-ycsb.sh 26 9810 3
+sh kill_postload.sh
+nohup bash run-ycsb.sh 26 9910 3 10 12:50:54 &
+nohup bash kill_ycsb.sh 13:00:54 &
+sh kill_server.sh
+
+TODO: 
+1) Check missing keys in txn
+2) Get throughput from count in monitor (logs)
+3) Run everything from one node
+4) Don't need to run load/postload/txn separately
+
 Start emulab experiment
 - Use small-lan as your profile
 - Use d710 machines
+- Run setup.sh so that all dependencies are installed
 
 Run server: 
 - Login to server node (let's say node0)
 - cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ycsb_scripts
-- Run run_server0.sh script. For other nodes, run the server script with corresponding node ID. 
-  >> nohup sh run_server0.sh <IP address info> &
+- Run run_server.sh script. 
+  >> nohup sh run_server.sh <IP address info> &
   The argument <IP address info> is the host part of IP address of server node.  
   E.g. if IP address is 155.98.38.62, you pass in 62 as argument to script 
 
