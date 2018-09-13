@@ -92,6 +92,5 @@ sh kill_server.sh
 sh compute_throughput.sh
 
 TODO: 
-1) Check missing keys in txn
-2) Run everything from one node
-3) Don't need to run load/postload/txn separately
+1) Run everything from one node
+2) Don't need to run load/postload/txn separately

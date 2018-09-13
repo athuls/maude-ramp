@@ -34,7 +34,7 @@ mod INIT-CLIENT is
   op clientId : -> Nat .
 
   ***START AUTOMATICALLY GENERATED PARAMETER CODE***
-  eq self = "155.98.39.26" .
+  eq self = "155.98.39.93" .
   eq numberOfServerSockets = 2 . *** one for post-load, one for txns
   eq clientId = 2 .
   ***END AUTOMATICALLY GENERATED PARAMETER CODE***

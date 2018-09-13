@@ -41,7 +41,7 @@ mod INIT-SERVER is
   op self : -> String .
   
   ***START AUTOMATICALLY GENERATED PARAMETER CODE***
-  eq self = "155.98.39.37" .
+  eq self = "155.98.39.109" .
   eq numberOfServerSockets = 4 . *** one for load, one(s) for client(s)
   ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 
