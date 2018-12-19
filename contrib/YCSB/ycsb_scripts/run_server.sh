@@ -29,8 +29,8 @@ done
 # End of updating server file
 
 # Clean up server logs directory
-rm -rf /proj/Confluence/maude/debug_logs/temp/server_logs/
-mkdir /proj/Confluence/maude/debug_logs/temp/server_logs
+rm -rf /proj/Confluence/maude/debug_logs/temp/server_logs"$2"
+mkdir /proj/Confluence/maude/debug_logs/temp/server_logs"$2"
 
 # Run server
 ../maude-binaries/alpha118/maude init-server$2.maude > /proj/Confluence/maude/debug_logs/temp/server_logs/maude_server$2_logs.txt 2>&1
