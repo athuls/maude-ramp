@@ -15,8 +15,8 @@ num_client_instances=$5
 iter=0
 
 # Empty log directory for clients before starting client processes
-rm -rf /proj/Confluence/maude/debug_logs/temp/client_logs
-mkdir /proj/Confluence/maude/debug_logs/temp/client_logs
+rm -rf /proj/Confluence/maude/debug_logs/temp/client_logs"$clientid"
+mkdir /proj/Confluence/maude/debug_logs/temp/client_logs"$clientid"
 
 while [ "$iter" -lt "$num_client_instances" ]
 do
