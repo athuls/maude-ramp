@@ -11,7 +11,7 @@ Run server:
 - Run run_server.sh script. 
   >> nohup sh run_server.sh <IP address info> <server instance ID> <inital port for maude clients> <#maude clients per node> &
   - The argument <IP address info> is the host part of IP address of server node.  
-    E.g. if IP address is 155.98.38.62, you pass in 62 as argument to script 
+    E.g. if IP address is 155.98.39.62, you pass in 62 as argument to script 
   - Server instance ID can be the same as emulab node ID on which you are running the server
   - Initial port is generally 9000 
   - Last argument is the number of maude client instances to run on single node
@@ -23,7 +23,7 @@ Load phase:
   Note that this value also defines the key space for key generation in ycsb
 - >> sh load-ycsb.sh <list of IP address info of all server nodes, delimited by space>
   E.g. sh load-ycsb.sh 62 72 61
-       Here the IP address of server nodes are 155.98.38.62, 155.98.38.72, 155.98.38.61
+       Here the IP address of server nodes are 155.98.39.62, 155.98.39.72, 155.98.39.61
 - Once the load at terminal shows all the records have been uploaded, you can stop the script using Ctrl+C
 
 Run maude client:
