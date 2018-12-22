@@ -23,7 +23,7 @@ do
 	postload_port=`expr $initial_postload_port + $iter`
 	txn_port=`expr $initial_txn_port + $iter`
 	cp init-client.maude init-client"$clientid"_"$iter".maude
-	sed -i -- 's/self = "155.98.36.[0-9]*/self = "155.98.36.'$ip'/g' init-client"$clientid"_"$iter".maude
+	sed -i -- 's/self = "155.98.39.[0-9]*/self = "155.98.39.'$ip'/g' init-client"$clientid"_"$iter".maude
 	sed -i -- 's/[0-9]*, 10)    \*\*\* opened for post-load/'$postload_port', 10)    \*\*\* opened for post-load/g' init-client"$clientid"_"$iter".maude
 	sed -i -- 's/[0-9]*, 10) .  \*\*\* opened for txns/'$txn_port', 10) .  \*\*\* opened for txns/g' init-client"$clientid"_"$iter".maude
 	sed -i -- 's/clientId = [0-9]*/clientId = '$iter'/g' init-client"$clientid"_"$iter".maude	
