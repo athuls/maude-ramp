@@ -7,7 +7,7 @@ fi
 # Update the server IP address
 cd /users/nobi/ramp/maude-ramp/contrib/YCSB/maude-middleware/maude_server_side
 cp init-server.maude init-server$2.maude
-sed -i -- 's/155.98.39.[0-9]*/155.98.39.'$1'/g' init-server$2.maude
+sed -i -- 's/155.98.36.[0-9]*/155.98.36.'$1'/g' init-server$2.maude
 
 # Update the socket count and create sockets for each of the clients
 portcount=$4
