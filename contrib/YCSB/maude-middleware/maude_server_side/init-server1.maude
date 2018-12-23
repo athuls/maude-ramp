@@ -36,13 +36,14 @@ mod INIT-SERVER is
   eq addKeyTS("",LC) = LC .
 
 
-  eq numberOfServerSockets = 3 . *** one for load, one(s) for client(s)
   *** eq port = 9910 .  *** the base port for server talking to server
   eq backLog = 1 .  *** the BACKLOG parameter on the server side
-
-
   op self : -> String .
-  eq self = "155.98.39.120" .
+  
+  ***START AUTOMATICALLY GENERATED PARAMETER CODE***
+  eq self = "155.98.39.88" .
+  eq numberOfServerSockets = 2 . *** one for load, one(s) for client(s)
+  ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 
   op init : -> Configuration .
   eq init = <>
@@ -54,13 +55,13 @@ mod INIT-SERVER is
                                   latestCommit : ("k1" |-> ts(dftOid,0),
                                                   "k2" |-> ts(dftOid,0)) > ---NEW
             )
+
             createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
 
 	    *** Following are ports for server - maude client communication
-	    ***START AUTOMATICALLY GENERATED CODE***
+	    ***START AUTOMATICALLY GENERATED SOCKET CODE***
 	    createServerTcpSocket(socketManager, l(self), 9000, 10)
-            createServerTcpSocket(socketManager, l(self), 9001, 10)
-	    ***END AUTOMATICALLY GENERATED CODE***
+	    ***END AUTOMATICALLY GENERATED SOCKET CODE***
         .
 
         --- < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
