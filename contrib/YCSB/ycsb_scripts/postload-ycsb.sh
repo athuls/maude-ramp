@@ -1,5 +1,5 @@
 cd /users/nobi/ramp/maude-ramp/contrib/YCSB
-cat keyMappings1* > keyMappings.txt
+cat keyMappings* > keyMappings.txt
 
 if [ $# != 3 ]
 then
