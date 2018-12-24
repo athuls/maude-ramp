@@ -70,9 +70,9 @@ Run transactions using ycsb:
 
 Computing throughput:
 - Login to client node and run: cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ycsb_scripts
-- >> sh compute_throughput.sh 0 3
+- >> python compute_throughput.py 0 3
 - The above command requires the initial and final client IDs. E.g., the above command refers to the case that the initial client ID is 0 and the final client ID is 3.
-- The above command will look at all the client instance log files generated and add up their txns to give a final count of txns completed by all maude client instances on the node
+- The above command will look at all the client instance log files generated and add up their txns to give a final count of txns completed by all maude client instances
 
 Kill maude server: 
 - Login to server node
@@ -90,7 +90,7 @@ sh kill_postload.sh
 nohup bash run-ycsb.sh 155.98.36.150 9910 3 100 12:50:54 &
 nohup bash kill_ycsb.sh 13:00:54 &
 sh kill_server.sh
-sh compute_throughput.sh 0 1
+python compute_throughput.py 0 1
 
 TODO: 
 1) Run everything from one node
