@@ -1,0 +1,7 @@
+setenv PATH $PATH':/users/nobi/jdk1.8.0_152/bin'
+setenv PATH $PATH':/users/nobi/maude'
+alias vim='vi'
+alias mvn='/usr/share/maven/bin/mvn'
+#alias p="ps -ax"
+#alias g="grep"
+alias atul='ls'

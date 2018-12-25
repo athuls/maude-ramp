@@ -36,29 +36,41 @@ mod INIT-SERVER is
   eq addKeyTS("",LC) = LC .
 
 
-  eq numberOfServerSockets = 2 . *** one for load, one(s) for client(s)
   *** eq port = 9910 .  *** the base port for server talking to server
   eq backLog = 1 .  *** the BACKLOG parameter on the server side
-
-
   op self : -> String .
-  eq self = "155.98.38.47" .
+  
+  ***START AUTOMATICALLY GENERATED PARAMETER CODE***
+  eq self = "155.98.36.66" .
+  eq numberOfServerSockets = 5 . *** one for load, one(s) for client(s)
+  ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 
   op init : -> Configuration .
   eq init = <>
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
             < l(self) : Replica | datastore : empty, latestCommit : empty >
+            ---(
+            < l(self) : Replica | datastore : (version("k1","dft",ts(dftOid,0),empty), 
+                                               version("k2","dft",ts(dftOid,0),empty)), 
+                                  latestCommit : ("k1" |-> ts(dftOid,0),
+                                                  "k2" |-> ts(dftOid,0)) > ---NEW
+            )
 
             createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
 
 	    *** Following are ports for server - maude client communication
-	    ***START AUTOMATICALLY GENERATED CODE***
+	    ***START AUTOMATICALLY GENERATED SOCKET CODE***
 	    createServerTcpSocket(socketManager, l(self), 9000, 10)
-	    ***END AUTOMATICALLY GENERATED CODE***
+	    createServerTcpSocket(socketManager, l(self), 9001, 10)
+	    createServerTcpSocket(socketManager, l(self), 9002, 10)
+	    createServerTcpSocket(socketManager, l(self), 9003, 10)
+	    ***END AUTOMATICALLY GENERATED SOCKET CODE***
         .
 
         --- < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
 endm
 
 ---rew init .
----erew init .
+erew init .
+
+
