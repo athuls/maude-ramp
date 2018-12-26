@@ -358,7 +358,7 @@ mod RAMP-F is
        fi .
 
   *********
-
+  ---(
  crl [receive-committed] :
      < M : Monitor | count : N >
      < CLIENT : Client | executing : < TID : Txn | AS > TRANSES,
@@ -377,7 +377,26 @@ mod RAMP-F is
                                 commitSites : CMTS', AS' >
      fi
      if CMTS' := remove(TID,RID',CMTS) .
+  )
 
+ ceq [receive-committed] :
+     < M : Monitor | count : N >
+     < CLIENT : Client | executing : < TID : Txn | AS > TRANSES,
+                         committed : TRANSES',
+                         commitSites : CMTS, AS' >
+     msg committed(TID,RID') from RID' to CLIENT
+   =
+     if CMTS'[TID] == empty  --- all "committed" received
+       then < M : Monitor | count : N + 1 >
+            < CLIENT : Client | executing : TRANSES,
+                                committed : (TRANSES' < TID : Txn | AS >),
+                                commitSites : CMTS', AS' >
+       else < M : Monitor | count : N > 
+            < CLIENT : Client | executing : < TID : Txn | AS > TRANSES,
+                                committed : TRANSES',
+                                commitSites : CMTS', AS' >
+     fi
+     if CMTS' := remove(TID,RID',CMTS) .
 
   *********
 
@@ -470,7 +489,7 @@ mod RAMP-F is
      < CLIENT : Client | executing : < TID : Txn | readSet : (RS,version(K,V,TS,MD)), AS > TRANSES,
                          2ndGetSites : remove(TID,RID',2NDGETS), AS' > .
 
-
+  ---(
  crl [commit-ro-txn] :
      < M : Monitor | count : N >
      < CLIENT : Client | executing : < TID : Txn | AS > TRANSES,
@@ -478,6 +497,22 @@ mod RAMP-F is
                          1stGetSites : 1STGETS,
                          2ndGetSites : 2NDGETS, AS' >
    =>
+     < M : Monitor | count : N + 1 >
+     < CLIENT : Client | executing : TRANSES,
+                         committed : (TRANSES' < TID : Txn | AS >),
+                         1stGetSites : delete(TID,1STGETS),
+                         2ndGetSites : delete(TID,2NDGETS), AS' >
+     if 1STGETS[TID] == empty /\
+        2NDGETS[TID] == empty .
+  )
+
+ ceq [commit-ro-txn] :
+     < M : Monitor | count : N >
+     < CLIENT : Client | executing : < TID : Txn | AS > TRANSES,
+                         committed : TRANSES',
+                         1stGetSites : 1STGETS,
+                         2ndGetSites : 2NDGETS, AS' >
+   =
      < M : Monitor | count : N + 1 >
      < CLIENT : Client | executing : TRANSES,
                          committed : (TRANSES' < TID : Txn | AS >),
