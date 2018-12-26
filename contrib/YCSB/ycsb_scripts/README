@@ -87,7 +87,7 @@ sh load-ycsb.sh 155.98.36.144
 nohup sh run_client.sh 155.98.36.150 9810 9910 0 3 &
 sh postload-ycsb.sh 155.98.36.150 9810 3
 sh kill_postload.sh
-nohup bash run-ycsb.sh 155.98.36.150 9910 3 100 12:50:54 &
+nohup bash run-ycsb.sh 155.98.36.150 9910 3 100 12:50:54 > ./logs/output &
 nohup bash kill_ycsb.sh 13:00:54 &
 sh kill_server.sh
 python compute_throughput.py 0 1
