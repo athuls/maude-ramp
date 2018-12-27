@@ -42,7 +42,7 @@ mod INIT-SERVER is
   
   ***START AUTOMATICALLY GENERATED PARAMETER CODE***
   eq self = "155.98.36.123" .
-  eq numberOfServerSockets = 5 . *** one for load, one(s) for client(s)
+  eq numberOfServerSockets = 2 . *** one for load, one(s) for client(s)
   ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 
   op init : -> Configuration .
@@ -61,9 +61,6 @@ mod INIT-SERVER is
 	    *** Following are ports for server - maude client communication
 	    ***START AUTOMATICALLY GENERATED SOCKET CODE***
 	    createServerTcpSocket(socketManager, l(self), 9000, 10)
-	    createServerTcpSocket(socketManager, l(self), 9001, 10)
-	    createServerTcpSocket(socketManager, l(self), 9002, 10)
-	    createServerTcpSocket(socketManager, l(self), 9003, 10)
 	    ***END AUTOMATICALLY GENERATED SOCKET CODE***
         .
 
