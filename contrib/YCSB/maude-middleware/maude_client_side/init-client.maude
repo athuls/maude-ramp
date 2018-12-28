@@ -33,10 +33,18 @@ mod INIT-CLIENT is
   eq backLog = 1 .  *** the BACKLOG parameter on the server side
   op clientId : -> Nat .
 
+  *** Newly added for separating YCSB
+  op seqNumber : -> Nat .
+  op transes : -> ObjList .
+
+
   ***START AUTOMATICALLY GENERATED PARAMETER CODE***
   eq self = "155.98.39.143" .
-  eq numberOfServerSockets = 2 . *** one for post-load, one for txns
+  eq numberOfServerSockets = 1 . *** one for post-load, one for txns
   eq clientId = 0 .
+
+  eq seqNumber = 0 .
+  eq transes = emptyTxnList .
   ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 
   op init : -> Configuration .
@@ -44,7 +52,7 @@ mod INIT-CLIENT is
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 
-            < l(self,clientId) : Client | txns : emptyTxnList, sqn : 0,
+            < l(self,clientId) : Client | txns : transes, sqn : seqNumber,
                                    executing : none, committed : none, 
                                    1stGetSites : no1st, 2ndGetSites : no2nd,
                                    voteSites : noVS, commitSites : noVS > 
@@ -54,10 +62,10 @@ mod INIT-CLIENT is
             < m : Monitor | count : 0 >
 
 	    ***START AUTOMATICALLY GENERATED SOCKET CODE***
-            createServerTcpSocket(socketManager, l(self,clientId), 9810, 10)    *** opened for post-load
-            createServerTcpSocket(socketManager, l(self,clientId), 9910, 10) .  *** opened for txns
+            createServerTcpSocket(socketManager, l(self,clientId), 9810, 10)     *** opened for post-load
+            ***createServerTcpSocket(socketManager, l(self,clientId), 9910, 10)  *** opened for txns
 	    ***END AUTOMATICALLY GENERATED SOCKET CODE***
-
+        .
 
   --- local test
   ---(

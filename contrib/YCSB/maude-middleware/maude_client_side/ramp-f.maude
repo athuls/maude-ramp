@@ -111,7 +111,7 @@ mod RAMP-F is
      if N' := find(STR,"[eor]",0) .
 )
 
-
+---(
  crl [gotTxn] : 
      < TABLE : Table | table : REPLICA-TABLE >
      < CLIENT : Client | txns : TXNS, sqn : N, AS >
@@ -138,7 +138,7 @@ mod RAMP-F is
                          sqn : N + 1, AS >
      if N' := find(STR,"[eor]",0) /\
         not undfd(genOps(STR),REPLICA-TABLE) .
-
+)
 
   *** Can NOT handle read-write txns
   op genOps : String -> OperationList .
