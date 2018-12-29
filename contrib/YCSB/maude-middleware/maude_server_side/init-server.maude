@@ -40,16 +40,22 @@ mod INIT-SERVER is
   *** eq port = 9910 .  *** the base port for server talking to server
   eq backLog = 1 .  *** the BACKLOG parameter on the server side
   op self : -> String .
+
+  op initDatastore : -> Versions .
+  op initLatestCommit : -> KeyTimestamps .
   
   ***START AUTOMATICALLY GENERATED PARAMETER CODE***
   eq self = "155.98.39.145" .
   eq numberOfServerSockets = 1 . *** one for load, one(s) for client(s)
+
+  eq initDatastore = empty .
+  eq initLatestCommit = empty .
   ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 
   op init : -> Configuration .
   eq init = <>
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
-            < l(self) : Replica | datastore : empty, latestCommit : empty >
+            < l(self) : Replica | datastore : initDatastore, latestCommit : initLatestCommit >
             ---(
             < l(self) : Replica | datastore : (version("k1","dft",ts(dftOid,0),empty), 
                                                version("k2","dft",ts(dftOid,0),empty)), 

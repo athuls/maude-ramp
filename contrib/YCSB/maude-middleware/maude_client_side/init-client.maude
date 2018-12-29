@@ -34,8 +34,9 @@ mod INIT-CLIENT is
   op clientId : -> Nat .
 
   *** Newly added for separating YCSB
-  op seqNumber : -> Nat .
-  op transes : -> ObjList .
+  op initTable : -> ReplicaTable .
+  op initSqn : -> Nat .
+  op initTxns : -> ObjList .
 
 
   ***START AUTOMATICALLY GENERATED PARAMETER CODE***
@@ -43,8 +44,9 @@ mod INIT-CLIENT is
   eq numberOfServerSockets = 0 . *** one for post-load, one for txns
   eq clientId = 0 .
 
-  eq seqNumber = 0 .
-  eq transes = emptyTxnList .
+  eq initTable = empty .
+  eq initSqn = 0 .
+  eq initTxns = emptyTxnList .
   ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 
   op init : -> Configuration .
@@ -52,12 +54,12 @@ mod INIT-CLIENT is
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 
-            < l(self,clientId) : Client | txns : transes, sqn : seqNumber,
+            < l(self,clientId) : Client | txns : initTxns, sqn : initSqn,
                                    executing : none, committed : none, 
                                    1stGetSites : no1st, 2ndGetSites : no2nd,
                                    voteSites : noVS, commitSites : noVS > 
 
-            < tb : Table | table : empty >
+            < tb : Table | table : initTable >
 
             < m : Monitor | count : 0 >
 
