@@ -10,7 +10,7 @@ mod INIT-CLIENT is
   vars STR KR : String .
   var RT : ReplicaTable .
 
-
+  ---(
   *** post load
  crl < O : Table | table : RT >
      [KR,O']
@@ -24,7 +24,7 @@ mod INIT-CLIENT is
         STR := substr(KR, N + 5, length(KR)) /\
          N' := find(STR, "[eoa]", 0) .
   eq addKeyReplica("",RT) = RT .
-
+  )
 
   ops tb m : -> Oid .
 

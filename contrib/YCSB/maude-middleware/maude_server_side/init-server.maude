@@ -11,6 +11,7 @@ mod INIT-SERVER is
   var STORE : Versions .
   var LC : KeyTimestamps .
 
+---(
  *** load
   crl < O : Replica | datastore : STORE, latestCommit : LC, AS >
       [KV,O']
@@ -34,7 +35,7 @@ mod INIT-SERVER is
         STR := substr(KV, N + 5, length(KV)) /\
         N' := find(STR, "[eov]", 0) .
   eq addKeyTS("",LC) = LC .
-
+)
 
   *** eq port = 9910 .  *** the base port for server talking to server
   eq backLog = 1 .  *** the BACKLOG parameter on the server side
