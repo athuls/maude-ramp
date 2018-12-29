@@ -68,8 +68,7 @@ mod INIT-SERVER is
 
 	    *** Following are ports for server - maude client communication
 	    ***START AUTOMATICALLY GENERATED SOCKET CODE***
-	    createServerTcpSocket(socketManager, l(self), 9000, 10)
-            ***createServerTcpSocket(socketManager, l(self), 9001, 10)
+            $5
 	    ***END AUTOMATICALLY GENERATED SOCKET CODE***
         .
 

@@ -1,0 +1,37 @@
+		     \||||||||||||||||||/
+		   --- Welcome to Maude ---
+		     /||||||||||||||||||\
+	   Maude alpha118 built: Aug  5 2018 14:49:48
+	    Copyright 1997-2018 SRI International
+		   Sun Aug 12 12:15:26 2018
+==========================================
+erewrite in INIT-SERVER : init .
+====> Maude status report on Sun Aug 12 12:26:55 2018
+membership applications: 0
+equational rewrites: 432
+rule rewrites: 8
+variant narrowing steps: 0
+narrowing steps: 0
+total: 440
+Waiting for external event.
+Current term is:
+<> < l("155.98.39.120") : Replica | datastore : (version("user1567", "&;", ts(
+    dftOid, 0), empty), version("user1568", "%(", ts(dftOid, 0), empty),
+    version("user1569", "$%", ts(dftOid, 0), empty), version("user1570", "5=",
+    ts(dftOid, 0), empty), version("user1571", ">7", ts(dftOid, 0), empty),
+    version("user1572", "5/", ts(dftOid, 0), empty), version("user1573", "$8",
+    ts(dftOid, 0), empty), version("user1574", "'!", ts(dftOid, 0), empty),
+    version("user1575", "4?", ts(dftOid, 0), empty), version("user1576", "8(",
+    ts(dftOid, 0), empty)),latestCommit : ("user1567" |-> ts(dftOid, 0),
+    "user1568" |-> ts(dftOid, 0), "user1569" |-> ts(dftOid, 0), "user1570" |->
+    ts(dftOid, 0), "user1571" |-> ts(dftOid, 0), "user1572" |-> ts(dftOid, 0),
+    "user1573" |-> ts(dftOid, 0), "user1574" |-> ts(dftOid, 0), "user1575" |->
+    ts(dftOid, 0), "user1576" |-> ts(dftOid, 0)) > < l("155.98.39.120", 10001)
+    : ServerShim | sockets : (< socket(4) : BufferedSocket | read : "" > <
+    socket(5) : BufferedSocket | read : "" > < socket(6) : BufferedSocket |
+    read : "" > < socket(7) : BufferedSocket | read : "" >),bufferedMsgs :
+    none,contacts : < l("155.98.39.120"),socket(7),l("155.98.39.98") >,created
+    : 3 > closedSocket(l("155.98.39.120"), socket(7),
+    "Connection reset by peer")
+which arose while executing a top level command.
+

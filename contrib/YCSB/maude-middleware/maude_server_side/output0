@@ -1,0 +1,61 @@
+		     \||||||||||||||||||/
+		   --- Welcome to Maude ---
+		     /||||||||||||||||||\
+	   Maude alpha118 built: Aug  5 2018 14:49:48
+	    Copyright 1997-2018 SRI International
+		   Fri Aug 31 13:20:16 2018
+==========================================
+erewrite in INIT-SERVER : init .
+====> Maude status report on Fri Aug 31 13:35:45 2018
+membership applications: 0
+equational rewrites: 74436
+rule rewrites: 158
+variant narrowing steps: 0
+narrowing steps: 0
+total: 74594
+Waiting for external event.
+Current term is:
+<> < l("155.98.38.136") : Replica | datastore : (version("user48", "*5", ts(l(
+    "155.98.38.150", 0), 8), "user52"), version("user48", ",/", ts(l(
+    "155.98.38.150", 0), 9), "user57"), version("user48", ",0", ts(l(
+    "155.98.38.150", 1), 8), "user56"), version("user48", "46", ts(l(
+    "155.98.38.150", 0), 2), "user53"), version("user48", "5+", ts(l(
+    "155.98.38.150", 1), 1), "user50"), version("user48", "8?", ts(dftOid, 0),
+    empty), version("user49", "$#", ts(dftOid, 0), empty), version("user49",
+    "($", ts(l("155.98.38.150", 1), 9), "user50"), version("user49", "7/", ts(
+    l("155.98.38.150", 0), 6), "user52"), version("user50", "$8", ts(l(
+    "155.98.38.150", 1), 9), "user49"), version("user50", ":>", ts(l(
+    "155.98.38.150", 1), 10), "user57"), version("user50", ";1", ts(dftOid, 0),
+    empty), version("user50", "<'", ts(l("155.98.38.150", 1), 1), "user48"),
+    version("user51", "$;", ts(dftOid, 0), empty), version("user51", "0'", ts(
+    l("155.98.38.150", 1), 2), "user54"), version("user51", "4-", ts(l(
+    "155.98.38.150", 1), 5), "user56"), version("user52", "!.", ts(l(
+    "155.98.38.150", 0), 6), "user49"), version("user52", ":>", ts(dftOid, 0),
+    empty), version("user52", ">/", ts(l("155.98.38.150", 0), 8), "user48"),
+    version("user53", "$&", ts(dftOid, 0), empty), version("user53", "=?", ts(
+    l("155.98.38.150", 0), 2), "user48"), version("user54", "54", ts(dftOid,
+    0), empty), version("user54", "6&", ts(l("155.98.38.150", 1), 2),
+    "user51"), version("user55", "/#", ts(dftOid, 0), empty), version("user56",
+    "&$", ts(l("155.98.38.150", 1), 5), "user51"), version("user56", "()", ts(
+    dftOid, 0), empty), version("user56", "9%", ts(l("155.98.38.150", 1), 8),
+    "user48"), version("user57", "!,", ts(l("155.98.38.150", 1), 10),
+    "user50"), version("user57", ",3", ts(l("155.98.38.150", 0), 9), "user48"),
+    version("user57", "/!", ts(dftOid, 0), empty)),latestCommit : ("user48" |->
+    ts(l("155.98.38.150", 0), 9), "user49" |-> ts(l("155.98.38.150", 1), 9),
+    "user50" |-> ts(l("155.98.38.150", 1), 10), "user51" |-> ts(l(
+    "155.98.38.150", 1), 5), "user52" |-> ts(l("155.98.38.150", 0), 8),
+    "user53" |-> ts(l("155.98.38.150", 0), 2), "user54" |-> ts(l(
+    "155.98.38.150", 1), 2), "user55" |-> ts(dftOid, 0), "user56" |-> ts(l(
+    "155.98.38.150", 1), 8), "user57" |-> ts(l("155.98.38.150", 1), 10)) > < l(
+    "155.98.38.136", 10001) : ServerShim | sockets : (< socket(4) :
+    BufferedSocket | read : "" > < socket(5) : BufferedSocket | read : "" > <
+    socket(6) : BufferedSocket | read : "" > < socket(7) : BufferedSocket |
+    read : "" > < socket(8) : BufferedSocket | read : "" >),bufferedMsgs :
+    none,contacts : (< l("155.98.38.136"),socket(7),l("155.98.38.150") > ; < l(
+    "155.98.38.136"),socket(7),l("155.98.38.150", 0) > ; < l("155.98.38.136"),
+    socket(8),l("155.98.38.150", 1) >),created : 3 > closedSocket(l(
+    "155.98.38.136"), socket(7), "") closedSocket(l("155.98.38.136"), socket(
+    7), "Connection reset by peer") closedSocket(l("155.98.38.136"), socket(8),
+    "")
+which arose while executing a top level command.
+

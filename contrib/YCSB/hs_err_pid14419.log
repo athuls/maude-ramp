@@ -1,0 +1,550 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f3a6b161acd, pid=14419, tid=0x00007f3a6bce3700
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_152-b16) (build 1.8.0_152-b16)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.152-b16 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# C  [libc.so.6+0x94acd]
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f3a6400c000):  JavaThread "main" [_thread_in_native, id=14420, stack(0x00007f3a6bbe3000,0x00007f3a6bce4000)]
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 2 (SEGV_ACCERR), si_addr: 0x00007f3a6bb02000
+
+Registers:
+RAX=0x0000000000000020, RBX=0xffffffffffffffff, RCX=0x0000000000000020, RDX=0x000000000000045c
+RSP=0x00007f3a6bce09d0, RBP=0x000000000000656a, RSI=0x00007f3a6bb01fe8, RDI=0x00007f3a641ab0a8
+R8 =0x0000000000000020, R9 =0xffffffff00000000, R10=0xffffffffffffffff, R11=0xffffffffffffffff
+R12=0x00007f3a641a6e22, R13=0x00007f3a6bafdd5c, R14=0x0000000000006570, R15=0x00007f3a64149de0
+RIP=0x00007f3a6b161acd, EFLAGS=0x0000000000010286, CSGSFS=0x0000000000000033, ERR=0x0000000000000004
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007f3a6bce09d0)
+0x00007f3a6bce09d0:   00007f3a641a6e28 00007f3a6b15c063
+0x00007f3a6bce09e0:   00007f3a64149de0 00007f3a6bafdd56
+0x00007f3a6bce09f0:   00007f3a6bce0a60 00007f3a6baf6cc7
+0x00007f3a6bce0a00:   00007f3a64174b60 00007f3a68d3b6f9
+0x00007f3a6bce0a10:   00007f3a6bce0bf0 2e72700100000000
+0x00007f3a6bce0a20:   0000000000007061 000000000a031402
+0x00007f3a6bce0a30:   00007f3a64174b60 00007f3a6414a120
+0x00007f3a6bce0a40:   00007f3a2821e940 00007f3a64149de0
+0x00007f3a6bce0a50:   00000000be3e5e5e 0000000000000043
+0x00007f3a6bce0a60:   00007f3a6bce0ac0 00007f3a68d3bc7f
+0x00007f3a6bce0a70:   00007f3a6400c000 0100000000000000
+0x00007f3a6bce0a80:   00007f3a6bce0ae0 00007f3a6bce0b24
+0x00007f3a6bce0a90:   00007f3a6bce0b22 00007f3a6bce0ae0
+0x00007f3a6bce0aa0:   0000000000000043 00007f3a6400c1f8
+0x00007f3a6bce0ab0:   00007f3a6bce0f38 0000000000000001
+0x00007f3a6bce0ac0:   00007f3a6bce0f20 00007f3a68d2cec0
+0x00007f3a6bce0ad0:   00007f3a6bce1100 00007f3a64149de0
+0x00007f3a6bce0ae0:   6f6861792f6d6f63 6d2f627363792f6f
+0x00007f3a6bce0af0:   656d657275736165 6f7078652f73746e
+0x00007f3a6bce0b00:   7865542f72657472 6572757361654d74
+0x00007f3a6bce0b10:   70784573746e656d 6c632e726574726f
+0x00007f3a6bce0b20:   00007f3a00737361 00007f3a551c4a60
+0x00007f3a6bce0b30:   00007f3a6bce0c20 00007f3a6aa9cc90
+0x00007f3a6bce0b40:   00007f3a640077d0 00007f3a5512ca07
+0x00007f3a6bce0b50:   00000000f6593658 00007f3a5512c4ac
+0x00007f3a6bce0b60:   00007f3a5512c528 00007f3a5512c350
+0x00007f3a6bce0b70:   00007f3a6400c000 00007f3a6bce0e00
+0x00007f3a6bce0b80:   00007f3a6bce1100 00007f3a55112cd4
+0x00007f3a6bce0b90:   0000000000000043 000000010001bd18
+0x00007f3a6bce0ba0:   00007f3a6bce0980 00000000f6593600
+0x00007f3a6bce0bb0:   00007f3a4f8e9a38 00000000f646e2d0
+0x00007f3a6bce0bc0:   00007f3a6bce0bf0 00000000b2946f14 
+
+Instructions: (pc=0x00007f3a6b161acd)
+0x00007f3a6b161aad:   ef 10 89 c1 4d 89 d9 4c 8b 56 10 48 d3 eb 44 89
+0x00007f3a6b161abd:   c1 49 d3 e1 4c 09 cb 48 89 5f 10 89 c1 4c 89 d3
+0x00007f3a6b161acd:   4c 8b 4e 18 49 d3 eb 44 89 c1 48 83 c7 20 48 d3
+0x00007f3a6b161add:   e3 49 09 db 4c 89 5f f8 48 83 ea 04 74 9d 48 83 
+
+Register to memory mapping:
+
+RAX=0x0000000000000020 is an unknown value
+RBX=0xffffffffffffffff is an unknown value
+RCX=0x0000000000000020 is an unknown value
+RDX=0x000000000000045c is an unknown value
+RSP=0x00007f3a6bce09d0 is pointing into the stack for thread: 0x00007f3a6400c000
+RBP=0x000000000000656a is an unknown value
+RSI=0x00007f3a6bb01fe8 is an unknown value
+RDI=0x00007f3a641ab0a8 is an unknown value
+R8 =0x0000000000000020 is an unknown value
+R9 =0xffffffff00000000 is an unknown value
+R10=0xffffffffffffffff is an unknown value
+R11=0xffffffffffffffff is an unknown value
+R12=0x00007f3a641a6e22 is an unknown value
+R13=0x00007f3a6bafdd5c is an unknown value
+R14=0x0000000000006570 is an unknown value
+R15=0x00007f3a64149de0 is an unknown value
+
+
+Stack: [0x00007f3a6bbe3000,0x00007f3a6bce4000],  sp=0x00007f3a6bce09d0,  free space=1014k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libc.so.6+0x94acd]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+J 138  java.util.zip.ZipFile.getEntry(J[BZ)J (0 bytes) @ 0x00007f3a55154b98 [0x00007f3a55154b40+0x58]
+J 158 C1 java.util.zip.ZipFile.getEntry(Ljava/lang/String;)Ljava/util/zip/ZipEntry; (101 bytes) @ 0x00007f3a5515e74c [0x00007f3a5515e4e0+0x26c]
+J 77 C1 sun.misc.URLClassPath$JarLoader.getResource(Ljava/lang/String;Z)Lsun/misc/Resource; (85 bytes) @ 0x00007f3a551363bc [0x00007f3a55136160+0x25c]
+J 287 C1 sun.misc.URLClassPath.getResource(Ljava/lang/String;Z)Lsun/misc/Resource; (83 bytes) @ 0x00007f3a551ae2ec [0x00007f3a551ae180+0x16c]
+J 298 C1 java.net.URLClassLoader$1.run()Ljava/lang/Class; (63 bytes) @ 0x00007f3a551bcd2c [0x00007f3a551bcb20+0x20c]
+J 297 C1 java.net.URLClassLoader$1.run()Ljava/lang/Object; (5 bytes) @ 0x00007f3a551bd50c [0x00007f3a551bd480+0x8c]
+v  ~StubRoutines::call_stub
+J 154  java.security.AccessController.doPrivileged(Ljava/security/PrivilegedExceptionAction;Ljava/security/AccessControlContext;)Ljava/lang/Object; (0 bytes) @ 0x00007f3a5515ca23 [0x00007f3a5515c9c0+0x63]
+J 196 C1 java.net.URLClassLoader.findClass(Ljava/lang/String;)Ljava/lang/Class; (47 bytes) @ 0x00007f3a5516e784 [0x00007f3a5516e600+0x184]
+J 113 C1 java.lang.ClassLoader.loadClass(Ljava/lang/String;Z)Ljava/lang/Class; (122 bytes) @ 0x00007f3a55145b3c [0x00007f3a551451e0+0x95c]
+j  sun.misc.Launcher$AppClassLoader.loadClass(Ljava/lang/String;Z)Ljava/lang/Class;+81
+j  java.lang.ClassLoader.loadClass(Ljava/lang/String;)Ljava/lang/Class;+3
+v  ~StubRoutines::call_stub
+j  java.lang.Class.forName0(Ljava/lang/String;ZLjava/lang/ClassLoader;Ljava/lang/Class;)Ljava/lang/Class;+0
+j  java.lang.Class.forName(Ljava/lang/String;)Ljava/lang/Class;+11
+j  com.yahoo.ycsb.Client.exportMeasurements(Ljava/util/Properties;IJ)V+47
+j  com.yahoo.ycsb.Client.main([Ljava/lang/String;)V+1439
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007f3a6411c000 JavaThread "Service Thread" daemon [_thread_blocked, id=14429, stack(0x00007f3a4e81b000,0x00007f3a4e91c000)]
+  0x00007f3a64119800 JavaThread "C1 CompilerThread1" daemon [_thread_blocked, id=14428, stack(0x00007f3a4e91c000,0x00007f3a4ea1d000)]
+  0x00007f3a64116800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=14427, stack(0x00007f3a4ea1d000,0x00007f3a4eb1e000)]
+  0x00007f3a64115000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=14426, stack(0x00007f3a4eb1e000,0x00007f3a4ec1f000)]
+  0x00007f3a640e1800 JavaThread "Finalizer" daemon [_thread_blocked, id=14425, stack(0x00007f3a4eef7000,0x00007f3a4eff8000)]
+  0x00007f3a640dd000 JavaThread "Reference Handler" daemon [_thread_blocked, id=14424, stack(0x00007f3a4eff8000,0x00007f3a4f0f9000)]
+=>0x00007f3a6400c000 JavaThread "main" [_thread_in_native, id=14420, stack(0x00007f3a6bbe3000,0x00007f3a6bce4000)]
+
+Other Threads:
+  0x00007f3a640d5800 VMThread [stack: 0x00007f3a4f0f9000,0x00007f3a4f1fa000] [id=14423]
+  0x00007f3a64121000 WatcherThread [stack: 0x00007f3a4e71a000,0x00007f3a4e81b000] [id=14430]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 9216K, used 8172K [0x00000000f6400000, 0x00000000f6e00000, 0x0000000100000000)
+  eden space 8192K, 99% used [0x00000000f6400000,0x00000000f6bfb240,0x00000000f6c00000)
+  from space 1024K, 0% used [0x00000000f6d00000,0x00000000f6d00000,0x00000000f6e00000)
+  to   space 1024K, 0% used [0x00000000f6c00000,0x00000000f6c00000,0x00000000f6d00000)
+ ParOldGen       total 20480K, used 0K [0x00000000e2c00000, 0x00000000e4000000, 0x00000000f6400000)
+  object space 20480K, 0% used [0x00000000e2c00000,0x00000000e2c00000,0x00000000e4000000)
+ Metaspace       used 5004K, capacity 5568K, committed 5760K, reserved 1056768K
+  class space    used 544K, capacity 562K, committed 640K, reserved 1048576K
+
+Card table byte_map: [0x00007f3a6baf8000,0x00007f3a6bbe3000] byte_map_base: 0x00007f3a6b3e2000
+
+Marking Bits: (ParMarkBitMap*) 0x00007f3a6b0a01a0
+ Begin Bits: [0x00007f3a54160000, 0x00007f3a548b0000)
+ End Bits:   [0x00007f3a548b0000, 0x00007f3a55000000)
+
+Polling page: 0x00007f3a6bcf2000
+
+CodeCache: size=245760Kb used=1950Kb max_used=1950Kb free=243809Kb
+ bounds [0x00007f3a55000000, 0x00007f3a55270000, 0x00007f3a64000000]
+ total_blobs=642 nmethods=362 adapters=196
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 2.470 Thread 0x00007f3a64119800  358       3       java.util.ArrayList::clear (39 bytes)
+Event: 2.471 Thread 0x00007f3a64119800 nmethod 358 0x00007f3a551e6b10 code [0x00007f3a551e6ca0, 0x00007f3a551e7010]
+Event: 2.471 Thread 0x00007f3a64119800  359       3       com.yahoo.ycsb.DBWrapper::numOperationsQueued (8 bytes)
+Event: 2.471 Thread 0x00007f3a64119800 nmethod 359 0x00007f3a551e7150 code [0x00007f3a551e72c0, 0x00007f3a551e74e8]
+Event: 2.471 Thread 0x00007f3a64119800  360       3       com.yahoo.ycsb.db.KaijuClient::numOperationsQueued (22 bytes)
+Event: 2.472 Thread 0x00007f3a64119800 nmethod 360 0x00007f3a551e7590 code [0x00007f3a551e7720, 0x00007f3a551e7ab8]
+Event: 2.486 Thread 0x00007f3a64119800  361       3       java.util.Vector$Itr::hasNext (20 bytes)
+Event: 2.487 Thread 0x00007f3a64119800 nmethod 361 0x00007f3a551e7bd0 code [0x00007f3a551e7d40, 0x00007f3a551e7ef0]
+Event: 2.514 Thread 0x00007f3a64119800  362       3       java.util.Objects::requireNonNull (14 bytes)
+Event: 2.515 Thread 0x00007f3a64119800 nmethod 362 0x00007f3a551e7f90 code [0x00007f3a551e8100, 0x00007f3a551e8328]
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (10 events):
+Event: 2.538 Thread 0x00007f3a641a3800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000f6bb3738) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u152/9742/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 605]
+Event: 2.542 Thread 0x00007f3a641a3800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000f6bb3d20) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u152/9742/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 605]
+Event: 2.542 Thread 0x00007f3a641a3800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000f6bb4288) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u152/9742/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 605]
+Event: 30001.947 Thread 0x00007f3a641a5000 Exception <a 'java/io/IOException'> (0x00000000f6bd2508) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u152/9742/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 30001.949 Thread 0x00007f3a641a5000 Exception <a 'java/io/IOException'> (0x00000000f6bd2838) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u152/9742/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 30001.949 Thread 0x00007f3a641a5000 Exception <a 'java/io/IOException'> (0x00000000f6bd2ab8) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u152/9742/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 30003.949 Thread 0x00007f3a6400c000 Exception <a 'java/net/SocketException': Socket closed> (0x00000000f6591628) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u152/9742/hotspot/src/share/vm/prims/jni.cpp, line 735]
+Event: 30003.950 Thread 0x00007f3a6400c000 Exception <a 'java/io/IOException'> (0x00000000f6592768) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u152/9742/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 30003.950 Thread 0x00007f3a6400c000 Exception <a 'java/io/IOException'> (0x00000000f6592a18) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u152/9742/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 30003.950 Thread 0x00007f3a6400c000 Exception <a 'java/io/IOException'> (0x00000000f6592c98) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u152/9742/hotspot/src/share/vm/prims/jni.cpp, line 709]
+
+Events (10 events):
+Event: 2.546 Thread 0x00007f3a641a3800 Thread exited: 0x00007f3a641a3800
+Event: 4.162 Executing VM operation: EnableBiasedLocking
+Event: 4.163 Executing VM operation: EnableBiasedLocking done
+Event: 30001.947 loading class java/io/InterruptedIOException
+Event: 30001.948 loading class java/io/InterruptedIOException done
+Event: 30003.949 Thread 0x00007f3a641a5000 Thread exited: 0x00007f3a641a5000
+Event: 30003.949 loading class sun/net/ConnectionResetException
+Event: 30003.949 loading class sun/net/ConnectionResetException done
+Event: 30003.950 loading class com/yahoo/ycsb/measurements/exporter/TextMeasurementsExporter
+Event: 30003.950 loading class com/yahoo/ycsb/measurements/exporter/TextMeasurementsExporter done
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 00:2a 27160                              /users/nobi/jdk1.8.0_152/bin/java
+00600000-00601000 rw-p 00000000 00:2a 27160                              /users/nobi/jdk1.8.0_152/bin/java
+01d91000-01db2000 rw-p 00000000 00:00 0                                  [heap]
+e2c00000-e4000000 rw-p 00000000 00:00 0 
+e4000000-f6400000 ---p 00000000 00:00 0 
+f6400000-f6e00000 rw-p 00000000 00:00 0 
+f6e00000-100000000 ---p 00000000 00:00 0 
+100000000-1000a0000 rw-p 00000000 00:00 0 
+1000a0000-140000000 ---p 00000000 00:00 0 
+7f3a1c000000-7f3a1c021000 rw-p 00000000 00:00 0 
+7f3a1c021000-7f3a20000000 ---p 00000000 00:00 0 
+7f3a20fff000-7f3a24000000 rw-p 00000000 00:00 0 
+7f3a24000000-7f3a24021000 rw-p 00000000 00:00 0 
+7f3a24021000-7f3a28000000 ---p 00000000 00:00 0 
+7f3a28000000-7f3a28270000 rw-p 00000000 00:00 0 
+7f3a28270000-7f3a2c000000 ---p 00000000 00:00 0 
+7f3a2c000000-7f3a2c156000 rw-p 00000000 00:00 0 
+7f3a2c156000-7f3a30000000 ---p 00000000 00:00 0 
+7f3a30000000-7f3a30021000 rw-p 00000000 00:00 0 
+7f3a30021000-7f3a34000000 ---p 00000000 00:00 0 
+7f3a34000000-7f3a34021000 rw-p 00000000 00:00 0 
+7f3a34021000-7f3a38000000 ---p 00000000 00:00 0 
+7f3a38000000-7f3a3818c000 rw-p 00000000 00:00 0 
+7f3a3818c000-7f3a3c000000 ---p 00000000 00:00 0 
+7f3a3c000000-7f3a3c021000 rw-p 00000000 00:00 0 
+7f3a3c021000-7f3a40000000 ---p 00000000 00:00 0 
+7f3a40000000-7f3a40021000 rw-p 00000000 00:00 0 
+7f3a40021000-7f3a44000000 ---p 00000000 00:00 0 
+7f3a44000000-7f3a44021000 rw-p 00000000 00:00 0 
+7f3a44021000-7f3a48000000 ---p 00000000 00:00 0 
+7f3a48000000-7f3a48021000 rw-p 00000000 00:00 0 
+7f3a48021000-7f3a4c000000 ---p 00000000 00:00 0 
+7f3a4e23d000-7f3a4e240000 ---p 00000000 00:00 0 
+7f3a4e240000-7f3a4e33e000 rw-p 00000000 00:00 0 
+7f3a4e33e000-7f3a4e354000 r-xp 00000000 00:2a 28920                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/libnet.so
+7f3a4e354000-7f3a4e554000 ---p 00016000 00:2a 28920                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/libnet.so
+7f3a4e554000-7f3a4e555000 rw-p 00016000 00:2a 28920                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/libnet.so
+7f3a4e555000-7f3a4e579000 r--s 001cb000 00:2a 72805                      /users/nobi/ramp/maude-ramp/contrib/YCSB/kaiju/target/archive-tmp/kaiju-binding-0.1.4.jar
+7f3a4e579000-7f3a4e59d000 r--s 001cb000 00:2a 72584                      /users/nobi/ramp/maude-ramp/contrib/YCSB/kaiju/target/kaiju-binding-0.1.4.jar
+7f3a4e59d000-7f3a4e59f000 r--s 0000f000 00:2a 72531                      /users/nobi/ramp/maude-ramp/contrib/YCSB/core/target/core-0.1.4.jar
+7f3a4e59f000-7f3a4e5a1000 r--s 00000000 00:2a 267792                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/.nfs000000000004161000000002
+7f3a4e5a1000-7f3a4e5a5000 r--s 00026000 00:2a 267797                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/.nfs000000000004161500000003
+7f3a4e5a5000-7f3a4e5c9000 r--s 001aa000 00:2a 267801                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/.nfs000000000004161900000004
+7f3a4e5c9000-7f3a4e5d0000 r--s 00053000 00:2a 267800                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/.nfs000000000004161800000005
+7f3a4e5d0000-7f3a4e5d2000 r--s 00010000 00:2a 267799                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/.nfs000000000004161700000006
+7f3a4e5d2000-7f3a4e5d9000 r--s 00062000 00:2a 267791                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/.nfs000000000004160f00000007
+7f3a4e5d9000-7f3a4e5db000 r--s 0000d000 00:2a 267790                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/.nfs000000000004160e00000008
+7f3a4e5db000-7f3a4e5dd000 r--s 00007000 00:2a 267796                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/.nfs00000000000416140000000a
+7f3a4e5dd000-7f3a4e5e0000 r--s 0001b000 00:2a 267794                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/.nfs00000000000416120000000b
+7f3a4e5e0000-7f3a4e5e2000 r--s 0000a000 00:2a 267798                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/.nfs00000000000416160000000c
+7f3a4e5e2000-7f3a4e5e4000 r--s 0000f000 00:2a 267789                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/.nfs000000000004160d0000000d
+7f3a4e5e4000-7f3a4e5e9000 r--s 0001e000 00:2a 267643                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/.nfs000000000004157b00000001
+7f3a4e5e9000-7f3a4e5ee000 r--s 0001e000 00:2a 267826                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/tools/cmdline/target/lib/kaiju-1.0-SNAPSHOT.jar
+7f3a4e5ee000-7f3a4e5f5000 r--s 00053000 00:2a 267824                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/tools/cmdline/target/lib/log4j-1.2.14.jar
+7f3a4e5f5000-7f3a4e619000 r--s 001aa000 00:2a 89399                      /users/nobi/ramp-only/ramp-sigmod2014-code/target/lib/guava-13.0.1.jar
+7f3a4e619000-7f3a4e61c000 ---p 00000000 00:00 0 
+7f3a4e61c000-7f3a4e71a000 rw-p 00000000 00:00 0 
+7f3a4e71a000-7f3a4e71b000 ---p 00000000 00:00 0 
+7f3a4e71b000-7f3a4e81b000 rw-p 00000000 00:00 0 
+7f3a4e81b000-7f3a4e81e000 ---p 00000000 00:00 0 
+7f3a4e81e000-7f3a4e91c000 rw-p 00000000 00:00 0 
+7f3a4e91c000-7f3a4e91f000 ---p 00000000 00:00 0 
+7f3a4e91f000-7f3a4ea1d000 rw-p 00000000 00:00 0 
+7f3a4ea1d000-7f3a4ea20000 ---p 00000000 00:00 0 
+7f3a4ea20000-7f3a4eb1e000 rw-p 00000000 00:00 0 
+7f3a4eb1e000-7f3a4eb21000 ---p 00000000 00:00 0 
+7f3a4eb21000-7f3a4ec1f000 rw-p 00000000 00:00 0 
+7f3a4ec1f000-7f3a4eef7000 r--p 00000000 08:01 329224                     /usr/lib/locale/locale-archive
+7f3a4eef7000-7f3a4eefa000 ---p 00000000 00:00 0 
+7f3a4eefa000-7f3a4eff8000 rw-p 00000000 00:00 0 
+7f3a4eff8000-7f3a4effb000 ---p 00000000 00:00 0 
+7f3a4effb000-7f3a4f0f9000 rw-p 00000000 00:00 0 
+7f3a4f0f9000-7f3a4f0fa000 ---p 00000000 00:00 0 
+7f3a4f0fa000-7f3a4fd00000 rw-p 00000000 00:00 0 
+7f3a4fd00000-7f3a50000000 ---p 00000000 00:00 0 
+7f3a50000000-7f3a50021000 rw-p 00000000 00:00 0 
+7f3a50021000-7f3a54000000 ---p 00000000 00:00 0 
+7f3a54000000-7f3a54001000 r--s 00005000 00:2a 267795                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/.nfs000000000004161300000009
+7f3a54001000-7f3a54002000 r--s 00002000 00:2a 267793                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/.nfs00000000000416110000000e
+7f3a54002000-7f3a54003000 r--s 00005000 00:2a 267825                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/tools/cmdline/target/lib/slf4j-api-1.5.8.jar
+7f3a54003000-7f3a54004000 r--s 00002000 00:2a 267823                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/tools/cmdline/target/lib/slf4j-log4j12-1.5.8.jar
+7f3a54004000-7f3a5400b000 r--s 00053000 00:2a 86824                      /users/nobi/ramp-only/ramp-sigmod2014-code/tools/cmdline/target/lib/log4j-1.2.14.jar
+7f3a5400b000-7f3a5400c000 r--s 00005000 00:2a 86822                      /users/nobi/ramp-only/ramp-sigmod2014-code/tools/cmdline/target/lib/slf4j-api-1.5.8.jar
+7f3a5400c000-7f3a54013000 r--s 00062000 00:2a 89400                      /users/nobi/ramp-only/ramp-sigmod2014-code/target/lib/sigar-1.6.4.jar
+7f3a54013000-7f3a54015000 r--s 0000d000 00:2a 89393                      /users/nobi/ramp-only/ramp-sigmod2014-code/target/lib/jcommander-1.30.jar
+7f3a54015000-7f3a54017000 r--s 00010000 00:2a 89395                      /users/nobi/ramp-only/ramp-sigmod2014-code/target/lib/metrics-core-3.0.0-BETA1.jar
+7f3a54017000-7f3a5403b000 r--s 001ca000 00:2a 267973                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB/kaiju/target/archive-tmp/kaiju-binding-0.1.4.jar
+7f3a5403b000-7f3a5405f000 r--s 001ca000 00:2a 267961                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB/kaiju/target/kaiju-binding-0.1.4.jar
+7f3a5405f000-7f3a55000000 rw-p 00000000 00:00 0 
+7f3a55000000-7f3a55270000 rwxp 00000000 00:00 0 
+7f3a55270000-7f3a64000000 ---p 00000000 00:00 0 
+7f3a64000000-7f3a6442b000 rw-p 00000000 00:00 0 
+7f3a6442b000-7f3a68000000 ---p 00000000 00:00 0 
+7f3a68000000-7f3a68001000 r--s 00002000 00:2a 86823                      /users/nobi/ramp-only/ramp-sigmod2014-code/tools/cmdline/target/lib/slf4j-log4j12-1.5.8.jar
+7f3a68001000-7f3a68004000 r--s 0001b000 00:2a 89402                      /users/nobi/ramp-only/ramp-sigmod2014-code/target/lib/junit-3.8.1.jar
+7f3a68004000-7f3a68006000 r--s 00007000 00:2a 89404                      /users/nobi/ramp-only/ramp-sigmod2014-code/target/lib/objenesis-1.2.jar
+7f3a68006000-7f3a68008000 r--s 00000000 00:2a 89403                      /users/nobi/ramp-only/ramp-sigmod2014-code/target/lib/minlog-1.2.jar
+7f3a68008000-7f3a6800a000 r--s 0000a000 00:2a 89401                      /users/nobi/ramp-only/ramp-sigmod2014-code/target/lib/asm-4.0.jar
+7f3a6800a000-7f3a6800c000 r--s 0000f000 00:2a 89398                      /users/nobi/ramp-only/ramp-sigmod2014-code/target/lib/reflectasm-1.07-shaded.jar
+7f3a6800c000-7f3a68010000 r--s 00026000 00:2a 89394                      /users/nobi/ramp-only/ramp-sigmod2014-code/target/lib/kryo-2.20.jar
+7f3a68010000-7f3a68017000 r--s 00053000 00:2a 89397                      /users/nobi/ramp-only/ramp-sigmod2014-code/target/lib/log4j-1.2.14.jar
+7f3a68017000-7f3a68018000 r--s 00005000 00:2a 89392                      /users/nobi/ramp-only/ramp-sigmod2014-code/target/lib/slf4j-api-1.5.8.jar
+7f3a68018000-7f3a68019000 r--s 00002000 00:2a 89396                      /users/nobi/ramp-only/ramp-sigmod2014-code/target/lib/slf4j-log4j12-1.5.8.jar
+7f3a68019000-7f3a6801e000 r--s 0001e000 00:2a 86821                      /users/nobi/ramp-only/ramp-sigmod2014-code/tools/cmdline/target/lib/kaiju-1.0-SNAPSHOT.jar
+7f3a6801e000-7f3a680b3000 r--s 01113000 00:2a 28768                      /users/nobi/jdk1.8.0_152/jre/lib/ext/jfxrt.jar
+7f3a680b3000-7f3a68304000 rw-p 00000000 00:00 0 
+7f3a68304000-7f3a684de000 r--s 03d5f000 00:2a 28706                      /users/nobi/jdk1.8.0_152/jre/lib/rt.jar
+7f3a684de000-7f3a686cb000 rw-p 00000000 00:00 0 
+7f3a686cb000-7f3a686cc000 ---p 00000000 00:00 0 
+7f3a686cc000-7f3a687cc000 rw-p 00000000 00:00 0 
+7f3a687cc000-7f3a687cd000 ---p 00000000 00:00 0 
+7f3a687cd000-7f3a688d7000 rw-p 00000000 00:00 0 
+7f3a688d7000-7f3a68969000 ---p 00000000 00:00 0 
+7f3a68969000-7f3a68973000 rw-p 00000000 00:00 0 
+7f3a68973000-7f3a68d29000 ---p 00000000 00:00 0 
+7f3a68d29000-7f3a68d44000 r-xp 00000000 00:2a 28916                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/libzip.so
+7f3a68d44000-7f3a68f44000 ---p 0001b000 00:2a 28916                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/libzip.so
+7f3a68f44000-7f3a68f45000 rw-p 0001b000 00:2a 28916                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/libzip.so
+7f3a68f45000-7f3a68f50000 r-xp 00000000 08:01 1016275                    /lib/x86_64-linux-gnu/libnss_files-2.23.so
+7f3a68f50000-7f3a6914f000 ---p 0000b000 08:01 1016275                    /lib/x86_64-linux-gnu/libnss_files-2.23.so
+7f3a6914f000-7f3a69150000 r--p 0000a000 08:01 1016275                    /lib/x86_64-linux-gnu/libnss_files-2.23.so
+7f3a69150000-7f3a69151000 rw-p 0000b000 08:01 1016275                    /lib/x86_64-linux-gnu/libnss_files-2.23.so
+7f3a69151000-7f3a69157000 rw-p 00000000 00:00 0 
+7f3a69157000-7f3a69162000 r-xp 00000000 08:01 1016283                    /lib/x86_64-linux-gnu/libnss_nis-2.23.so
+7f3a69162000-7f3a69361000 ---p 0000b000 08:01 1016283                    /lib/x86_64-linux-gnu/libnss_nis-2.23.so
+7f3a69361000-7f3a69362000 r--p 0000a000 08:01 1016283                    /lib/x86_64-linux-gnu/libnss_nis-2.23.so
+7f3a69362000-7f3a69363000 rw-p 0000b000 08:01 1016283                    /lib/x86_64-linux-gnu/libnss_nis-2.23.so
+7f3a69363000-7f3a69379000 r-xp 00000000 08:01 1015986                    /lib/x86_64-linux-gnu/libnsl-2.23.so
+7f3a69379000-7f3a69578000 ---p 00016000 08:01 1015986                    /lib/x86_64-linux-gnu/libnsl-2.23.so
+7f3a69578000-7f3a69579000 r--p 00015000 08:01 1015986                    /lib/x86_64-linux-gnu/libnsl-2.23.so
+7f3a69579000-7f3a6957a000 rw-p 00016000 08:01 1015986                    /lib/x86_64-linux-gnu/libnsl-2.23.so
+7f3a6957a000-7f3a6957c000 rw-p 00000000 00:00 0 
+7f3a6957c000-7f3a69584000 r-xp 00000000 08:01 1016265                    /lib/x86_64-linux-gnu/libnss_compat-2.23.so
+7f3a69584000-7f3a69783000 ---p 00008000 08:01 1016265                    /lib/x86_64-linux-gnu/libnss_compat-2.23.so
+7f3a69783000-7f3a69784000 r--p 00007000 08:01 1016265                    /lib/x86_64-linux-gnu/libnss_compat-2.23.so
+7f3a69784000-7f3a69785000 rw-p 00008000 08:01 1016265                    /lib/x86_64-linux-gnu/libnss_compat-2.23.so
+7f3a69785000-7f3a697b0000 r-xp 00000000 00:2a 28910                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/libjava.so
+7f3a697b0000-7f3a699af000 ---p 0002b000 00:2a 28910                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/libjava.so
+7f3a699af000-7f3a699b1000 rw-p 0002a000 00:2a 28910                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/libjava.so
+7f3a699b1000-7f3a699be000 r-xp 00000000 00:2a 28915                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/libverify.so
+7f3a699be000-7f3a69bbe000 ---p 0000d000 00:2a 28915                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/libverify.so
+7f3a69bbe000-7f3a69bc0000 rw-p 0000d000 00:2a 28915                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/libverify.so
+7f3a69bc0000-7f3a69bc7000 r-xp 00000000 08:01 1016285                    /lib/x86_64-linux-gnu/librt-2.23.so
+7f3a69bc7000-7f3a69dc6000 ---p 00007000 08:01 1016285                    /lib/x86_64-linux-gnu/librt-2.23.so
+7f3a69dc6000-7f3a69dc7000 r--p 00006000 08:01 1016285                    /lib/x86_64-linux-gnu/librt-2.23.so
+7f3a69dc7000-7f3a69dc8000 rw-p 00007000 08:01 1016285                    /lib/x86_64-linux-gnu/librt-2.23.so
+7f3a69dc8000-7f3a69ed0000 r-xp 00000000 08:01 1015985                    /lib/x86_64-linux-gnu/libm-2.23.so
+7f3a69ed0000-7f3a6a0cf000 ---p 00108000 08:01 1015985                    /lib/x86_64-linux-gnu/libm-2.23.so
+7f3a6a0cf000-7f3a6a0d0000 r--p 00107000 08:01 1015985                    /lib/x86_64-linux-gnu/libm-2.23.so
+7f3a6a0d0000-7f3a6a0d1000 rw-p 00108000 08:01 1015985                    /lib/x86_64-linux-gnu/libm-2.23.so
+7f3a6a0d1000-7f3a6ada9000 r-xp 00000000 00:2a 28893                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/server/libjvm.so
+7f3a6ada9000-7f3a6afa8000 ---p 00cd8000 00:2a 28893                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/server/libjvm.so
+7f3a6afa8000-7f3a6b082000 rw-p 00cd7000 00:2a 28893                      /users/nobi/jdk1.8.0_152/jre/lib/amd64/server/libjvm.so
+7f3a6b082000-7f3a6b0cd000 rw-p 00000000 00:00 0 
+7f3a6b0cd000-7f3a6b28d000 r-xp 00000000 08:01 1016029                    /lib/x86_64-linux-gnu/libc-2.23.so
+7f3a6b28d000-7f3a6b48d000 ---p 001c0000 08:01 1016029                    /lib/x86_64-linux-gnu/libc-2.23.so
+7f3a6b48d000-7f3a6b491000 r--p 001c0000 08:01 1016029                    /lib/x86_64-linux-gnu/libc-2.23.so
+7f3a6b491000-7f3a6b493000 rw-p 001c4000 08:01 1016029                    /lib/x86_64-linux-gnu/libc-2.23.so
+7f3a6b493000-7f3a6b497000 rw-p 00000000 00:00 0 
+7f3a6b497000-7f3a6b49a000 r-xp 00000000 08:01 1016034                    /lib/x86_64-linux-gnu/libdl-2.23.so
+7f3a6b49a000-7f3a6b699000 ---p 00003000 08:01 1016034                    /lib/x86_64-linux-gnu/libdl-2.23.so
+7f3a6b699000-7f3a6b69a000 r--p 00002000 08:01 1016034                    /lib/x86_64-linux-gnu/libdl-2.23.so
+7f3a6b69a000-7f3a6b69b000 rw-p 00003000 08:01 1016034                    /lib/x86_64-linux-gnu/libdl-2.23.so
+7f3a6b69b000-7f3a6b6b1000 r-xp 00000000 00:2a 28521                      /users/nobi/jdk1.8.0_152/lib/amd64/jli/libjli.so
+7f3a6b6b1000-7f3a6b8b0000 ---p 00016000 00:2a 28521                      /users/nobi/jdk1.8.0_152/lib/amd64/jli/libjli.so
+7f3a6b8b0000-7f3a6b8b1000 rw-p 00015000 00:2a 28521                      /users/nobi/jdk1.8.0_152/lib/amd64/jli/libjli.so
+7f3a6b8b1000-7f3a6b8c9000 r-xp 00000000 08:01 1016028                    /lib/x86_64-linux-gnu/libpthread-2.23.so
+7f3a6b8c9000-7f3a6bac8000 ---p 00018000 08:01 1016028                    /lib/x86_64-linux-gnu/libpthread-2.23.so
+7f3a6bac8000-7f3a6bac9000 r--p 00017000 08:01 1016028                    /lib/x86_64-linux-gnu/libpthread-2.23.so
+7f3a6bac9000-7f3a6baca000 rw-p 00018000 08:01 1016028                    /lib/x86_64-linux-gnu/libpthread-2.23.so
+7f3a6baca000-7f3a6bace000 rw-p 00000000 00:00 0 
+7f3a6bace000-7f3a6baf4000 r-xp 00000000 08:01 1016027                    /lib/x86_64-linux-gnu/ld-2.23.so
+7f3a6baf4000-7f3a6baf6000 r--s 00000000 00:2a 267821                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/tools/cmdline/target/cmdline-1.0-SNAPSHOT.jar
+7f3a6baf6000-7f3a6baf8000 r--s 0000f000 00:2a 268092                     /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB/core/target/core-0.1.4.jar
+7f3a6baf8000-7f3a6bb02000 rw-p 00000000 00:00 0 
+7f3a6bb02000-7f3a6bb94000 ---p 00000000 00:00 0 
+7f3a6bb94000-7f3a6bb99000 rw-p 00000000 00:00 0 
+7f3a6bb99000-7f3a6bbe2000 ---p 00000000 00:00 0 
+7f3a6bbe2000-7f3a6bbe3000 rw-p 00000000 00:00 0 
+7f3a6bbe3000-7f3a6bbe6000 ---p 00000000 00:00 0 
+7f3a6bbe6000-7f3a6bce9000 rw-p 00000000 00:00 0 
+7f3a6bce9000-7f3a6bcf1000 rw-s 00000000 08:01 573541                     /tmp/hsperfdata_nobi/14419
+7f3a6bcf1000-7f3a6bcf2000 rw-p 00000000 00:00 0 
+7f3a6bcf2000-7f3a6bcf3000 r--p 00000000 00:00 0 
+7f3a6bcf3000-7f3a6bcf4000 r--p 00025000 08:01 1016027                    /lib/x86_64-linux-gnu/ld-2.23.so
+7f3a6bcf4000-7f3a6bcf5000 rw-p 00026000 08:01 1016027                    /lib/x86_64-linux-gnu/ld-2.23.so
+7f3a6bcf5000-7f3a6bcf6000 rw-p 00000000 00:00 0 
+7ffdc6c8e000-7ffdc6caf000 rw-p 00000000 00:00 0                          [stack]
+7ffdc6d4d000-7ffdc6d50000 r--p 00000000 00:00 0                          [vvar]
+7ffdc6d50000-7ffdc6d52000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+java_command: com.yahoo.ycsb.Client -db com.yahoo.ycsb.db.KaijuClient -p hosts=155.98.39.106:8080 -p port=8080 -P workloads/workloada -p operationcount=100 -p maxexecutiontime=30000 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -p threadcount=1 -p time=10000 -p valuesize=1 -t
+java_class_path (initial): /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB/core/target/core-0.1.4.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB/kaiju/target/kaiju-binding-0.1.4.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB/kaiju/target/archive-tmp/kaiju-binding-0.1.4.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/tools/cmdline/target/cmdline-1.0-SNAPSHOT.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/tools/cmdline/target/lib/slf4j-log4j12-1.5.8.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/tools/cmdline/target/lib/log4j-1.2.14.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/tools/cmdline/target/lib/kaiju-1.0-SNAPSHOT.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/tools/cmdline/target/lib/slf4j-api-1.5.8.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/kaiju-1.0-SNAPSHOT.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/slf4j-log4j12-1.5.8.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/reflectasm-1.07-shaded.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/asm-4.0.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/junit-3.8.1.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/objenesis-1.2.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/target/lib/slf4j-api-1.5.8.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/usr/testbed/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local/bin:/users/nobi/bin:/users/nobi/jdk1.8.0_152/bin:/users/nobi/maude
+SHELL=/bin/tcsh
+HOSTTYPE=x86_64-linux
+OSTYPE=linux
+MACHTYPE=x86_64
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xacfec0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xacfec0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x927e60], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0x927e60], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0x927e60], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x927e60], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR1: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGUSR2: [libjvm.so+0x9296a0], sa_mask[0]=00000000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: [libjvm.so+0x92aaa0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: [libjvm.so+0x92aaa0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGTERM: [libjvm.so+0x92aaa0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: [libjvm.so+0x92aaa0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=16.04
+DISTRIB_CODENAME=xenial
+DISTRIB_DESCRIPTION="Ubuntu 16.04.1 LTS"
+
+uname:Linux 4.4.0-138-generic #164-Ubuntu SMP Tue Oct 2 17:16:02 UTC 2018 x86_64
+libc:glibc 2.23 NPTL 2.23 
+rlimit: STACK 8192k, CORE 0k, NPROC 7330, NOFILE 1048576, AS infinity
+load average:0.00 0.00 0.00
+
+/proc/meminfo:
+MemTotal:        1916436 kB
+MemFree:          906184 kB
+MemAvailable:    1623720 kB
+Buffers:          107340 kB
+Cached:           715180 kB
+SwapCached:            0 kB
+Active:           606888 kB
+Inactive:         283128 kB
+Active(anon):      70496 kB
+Inactive(anon):     7380 kB
+Active(file):     536392 kB
+Inactive(file):   275748 kB
+Unevictable:        3652 kB
+Mlocked:            3652 kB
+SwapTotal:       3145724 kB
+SwapFree:        3145724 kB
+Dirty:                16 kB
+Writeback:             0 kB
+AnonPages:         71176 kB
+Mapped:            36848 kB
+Shmem:              7952 kB
+Slab:              86504 kB
+SReclaimable:      73104 kB
+SUnreclaim:        13400 kB
+KernelStack:        2272 kB
+PageTables:         2412 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     4103940 kB
+Committed_AS:     257104 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       67328 kB
+DirectMap2M:     2029568 kB
+
+
+CPU:total 2 (initial active 2) (1 cores per cpu, 2 threads per core) family 15 model 4 stepping 1, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ht, tsc
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 15
+model		: 4
+model name	: Intel(R) Xeon(TM) CPU 3.00GHz
+stepping	: 1
+microcode	: 0x17
+cpu MHz		: 2992.530
+cache size	: 1024 KB
+physical id	: 0
+siblings	: 2
+core id		: 0
+cpu cores	: 1
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 5
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx lm constant_tsc pebs bts nopl pni dtes64 monitor ds_cpl cid cx16 xtpr kaiser
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf
+bogomips	: 5985.06
+clflush size	: 64
+cache_alignment	: 128
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 15
+model		: 4
+model name	: Intel(R) Xeon(TM) CPU 3.00GHz
+stepping	: 1
+microcode	: 0x17
+cpu MHz		: 2992.530
+cache size	: 1024 KB
+physical id	: 0
+siblings	: 2
+core id		: 0
+cpu cores	: 1
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 5
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx lm constant_tsc pebs bts nopl pni dtes64 monitor ds_cpl cid cx16 xtpr kaiser
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf
+bogomips	: 5985.06
+clflush size	: 64
+cache_alignment	: 128
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 1916436k(906184k free), swap 3145724k(3145724k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.152-b16) for linux-amd64 JRE (1.8.0_152-b16), built on Sep 14 2017 02:16:14 by "java_re" with gcc 4.3.0 20080428 (Red Hat 4.3.0-8)
+
+time: Tue Dec 25 04:37:30 2018
+elapsed time: 30003 seconds (0d 8h 20m 3s)
+

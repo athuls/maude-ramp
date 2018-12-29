@@ -10,7 +10,7 @@ mod INIT-CLIENT is
   vars STR KR : String .
   var RT : ReplicaTable .
 
-
+  ---(
   *** post load
  crl < O : Table | table : RT >
      [KR,O']
@@ -24,7 +24,7 @@ mod INIT-CLIENT is
         STR := substr(KR, N + 5, length(KR)) /\
          N' := find(STR, "[eoa]", 0) .
   eq addKeyReplica("",RT) = RT .
-
+  )
 
   ops tb m : -> Oid .
 
@@ -33,10 +33,20 @@ mod INIT-CLIENT is
   eq backLog = 1 .  *** the BACKLOG parameter on the server side
   op clientId : -> Nat .
 
+  *** Newly added for separating YCSB
+  op initTable : -> ReplicaTable .
+  op initSqn : -> Nat .
+  op initTxns : -> ObjList .
+
+
   ***START AUTOMATICALLY GENERATED PARAMETER CODE***
-  eq self = "155.98.39.9" .
-  eq numberOfServerSockets = 2 . *** one for post-load, one for txns
-  eq clientId = 2 .
+  eq self = "$1" .
+  eq numberOfServerSockets = 0 . *** one for post-load, one for txns
+  eq clientId = $2 .
+
+  eq initTable = $3 .
+  eq initSqn = $4 .
+  eq initTxns = $5 .
   ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 
   op init : -> Configuration .
@@ -44,20 +54,20 @@ mod INIT-CLIENT is
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
 
-            < l(self,clientId) : Client | txns : emptyTxnList, sqn : 0,
+            < l(self,clientId) : Client | txns : initTxns, sqn : initSqn,
                                    executing : none, committed : none, 
                                    1stGetSites : no1st, 2ndGetSites : no2nd,
                                    voteSites : noVS, commitSites : noVS > 
 
-            < tb : Table | table : empty >
+            < tb : Table | table : initTable >
 
             < m : Monitor | count : 0 >
 
 	    ***START AUTOMATICALLY GENERATED SOCKET CODE***
-            createServerTcpSocket(socketManager, l(self,clientId), 9812, 10)    *** opened for post-load
-            createServerTcpSocket(socketManager, l(self,clientId), 9912, 10) .  *** opened for txns
+            ***createServerTcpSocket(socketManager, l(self,clientId), 9810, 10)  *** opened for post-load
+            ***createServerTcpSocket(socketManager, l(self,clientId), 9910, 10)  *** opened for txns
 	    ***END AUTOMATICALLY GENERATED SOCKET CODE***
-
+        .
 
   --- local test
   ---(
