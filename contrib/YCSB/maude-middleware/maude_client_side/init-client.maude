@@ -40,7 +40,7 @@ mod INIT-CLIENT is
 
   ***START AUTOMATICALLY GENERATED PARAMETER CODE***
   eq self = "155.98.39.143" .
-  eq numberOfServerSockets = 1 . *** one for post-load, one for txns
+  eq numberOfServerSockets = 0 . *** one for post-load, one for txns
   eq clientId = 0 .
 
   eq seqNumber = 0 .
@@ -62,7 +62,7 @@ mod INIT-CLIENT is
             < m : Monitor | count : 0 >
 
 	    ***START AUTOMATICALLY GENERATED SOCKET CODE***
-            createServerTcpSocket(socketManager, l(self,clientId), 9810, 10)     *** opened for post-load
+            ***createServerTcpSocket(socketManager, l(self,clientId), 9810, 10)  *** opened for post-load
             ***createServerTcpSocket(socketManager, l(self,clientId), 9910, 10)  *** opened for txns
 	    ***END AUTOMATICALLY GENERATED SOCKET CODE***
         .

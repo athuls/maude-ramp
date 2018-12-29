@@ -42,7 +42,7 @@ mod INIT-SERVER is
   
   ***START AUTOMATICALLY GENERATED PARAMETER CODE***
   eq self = "155.98.39.145" .
-  eq numberOfServerSockets = 2 . *** one for load, one(s) for client(s)
+  eq numberOfServerSockets = 1 . *** one for load, one(s) for client(s)
   ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 
   op init : -> Configuration .
@@ -56,7 +56,7 @@ mod INIT-SERVER is
                                                   "k2" |-> ts(dftOid,0)) > ---NEW
             )
 
-            createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
+            ***createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
 
 	    *** Following are ports for server - maude client communication
 	    ***START AUTOMATICALLY GENERATED SOCKET CODE***
