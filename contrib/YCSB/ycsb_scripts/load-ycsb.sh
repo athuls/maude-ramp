@@ -28,3 +28,6 @@ then
 else 
 	echo "Fix your input arguments: provide each server IP address (upto 5 maximum) as a separate argument"
 fi
+
+
+cat keyMappings* >> keyMappings.txt

@@ -2,7 +2,6 @@
 source config.sh
 
 cd $YCSB_dir
-cp keyMappings.txt keyMappings_bak.bak
 
 if [ $# != 4 ]
 then

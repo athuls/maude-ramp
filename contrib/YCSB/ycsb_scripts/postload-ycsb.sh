@@ -1,8 +1,6 @@
 #!/bin/bash
 source config.sh
 
-cd $YCSB_dir
-cat keyMappings* > keyMappings.txt
 
 if [ $# != 3 ]
 then

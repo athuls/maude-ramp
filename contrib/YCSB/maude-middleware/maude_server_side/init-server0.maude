@@ -48,8 +48,8 @@ mod INIT-SERVER is
   eq self = "155.98.36.123" .
   eq numberOfServerSockets = 1 . *** one for load, one(s) for client(s)
   
-  eq initDatastore = ( version("user1575","6$",ts(dftOid,0),empty), version("user54","%3",ts(dftOid,0),empty), version("user52","/$",ts(dftOid,0),empty), version("user1571","):",ts(dftOid,0),empty), version("user1573","=6",ts(dftOid,0),empty), version("user56","($",ts(dftOid,0),empty), version("user49","'8",ts(dftOid,0),empty), version("user51","(,",ts(dftOid,0),empty), version("user1567","/9",ts(dftOid,0),empty), version("user1569","0>",ts(dftOid,0),empty) ) .
-  eq initLatestCommit = ( "user1575" |-> ts(dftOid,0), "user54" |-> ts(dftOid,0), "user52" |-> ts(dftOid,0), "user1571" |-> ts(dftOid,0), "user1573" |-> ts(dftOid,0), "user56" |-> ts(dftOid,0), "user49" |-> ts(dftOid,0), "user51" |-> ts(dftOid,0), "user1567" |-> ts(dftOid,0), "user1569" |-> ts(dftOid,0) ) .
+  eq initDatastore = ( version("user55","7:",ts(dftOid,0),empty), version("user1575","*#",ts(dftOid,0),empty), version("user53",")/",ts(dftOid,0),empty), version("user1571","*%",ts(dftOid,0),empty), version("user57",",!",ts(dftOid,0),empty), version("user1573","$3",ts(dftOid,0),empty), version("user49","'<",ts(dftOid,0),empty), version("user51","-,",ts(dftOid,0),empty), version("user1567","!*",ts(dftOid,0),empty), version("user1569",";&",ts(dftOid,0),empty) ) .
+  eq initLatestCommit = ( "user55" |-> ts(dftOid,0), "user1575" |-> ts(dftOid,0), "user53" |-> ts(dftOid,0), "user1571" |-> ts(dftOid,0), "user57" |-> ts(dftOid,0), "user1573" |-> ts(dftOid,0), "user49" |-> ts(dftOid,0), "user51" |-> ts(dftOid,0), "user1567" |-> ts(dftOid,0), "user1569" |-> ts(dftOid,0) ) .
  
   ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 

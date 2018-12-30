@@ -10,8 +10,8 @@ fi
 
 ./postload-ycsb.sh $1 $2 $3
 
-#./run-ycsb.sh $1 $2 $3 $4
+./run-ycsb.sh $1 $2 $3 $4
 
-#./run_client.sh $2 $3 $5 & 
+./run_client.sh $2 $3 $5 & 
 
-#./kill_ycsb.sh $6 &
+./kill_ycsb.sh $6 &
