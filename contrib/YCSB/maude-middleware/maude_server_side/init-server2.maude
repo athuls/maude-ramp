@@ -11,6 +11,7 @@ mod INIT-SERVER is
   var STORE : Versions .
   var LC : KeyTimestamps .
 
+---(
  *** load
   crl < O : Replica | datastore : STORE, latestCommit : LC, AS >
       [KV,O']
@@ -34,31 +35,51 @@ mod INIT-SERVER is
         STR := substr(KV, N + 5, length(KV)) /\
         N' := find(STR, "[eov]", 0) .
   eq addKeyTS("",LC) = LC .
+)
 
-
-  eq numberOfServerSockets = 2 . *** one for load, one(s) for client(s)
   *** eq port = 9910 .  *** the base port for server talking to server
   eq backLog = 1 .  *** the BACKLOG parameter on the server side
-
-
   op self : -> String .
-  eq self = "155.98.38.47" .
+
+  op initDatastore : -> Versions .
+  op initLatestCommit : -> KeyTimestamps .
+  
+  ***START AUTOMATICALLY GENERATED PARAMETER CODE***
+  eq self = "155.98.36.66" .
+  eq numberOfServerSockets = 4 . *** one for load, one(s) for client(s)
+  
+  eq initDatastore = empty .
+  eq initLatestCommit = empty .
+ 
+  ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 
   op init : -> Configuration .
   eq init = <>
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
-            < l(self) : Replica | datastore : empty, latestCommit : empty >
+            < l(self) : Replica | datastore : initDatastore, latestCommit : initLatestCommit >
+            ---(
+            < l(self) : Replica | datastore : (version("k1","dft",ts(dftOid,0),empty), 
+                                               version("k2","dft",ts(dftOid,0),empty)), 
+                                  latestCommit : ("k1" |-> ts(dftOid,0),
+                                                  "k2" |-> ts(dftOid,0)) > ---NEW
+            )
 
-            createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
+            ***createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
 
 	    *** Following are ports for server - maude client communication
-	    ***START AUTOMATICALLY GENERATED CODE***
-	    createServerTcpSocket(socketManager, l(self), 9000, 10)
-	    ***END AUTOMATICALLY GENERATED CODE***
+	    ***START AUTOMATICALLY GENERATED SOCKET CODE***
+            createServerTcpSocket(socketManager, l(self), 9000, 10)
+createServerTcpSocket(socketManager, l(self), 9001, 10)
+createServerTcpSocket(socketManager, l(self), 9002, 10)
+createServerTcpSocket(socketManager, l(self), 9003, 10)
+
+	    ***END AUTOMATICALLY GENERATED SOCKET CODE***
         .
 
         --- < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
 endm
 
 ---rew init .
----erew init .
+erew init .
+
+

@@ -40,13 +40,13 @@ mod INIT-CLIENT is
 
 
   ***START AUTOMATICALLY GENERATED PARAMETER CODE***
-  eq self = "$1" .
+  eq self = "$p1$" .
   eq numberOfServerSockets = 0 . *** one for post-load, one for txns
-  eq clientId = $2 .
+  eq clientId = $p2$ .
 
-  eq initTable = $3 .
-  eq initSqn = $4 .
-  eq initTxns = $5 .
+  eq initTable = $p3$ .
+  eq initSqn = $p4$ .
+  eq initTxns = $p5$ .
   ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 
   op init : -> Configuration .

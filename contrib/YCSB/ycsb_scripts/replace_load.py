@@ -37,15 +37,15 @@ def merge_files(path, ip):
 
 content = open(path).read()
 
-content = content.replace("$1", ip)
-content = content.replace("$2", str(num))
+content = content.replace("$p1$", ip)
+content = content.replace("$p2$", str(num))
 
 
 merge_files(tmp, ip)
 res = parseLoad(tmp+"/"+ip)
 
-content = content.replace("$3", res[0])
-content = content.replace("$4", res[1])
+content = content.replace("$p3$", res[0])
+content = content.replace("$p4$", res[1])
 
 c = "createServerTcpSocket(socketManager, l(self), %s, 10)\n"
 create = ""
@@ -53,7 +53,7 @@ for i in range(0, num):
     new_port = port+i
     create+=  c % new_port
 
-content = content.replace("$5", create)
+content = content.replace("$p5$", create)
 
 f = open(path,"w")
 f.write(content)

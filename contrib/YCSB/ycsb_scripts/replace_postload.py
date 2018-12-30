@@ -31,13 +31,13 @@ def merge_files(path, ip):
 
 content = open(path).read()
 
-content = content.replace("$1", ip)
-content = content.replace("$2", id)
+content = content.replace("$p1$", ip)
+content = content.replace("$p2$", id)
 
 merge_files(tmp, ip)
 res = parsePostLoad(tmp+"/"+ip)
 
-content = content.replace("$3", res)
+content = content.replace("$p3$", res)
 
 f = open(path,"w")
 f.write(content)

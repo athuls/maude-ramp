@@ -61,8 +61,8 @@ content = open(path).read()
 merge_files(tmp, ip)
 res = parseTxns(tmp+"/"+ip)
 
-content = content.replace("$4", str(res[0]))
-content = content.replace("$5", res[1])
+content = content.replace("$p4$", str(res[0]))
+content = content.replace("$p5$", res[1])
 
 f = open(path,"w")
 f.write(content)

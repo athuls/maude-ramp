@@ -45,11 +45,11 @@ mod INIT-SERVER is
   op initLatestCommit : -> KeyTimestamps .
   
   ***START AUTOMATICALLY GENERATED PARAMETER CODE***
-  eq self = "$1" .
-  eq numberOfServerSockets = $2 . *** one for load, one(s) for client(s)
+  eq self = "$p1$" .
+  eq numberOfServerSockets = $p2$ . *** one for load, one(s) for client(s)
   
-  eq initDatastore = $3 .
-  eq initLatestCommit = $4 .
+  eq initDatastore = $p3$ .
+  eq initLatestCommit = $p4$ .
  
   ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 
@@ -68,7 +68,7 @@ mod INIT-SERVER is
 
 	    *** Following are ports for server - maude client communication
 	    ***START AUTOMATICALLY GENERATED SOCKET CODE***
-            $5
+            $p5$
 	    ***END AUTOMATICALLY GENERATED SOCKET CODE***
         .
 
