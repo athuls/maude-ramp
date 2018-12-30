@@ -183,13 +183,13 @@ mod RAMP-F is
      < TABLE : Table | table : REPLICA-TABLE >
      < CLIENT : Client | txns : < TID : Txn | operations : OPS,
                                               latest : empty, AS > ;; TXNS,
-                         executing : TRANSES,
+                         executing : none,
                          1stGetSites : 1STGETS, AS' >
    =>
      < TABLE : Table | table : REPLICA-TABLE >
      < CLIENT : Client | txns : TXNS,
                          executing : (< TID : Txn | operations : OPS,
-                                                    latest : vl(OPS,CLIENT), AS > TRANSES),  --- initialize "v_latest"
+                                                    latest : vl(OPS,CLIENT), AS >),  --- initialize "v_latest"
                          1stGetSites : (1STGETS ; 1st(TID,RIDS)), AS' >
      genGets(OPS,CLIENT,TID,REPLICA-TABLE) 
      if (not write-only(OPS)) /\
@@ -226,12 +226,12 @@ mod RAMP-F is
  crl [start-wo-txn] :
      < TABLE : Table | table : REPLICA-TABLE >
      < CLIENT : Client | txns : < TID : Txn | operations : OPS, txnSqn : SQN, AS > ;; TXNS,
-                         executing : TRANSES,
+                         executing : none,
                          voteSites : VSTS, AS' >
    =>
      < TABLE : Table | table : REPLICA-TABLE >
      < CLIENT : Client | txns : TXNS,
-                         executing : (< TID : Txn | operations : OPS, txnSqn : SQN, AS > TRANSES),
+                         executing : (< TID : Txn | operations : OPS, txnSqn : SQN, AS >),
                          voteSites : (VSTS ; voteSites(TID,RIDS)), AS' >
      genPuts(OPS,CLIENT,TID,SQN,REPLICA-TABLE)
      if write-only(OPS) /\
@@ -273,18 +273,18 @@ mod RAMP-F is
 
  crl [receive-prepare-reply] :
      < TABLE : Table | table : REPLICA-TABLE >
-     < CLIENT : Client | executing : < TID : Txn | operations : OPS, txnSqn : SQN, AS > TRANSES,
+     < CLIENT : Client | executing : < TID : Txn | operations : OPS, txnSqn : SQN, AS >,
                          voteSites : VSTS,
                          commitSites : CMTS, AS' >
      msg prepare-reply(TID,FLAG,RID') from RID' to CLIENT --- FLAG is always true in RAMP
    =>
      < TABLE : Table | table : REPLICA-TABLE >
      if VSTS'[TID] == empty  --- all votes received
-       then < CLIENT : Client | executing : < TID : Txn | operations : OPS, txnSqn : SQN, AS > TRANSES,
+       then < CLIENT : Client | executing : < TID : Txn | operations : OPS, txnSqn : SQN, AS >,
                                 voteSites : VSTS',
                                 commitSites : (CMTS ; voteSites(TID,RIDS)), AS' >
             genCommits(TID,SQN,RIDS,CLIENT)
-       else < CLIENT : Client | executing : < TID : Txn | operations : OPS, txnSqn : SQN, AS > TRANSES,
+       else < CLIENT : Client | executing : < TID : Txn | operations : OPS, txnSqn : SQN, AS >,
                                 voteSites : VSTS',
                                 commitSites : CMTS, AS' >
      fi 
@@ -361,18 +361,18 @@ mod RAMP-F is
   ---(
  crl [receive-committed] :
      < M : Monitor | count : N >
-     < CLIENT : Client | executing : < TID : Txn | AS > TRANSES,
+     < CLIENT : Client | executing : < TID : Txn | AS >,
                          committed : TRANSES',
                          commitSites : CMTS, AS' >
      msg committed(TID,RID') from RID' to CLIENT
    =>
      if CMTS'[TID] == empty  --- all "committed" received
        then < M : Monitor | count : N + 1 >
-            < CLIENT : Client | executing : TRANSES,
+            < CLIENT : Client | executing : none,
                                 committed : (TRANSES' < TID : Txn | AS >),
                                 commitSites : CMTS', AS' >
        else < M : Monitor | count : N > 
-            < CLIENT : Client | executing : < TID : Txn | AS > TRANSES,
+            < CLIENT : Client | executing : < TID : Txn | AS >,
                                 committed : TRANSES',
                                 commitSites : CMTS', AS' >
      fi
@@ -381,18 +381,18 @@ mod RAMP-F is
 
  ceq [receive-committed] :
      < M : Monitor | count : N >
-     < CLIENT : Client | executing : < TID : Txn | AS > TRANSES,
+     < CLIENT : Client | executing : < TID : Txn | AS >,
                          committed : TRANSES',
                          commitSites : CMTS, AS' >
      msg committed(TID,RID') from RID' to CLIENT
    =
      if CMTS'[TID] == empty  --- all "committed" received
        then < M : Monitor | count : N + 1 >
-            < CLIENT : Client | executing : TRANSES,
+            < CLIENT : Client | executing : none,
                                 committed : (TRANSES' < TID : Txn | AS >),
                                 commitSites : CMTS', AS' >
        else < M : Monitor | count : N > 
-            < CLIENT : Client | executing : < TID : Txn | AS > TRANSES,
+            < CLIENT : Client | executing : < TID : Txn | AS >,
                                 committed : TRANSES',
                                 commitSites : CMTS', AS' >
      fi
@@ -426,18 +426,18 @@ mod RAMP-F is
 
  crl [receive-response1] :
      < TABLE : Table | table : REPLICA-TABLE >
-     < CLIENT : Client | executing : < TID : Txn | latest : VL, readSet : RS, AS > TRANSES,
+     < CLIENT : Client | executing : < TID : Txn | latest : VL, readSet : RS, AS >,
                          1stGetSites : 1STGETS,
                          2ndGetSites : 2NDGETS, AS' >
      msg response1(TID,version(K,V,TS,MD),RID') from RID' to CLIENT
    =>
      < TABLE : Table | table : REPLICA-TABLE >
      if 1STGETS'[TID] == empty
-       then < CLIENT : Client | executing : < TID : Txn | latest : VL', readSet : RS', AS > TRANSES,
+       then < CLIENT : Client | executing : < TID : Txn | latest : VL', readSet : RS', AS >,
                                 1stGetSites : 1STGETS',
                                 2ndGetSites : (2NDGETS ; 2nd(TID,RIDS)), AS' >
             gen2ndGets(TID,VL',RS',CLIENT,REPLICA-TABLE)
-       else < CLIENT : Client | executing : < TID : Txn | latest : VL', readSet : RS', AS > TRANSES,
+       else < CLIENT : Client | executing : < TID : Txn | latest : VL', readSet : RS', AS >,
                                 1stGetSites : 1STGETS',
                                 2ndGetSites : 2NDGETS, AS' >  
      fi 
@@ -482,23 +482,23 @@ mod RAMP-F is
 
 
   rl [receive-response2] :
-     < CLIENT : Client | executing : < TID : Txn | readSet : (RS,version(K,V',TS',MD')), AS > TRANSES,
+     < CLIENT : Client | executing : < TID : Txn | readSet : (RS,version(K,V',TS',MD')), AS >,
                          2ndGetSites : 2NDGETS, AS' >
      msg response2(TID,version(K,V,TS,MD),RID') from RID' to CLIENT
    => 
-     < CLIENT : Client | executing : < TID : Txn | readSet : (RS,version(K,V,TS,MD)), AS > TRANSES,
+     < CLIENT : Client | executing : < TID : Txn | readSet : (RS,version(K,V,TS,MD)), AS >,
                          2ndGetSites : remove(TID,RID',2NDGETS), AS' > .
 
   ---(
  crl [commit-ro-txn] :
      < M : Monitor | count : N >
-     < CLIENT : Client | executing : < TID : Txn | AS > TRANSES,
+     < CLIENT : Client | executing : < TID : Txn | AS >,
                          committed : TRANSES',
                          1stGetSites : 1STGETS,
                          2ndGetSites : 2NDGETS, AS' >
    =>
      < M : Monitor | count : N + 1 >
-     < CLIENT : Client | executing : TRANSES,
+     < CLIENT : Client | executing : none,
                          committed : (TRANSES' < TID : Txn | AS >),
                          1stGetSites : delete(TID,1STGETS),
                          2ndGetSites : delete(TID,2NDGETS), AS' >
@@ -508,13 +508,13 @@ mod RAMP-F is
 
  ceq [commit-ro-txn] :
      < M : Monitor | count : N >
-     < CLIENT : Client | executing : < TID : Txn | AS > TRANSES,
+     < CLIENT : Client | executing : < TID : Txn | AS >,
                          committed : TRANSES',
                          1stGetSites : 1STGETS,
                          2ndGetSites : 2NDGETS, AS' >
    =
      < M : Monitor | count : N + 1 >
-     < CLIENT : Client | executing : TRANSES,
+     < CLIENT : Client | executing : none,
                          committed : (TRANSES' < TID : Txn | AS >),
                          1stGetSites : delete(TID,1STGETS),
                          2ndGetSites : delete(TID,2NDGETS), AS' >
