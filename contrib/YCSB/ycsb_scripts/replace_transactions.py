@@ -2,12 +2,12 @@ import sys
 import re
 import os
 
-MAPPING="/users/nobi/ramp/maude-ramp/contrib/YCSB/keyMappings.txt"
 
 
 path=sys.argv[1]
 ip=sys.argv[2]
 tmp=sys.argv[3]
+MAPPING=sys.argv[4]
 
 def all_keys_in_mapping(keys):
     for key in keys:
@@ -40,6 +40,16 @@ def parseTxns(FILE):
     part2= "( "+" ;; ".join(res)+" )"
     return (part1, part2)
 
+import os
+def merge_files(path, ip):
+    res = ""
+    for name in os.listdir(path):
+        if name.startswith(ip+"_"):
+            res += open(path+"/"+name).read()
+    f = open(path+"/"+ip, "w")
+    f.write(res)
+    f.close()
+
 mappings = set()
 
 for line in open(MAPPING).readlines():
@@ -48,7 +58,7 @@ for line in open(MAPPING).readlines():
 
 
 content = open(path).read()
-
+merge_files(tmp, ip)
 res = parseTxns(tmp+"/"+ip)
 
 content = content.replace("$4", str(res[0]))

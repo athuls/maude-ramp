@@ -1,5 +1,6 @@
 import sys
 import re
+import os
 
 path = sys.argv[1]
 ip = sys.argv[2]
@@ -19,16 +20,28 @@ def parseLoad(FILE):
     for pair in pairs:
         res1.append("version(\"%s\",\"%s\",ts(dftOid,0),empty)" % (pair[0], pair[1]))
         res2.append("\"%s\" |-> ts(dftOid,0)" % pair[0])
-    part1 = "( "+ ", ".join(res1) +" )"
-    part2 = "( "+ ", ".join(res2) +" )"
+    
+    part1 = "( "+ ", ".join(res1) +" )" if len(res1)>0 else "empty"
+    part2 = "( "+ ", ".join(res2) +" )" if len(res2)>0 else "empty"
     return part1, part2
 
+import os
+def merge_files(path, ip):
+    res = ""
+    for name in os.listdir(path):
+        if name.startswith(ip+"_"):
+            res += open(path+"/"+name).read() 
+    f = open(path+"/"+ip, "w")
+    f.write(res)
+    f.close()
 
 content = open(path).read()
 
 content = content.replace("$1", ip)
 content = content.replace("$2", str(num))
 
+
+merge_files(tmp, ip)
 res = parseLoad(tmp+"/"+ip)
 
 content = content.replace("$3", res[0])

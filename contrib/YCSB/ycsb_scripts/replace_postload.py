@@ -18,11 +18,23 @@ def parsePostLoad(FILE):
         res.append("\"%s\" |-> \"%s\"" % (pair[0], pair[1]))
     return "( "+ ", ".join(res) +" )"
 
+import os
+def merge_files(path, ip):
+    res = ""
+    for name in os.listdir(path):
+        if name.startswith(ip+"_"):
+            res += open(path+"/"+name).read()
+    f = open(path+"/"+ip, "w")
+    f.write(res)
+    f.close()
+
+
 content = open(path).read()
 
 content = content.replace("$1", ip)
 content = content.replace("$2", id)
 
+merge_files(tmp, ip)
 res = parsePostLoad(tmp+"/"+ip)
 
 content = content.replace("$3", res)

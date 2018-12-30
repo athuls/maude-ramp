@@ -1,4 +1,7 @@
-cd /users/nobi/ramp/maude-ramp/contrib/YCSB
+#!/bin/bash
+source config.sh
+
+cd $YCSB_dir
 cat keyMappings* > keyMappings.txt
 
 if [ $# != 3 ]
@@ -6,6 +9,12 @@ then
 	echo "Arguments needed: IP address, initial client_id, number of clients"
 	exit 1
 fi
+
+if [ ! -d "$tmp" ]; then
+    mkdir $tmp
+fi
+
+rm $tmp/*
 
 ip=$1
 initial_port=9810
@@ -15,8 +24,10 @@ iter=0
 while [ "$iter" -lt "$num_clients" ]
 do
 	port=`expr $initial_port + $iter`
-	bin/ycsb load kaiju -p hosts=$ip:$port -p port=$port -P workloads/workloada -p operationcount=1 -p maxexecutiontime=30000 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -p time=10000 -p valuesize=1 -postload -p outpath=/users/nobi/tmp -s 
+        cd $YCSB_dir
+	bin/ycsb load kaiju -p hosts=$ip:$port -p port=$port -P workloads/workloada -p operationcount=1 -p maxexecutiontime=30000 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -p time=10000 -p valuesize=1 -postload -p outpath=$tmp -s 
         echo "*********************************"
-        ./ycsb_scripts/replace_postload.sh $ip $client_id $iter         	
+        cd $script_base
+        ./replace_postload.sh $ip $client_id $iter         	
         iter=`expr $iter + 1`
 done
