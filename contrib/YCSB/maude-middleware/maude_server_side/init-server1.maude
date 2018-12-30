@@ -45,11 +45,11 @@ mod INIT-SERVER is
   op initLatestCommit : -> KeyTimestamps .
   
   ***START AUTOMATICALLY GENERATED PARAMETER CODE***
-  eq self = "$1" .
-  eq numberOfServerSockets = $2 . *** one for load, one(s) for client(s)
+  eq self = "155.98.36.63" .
+  eq numberOfServerSockets = 1 . *** one for load, one(s) for client(s)
   
-  eq initDatastore = $3 .
-  eq initLatestCommit = $4 .
+  eq initDatastore = ( version("user55","00",ts(dftOid,0),empty), version("user1574","$$",ts(dftOid,0),empty), version("user53","+8",ts(dftOid,0),empty), version("user1576","2*",ts(dftOid,0),empty), version("user48","2(",ts(dftOid,0),empty), version("user1570",".6",ts(dftOid,0),empty), version("user57","6=",ts(dftOid,0),empty), version("user1572","5*",ts(dftOid,0),empty), version("user1568","!$",ts(dftOid,0),empty), version("user50","'!",ts(dftOid,0),empty) ) .
+  eq initLatestCommit = ( "user55" |-> ts(dftOid,0), "user1574" |-> ts(dftOid,0), "user53" |-> ts(dftOid,0), "user1576" |-> ts(dftOid,0), "user48" |-> ts(dftOid,0), "user1570" |-> ts(dftOid,0), "user57" |-> ts(dftOid,0), "user1572" |-> ts(dftOid,0), "user1568" |-> ts(dftOid,0), "user50" |-> ts(dftOid,0) ) .
  
   ***END AUTOMATICALLY GENERATED PARAMETER CODE***
 
@@ -68,7 +68,8 @@ mod INIT-SERVER is
 
 	    *** Following are ports for server - maude client communication
 	    ***START AUTOMATICALLY GENERATED SOCKET CODE***
-            $5
+            createServerTcpSocket(socketManager, l(self), 9000, 10)
+
 	    ***END AUTOMATICALLY GENERATED SOCKET CODE***
         .
 

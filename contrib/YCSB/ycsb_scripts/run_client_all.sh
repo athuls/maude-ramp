@@ -10,7 +10,7 @@ fi
 
 ./postload-ycsb.sh $1 $2 $3
 
-./run-ycsb.sh $1 $2 $3 $4
+#./run-ycsb.sh $1 $2 $3 $4
 
 #./run_client.sh $2 $3 $5 & 
 

@@ -50,11 +50,13 @@ public class KaijuClient2 {
     private Map<String, HostInfo> keyMappings = new HashMap<String, HostInfo>();
     private List<String> sends = new ArrayList<String>();
     private String outpath;
+    private boolean exitAfterClose=false;
 	
-    public KaijuClient2(String host, int port, String outpath) throws IOException {
+    public KaijuClient2(String host, int port, String outpath, boolean exitAfterClose) throws IOException {
         Config.clientSideInitialize();
         this.currentHost = new HostInfo(host, port);
 	this.outpath = outpath+"/"+host;
+	this.exitAfterClose=exitAfterClose;
     }
 
     private HostInfo currentHost;
@@ -80,14 +82,18 @@ public class KaijuClient2 {
         }
 //        serializer.serialize("[exit]");
         System.out.println("Closing kaiju socket");
+        outpath+="_"+Thread.currentThread().getId();
+        System.out.println("Write file to "+ outpath);
 	FileWriter fw = new FileWriter(outpath);
 	for(String line: sends){
 		fw.write(line+"\n");
 	}
 	fw.close();
 	sends.clear();
+        if(exitAfterClose)
+             System.exit(0);
         System.out.println("Closed kaiju socket");
-        System.exit(0);
+//        System.exit(0);
 //        BufferedReader reader = new BufferedReader(
 //                new InputStreamReader(clientSocket.getInputStream()));
 //        StringBuilder out = new StringBuilder();

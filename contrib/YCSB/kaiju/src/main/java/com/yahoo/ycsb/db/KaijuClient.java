@@ -63,12 +63,15 @@ public class KaijuClient extends DB
             Config.IsolationLevel isolationLevel = Config.IsolationLevel.valueOf(getProperties().getProperty("isolation_level"));
             Config.ReadAtomicAlgorithm readAtomicAlgorithm = Config.ReadAtomicAlgorithm.valueOf(getProperties().getProperty("read_atomic_algorithm"))   ;
             boolean postLoad = Boolean.parseBoolean(getProperties().getProperty("postLoad"));
+            boolean close = Boolean.parseBoolean(getProperties().getProperty("close"));
 	    String outpath = getProperties().getProperty("outpath");
             for(String serverStr : hostsarr) {
+		System.out.println(hosts);
+		System.out.println(serverStr);
                 String serverHost = serverStr.split(":")[0];
                 int serverPort = Integer.parseInt(serverStr.split(":")[1]);
 
-                ChangeIsolationRequest request = new ChangeIsolationRequest(isolationLevel, readAtomicAlgorithm, serverHost, serverPort, postLoad, outpath);
+                ChangeIsolationRequest request = new ChangeIsolationRequest(isolationLevel, readAtomicAlgorithm, serverHost, serverPort, postLoad, outpath, close);
                 Thread changeIsolationThread = new Thread(request);
 
                 isolationRequests.add(request);
@@ -107,6 +110,7 @@ public class KaijuClient extends DB
         int port;
         boolean postLoad;
 	String outpath;
+        boolean close;
 
         Exception error;
 
@@ -114,19 +118,20 @@ public class KaijuClient extends DB
                                        Config.ReadAtomicAlgorithm readAtomicAlgorithm,
                                        String host,
                                        int port,
-                                       boolean postLoad, String outpath) {
+                                       boolean postLoad, String outpath, boolean close) {
             this.isolationLevel = isolationLevel;
             this.readAtomicAlgorithm = readAtomicAlgorithm;
             this.host = host;
             this.port = port;
             this.postLoad = postLoad;
 	    this.outpath = outpath;
+	    this.close = close;
         }
 
         public void run() {
             try {
                 if(this.postLoad) {
-                    edu.berkeley.kaiju.frontend.KaijuClient2 client = new edu.berkeley.kaiju.frontend.KaijuClient2(host, port, outpath);
+                    edu.berkeley.kaiju.frontend.KaijuClient2 client = new edu.berkeley.kaiju.frontend.KaijuClient2(host, port, outpath, close);
                     client.setIsolation(isolationLevel, readAtomicAlgorithm, postLoad);
                     client.close();
 //                    System.out.println("Nothing to do with isolation level and read atomic algorithm");
@@ -158,7 +163,6 @@ public class KaijuClient extends DB
             throw new DBException("Required property \"hosts\" missing for KaijuClient");
         }
 
-
         String serverStr = "unassigned";
 
         String[] hostsarr = hosts.split(",");
@@ -176,7 +180,8 @@ public class KaijuClient extends DB
 
             }
 	    String outpath = getProperties().getProperty("outpath");
-            client = new edu.berkeley.kaiju.frontend.KaijuClient2(serverHost, serverPort, outpath);
+            boolean close = Boolean.parseBoolean(getProperties().getProperty("close"));
+            client = new edu.berkeley.kaiju.frontend.KaijuClient2(serverHost, serverPort, outpath, close);
         } catch (Exception e) {
             System.err.println("Error for host "+serverHost+" "+serverPort);
 	    e.printStackTrace();
