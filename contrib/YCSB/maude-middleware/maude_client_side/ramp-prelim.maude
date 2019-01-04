@@ -75,7 +75,8 @@ mod TXN-AUX1 is
   pr SET{String} * (sort Set{String} to KeySet) .
   pr MAP{String,Timestamp} * (sort Map{String,Timestamp} to KeyTimestamps) .
   pr LIST{Key} * (sort List{Key} to KeyList) .
-
+*** for RAMP-S
+  pr SET{Timestamp} * (sort Set{Timestamp} to Timestamps) .
 
   op write : Key Expression -> Operation [ctor] .
   op write : String String -> Operation [ctor] .  
@@ -216,6 +217,8 @@ mod MESSAGE is
   op prepare-reply : Oid Bool Oid -> MsgCont . --- TID, yes/no, RID
   op get : Oid Key Timestamp Oid -> MsgCont .
   op get : Oid String Timestamp Oid -> MsgCont .
+--- for RAMP-S
+  op get : Oid String Timestamps Oid -> MsgCont .  
   op prepare : Oid Version Oid -> MsgCont .
   op commit : Oid Timestamp Oid -> MsgCont .
   op committed : Oid Oid -> MsgCont .
