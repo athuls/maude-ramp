@@ -1,1 +1,1 @@
-bin/ycsb run kaiju -p hosts=155.98.36.121:8080 -threads 1 -target 4000 -p port=8080 -P workloads/workloada -p operationcount=4000 -p maxexecutiontime=60 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -s
+bin/ycsb run kaiju -p hosts=155.98.36.121:8080 -threads 1 -target 4000 -p port=8080 -P workloads/workloada -p operationcount=4000 -p maxexecutiontime=30 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -s

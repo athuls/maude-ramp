@@ -35,7 +35,8 @@ public class RequestDispatcher {
      The downside is that, with a lot of threads, the JVM performance can really suck.
      This was faster than using Thrift; YMMV. But it's what what we did for the paper.
      */
-    private ExecutorService requestExecutor = Executors.newCachedThreadPool();
+   // private ExecutorService requestExecutor = Executors.newCachedThreadPool();
+    private ExecutorService requestExecutor = Executors.newSingleThreadExecutor();
     private RequestExecutorFactory executorFactory;
 
     public RequestDispatcher(RequestExecutorFactory executorFactory) {
