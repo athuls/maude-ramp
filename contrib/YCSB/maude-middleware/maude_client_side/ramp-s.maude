@@ -316,27 +316,33 @@ mod RAMP-F is
 
  crl [receive-response1] :
      < TABLE : Table | table : REPLICA-TABLE >
-     < CLIENT : Client | executing : < TID : Txn | latest : VL, readSet : RS, AS >,
+     < CLIENT : Client | executing : < TID : Txn | operations : OPS,
+                                                   latest : VL, readSet : RS, AS >,
                          1stGetSites : 1STGETS,
                          2ndGetSites : 2NDGETS, AS' >
      msg response1(TID,version(K,V,TS,MD),RID') from RID' to CLIENT
    =>
      < TABLE : Table | table : REPLICA-TABLE >
      if 1STGETS'[TID] == empty
-       then < CLIENT : Client | executing : < TID : Txn | latest : VL', readSet : RS', AS >,
+       then < CLIENT : Client | executing : < TID : Txn | operations : OPS,
+                                                          latest : VL, readSet : RS', AS >,
                                 1stGetSites : 1STGETS',
                                 2ndGetSites : (2NDGETS ; 2nd(TID,RIDS)), AS' >
-            gen2ndGets(TID,VL',RS',CLIENT,REPLICA-TABLE)
-       else < CLIENT : Client | executing : < TID : Txn | latest : VL', readSet : RS', AS >,
+*** for RAMP-S
+            gen2ndGets(TID,tsset(RS'),RS',CLIENT,REPLICA-TABLE)
+       else < CLIENT : Client | executing : < TID : Txn | operations : OPS,
+                                                          latest : VL, readSet : RS', AS >,
                                 1stGetSites : 1STGETS',
                                 2ndGetSites : 2NDGETS, AS' >  
      fi 
-     if RS' := RS, version(K,V,TS,MD) /\
-        VL' := lat(VL,MD,TS) /\
+     if RS' := (RS, version(K,V,TS,MD)) /\
+*** for RAMP-S: no update on VL
+***     VL' := lat(VL,MD,TS) /\
         1STGETS' := remove(TID,RID',1STGETS) /\
-        RIDS := 2ndSites(VL',RS',REPLICA-TABLE) . 
+***     RIDS := 2ndSites(VL',RS',REPLICA-TABLE)
+        RIDS := 1stSites(OPS,REPLICA-TABLE) .
 
----(
+
   op gen2ndGets : Oid KeyTimestamps Versions Oid ReplicaTable -> Configuration .
   eq gen2ndGets(TID,(K |-> TS',VL),(version(K,V,TS,MD),RS),CLIENT,REPLICA-TABLE) = 
        gen2ndGets(TID,(K |-> TS',VL),RS,CLIENT,REPLICA-TABLE)
@@ -346,24 +352,20 @@ mod RAMP-F is
        fi .
   eq gen2ndGets(TID,VL,RS,CLIENT,REPLICA-TABLE) = none [owise] .  --- if K is not in VL
   eq gen2ndGets(TID,VL,empty,CLIENT,REPLICA-TABLE) = none .
-)
 
-  op gen2ndGets : Oid KeyTimestamps Versions Oid ReplicaTable -> Configuration .
-  op $gen2ndGets : Oid Timestamps Versions Oid ReplicaTable -> Configuration .
-  eq gen2ndGets(TID,VL,RS,CLIENT,REPLICA-TABLE) = 
-       $gen2ndGets(TID,tsset(VL),RS,CLIENT,REPLICA-TABLE) .
-  eq $gen2ndGets(TID,TSS,(version(K,V,TS,MD),RS),CLIENT,REPLICA-TABLE) = 
-       $gen2ndGets(TID,TSS,RS,CLIENT,REPLICA-TABLE)
+
+  op gen2ndGets : Oid Timestamps Versions Oid ReplicaTable -> Configuration .
+  eq gen2ndGets(TID,TSS,(version(K,V,TS,MD),RS),CLIENT,REPLICA-TABLE) = 
+       gen2ndGets(TID,TSS,RS,CLIENT,REPLICA-TABLE)
        msg get(TID,K,TSS,CLIENT) from CLIENT to l(REPLICA-TABLE[K]) .
-  eq $gen2ndGets(TID,TSS,empty,CLIENT,REPLICA-TABLE) = none .
+  eq gen2ndGets(TID,TSS,empty,CLIENT,REPLICA-TABLE) = none .
 
 
 --- for RAMP-S
-  op tsset : KeyTimestamps -> Timestamps .
-  op $tsset : KeyTimestamps Timestamps -> Timestamps .
-  eq tsset(VL) = $tsset(VL,empty) .
-  eq $tsset((K |-> TS,VL),TSS) = $tsset(VL,(TS,TSS)) .
-  eq $tsset(empty,TSS) = TSS .
+  op tsset : Versions -> Timestamps .
+  eq tsset((version(K,V,TS,MD),RS)) = (TS, tsset(RS)) . 
+  eq tsset(empty) = empty .
+
 
   op lat : KeyTimestamps KeySet Timestamp -> KeyTimestamps .
   eq lat(VL,(K,MD),TS) = lat(insert(K,maxts(VL,K,TS),VL),MD,TS) .
