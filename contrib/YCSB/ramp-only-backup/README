@@ -8,7 +8,7 @@
 
    Note that the .bashrc file is also backed up in the current folder as bashrc_backup
 4) To run server, log into server node and then:
-   >> cd ramp-only/ramp-sigmod2014-code
+   >> cd ~/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code 
    >> java -XX:+UseParallelGC -Djava.library.path=/usr/local/lib -Dlog4j.configuration=file:./src/main/resources/log4j.properties -jar target/kaiju-1.0-SNAPSHOT.jar -kaiju_port 9810 -id 0 -cluster 155.98.36.121:9810 -thrift_port 8080 -isolation_level READ_ATOMIC -ra_algorithm KEY_LIST -max_object_size 16384 -drop_commit_pct 0 -check_commit_delay_ms -1
 
    Note that cluster argument contains the IP address of the server node and when you have multiple server instances that you want to run on separate nodes, you provide them as a comma separated list of arguments to -cluster argument above. You still have to run the above command on each of the server nodes.
