@@ -27,6 +27,9 @@ def parseTxns(FILE):
             pairs = re.findall("(user\d+)\[eok\](.*?)\[eov\]", line)
 	    keys = [x[0] for x in pairs]	
     	    keys2 = ["write(\"%s\",\"%s\")" % (pair[0], pair[1]) for pair in pairs]
+	if len(set(keys)) != len(keys):
+	    continue
+
     	if not all_keys_in_mapping(keys):
             continue
         txns.append(" ".join(keys2))
