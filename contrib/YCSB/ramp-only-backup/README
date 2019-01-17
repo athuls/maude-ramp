@@ -13,14 +13,14 @@
 
    Note that cluster argument contains the IP address of the server node and when you have multiple server instances that you want to run on separate nodes, you provide them as a comma separated list of arguments to -cluster argument above. You still have to run the above command on each of the server nodes.
 5) Load operation. Log into client node and then:
-   >> cd ramp-only/ramp-sigmod2014-code/contrib/YCSB
+   >> cd cd ~/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB
    >> sh load-ycsb.sh 155.98.36.121 
    
    Note that you can give multiple IP addresses as separate arguments to the load script, each IP address for a server node
    Also you may see the following exception which you can ignore: com.yahoo.ycsb.DBException: com.esotericsoftware.kryo.KryoException: java.net.SocketException: Socket closed 
   
 6) To run client, log into client node and then:
-   >> cd ramp-only/ramp-sigmod2014-code/contrib/YCSB
+   >> cd cd ~/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB
    >> sh run-ycsb.sh  
    
    Note that you need to update run-ycsb.sh with the server IP addr and port, e.g., hosts=155.98.36.121:8080 
