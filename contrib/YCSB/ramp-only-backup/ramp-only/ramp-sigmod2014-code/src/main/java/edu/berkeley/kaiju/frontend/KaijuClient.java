@@ -66,6 +66,7 @@ public class KaijuClient {
                 throw new ClientException(((ClientError) ret).error);
             }
         } catch (KryoException e) {
+	    System.out.println("Put_all has some issue");
             if(!hasClosed) {
                 throw e;
             }

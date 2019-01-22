@@ -1,0 +1,7 @@
+1) Run the setup script. 
+   /users/nobi : sh setup.sh
+2) cd /users/nobi/ramp/maude-ramp/contrib/YCSB/java_ycsb_scripts
+3) ./run_server.sh
+4) ./run_load_ycsb.sh
+5) ./run_clients.sh
+

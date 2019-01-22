@@ -35,8 +35,8 @@ public class RequestDispatcher {
      The downside is that, with a lot of threads, the JVM performance can really suck.
      This was faster than using Thrift; YMMV. But it's what what we did for the paper.
      */
-   // private ExecutorService requestExecutor = Executors.newCachedThreadPool();
-    private ExecutorService requestExecutor = Executors.newSingleThreadExecutor();
+    private ExecutorService requestExecutor = Executors.newCachedThreadPool();
+   // private ExecutorService requestExecutor = Executors.newSingleThreadExecutor();
     private RequestExecutorFactory executorFactory;
 
     public RequestDispatcher(RequestExecutorFactory executorFactory) {
@@ -109,7 +109,7 @@ public class RequestDispatcher {
     private void deliverResponse(KaijuMessage inboundResponse) {
         IMessageCallback callback = outstandingRequests.remove(inboundResponse.requestID);
 
-        /*
+	// Atul uncommented this block of code for debugging
         if(callback == null) {
             logger.error("Received callback for message ID "+
                          inboundResponse.requestID+
@@ -118,7 +118,6 @@ public class RequestDispatcher {
                          " but no matching request found");
             return;
         }
-        */
 
         callback.notifyResponse(inboundResponse);
     }

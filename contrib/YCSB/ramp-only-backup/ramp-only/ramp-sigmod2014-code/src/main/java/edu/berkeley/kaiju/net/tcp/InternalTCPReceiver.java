@@ -73,6 +73,7 @@ public class InternalTCPReceiver {
                     dispatcher.processInbound((KaijuMessage) toRead);
                 }
             } catch (KryoException e) {
+	  	System.out.println("Error reading from client " + clientSocket + e.toString()); 
                 logger.error("Error reading from client "+clientSocket, e);
                 try {
                     clientSocket.close();
