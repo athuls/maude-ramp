@@ -399,7 +399,7 @@ mod RAMP-F is
      if CMTS' := remove(TID,RID',CMTS) .
 
   *********
-
+  ---
   rl [receive-get] :
      < RID : Replica | datastore : VS,
                        latestCommit : LC, AS' >
@@ -410,8 +410,20 @@ mod RAMP-F is
      {msg (if TS == eptTS then response1(TID,vmatch(K,VS,LC),RID) 
          else response2(TID,vmatch(K,VS,TS),RID) fi)
        from RID to CLIENT} .
-
-
+  
+  ---(
+  rl [receive-get] :
+     < RID : Replica | datastore : VS,
+                       latestCommit : LC, AS' >
+     msg get(TID,K,TS,RID') from CLIENT to RID
+   =>
+     < RID : Replica | datastore : VS,
+                       latestCommit : (if LC[K] less-than TS 
+                         then insert(K,TS,LC) else LC fi), AS' >
+     {msg (if TS == eptTS then response1(TID,vmatch(K,VS,LC),RID) 
+         else response2(TID,vmatch(K,VS,TS),RID) fi)
+from RID to CLIENT} .
+  )
   op vmatch : String Versions KeyTimestamps -> Version .
   op vmatch : String Versions Timestamp -> Version .
   eq vmatch(K,(version(K,V,TS,MD),VS),(K |-> TS,LC)) = version(K,V,TS,MD) .
