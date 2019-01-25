@@ -9,10 +9,12 @@ fi
 
 num_client_instances=$1
 iter=0
+ARGS=( "$@" )
+REM_ARGS=("${ARGS[@]:1}")
 
 while [ "$iter" -lt "$num_client_instances" ]
 do
 	echo "Run $iter"
-	./run_client2.sh $iter $2 $3 $4 $5 $6 $7 & 
+	./run_client2.sh $iter ${REM_ARGS[*]} & 
 	iter=`expr $iter + 1`
 done

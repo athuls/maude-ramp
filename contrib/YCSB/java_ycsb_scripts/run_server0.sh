@@ -6,7 +6,7 @@ fi
 
 hosts=`python server_arg.py $@`
 
-cd ~/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code
+cd ../ramp-only-backup/ramp-only/ramp-sigmod2014-code
 
 # Copy dependencies fpr running server
 sudo cp ../../libsigar-amd64-linux.so /usr/local/lib/

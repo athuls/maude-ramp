@@ -1,5 +1,5 @@
 # cd /users/nobi/ramp-only/ramp-sigmod2014-code/contrib/YCSB
-cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB
+# cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB
 if [ "$#" = "1" ]
 then
 	bin/ycsb load kaiju -p hosts=$1:8080 -p port=8080 -P workloads/workloada_load -p operationcount=1 -p maxexecutiontime=30000 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -p threads=1 -p time=10000 -p valuesize=1 -s

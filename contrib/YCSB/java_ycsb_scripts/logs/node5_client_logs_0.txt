@@ -1,36 +1,37 @@
 YCSB Client 0.1
-Command line: -db com.yahoo.ycsb.db.KaijuClient -p hosts=155.98.36.155:8080,155.98.36.144:8080 -threads 1 -p port=8080 -P workloads/workloada -p operationcount=4000 -p maxexecutiontime=1 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -s -t
+Command line: -db com.yahoo.ycsb.db.KaijuClient -p hosts=155.98.36.14:8080 -threads 1 -p port=8080 -P workloads/workloada -p operationcount=4000 -p maxexecutiontime=30 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -s -t
 Loading workload...
 Starting test.
  0 sec: 0 operations; 
-Maximum execution time specified as: 1 secs
+Maximum execution time specified as: 30 secs
+ 10 sec: 11 operations; 1.1 current ops/sec; [UPDATE-TXN AverageLatency(us)=5336] [READ-TXN AverageLatency(us)=8209.62] 
+ 20 sec: 4000 operations; 398.74 current ops/sec; [UPDATE-TXN AverageLatency(us)=783.38] [READ-TXN AverageLatency(us)=826.48] 
 Maximum time elapsed. Requesting stop for the workload.
 com.yahoo.ycsb.DBException: com.esotericsoftware.kryo.KryoException: java.net.SocketException: Socket closed
- 4 sec: 355 operations; 76.31 current ops/sec; [UPDATE-TXN AverageLatency(us)=2578.49] [READ-TXN AverageLatency(us)=3010.13] 
-[OVERALL], RunTime(ms), 3002.0
-[OVERALL], Throughput(ops/sec), 118.25449700199867
-[UPDATE-TXN], Operations, 177
-[UPDATE-TXN], AverageLatency(us), 2578.4858757062148
-[UPDATE-TXN], MinLatency(us), 1229
-[UPDATE-TXN], MaxLatency(us), 39747
-[UPDATE-TXN], 95thPercentileLatency(ms), 3
-[UPDATE-TXN], 99thPercentileLatency(ms), 39
-[UPDATE-TXN], 0, 0
-[UPDATE-TXN], 1, 131
-[UPDATE-TXN], 2, 29
-[UPDATE-TXN], 3, 9
-[UPDATE-TXN], 4, 3
-[UPDATE-TXN], 5, 1
+[OVERALL], RunTime(ms), 32002.0
+[OVERALL], Throughput(ops/sec), 124.99218798825073
+[UPDATE-TXN], Operations, 2011
+[UPDATE-TXN], AverageLatency(us), 790.1690701143709
+[UPDATE-TXN], MinLatency(us), 508
+[UPDATE-TXN], MaxLatency(us), 9633
+[UPDATE-TXN], 95thPercentileLatency(ms), 1
+[UPDATE-TXN], 99thPercentileLatency(ms), 2
+[UPDATE-TXN], 0, 1839
+[UPDATE-TXN], 1, 151
+[UPDATE-TXN], 2, 14
+[UPDATE-TXN], 3, 4
+[UPDATE-TXN], 4, 1
+[UPDATE-TXN], 5, 0
 [UPDATE-TXN], 6, 0
 [UPDATE-TXN], 7, 0
-[UPDATE-TXN], 8, 0
-[UPDATE-TXN], 9, 0
+[UPDATE-TXN], 8, 1
+[UPDATE-TXN], 9, 1
 [UPDATE-TXN], 10, 0
 [UPDATE-TXN], 11, 0
 [UPDATE-TXN], 12, 0
 [UPDATE-TXN], 13, 0
 [UPDATE-TXN], 14, 0
-[UPDATE-TXN], 15, 1
+[UPDATE-TXN], 15, 0
 [UPDATE-TXN], 16, 0
 [UPDATE-TXN], 17, 0
 [UPDATE-TXN], 18, 0
@@ -54,7 +55,7 @@ com.yahoo.ycsb.DBException: com.esotericsoftware.kryo.KryoException: java.net.So
 [UPDATE-TXN], 36, 0
 [UPDATE-TXN], 37, 0
 [UPDATE-TXN], 38, 0
-[UPDATE-TXN], 39, 3
+[UPDATE-TXN], 39, 0
 [UPDATE-TXN], 40, 0
 [UPDATE-TXN], 41, 0
 [UPDATE-TXN], 42, 0
@@ -1016,34 +1017,34 @@ com.yahoo.ycsb.DBException: com.esotericsoftware.kryo.KryoException: java.net.So
 [UPDATE-TXN], 998, 0
 [UPDATE-TXN], 999, 0
 [UPDATE-TXN], >1000, 0
-[READ-TXN], Operations, 178
-[READ-TXN], AverageLatency(us), 3010.129213483146
-[READ-TXN], MinLatency(us), 912
-[READ-TXN], MaxLatency(us), 41434
-[READ-TXN], 95thPercentileLatency(ms), 6
-[READ-TXN], 99thPercentileLatency(ms), 39
-[READ-TXN], 0, 4
-[READ-TXN], 1, 84
-[READ-TXN], 2, 57
-[READ-TXN], 3, 17
-[READ-TXN], 4, 3
-[READ-TXN], 5, 4
-[READ-TXN], 6, 1
+[READ-TXN], Operations, 1989
+[READ-TXN], AverageLatency(us), 856.175465057818
+[READ-TXN], MinLatency(us), 428
+[READ-TXN], MaxLatency(us), 14290
+[READ-TXN], 95thPercentileLatency(ms), 1
+[READ-TXN], 99thPercentileLatency(ms), 3
+[READ-TXN], 0, 1539
+[READ-TXN], 1, 355
+[READ-TXN], 2, 68
+[READ-TXN], 3, 13
+[READ-TXN], 4, 2
+[READ-TXN], 5, 5
+[READ-TXN], 6, 3
 [READ-TXN], 7, 2
 [READ-TXN], 8, 0
-[READ-TXN], 9, 1
-[READ-TXN], 10, 0
+[READ-TXN], 9, 0
+[READ-TXN], 10, 1
 [READ-TXN], 11, 0
-[READ-TXN], 12, 1
-[READ-TXN], 13, 1
-[READ-TXN], 14, 0
+[READ-TXN], 12, 0
+[READ-TXN], 13, 0
+[READ-TXN], 14, 1
 [READ-TXN], 15, 0
 [READ-TXN], 16, 0
 [READ-TXN], 17, 0
 [READ-TXN], 18, 0
 [READ-TXN], 19, 0
 [READ-TXN], 20, 0
-[READ-TXN], 21, 1
+[READ-TXN], 21, 0
 [READ-TXN], 22, 0
 [READ-TXN], 23, 0
 [READ-TXN], 24, 0
@@ -1061,9 +1062,9 @@ com.yahoo.ycsb.DBException: com.esotericsoftware.kryo.KryoException: java.net.So
 [READ-TXN], 36, 0
 [READ-TXN], 37, 0
 [READ-TXN], 38, 0
-[READ-TXN], 39, 1
+[READ-TXN], 39, 0
 [READ-TXN], 40, 0
-[READ-TXN], 41, 1
+[READ-TXN], 41, 0
 [READ-TXN], 42, 0
 [READ-TXN], 43, 0
 [READ-TXN], 44, 0
@@ -2023,4 +2024,4 @@ com.yahoo.ycsb.DBException: com.esotericsoftware.kryo.KryoException: java.net.So
 [READ-TXN], 998, 0
 [READ-TXN], 999, 0
 [READ-TXN], >1000, 0
-java -cp /users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB/kaiju/target/kaiju-binding-0.1.4.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB/kaiju/target/archive-tmp/kaiju-binding-0.1.4.jar:/users/nobi/ramp/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB/core/target/core-0.1.4.jar com.yahoo.ycsb.Client -db com.yahoo.ycsb.db.KaijuClient -p hosts=155.98.36.155:8080,155.98.36.144:8080 -threads 1 -p port=8080 -P workloads/workloada -p operationcount=4000 -p maxexecutiontime=1 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -s -t
+java -cp /users/nobi/test_ramp_java/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB/core/target/core-0.1.4.jar:/users/nobi/test_ramp_java/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB/kaiju/target/kaiju-binding-0.1.4.jar:/users/nobi/test_ramp_java/maude-ramp/contrib/YCSB/ramp-only-backup/ramp-only/ramp-sigmod2014-code/contrib/YCSB/kaiju/target/archive-tmp/kaiju-binding-0.1.4.jar com.yahoo.ycsb.Client -db com.yahoo.ycsb.db.KaijuClient -p hosts=155.98.36.14:8080 -threads 1 -p port=8080 -P workloads/workloada -p operationcount=4000 -p maxexecutiontime=30 -p isolation_level=READ_ATOMIC -p read_atomic_algorithm=KEY_LIST -s -t
