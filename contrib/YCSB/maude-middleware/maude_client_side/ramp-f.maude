@@ -406,8 +406,7 @@ mod RAMP-F is
      msg get(TID,K,TS,RID') from CLIENT to RID
    =>
      < RID : Replica | datastore : VS,
-                       latestCommit : (if LC[K] less-than TS 
-                         then insert(K,TS,LC) else LC fi), AS' >
+                       latestCommit : LC, AS' >
      {msg (if TS == eptTS then response1(TID,vmatch(K,VS,LC),RID) 
          else response2(TID,vmatch(K,VS,TS),RID) fi)
        from RID to CLIENT} .
