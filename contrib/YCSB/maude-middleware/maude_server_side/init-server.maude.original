@@ -1,5 +1,5 @@
----load ramp-f
-load ramp-s
+load ramp-f
+---load ramp-s
 
 mod INIT-SERVER is
   inc RAMP-F .
