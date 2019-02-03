@@ -1,4 +1,6 @@
 #!/bin/bash
+source config.sh
+
 if [ $# != 1 ]
 then
 	echo "Arguments needed: time to start"
@@ -7,7 +9,7 @@ fi
 
 sleep_time=$1
 
-cd /users/nobi/ramp/maude-ramp/contrib/YCSB/ycsb_scripts
+cd ${script_base}
 bash sleep_time.sh $sleep_time
 retn_val=$?
 

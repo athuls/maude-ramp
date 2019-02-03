@@ -1,6 +1,7 @@
 #!/bin/bash
 source config.sh
 
+mkdir ${debug_log_dir}
 cd $YCSB_dir
 rm keyMappings*
 
