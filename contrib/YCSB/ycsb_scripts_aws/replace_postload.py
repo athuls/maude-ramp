@@ -5,6 +5,7 @@ path = sys.argv[1]
 ip = sys.argv[2]
 id = sys.argv[3]
 tmp=sys.argv[4]
+key_mapping=sys.argv[5]
 
 def parsePostLoad(FILE):
     pairs = []
@@ -16,6 +17,14 @@ def parsePostLoad(FILE):
     res=[]
     for pair in pairs:
         res.append("\"%s\" |-> \"%s\"" % (pair[0], pair[1]))
+    return "( "+ ", ".join(res) +" )"
+
+def parseKeyMapping(FILE):
+    res = []
+    for line in open(FILE).readlines():
+        line = line.replace("\n","")
+        parts = line.split(",")
+        res.append("\"%s\" |-> \"%s\"" % (parts[0], parts[1]))
     return "( "+ ", ".join(res) +" )"
 
 import os
@@ -34,8 +43,9 @@ content = open(path).read()
 content = content.replace("$p1$", ip)
 content = content.replace("$p2$", id)
 
-merge_files(tmp, ip)
-res = parsePostLoad(tmp+"/"+ip)
+#merge_files(tmp, ip)
+#res = parsePostLoad(tmp+"/"+ip)
+res = parseKeyMapping(key_mapping)
 
 content = content.replace("$p3$", res)
 

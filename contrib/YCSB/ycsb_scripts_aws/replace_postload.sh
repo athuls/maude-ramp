@@ -16,5 +16,5 @@ instance_id=$3
 path=init-client${clientid}_${instance_id}.maude
 cp init-client.maude.original $path
 
-python ${script_base}/replace_postload.py $path $ip $instance_id $tmp
+python ${script_base}/replace_postload.py $path $ip $instance_id $tmp ${key_mapping}
 
