@@ -1,0 +1,138 @@
+Advisory: could not find an operator tid with appropriate domain in meta-module MESSAGE when trying to interprete metaterm 'tid['l['"155.98.38.33".String,'0.Zero],'s_['0.Zero]].
+Advisory: no socket to receive message send(socket(4), l("155.98.38.33", 0), qidListString(metaPrettyPrint(mod 'MESSAGE is
+  including 'BOOL .
+  protecting 'CONFIGURATION .
+  protecting 'NAT .
+  protecting 'STRING .
+  protecting 'LOC .
+  sorts 'MsgCont .
+  none
+  op 'error : 'String -> 'Msg [ctor msg] .
+  op 'msg_from_ : 'MsgCont 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_ : 'MsgCont 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_ : 'String 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_and_ : 'MsgCont 'Oid 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_and_ : 'String 'Oid 'Oid 'Oid -> 'Msg [ctor] .
+  op 'new-socket : 'Oid -> 'Msg [ctor] .
+  op 'source : 'Msg -> 'Oid [none] .
+  op 'start_ : 'Oid -> 'Msg [ctor] .
+  op 'target : 'Msg -> 'Oid [none] .
+  op 'test : 'Nat -> 'MsgCont [none] .
+  none
+  eq 'source['msg_from_to_['MSG:MsgCont,'O:Oid,'O':Oid]] = 'O:Oid [none] .
+  eq 'source['msg_from_to_['STR:String,'O:Oid,'O':Oid]] = 'O:Oid [none] .
+  eq 'target['msg_from_to_['MSG:MsgCont,'O:Oid,'O':Oid]] = 'O':Oid [none] .
+  eq 'target['msg_from_to_['STR:String,'O:Oid,'O':Oid]] = 'O':Oid [none] .
+  none
+endm, 'msg_from_to_['prepare['tid['l['"155.98.38.33".String,'0.Zero],'s_['0.Zero]],'version['"k1".String,'"v1".String,'ts['l['"155.98.38.33".String,'0.Zero],'s_['0.Zero]],'"k2".String],'l[
+    '"155.98.38.33".String,'0.Zero]],'l['"155.98.38.33".String,'0.Zero],'l['"155.98.38.39".String]], none)) + "[msep]").
+Advisory: could not find an operator tid with appropriate domain in meta-module MESSAGE when trying to interprete metaterm 'tid['l['"155.98.38.33".String,'0.Zero],'s_['0.Zero]].
+Advisory: no socket to receive message send(socket(4), l("155.98.38.33", 0), qidListString(metaPrettyPrint(mod 'MESSAGE is
+  including 'BOOL .
+  protecting 'CONFIGURATION .
+  protecting 'NAT .
+  protecting 'STRING .
+  protecting 'LOC .
+  sorts 'MsgCont .
+  none
+  op 'error : 'String -> 'Msg [ctor msg] .
+  op 'msg_from_ : 'MsgCont 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_ : 'MsgCont 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_ : 'String 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_and_ : 'MsgCont 'Oid 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_and_ : 'String 'Oid 'Oid 'Oid -> 'Msg [ctor] .
+  op 'new-socket : 'Oid -> 'Msg [ctor] .
+  op 'source : 'Msg -> 'Oid [none] .
+  op 'start_ : 'Oid -> 'Msg [ctor] .
+  op 'target : 'Msg -> 'Oid [none] .
+  op 'test : 'Nat -> 'MsgCont [none] .
+  none
+  eq 'source['msg_from_to_['MSG:MsgCont,'O:Oid,'O':Oid]] = 'O:Oid [none] .
+  eq 'source['msg_from_to_['STR:String,'O:Oid,'O':Oid]] = 'O:Oid [none] .
+  eq 'target['msg_from_to_['MSG:MsgCont,'O:Oid,'O':Oid]] = 'O':Oid [none] .
+  eq 'target['msg_from_to_['STR:String,'O:Oid,'O':Oid]] = 'O':Oid [none] .
+  none
+endm, 'msg_from_to_['prepare['tid['l['"155.98.38.33".String,'0.Zero],'s_['0.Zero]],'version['"k1".String,'"v1".String,'ts['l['"155.98.38.33".String,'0.Zero],'s_['0.Zero]],'"k2".String],'l[
+    '"155.98.38.33".String,'0.Zero]],'l['"155.98.38.33".String,'0.Zero],'l['"155.98.38.39".String]], none)) + "[msep]").
+Advisory: no socket to receive message send(socket(4), l("155.98.38.33", 0), qidListString(metaPrettyPrint(mod 'MESSAGE is
+  including 'BOOL .
+  protecting 'CONFIGURATION .
+  protecting 'NAT .
+  protecting 'STRING .
+  protecting 'LOC .
+  sorts 'MsgCont .
+  none
+  op 'error : 'String -> 'Msg [ctor msg] .
+  op 'msg_from_ : 'MsgCont 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_ : 'MsgCont 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_ : 'String 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_and_ : 'MsgCont 'Oid 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_and_ : 'String 'Oid 'Oid 'Oid -> 'Msg [ctor] .
+  op 'new-socket : 'Oid -> 'Msg [ctor] .
+  op 'source : 'Msg -> 'Oid [none] .
+  op 'start_ : 'Oid -> 'Msg [ctor] .
+  op 'target : 'Msg -> 'Oid [none] .
+  op 'test : 'Nat -> 'MsgCont [none] .
+  none
+  eq 'source['msg_from_to_['MSG:MsgCont,'O:Oid,'O':Oid]] = 'O:Oid [none] .
+  eq 'source['msg_from_to_['STR:String,'O:Oid,'O':Oid]] = 'O:Oid [none] .
+  eq 'target['msg_from_to_['MSG:MsgCont,'O:Oid,'O':Oid]] = 'O':Oid [none] .
+  eq 'target['msg_from_to_['STR:String,'O:Oid,'O':Oid]] = 'O':Oid [none] .
+  none
+endm, 'msg_from_to_['prepare['tid['l['"155.98.38.33".String,'0.Zero],'s_['0.Zero]],'version['"k2".String,'"v2".String,'ts['l['"155.98.38.33".String,'0.Zero],'s_['0.Zero]],'"k1".String],'l[
+    '"155.98.38.33".String,'0.Zero]],'l['"155.98.38.33".String,'0.Zero],'l['"155.98.38.39".String]], none)) + "[msep]").
+Advisory: no socket to receive message send(socket(4), l("155.98.38.33", 0), qidListString(metaPrettyPrint(mod 'MESSAGE is
+  including 'BOOL .
+  protecting 'CONFIGURATION .
+  protecting 'NAT .
+  protecting 'STRING .
+  protecting 'LOC .
+  sorts 'MsgCont .
+  none
+  op 'error : 'String -> 'Msg [ctor msg] .
+  op 'msg_from_ : 'MsgCont 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_ : 'MsgCont 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_ : 'String 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_and_ : 'MsgCont 'Oid 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_and_ : 'String 'Oid 'Oid 'Oid -> 'Msg [ctor] .
+  op 'new-socket : 'Oid -> 'Msg [ctor] .
+  op 'source : 'Msg -> 'Oid [none] .
+  op 'start_ : 'Oid -> 'Msg [ctor] .
+  op 'target : 'Msg -> 'Oid [none] .
+  op 'test : 'Nat -> 'MsgCont [none] .
+  none
+  eq 'source['msg_from_to_['MSG:MsgCont,'O:Oid,'O':Oid]] = 'O:Oid [none] .
+  eq 'source['msg_from_to_['STR:String,'O:Oid,'O':Oid]] = 'O:Oid [none] .
+  eq 'target['msg_from_to_['MSG:MsgCont,'O:Oid,'O':Oid]] = 'O':Oid [none] .
+  eq 'target['msg_from_to_['STR:String,'O:Oid,'O':Oid]] = 'O':Oid [none] .
+  none
+endm, 'msg_from_to_['prepare['tid['l['"155.98.38.33".String,'0.Zero],'s_['0.Zero]],'version['"k1".String,'"v1".String,'ts['l['"155.98.38.33".String,'0.Zero],'s_['0.Zero]],'"k2".String],'l[
+    '"155.98.38.33".String,'0.Zero]],'l['"155.98.38.33".String,'0.Zero],'l['"155.98.38.39".String]], none)) + "[msep]").
+Advisory: no socket to receive message send(socket(4), l("155.98.38.33", 0), qidListString(metaPrettyPrint(mod 'MESSAGE is
+  including 'BOOL .
+  protecting 'CONFIGURATION .
+  protecting 'NAT .
+  protecting 'STRING .
+  protecting 'LOC .
+  sorts 'MsgCont .
+  none
+  op 'error : 'String -> 'Msg [ctor msg] .
+  op 'msg_from_ : 'MsgCont 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_ : 'MsgCont 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_ : 'String 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_and_ : 'MsgCont 'Oid 'Oid 'Oid -> 'Msg [ctor] .
+  op 'msg_from_to_and_ : 'String 'Oid 'Oid 'Oid -> 'Msg [ctor] .
+  op 'new-socket : 'Oid -> 'Msg [ctor] .
+  op 'source : 'Msg -> 'Oid [none] .
+  op 'start_ : 'Oid -> 'Msg [ctor] .
+  op 'target : 'Msg -> 'Oid [none] .
+  op 'test : 'Nat -> 'MsgCont [none] .
+  none
+  eq 'source['msg_from_to_['MSG:MsgCont,'O:Oid,'O':Oid]] = 'O:Oid [none] .
+  eq 'source['msg_from_to_['STR:String,'O:Oid,'O':Oid]] = 'O:Oid [none] .
+  eq 'target['msg_from_to_['MSG:MsgCont,'O:Oid,'O':Oid]] = 'O':Oid [none] .
+  eq 'target['msg_from_to_['STR:String,'O:Oid,'O':Oid]] = 'O':Oid [none] .
+  none
+endm, 'msg_from_to_['prepare['tid['l['"155.98.38.33".String,'0.Zero],'s_['0.Zero]],'version['"k2".String,'"v2".String,'ts['l['"155.98.38.33".String,'0.Zero],'s_['0.Zero]],'"k1".String],'l[
+    '"155.98.38.33".String,'0.Zero]],'l['"155.98.38.33".String,'0.Zero],'l['"155.98.38.39".String]], none)) + "[msep]").
+

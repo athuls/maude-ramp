@@ -1,0 +1,13 @@
+Login to server
+> cd /users/nobi/ramp/maude-ramp/contrib/YCSB/maude-middleware/maude_server_side
+> Change the self IP address in init-server.maude file
+> ../maude-binaries/alpha117/maude-Yices2.linux64 init-server.maude > ../debug_logs/server1.txt 
+
+Login to client node
+> cd /users/nobi/ramp/maude-ramp/contrib/YCSB/maude-middleware/maude_client_side
+> Change the self, k1-addr and k2-addr IP address in init-client.maude file  
+> ../maude-binaries/alpha117/maude-Yices2.linux64 init-client.maude > ../debug_logs/client1.txt
+
+Stopping serve/rclient
+> Hit Ctrl+C and then Ctrl+D for client
+> Hit Ctrl+C and then Ctrl+D for server

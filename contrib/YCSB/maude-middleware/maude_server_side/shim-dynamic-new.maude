@@ -24,7 +24,6 @@ mod SHIM-DYNAMIC is
   vars SKTS MSGS : Configuration .
   var N : Nat .
   var MSG : MsgCont .
-  var LS : Map{Oid,Oid} .
   var STR : String .
   var CONTACTS : Skts .
 

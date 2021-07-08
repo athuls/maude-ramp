@@ -131,16 +131,16 @@ mod SERVER is
       (msg VALUE from O' to O and O'')
     =>
       < O : Server | AS >
-      (msg VALUE from O to O'') 
+      {msg VALUE from O to O''}
       if find(VALUE,"[eok]",0) == notFound /\
          find(VALUE,"[eor]",0) == notFound /\
-         ip(O) == "155.98.38.47" .
+         ip(O) == "155.98.38.62" .
 	 --- Above IP is that of server 0, one that client contacts
 
   eq < msg STR from O to l(undefined) and O'' > 
        = {msg STR from O to O''}  . 
 
-  eq numberOfServerSockets = 4 . ***Should add the count for sockets for server-maude client communication
+  eq numberOfServerSockets = 1 . ***Should add the count for sockets for server-maude client communication
   eq port = 9910 .  *** the base port for server talking to server
   eq backLog = 1 .  *** the BACKLOG parameter on the server side
 
@@ -150,29 +150,30 @@ mod SERVER is
   eq client-addr = l(addr,2) .
 
   op addr : -> String .
-  eq addr = "155.98.38.47" .
+  eq addr = "155.98.38.80" .
 )
 
   op self : -> String .
-  eq self = "155.98.38.47" .
+  eq self = "155.98.38.62" .
 
 
   op init : -> Configuration .
   eq init = <>
             < l(self,10001) : ServerShim | sockets : none, contacts : empty, bufferedMsgs : none, created : 0 >
-            < l(self) : Server | store : empty >
-            createServerTcpSocket(socketManager, l(self), 9910, 10)  *** opened for server-server
-            createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
-            createServerTcpSocket(socketManager, l(self), 9710, 10)  *** opened for post-load
+            < l(self) : Server | store : "user001" |-> "default" >  ---NEW
+        ***    createServerTcpSocket(socketManager, l(self), 9910, 10)  *** opened for server-server
+        ---NEW    createServerTcpSocket(socketManager, l(self), 9810, 10)  *** opened for load
+        ---NEW    createServerTcpSocket(socketManager, l(self), 9710, 10)  *** opened for post-load
 	    *** Following are ports for server - maude client communication
 	    ***START AUTOMATICALLY GENERATED CODE***
 	    createServerTcpSocket(socketManager, l(self), 9000, 10)
 	    ***END AUTOMATICALLY GENERATED CODE***
 
             < l(self,10000) : ClientShim | sockets : none, contacts : empty, bufferedMsgs : none >
-            < tb : Table | table : empty > .
+        ---NEW
+            < tb : Table | table : "user001" |-> self > .
            
 endm
 
-erew init .
+---erew init .
 

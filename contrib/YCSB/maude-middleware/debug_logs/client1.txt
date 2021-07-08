@@ -1,0 +1,12 @@
+		     \||||||||||||||||||/
+		   --- Welcome to Maude ---
+		     /||||||||||||||||||\
+	   Maude alpha117 built: Jul 10 2018 19:50:40
+	    Copyright 1997-2018 SRI International
+		   Sun Jul 29 14:12:41 2018
+==========================================
+erewrite in INIT-CLIENT : init .
+rewrites: 371 in 4ms cpu (7895ms real) (92750 rewrites/second)
+result [Configuration,ObjList]: 
+
+Bye.
